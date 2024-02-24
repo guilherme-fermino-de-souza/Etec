@@ -1,0 +1,37 @@
+package Aula01;
+
+import java.util.Scanner;
+
+public class questFive {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		final int TAM = 10; // definindo uma constante de tamanho 10
+		int i, a[], b[], c[];
+		
+		a  = new int[TAM];
+		b  = new int[TAM];
+		c  = new int[TAM];
+		
+		//leitura do vetor A
+		for (i=0; i<TAM; i++) {
+			System.out.println("Entre com o "+(i+1)+"° valor de A");
+			a[i]  = in.nextInt();
+			}
+		//leitura do vetor b
+			for (i=0; i<TAM; i++) {
+				System.out.println("Entre com o "+(i+1)+"° valor de B");
+				b[i] = in.nextInt();
+			}
+			//soma no vetor C
+			for (i=0; i<TAM; i++) {
+				c[i] = a[0]+b[0];
+				a[0]++;
+				b[0]++;
+				System.out.println("A soma entre os "+(i+1)+"°s números dos vetores A e B é "+c[i]);
+			}
+			
+	}
+
+}
