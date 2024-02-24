@@ -1,0 +1,30 @@
+package Aula01;
+
+import java.util.Scanner;
+
+public class questThree {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+         
+		int n, n1, n2, n3;
+		
+		System.out.println("digite um número de três algarismos");
+		n = in.nextInt();
+		
+		if (n >= 100 & n <= 999) {
+		     String intString = Integer.toString(n);
+		
+		     n1 = intString.charAt(2) - '0';
+		     n2 = intString.charAt(1) - '0';
+		     n3 = intString.charAt(0) - '0';
+			
+			System.out.println("o inverso é " + n1 + n2 + n3);
+		} else {
+			System.out.println("número inválido!");
+		}
+		
+		System.out.println("fim do programa.");
+	}
+
+}
