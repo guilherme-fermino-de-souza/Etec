@@ -1,0 +1,46 @@
+package Aula01;
+
+import java.util.Scanner;
+
+public class questTwo {
+
+	public static void main(String[] args) {
+	  Scanner in = new Scanner(System.in);
+	  
+	 double aulaV, aulaN, salarioL, salarioT;
+	  
+	  System.out.println("insira o valor da hora de aula");
+	  aulaV = in.nextDouble();
+	  System.out.println("insira o número de aulas dadas no mês");
+      aulaN = in.nextDouble();
+      salarioL = aulaN*aulaV;
+      
+      if (salarioL<1212) {
+    	  salarioT = salarioL-((salarioL/100)*7.5);
+    	  
+      } else if (salarioL<2427.35) {
+    	  salarioT = salarioL-((salarioL/100)*9);
+    	  
+      } else if (salarioL<3641.03) {
+    	  salarioT = salarioL-((salarioL/100)*12);
+    	  
+      } else if (salarioL<7087.22) {
+    	  salarioT = salarioL-((salarioL/100)*14);
+    	  
+      } else if (salarioL<12136.79) {
+    	  salarioT = salarioL-((salarioL/100)*14.5);
+    	  
+      } else if (salarioL<24273.57) {
+    	  salarioT = salarioL-((salarioL/100)*16.5);
+    	  
+      } else if (salarioL<47333.46) {
+    	  salarioT = salarioL-((salarioL/100)*19);
+      } else {
+    	  salarioT = salarioL-((salarioL/100)*22);
+      }
+      
+      System.out.println("o seu salário total(contando com o desconto do INSS) é "+salarioT);
+      	  
+	}
+
+}
