@@ -1,0 +1,38 @@
+package Aula01;
+
+import java.util.Scanner;
+
+public class questFour {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Deseja continuar com a execução? (S/N): ");
+            String resposta = in.nextLine().toUpperCase();
+
+            if (resposta.equals("N")) {
+                System.out.println("Encerrando a execução.");
+                break; // Sai do loop se a resposta for 'N'
+            } else if (resposta.equals("S")) {
+                System.out.println("Continuando a execução...");
+                
+                double valorP, margemL, valorT;
+
+                System.out.println("Insira o valor de compra do produto");
+                valorP = in.nextDouble();
+                System.out.println("Insira a margem de lucro desejada");
+                margemL = in.nextDouble();
+
+                valorT = (valorP / 100) * (100 + margemL);
+
+                System.out.println("O valor total do produto é " + valorT);
+            } else {
+                System.out.println("Resposta inválida. Por favor, responda com S ou N.");
+            }
+            in.nextLine(); // Limpa o buffer do scanner
+        }
+
+        in.close();
+    }
+}
