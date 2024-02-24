@@ -1,0 +1,22 @@
+package Aula01;
+
+import java.util.Scanner;
+
+public class QuestOne {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+    
+		int a, b, al, pe;
+		
+		System.out.println("insira o valor da base");
+		b = in.nextInt();
+		System.out.println("insira o valor da altura");
+		a = in.nextInt();
+		al = a*b;
+		System.out.println("a altura é igual a "+al);
+		pe = 2*(a+b);
+		System.out.println("o perímetro é igual a "+pe);		
+	}
+
+}
