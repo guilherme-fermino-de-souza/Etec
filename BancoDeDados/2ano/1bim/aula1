@@ -1,0 +1,30 @@
+CREATE DATABASE bdEStoque
+GO
+USE		bdEstoque
+/*DROP DATABASE*/
+
+CREATE TABLE tbCliente(
+   idCliente INT PRIMARY KEY IDENTITY(1,1)
+   ,nomeCliente VARCHAR (60) NOT NULL
+   ,cpfCliente CHAR (14) NOT NULL
+   ,emailClinete VARCHAR (30) NOT NULL
+   ,sexoCliente CHAR (1) NOT NULL
+   ,dataNasCliente SMALLDATETIME NOT NULL
+   )
+CREATE TABLE tbFabricante(
+   idFabricante INT PRIMARY KEY IDENTITY(1,1)
+   ,nomeFabricante VARCHAR (60) NOT NULL
+   )
+CREATE TABLE tbFornedor(
+   idFornecedor INT PRIMARY KEY IDENTITY(1,1)
+   ,nomeFornecedor VARCHAR (60) NOT NULL
+   ,contatoFornecedor VARCHAR (90) NOT NULL
+   )
+CREATE TABLE tbVenda(
+   idvenda INT PRIMARY KEY IDENTITY(1,1)
+   ,dataVenda SMALLDATETIME NOT NULL
+   ,valorTotalVenda MONEY
+
+CREATE TABLE tbItensVenda(
+   codItensVenda INT PRIMARY KEY IDENTITY(1,1)
+   ,
