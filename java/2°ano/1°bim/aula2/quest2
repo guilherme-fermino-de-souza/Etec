@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class quesTwo {
+
+	public static void main(String[] args) {
+		//leia os valores para preencher uma matriz 3x3 e apresente a quantidade de valores pares e a quantidade de valores ímpares 
+     Scanner in = new Scanner(System.in);
+     int a[][] = new int [3] [3];
+     int impar=0, par=0;
+		for (int i=0; i<3; i++) {
+			for (int j=0; j<3; j++) {
+				System.out.println("insira o valor da linha "+(i+1)+" na coluna "+(j+1)+".");
+				a [i][j] = in.nextInt();
+			}
+		}
+
+		for (int i=0; i<3; i++) {
+			for (int j=0; j<3; j++) {
+             if (a[i][j] % 2 == 0) {
+            	 par++;	 
+             } else {
+            	 impar++;
+             }
+
+			}
+		
+		}
+		System.out.println("existem "+par+" número(s) par(es) e "+impar+" número(s) ímpar(es)");
+	
+	in.close();
+	}
+
+}
