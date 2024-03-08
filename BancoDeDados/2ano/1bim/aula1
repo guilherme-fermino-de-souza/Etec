@@ -1,4 +1,4 @@
-CREATE DATABASE bdLojaEstoque
+CREATE DATABASE bdLojaEstoqueTwo
 GO
 
 /*DROP DATABASE*/
@@ -114,7 +114,7 @@ CREATE TABLE tbItensVenda(
 	   ,('1000', '4000.00', 9, 4)
 	   
 	   -- EXECUTADO ATÉ AQUI --
-USE bdLojaEstoque
+USE bdLojaEstoqueTwO
 
 UPDATE tbProduto
 SET valorProduto = valorProduto * 1.10
@@ -134,11 +134,10 @@ WHERE nomeCliente = 'Adriana Nogueira Silva'
 
 UPDATE tbVenda
 SET valorTotalVenda = valorTotalVenda * 0.95
-WHERE dataVenda = 'xx-02-2014'
+WHERE MONTH(dataVenda) = 2 AND YEAR(dataVenda) = 2014;
 
-UPDATE tbProduto
-SET quantidadeProduto = quantidadeProduto * 0
-WHERE descricaoProduto = 'Salsicha Hot Dog Sadia'
+DELETE FROM tbItensVenda
+WHERE idProduto IN (SELECT idProduto FROM tbProduto WHERE descricaoProduto = 'Salsicha Hot Dog Sadia');
 
 UPDATE tbProduto
 SET valorProduto = valorProduto * valorProduto * 0.80
@@ -146,4 +145,13 @@ WHERE quantidadeProduto >= 1000;
 
 UPDATE tbVenda
 SET valorTotalVenda = valorTotalVenda * 0.90
-WHERE idCliente = SELECT idCliente FROM tbCliente WHERE 
+WHERE idCliente BETWEEN 2 AND 4;
+
+UPDATE tbProduto
+SET valorProduto = valorProduto * 1.06
+WHERE descricaoProduto LIKE '%Sadia%';
+
+UPDATE tbVenda
+SET valorTotalVenda = valorTotalVenda * 1.02
+WHERE MONTH(dataVenda) = 2 AND YEAR(dataVenda) = 2014;
+
