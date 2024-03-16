@@ -1,5 +1,5 @@
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -71,8 +71,9 @@ html {
 }
 
 .btn-cadastro button {
-    width: 70px;
-    height: 50px;
+    width: 90px;
+    height: 40px;
+    margin-bottom: 20px;
     border-radius: 10%;
     background-color: #02a8c0;
     color: rgb(255, 255, 255);
@@ -212,3 +213,130 @@ html {
     align-items: center;
     justify-content: center;
 }
+
+/*FOOTER START*/
+.contact {
+    display: flow-root;
+    background-color: #02c078;
+    color: #02a8c0;
+    text-align: center;
+    padding: 1px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer footer {
+    background-color: #ffffff;
+}
+
+.footer a {
+    color: #000000;
+    font-size: medium;
+}
+
+footer a:hover {
+    color: #1E4593;
+}
+
+.item-1 p {
+    padding-left: 0%;
+}
+
+.icons-footer {
+    padding-left: 10%;
+}
+
+.icons-footer img {
+    height: 45px;
+    padding: 0 3%;
+}
+
+#contact {
+    background-color: #02c078;
+    width: 100%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    color: #000000;
+    text-align: center;
+
+    padding: 12px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    /* Isso garante que o contêiner ocupe pelo menos 100% da altura da tela */
+}
+
+.hr-container {
+    width: 70%;
+}
+
+.footer-1 {
+    display: flex;
+    justify-content: space-around;
+    padding: 3px 5px;
+    text-align: left;
+    width: 80%;
+    /* Garante que ocupa toda a largura do .footer-container */
+}
+
+.footer-1 {
+    height: 15rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 50px;
+    text-align: left;
+}
+
+.footer-1 a {
+    text-decoration: none;
+    padding: 0px 0px;
+}
+
+.footer-item-01 {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-item-02 {
+    display: flex;
+}
+
+.footer-item-03 {
+    display: flex;
+}
+
+.footer-item-04 {
+    display: flex;
+}
+
+.footer-item-05 {
+    display: flex;
+}
+
+.footer-desc {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    text-align: right;
+    padding-left: 13.3%;
+}
+
+.footer-desc a {
+    padding: 0% 2%;
+}
+
+.footer-desc h3 {
+    padding: 0% 2%;
+}
+
+footer p {
+    text-align: left;
+    padding-left: 15%;
+}
+
+/*FOOTER END*/
