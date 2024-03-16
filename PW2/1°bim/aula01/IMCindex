@@ -1,110 +1,127 @@
 <html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthyPrograms</title>
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./estilo.css">
 </head>
-<body>
-    
-    <!-- Menu de ciminha -->
-    <header id="header">
-        <div class="container">
+<header id="header">
+    <div class="container">
 
-            <div class="flex">
-                <div class="logoSaudavel">
-                    <i><img src="imgs/logoSaudavel.webp" alt="15px" height="45px" width="40px"></i>
-                </div>
- 
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Tuas consultas</a></li>
-                        <li><a href="#">Atendimento</a></li>
-                        <li><a href="#">Periódicos</a></li>
-                    </ul>
-                </nav>
+        <div class="flex">
+            <div class="logoSaudavel">
+                <i><img src="imgs/logoSaudavel.webp" alt="15px" height="45px" width="40px"></i>
+            </div>
 
-                <div class="btn-cadastro">
-                    <a href="#"><button>Cadastra-te</button></a>
-                </div>
- 
-            </div><!-- fim flex-->
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tuas consultas</a></li>
+                    <li><a href="#">Atendimento</a></li>
+                    <li><a href="#">Periódicos</a></li>
+                </ul>
+            </nav>
 
-        </div><!-- fim container-->
+            <div class="btn-cadastro">
+                <a href="#"><button>Cadastra-te</button></a>
+            </div>
 
-    </header><!-- fim header/navbar-->
+        </div><!-- fim flex-->
 
-    <!--
+    </div><!-- fim container-->
+
+</header><!-- fim header/navbar-->
+
+<!--
     <section class="banner">
         <h1>Protege-te contra <span>o mosquito da dengue!</span></h1>
     </section><!-- fim txtBanner-->
 
-    <section id="container_conteudo">
-        <div class="text">
-            
-            <div class="flex_text"><br><br><br><br><br><br><br><br><br><br><br><br><br><hr>
-                
-                <h3>Importância de Dietas Balanceadas:</h3><br>
-                <p>Uma dieta equilibrada é crucial para manter a saúde geral. Incluir uma variedade de nutrientes essenciais fornece ao corpo a energia necessária para suas funções diárias. Além disso, contribui para a prevenção de doenças crônicas, promovendo um peso saudável e fortalecendo o sistema imunológico.
-                </p><br><br>
-                <h3>Exercícios Físicos e Seus Benefícios:</h3><br>
-                <p>A prática regular de exercícios físicos não apenas ajuda a manter um peso adequado, mas também melhora a saúde cardiovascular, fortalece os ossos e músculos, reduzindo o risco de várias doenças. Além disso, o exercício é uma ferramenta eficaz na gestão do estresse e na promoção do bem-estar mental.
-                </p><br><hr>
-                <h3>Saúde Mental e seu Vínculo com o Bem-Estar Geral:</h3><br>
-                <p>A saúde mental desempenha um papel crucial na qualidade de vida. O equilíbrio emocional afeta diretamente a tomada de decisões, relacionamentos interpessoais e a capacidade de lidar com desafios. Estratégias como a prática de mindfulness e a busca de apoio profissional são essenciais para promover a saúde mental.
-                </p>
-                <h3>A Importância de um Bom Sono:</h3><br>
-                <p>O sono adequado é fundamental para a recuperação física e mental. Durante o sono, o corpo realiza processos de reparo celular, consolidação da memória e regula hormônios. A privação do sono está associada a problemas de saúde, incluindo distúrbios metabólicos e comprometimento cognitivo.
-                </p><br><hr>
-                <h3>Ambiente de Trabalho Saudável:</h3><br>
-                <p>Um ambiente de trabalho saudável é crucial para o bem-estar profissional e pessoal. Fatores como relações interpessoais positivas, equilíbrio entre vida pessoal e profissional, e a promoção de práticas ergonômicas contribuem para um ambiente de trabalho saudável, aumentando a produtividade e a satisfação no trabalho.</p>
-                </p><br><hr>
-                <h3>Hidratação Adequada:</h3><br>
-                <p>A importância da hidratação não pode ser subestimada. A água desempenha um papel crucial em várias funções do corpo, incluindo a regulação da temperatura, a digestão adequada e a eliminação de toxinas. Manter-se hidratado é vital para a saúde da pele, dos órgãos internos e para otimizar o desempenho físico e mental.
-                </p><br><hr>
-                <h3>Gestão do Estresse e Resiliência:</h3><br>
-                <p>Viver em um mundo acelerado pode levar a altos níveis de estresse, afetando negativamente a saúde mental e física. A prática de técnicas de gestão do estresse, como meditação, ioga e respiração profunda, é essencial para construir resiliência emocional. Desenvolver a capacidade de lidar com desafios de maneira saudável é crucial para manter o equilíbrio geral.
-                </p><br><hr>
-                <h3>Conexão Social e Saúde Emocional:</h3><br><br>
-                <p>Relacionamentos saudáveis e conexões sociais desempenham um papel vital no bem-estar emocional. O apoio de amigos, familiares e comunidade contribui para a redução do isolamento social, promovendo uma sensação de pertencimento e apoio mútuo. Essa rede de suporte é essencial para lidar com desafios e aumentar a qualidade de vida.
-                </p><br><hr>
-                <h3>Obtém o valor do teu IMC!<h3><br><br>
-            </div> <!--fim 1a div-->
-        </div> <!--fim 2a div-->
-        <h1>
+<div class="container-image">
+    <div class="container-image-image">
+        <img src="./img/img-imc-indice.png">
+    </div>
+    <div class="container-image-text">
+        <h1>IMC</h1>
+        <p>Criado no século 19 pelo matemático Lambert Quételet, o Índice de Massa Corporal, 
+            conhecido pela sigla IMC, é um cálculo simples que permite medir se alguém está 
+            ou não com o peso ideal.</p>
+    </div>
+</div>
+
+<section id="container_conteudo">
+    <div class="text">
+
+        <div class="flex_text"><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <hr>
+
+            <h3>Importância de Dietas Balanceadas:</h3><br>
+            <p>Uma dieta equilibrada é crucial para manter a saúde geral. Incluir uma variedade de nutrientes essenciais fornece ao corpo a energia necessária para suas funções diárias. Além disso, contribui para a prevenção de doenças crônicas, promovendo um peso saudável e fortalecendo o sistema imunológico.
+            </p><br><br>
+            <h3>Exercícios Físicos e Seus Benefícios:</h3><br>
+            <p>A prática regular de exercícios físicos não apenas ajuda a manter um peso adequado, mas também melhora a saúde cardiovascular, fortalece os ossos e músculos, reduzindo o risco de várias doenças. Além disso, o exercício é uma ferramenta eficaz na gestão do estresse e na promoção do bem-estar mental.
+            </p><br>
+            <hr>
+            <h3>Saúde Mental e seu Vínculo com o Bem-Estar Geral:</h3><br>
+            <p>A saúde mental desempenha um papel crucial na qualidade de vida. O equilíbrio emocional afeta diretamente a tomada de decisões, relacionamentos interpessoais e a capacidade de lidar com desafios. Estratégias como a prática de mindfulness e a busca de apoio profissional são essenciais para promover a saúde mental.
+            </p>
+            <h3>A Importância de um Bom Sono:</h3><br>
+            <p>O sono adequado é fundamental para a recuperação física e mental. Durante o sono, o corpo realiza processos de reparo celular, consolidação da memória e regula hormônios. A privação do sono está associada a problemas de saúde, incluindo distúrbios metabólicos e comprometimento cognitivo.
+            </p><br>
+            <hr>
+            <h3>Ambiente de Trabalho Saudável:</h3><br>
+            <p>Um ambiente de trabalho saudável é crucial para o bem-estar profissional e pessoal. Fatores como relações interpessoais positivas, equilíbrio entre vida pessoal e profissional, e a promoção de práticas ergonômicas contribuem para um ambiente de trabalho saudável, aumentando a produtividade e a satisfação no trabalho.</p>
+            </p><br>
+            <hr>
+            <h3>Hidratação Adequada:</h3><br>
+            <p>A importância da hidratação não pode ser subestimada. A água desempenha um papel crucial em várias funções do corpo, incluindo a regulação da temperatura, a digestão adequada e a eliminação de toxinas. Manter-se hidratado é vital para a saúde da pele, dos órgãos internos e para otimizar o desempenho físico e mental.
+            </p><br>
+            <hr>
+            <h3>Gestão do Estresse e Resiliência:</h3><br>
+            <p>Viver em um mundo acelerado pode levar a altos níveis de estresse, afetando negativamente a saúde mental e física. A prática de técnicas de gestão do estresse, como meditação, ioga e respiração profunda, é essencial para construir resiliência emocional. Desenvolver a capacidade de lidar com desafios de maneira saudável é crucial para manter o equilíbrio geral.
+            </p><br>
+            <hr>
+            <h3>Conexão Social e Saúde Emocional:</h3><br><br>
+            <p>Relacionamentos saudáveis e conexões sociais desempenham um papel vital no bem-estar emocional. O apoio de amigos, familiares e comunidade contribui para a redução do isolamento social, promovendo uma sensação de pertencimento e apoio mútuo. Essa rede de suporte é essencial para lidar com desafios e aumentar a qualidade de vida.
+            </p><br>
+            <hr>
+            <h3>Obtém o valor do teu IMC!<h3><br><br>
+        </div> <!--fim 1a div-->
+    </div> <!--fim 2a div-->
+    <h1>
         <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Obtém e valida o valor numérico do campo "peso" do formulário
-                $peso = isset($_POST["peso"]) ? filter_var($_POST["peso"], FILTER_VALIDATE_INT) : "";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Obtém e valida o valor numérico do campo "peso" do formulário
+            $peso = isset($_POST["peso"]) ? filter_var($_POST["peso"], FILTER_VALIDATE_INT) : "";
 
-                // Exibe o valor em um campo de texto se válido
-                if ($peso !== false && $peso !== null) {
-                    $altura = isset($_POST["altura"]) ? filter_var($_POST["altura"], FILTER_VALIDATE_FLOAT) : "";
+            // Exibe o valor em um campo de texto se válido
+            if ($peso !== false && $peso !== null) {
+                $altura = isset($_POST["altura"]) ? filter_var($_POST["altura"], FILTER_VALIDATE_FLOAT) : "";
 
-                    if ($altura !== false && $altura !== null) {
-                        $IMC = $peso / ($altura * $altura);
-            
-                        if ($IMC < 18.5) {
-                            $mensagem = "Magreza.";
-                        } else if ($IMC < 24.9) {
-                            $mensagem = "Normal.";
-                        } else if ($IMC < 29.9) {
-                            $mensagem = "Sobrepeso.";
-                        } else if ($IMC < 39.9) {
-                            $mensagem = "Obesidade.";
-                        } else if ($IMC > 39.9) {
-                            $mensagem = "Obesidade grave.";
-                        }
-                    } else {
-                        $mensagem = 'Por favor, insira uma altura válida.';
+                if ($altura !== false && $altura !== null) {
+                    $IMC = $peso / ($altura * $altura);
+
+                    if ($IMC < 18.5) {
+                        $mensagem = "Magreza.";
+                    } else if ($IMC < 24.9) {
+                        $mensagem = "Normal.";
+                    } else if ($IMC < 29.9) {
+                        $mensagem = "Sobrepeso.";
+                    } else if ($IMC < 39.9) {
+                        $mensagem = "Obesidade.";
+                    } else if ($IMC > 39.9) {
+                        $mensagem = "Obesidade grave.";
                     }
                 } else {
-                    $mensagem = 'Por favor, insira um peso válido.';
+                    $mensagem = 'Por favor, insira uma altura válida.';
                 }
+            } else {
+                $mensagem = 'Por favor, insira um peso válido.';
             }
+        }
         ?>
     </h1>
 
@@ -115,14 +132,15 @@
             <label>Agora, digite o teu peso em quilogramas.</label><br>
             <input type="number" name="peso" id="peso" value="<?php echo htmlspecialchars($peso); ?>"><br><br>
             <button type="submit">Calcular</button><br><br>
-<input type="text" id="POST" name="POST" value="<?php echo isset($mensagem) ? htmlspecialchars($mensagem) : ''; ?>" aria-expanded="true" readonly>
-        </form>  
-        </div>  <!--fim 2a div-->
+            <input type="text" id="POST" name="POST" value="<?php echo isset($mensagem) ? htmlspecialchars($mensagem) : ''; ?>" aria-expanded="true" readonly>
+        </form>
+    </div> <!--fim 2a div-->
 
-    </section>
+</section>
 
 
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
+
 </html>
