@@ -1,12 +1,13 @@
-*{
- font-family: 'Courier New', Courier, monospace;
- margin: 0;
- padding: 0;
- box-sizing: border-box;
+* {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-html{
+
+html {
     height: 200vh;
-    background-color: darkslateblue;
+    background-color: rgb(255, 255, 255);
     margin: 0;
     display: flex;
     align-items: center;
@@ -14,65 +15,68 @@ html{
 }
 
 /*MENU/NAV*/
-.container{
+.container {
     max-width: 1280px;
     margin: auto;
 }
 
-.flex{/*alinhar elementos da nav*/
+.flex {
+    /*alinhar elementos da nav*/
     display: flex;
     align-items: center;
-    justify-content: space-between;/*elementos distribuídos nas extremidades*/
+    justify-content: space-between;
+    /*elementos distribuídos nas extremidades*/
 
 }
 
 /*a logoSaudavel{
-    border-image: url(imgs/logoSaudavel.webp);
-}*/
+       border-image: url(imgs/logoSaudavel.webp);
+   }*/
 
-#header{
+#header {
     width: 100%;
-    padding:60px 4%;
+    padding: 60px 4%;
     position: fixed;
     top: 0;
     left: 0;
     transition: .8s;
 }
 
-#header.logoSaudavel{
+#header.logoSaudavel {
     /*image-resolution: 2000px;*/
     height: 40px;
     width: 25px;
 }
 
-#header i{
+#header i {
     font-size: 27px;
     color: darkslategray;
 }
 
-#header ul{
+#header ul {
     list-style-type: none;
 }
 
-#header ul li{
+#header ul li {
     display: inline-block;
-    margin: 0 25px;         /*0 p/ alto e baixo, 20 p/ lados*/
+    margin: 0 25px;
+    /*0 p/ alto e baixo, 20 p/ lados*/
 }
 
-#header ul li a{
-    color: lightgoldenrodyellow;
+#header ul li a {
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: orchid;
+    background-color: navy;
     border-radius: 5%;
 }
 
-.btn-cadastro button{
-    width: 100px ;
+.btn-cadastro button {
+    width: 100px;
     height: 50px;
     border-radius: 10%;
-    background-color: orchid;
+    background-color: navy;
     color: lightsteelblue;
     cursor: pointer;
     transition: .2s;
@@ -83,72 +87,104 @@ html{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#header.deslizamento{
-    background-color: lightpink;
-    padding:20px 4%;
+#header.deslizamento {
+    background-color: navy;
+    padding: 20px 4%;
 
 }
 
-#header.deslizamento button{
+#header.deslizamento button {
     color: cornflowerblue;
     background-color: whitesmoke;
 }
 
-#header.deslizamento a, header.deslizamento i{
-    color: cornflowerblue;
-    background-color: darkslateblue;
+#header.deslizamento a,
+header.deslizamento i {
+    color: rgb(133, 157, 202);
+    background-color: rgb(255, 255, 255);
 }
 
+/*image start*/
+.container-image {
+    display: flex;
+    padding-top: 70%;
+    padding-left: 5%;  
+}
+
+.container-image-image img {
+    height: 50rem;
+    border: 20px solid #001280;
+    border-radius: 10%;
+}
+
+.container-image-text text {
+    margin-left: 5%;
+}
+
+.container-image-text p {
+    font-size: 40px;
+    margin-left: 15%;
+    margin-right: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-image-text h1 {
+    font-size: 50px;
+    margin-left: 17.5%;
+    margin-right: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 /*.banner{
-    height: 100vh;
-    background-image: url(imgs/fundoRoxoSaude.jpg);
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+       height: 100vh;
+       background-image: url(imgs/fundoRoxoSaude.jpg);
+       background-position: 100% 0;
+       background-repeat: no-repeat;
+       background-size: cover;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+   
+   .banner h1{
+       font-family: Arial, Helvetica, sans-serif;
+       font-size: 45px;
+       color: rgb(234, 145, 21);
+       text-decoration-color: floralwhite;
+   }
+   
+   .banner h1 span{
+       font-family: Arial, Helvetica, sans-serif;
+       font-size: 45px;
+       color: rgba(241, 14, 14, 0.91);
+       text-decoration-color: floralwhite;
+   }*/
 
-.banner h1{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 45px;
-    color: rgb(234, 145, 21);
-    text-decoration-color: floralwhite;
-}
-
-.banner h1 span{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 45px;
-    color: rgba(241, 14, 14, 0.91);
-    text-decoration-color: floralwhite;
-}*/
-
-.container_conteudo{
+.container_conteudo {
     margin-top: 450px;
     height: 50vh;
     width: 100%;
 }
-.flex_conteudo{
+
+.flex_conteudo {
     /*justify-content: center;
-    align-items: center;*/
+       align-items: center;*/
     background-color: darkslateblue;
 }
 
-.text{
+.text {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.text h3{
+.text h3 {
     margin-left: 75px;
     font-size: 37px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: inherit;
 }
 
-.text p{
+.text p {
     margin-left: 55px;
     font-size: 17px;
     font-family: Arial, Helvetica, sans-serif;
@@ -156,14 +192,14 @@ html{
 }
 
 
-#container_form{
+#container_form {
     padding: 50px;
     margin: auto;
     height: 50vh;
     width: 100%;
 }
 
-#container_form label{
+#container_form label {
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: initial;
@@ -171,7 +207,8 @@ html{
     justify-content: center;
 
 }
-#container_form input{
+
+#container_form input {
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: initial;
