@@ -1,0 +1,5 @@
+        //avisa o js q tal evento ocorre
+window.addEventListener("scroll", function(){
+    let header = document.querySelector('#header')
+    header.classList.toggle('deslizamento' ,this.window.scrollY > 420)              //adicionando classe usando js, se ela já existir, será subs, mas é melhor q n exista.
+})                                                   //se o deslize for >$ no eixo Y, add *efeito*
