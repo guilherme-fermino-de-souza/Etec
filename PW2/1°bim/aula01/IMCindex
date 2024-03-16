@@ -179,7 +179,79 @@
 
 </section>
 
+ <!--FOOTER START-->
+ <div class="footer">
+        <section id="contact">
+            <h2>Entre em Contato Conosco</h2>
+            <p>Cadastre-se para obter uma primeira consulta compltamente de graça
+            </p>
+            <a href="../site/form.html" class="cta-button">Casdastre-se</a>
+        </section>
 
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-1">
+                    <div class="footer-item-1">
+                        <h3>HealthCare</h3>
+                        <p>Não Deixe Sua Saúde Para Depois</p>
+
+                        <div class="icons-footer">
+                            <img src="./img/facebook-round-color-icon.svg" alt="3px">
+                            <img src="./img/whatsapp-color-icon.svg" alt="3px">
+                            <img src="./img/ig-instagram-icon.svg" alt="3px">
+                        </div>
+                    </div>
+
+                    <div class="footer-item-2">
+                        <h4>Saúde</h4>
+                        <a href="#">Sobre</a><br>
+                        <a href="#">Áreas</a><br>
+                        <a href="#">Carreiras</a><br>
+                        <a href="#">Tratamentos</a>
+
+
+                    </div>
+
+                    <div class="footer-item-3">
+                        <h4>Suporte</h4>
+                        <a href="#">Ajuda</a><br>
+                        <a href="#">Reporte um problema</a>
+                    </div>
+
+                    <div class="footer-item-4">
+                        <h4>Nossos Consultorios</h4>
+                        <a href="#">São Paulo</a><br>
+                        <a href="#">Rio de Janeiro</a><br>
+                        <a href="#">Santa Catarina</a>
+                    </div>
+                    <div class="footer-item-5">
+                        <h4>Termos de Serviço</h4>
+                        <a href="#">Privacidade</a><br>
+                        <a href="#">Nossos serviços</a><br>
+                        <a href="#">Modus operandi</a>
+                    </div>
+                </div>
+
+                <div class="hr-container">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="footer-desc">
+                <h3>healt://a</h3>
+                <a href="#">Website Privacy Notice</a>
+                <a href="#">Cookies</a>
+                <a href="#">Legal</a>
+                <a href="#">Community Participation Guidelines</a>
+            </div>
+            <p>Todos os direitos perrtencentes a HealthCare&copy;<br>desde 1987-2024 pela contribuidora individual
+                saopaulo.org. Conteúdo disponível sobre a <a href="#">Licença de Direitos Comuns</a> .</p>
+
+        </footer>
+
+
+        <!--FOOTER END-->
 
 <script src="script.js"></script>
 </body>
