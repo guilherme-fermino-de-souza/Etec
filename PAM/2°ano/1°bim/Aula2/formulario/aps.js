@@ -68,6 +68,7 @@ export default function App() {
         onChangeText={setName}
         value={name}
         placeholder="Digite Seu Nome"
+        maxLength={30} //max de caracteres
       />
       <TextInput
         style={styles.input}
@@ -75,12 +76,14 @@ export default function App() {
         value={phone}
         placeholder="Digite Seu Telefone"
         keyboardType="numeric"
+        maxLength={9} //max de caracteres
       />
       <TextInput
         style={styles.input}
         onChangeText={setAddress}
         value={address}
         placeholder="Digite Seu Endereço"
+        maxLength={25} //max de caracteres
       />
       <TextInput
         style={styles.input}
@@ -88,12 +91,18 @@ export default function App() {
         value={email}
         placeholder="Digite Seu E-mail"
         keyboardType="email-address"
+        maxLength={25} //max de caracteres
       />
       {/* botão(confirmar ação e salvar) */}
       <Button
-        title="Press me"
-        color="red"
+        title="Log In"
+        color="rgb(65, 212, 225)"
         onPress={salvar}
+        style={{
+          width: 100,
+          height: 40,
+          borderRadius: 20,          
+        }}
       />     
     </View>
 
@@ -103,7 +112,7 @@ export default function App() {
         selectedValue={selectedValue}
         style={{ 
         height: 40, 
-        width: 200,
+        width: 300,
         }}
         onValueChange={
           (itemValue, itemIndex) => 
@@ -159,12 +168,22 @@ export default function App() {
 
 const styles = StyleSheet.create({ //cria uma área para estilização css
 
+input: {
+  height: 40,
+  borderColor: 'gray',
+  borderWidth: 1,
+  margin: 10,
+  padding: 10,
+  maxWidth: 300, //largura máxima para campo de entrada
+},
+
   container: { //container principal
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: 'auto',
+    borderWidth: 1,
+    borderColor: 'black',
   },
 
   header: { //foto/nome user
@@ -173,12 +192,13 @@ const styles = StyleSheet.create({ //cria uma área para estilização css
     marginBottom: 2,
     borderWidth: 1,
     borderColor: 'black',
-    backgroundColor: 'blue'
+    backgroundColor: '#3e3e3e'
   },
 
   title: { //nome user
     fontSize: 24,
     marginLeft: 10,
+    Color: 'white',
   },
 
   formContainer: { //formulário
