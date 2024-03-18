@@ -11,14 +11,25 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [selectedValue, setSelectedValue] = useState('java'); //estado para o picker
   const [termsAccepted, setTermsAccepted] = useState(false); //estado para o switch
-  
+  const [userData, setUserData] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    email: '',
+  });
+
   const salvar = () => {
     // Lógica para salvar
     console.log("Salvar");
     if (termsAccepted) {
-      console.log("Termos aceitos");
-
-      // caso aceito
+      console.log("Termos aceitos");// caso aceito
+      // Atualiza o estado com os dados inseridos
+      setUserData({
+      name: name,
+      phone: phone,
+      address: address,
+      email: email,
+    });
     } else {
       console.log("Você precisa aceitar os termos de serviço");
       // caso recusado
@@ -31,7 +42,8 @@ export default function App() {
 
   return ( 
     // container principal
-    <View style={styles.container}> 
+    <View style={styles.container}>
+     <ScrollView>   {/* habilita o scroll */}
     {/* container foto/nome user */}
       <View style={styles.header}>
       <Image
@@ -101,7 +113,7 @@ export default function App() {
             <Picker.Item label="JavaScript" value="js" />
           </Picker>
 
-<TouchableOpacity onPress={toggleSwitch} style={styles.chooseTerms}>
+        <TouchableOpacity onPress={toggleSwitch} style={styles.chooseTerms}>
           <Text>Termos de Serviço:</Text>
           <Switch
            trackColor={{
@@ -115,6 +127,31 @@ export default function App() {
            </Switch>
            </TouchableOpacity>
     </View>
+    <View style={styles.answerContainer}>
+      <Text style={styles.tableTitle}>Dados Inseridos:</Text>
+      <View style={styles.answerColuna}>
+
+        <View style={styles.answerLinha}>
+        <Text style={styles.answerCell}>Nome:</Text>
+        <Text style={styles.answerCell}>{userData.name}</Text>
+        </View>
+        <View style={styles.answerLinha}>
+        <Text style={styles.answerCell}>Telefone:</Text>
+        <Text style={styles.answerCell}>{userData.phone}</Text>
+        </View>
+
+        <View style={styles.answerLinha}>
+        <Text style={styles.answerCell}>Endereço:</Text>
+        <Text style={styles.answerCell}>{userData.address}</Text>
+        </View>
+
+        <View style={styles.answerLinha}>
+        <Text style={styles.answerCell}>E-mail:</Text>
+        <Text style={styles.answerCell}>{userData.email}</Text>
+        </View>
+      </View>
+    </View>
+    </ScrollView>
 </View>
   );
 }
@@ -127,12 +164,16 @@ const styles = StyleSheet.create({ //cria uma área para estilização css
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+    maxWidth: 'auto',
   },
 
   header: { //foto/nome user
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 2,
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: 'blue'
   },
 
   title: { //nome user
@@ -165,5 +206,32 @@ const styles = StyleSheet.create({ //cria uma área para estilização css
     borderColor: 'black',
     padding: 10,
     marginBottom: 20,
-  }
+  },
+
+  answerContainer: { //respostas
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+    marginBottom: 20,
+  },
+
+  tableTitle: { //título das respostas
+    fontSize: 18,
+    marginBottom: 10,
+  },
+
+  answerColuna: { //coluna de resposta da resposta
+    flexDirection: 'column',
+    marginBottom: 5,
+  },
+
+  answerLinha: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+
+  answerCell: { //resposta colocada
+    fontWeight: 'bold',
+    marginRight: 10,
+  },
 });
