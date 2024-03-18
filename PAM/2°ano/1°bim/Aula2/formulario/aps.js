@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native'; // Importar TextInput
 import { Button, Picker, ScrollView, Switch, TouchableOpacity } from 'react-native'; // Alterar para 'react-native' ao invés de 'react-native-web'
 
-export default function App() {
+//valores adcionados pelo usuário
+export default function App() { 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -14,8 +15,11 @@ export default function App() {
     console.log("Salvar");
   }
 
-  return (
-    <View style={styles.container}>
+  return ( 
+    // container principal
+    <View style={styles.container}> 
+    {/* container foto/nome user */}
+      <View style={styles.header}>
       <Image
         style={{
           width: 40,
@@ -23,11 +27,14 @@ export default function App() {
           borderRadius: 20,
         }}
         source={{
-          uri: 'https://placehold.it/150x150'
+          uri: 'https://publicdomainvectors.org/photos/abstract-user-flat-4.png'
         }}
       />
-      <Text>Usuário</Text>
+      <Text style={styles.title}>Usuário</Text>
+      </View>
 
+    {/* container formulário */}
+    <View style={styles.formContainer}>
       <Text>Formulário</Text>
       <StatusBar style="auto" />
       <TextInput
@@ -56,24 +63,51 @@ export default function App() {
         placeholder="Digite Seu E-mail"
         keyboardType="email-address"
       />
+      {/* botão(confirmar ação e salvar) */}
       <Button
         title="Press me"
         color="red"
         onPress={salvar}
       />     
     </View>
-
+</View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+
+const styles = StyleSheet.create({ //cria uma área para estilização css
+
+  container: { //container principal
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input: {
+
+  header: { //foto/nome user
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+
+  title: { //nome user
+    fontSize: 24,
+    marginLeft: 10,
+  },
+
+  formContainer: { //formulário
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+    marginBottom: 20,
+  },
+
+  formTitle: { //título do formulário
+    fontSize: 18,
+    marginBottom: 10,
+  },
+
+  input: { //opções
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
