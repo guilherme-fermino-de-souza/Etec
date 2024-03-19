@@ -145,16 +145,21 @@
                 if ($altura !== false && $altura !== null) {
                     $IMC = $peso / ($altura * $altura);
 
-                    if ($IMC < 18.5) {
+                   if ($IMC < 18.5) {
                         $mensagem = "Magreza.";
+                        echo "$IMC.";
                     } else if ($IMC < 24.9) {
                         $mensagem = "Normal.";
+                        echo "$IMC.";
                     } else if ($IMC < 29.9) {
                         $mensagem = "Sobrepeso.";
+                        echo "$IMC.";
                     } else if ($IMC < 39.9) {
                         $mensagem = "Obesidade.";
+                        echo "$IMC.";
                     } else if ($IMC > 39.9) {
                         $mensagem = "Obesidade grave.";
+                        echo "$IMC.";
                     }
                 } else {
                     $mensagem = 'Por favor, insira uma altura válida.';
