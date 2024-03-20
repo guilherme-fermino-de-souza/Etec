@@ -157,9 +157,44 @@ SET valorTotalVenda = valorTotalVenda * 1.02
 WHERE MONTH(dataVenda) = 2 AND YEAR(dataVenda) = 2014;
 
 --EXECUTADO ATÉ AQUI--
--- PARTE DO GUSTAVO --
+-- PARTE DO rapaz --
 
-SELECT SUM(quantidadeProduto) as 'Somatoria dos preços' FROM tbProduto
+	--A
+SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades P&G' FROM tbProduto
 	WHERE idFabricante = 2
+	--B
+SELECT AVG(valorProduto) AS 'Média dos preços P&G' FROM tbProduto
+	WHERE idFabricante = 2
+	--C
+SELECT SUM(valorProduto) AS 'Somatória dos preços Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--D
+SELECT AVG(valorProduto) AS 'Média dos preços Bunge' FROM tbProduto
+	WHERE idFabricante = 3
+	--E
+SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades Bunge' FROM tbProduto
+	WHERE idFabricante = 3
+	--F
+SELECT AVG(valorProduto) AS 'Média dos preços Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--G
+SELECT AVG(quantidadeProduto) AS 'Média das quantidades P&G' FROM tbProduto
+	WHERE idFabricante = 2
+	--H (produtos em estoque)
+SELECT AVG(valorProduto) AS 'Média de preço dos produtos de quantidade < 200' FROM tbProduto
+	WHERE quantidadeProduto < 200
+	--I
+SELECT AVG(quantidadeProduto) AS 'Média das quantidades dos produtos Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--J
+SELECT SUM(valorTotalVenda) AS 'Somatória das vendas de fev. e mar. de 2014' FROM tbVenda
+	WHERE MONTH(valorTotalVenda) = 2 | 3 AND YEAR(valorTotalVenda) = 2014
+	--K
+SELECT SUM(quantidadeProduto) AS 'Somatória da quantidade dos amaciantes' FROM tbProduto
+	WHERE descricaoProduto = 'Amaciante Downy' AND descricaoProduto = 'Amaciante Comfort'
+	--L
+SELECT MAX(valorProduto) AS 'Valor do mais caro dos produtos' FROM tbProduto
+	WHERE idFabricante = 1 |2 | 3
+	--Messi
 
 
