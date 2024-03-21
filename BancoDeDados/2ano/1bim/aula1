@@ -198,3 +198,64 @@ SELECT MAX(valorProduto) AS 'Valor do mais caro dos produtos' FROM tbProduto
 	--Messi
 
 
+//parte não salva
+	--A
+SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades dos produtos P&G' FROM tbProduto
+	WHERE idFabricante = 2
+	--B
+SELECT AVG(valorProduto) AS 'Média dos preços dos produos P&G' FROM tbProduto
+	WHERE idFabricante = 2
+	--C
+SELECT SUM(valorProduto) AS 'Somatória dos preços dos produtos Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--D
+SELECT AVG(valorProduto) AS 'Média dos preços dos produtos Bunge' FROM tbProduto
+	WHERE idFabricante = 3
+	--E
+SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades dos produtos Bunge' FROM tbProduto
+	WHERE idFabricante = 3
+	--F
+SELECT AVG(valorProduto) AS 'Média dos preços dos produtos Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--G
+SELECT AVG(quantidadeProduto) AS 'Média das quantidades dos produtos P&G' FROM tbProduto
+	WHERE idFabricante = 2
+	--H (produtos em estoque)
+SELECT AVG(valorProduto) AS 'Média de preço dos produtos de quantidade < 200' FROM tbProduto
+	WHERE quantidadeProduto < 200
+	--I
+SELECT AVG(quantidadeProduto) AS 'Média das quantidades dos produtos Unilever' FROM tbProduto
+	WHERE idFabricante = 1
+	--J
+SELECT SUM(valorTotalVenda) AS 'Somatória das vendas de fev. e mar. de 2014' FROM tbVenda
+	WHERE MONTH(dataVenda) = 2 AND MONTH(dataVenda) = 3 AND YEAR(dataVenda)= 2014
+	--K
+SELECT SUM(quantidadeProduto) AS 'Somatória da quantidade dos amaciantes' FROM tbProduto
+	WHERE descricaoProduto = 'Amaciante Downy' OR descricaoProduto = 'Amaciante Comfort'
+	--L
+SELECT MAX(valorProduto) AS 'Valor do mais caro dos produtos' FROM tbProduto
+	--WHERE idFabricante = 1 |2 | 3
+	--Messi
+SELECT MIN(valorProduto) AS 'Valor do mais barato dos produtos' FROM tbProduto
+	--WHERE idFabricante = 1 |2 | 3
+	--N
+SELECT AVG(valorProduto) AS 'Média de todos os amaciantes' FROM tbProduto
+	WHERE descricaoProduto = 'Amaciante Downy' AND descricaoProduto = 'Amaciante Comfort'
+	--O
+SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens diferentes há no estoque' FROM tbProduto
+	--P
+SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens da Unilever há no estoque' FROM tbProduto
+	WHERE idFabricante = 1
+	--Q
+SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens exceto os da Unilever há no estoque' FROM tbProduto
+	WHERE idFabricante != 1
+	--R
+SELECT SUM(quantidadeProduto) AS 'Soma das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbProduto
+	WHERE  quantidadeProduto > 800
+	--S
+SELECT SUM(valorProduto) AS 'Preço médio dos produtos Unilever com mais de mil unidades no estoque' FROM tbProduto
+	WHERE  idFabricante = 1 AND quantidadeProduto > 1000
+	--T
+SELECT AVG(valorTotalVenda) AS 'Soma das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbVenda
+	WHERE  YEAR(dataVenda) = 2014
+	--Urubundí
