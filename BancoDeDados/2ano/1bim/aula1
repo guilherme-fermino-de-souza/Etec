@@ -24,14 +24,14 @@ CREATE TABLE tbFornecedor(
 CREATE TABLE tbVenda(
    idvenda INT PRIMARY KEY IDENTITY(1,1)
    ,dataVenda SMALLDATETIME 
-   ,valorTotalVenda MONEY 
+   ,valorTotalVenda MONEY NOT NULL
    ,idCliente INT FOREIGN KEY REFERENCES tbCliente(idCliente)
    )
 CREATE TABLE tbProduto(
    idProduto INT PRIMARY KEY IDENTITY(1,1)
    ,descricaoProduto VARCHAR (60) NOT NULL
    ,valorProduto MONEY NOT NULL
-   ,quantidadeProduto VARCHAR (4) 
+   ,quantidadeProduto INT NOT NULL 
    ,idFabricante INT FOREIGN KEY REFERENCES tbFabricante(idFabricante)
    ,idFornecedor INT FOREIGN KEY REFERENCES tbFornecedor(idFornecedor)
    )
@@ -198,7 +198,7 @@ SELECT MAX(valorProduto) AS 'Valor do mais caro dos produtos' FROM tbProduto
 	--Messi
 
 
-//parte não salva
+//-parte não salva
 	--A
 SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades dos produtos P&G' FROM tbProduto
 	WHERE idFabricante = 2
@@ -239,8 +239,8 @@ SELECT MAX(valorProduto) AS 'Valor do mais caro dos produtos' FROM tbProduto
 SELECT MIN(valorProduto) AS 'Valor do mais barato dos produtos' FROM tbProduto
 	--WHERE idFabricante = 1 |2 | 3
 	--N
-SELECT AVG(valorProduto) AS 'Média de todos os amaciantes' FROM tbProduto
-	WHERE descricaoProduto = 'Amaciante Downy' AND descricaoProduto = 'Amaciante Comfort'
+SELECT AVG(valorProduto) AS 'Média de preço de todos os amaciantes' FROM tbProduto
+	WHERE idFabricante = 1 | 2 AND idProduto = 1 | 2
 	--O
 SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens diferentes há no estoque' FROM tbProduto
 	--P
@@ -250,12 +250,12 @@ SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens da Unilever há no estoque' F
 SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens exceto os da Unilever há no estoque' FROM tbProduto
 	WHERE idFabricante != 1
 	--R
-SELECT SUM(quantidadeProduto) AS 'Soma das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbProduto
+SELECT SUM(quantidadeProduto) AS 'Somatória das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbProduto
 	WHERE  quantidadeProduto > 800
 	--S
 SELECT SUM(valorProduto) AS 'Preço médio dos produtos Unilever com mais de mil unidades no estoque' FROM tbProduto
 	WHERE  idFabricante = 1 AND quantidadeProduto > 1000
 	--T
-SELECT AVG(valorTotalVenda) AS 'Soma das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbVenda
+SELECT AVG(valorTotalVenda) AS 'Somatória das quantidades dos produtos com mais de oitocentas unidades no estoque' FROM tbVenda
 	WHERE  YEAR(dataVenda) = 2014
 	--Urubundí
