@@ -240,7 +240,8 @@ SELECT MIN(valorProduto) AS 'Valor do mais barato dos produtos' FROM tbProduto
 	--WHERE idFabricante = 1 |2 | 3
 	--N
 SELECT AVG(valorProduto) AS 'Média de preço de todos os amaciantes' FROM tbProduto
-	WHERE idFabricante = 1 | 2 AND idProduto = 1 | 2
+	--WHERE idFabricante = 1 | 2 AND idProduto = 1 | 2
+	WHERE (idFabricante = 1 OR idFabricante = 2) AND (idProduto = 1 OR idProduto = 2);
 	--O
 SELECT COUNT(DISTINCT idProduto) AS 'Quantos itens diferentes há no estoque' FROM tbProduto
 	--P
