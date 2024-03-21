@@ -30,7 +30,7 @@ CREATE TABLE tbVenda(
 CREATE TABLE tbProduto(
    idProduto INT PRIMARY KEY IDENTITY(1,1)
    ,descricaoProduto VARCHAR (60) NOT NULL
-   ,valorProduto MONEY 
+   ,valorProduto MONEY NOT NULL
    ,quantidadeProduto VARCHAR (4) 
    ,idFabricante INT FOREIGN KEY REFERENCES tbFabricante(idFabricante)
    ,idFornecedor INT FOREIGN KEY REFERENCES tbFornecedor(idFornecedor)
