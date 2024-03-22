@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios PHP</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="container-content">
+
+        <form method="post" action="">
+            <div class="container-select">
+                <h1>test</h1>
+                <label for="form">Escolha uma das opções</label>
+                <select name="form" id="form">
+                    <option value="0">Escolha uma das formas</option>
+                    <option value="1">Triângulo</option>
+                    <option value="2">Retângulo</option>
+                    <option value="3">Círculo</option>
+                    <option value="4">Losango</option>
+                </select>
+            </div>
+
+            <div class="button">
+                <button type="submit">Selecionar</button>
+            </div>
+        </form>
+
+        <?php
+        if (isset($_POST['form'])) {
+            $form = filter_input(INPUT_POST, 'form', FILTER_SANITIZE_STRING);
+            if ($form === '1') {
+        ?>
+                <img src="./img/triangle.jpg">
+            <?php
+            } else if ($form === '2') {
+            ?>
+                <img src="./img/retanculo.png">
+            <?php
+            } else if ($form === '3') {
+            ?>
+                <img src="./img/circle.png">
+            <?php
+            } else {
+            ?>
+                <img src="./img/losango.png">
+        <?php
+            }
+        }
+        ?>
+
+    </div>
+
+</body>
+
+</html>
