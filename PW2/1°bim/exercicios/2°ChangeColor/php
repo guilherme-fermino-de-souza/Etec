@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilo.css">
+    <title>QuestãoPhpDois</title>
+</head>
+
+<body>
+
+    <div class="container-content">
+
+        <div class="container-text">
+            <h1>Exercício Dois</h1>
+            <p>Exibir os números de um a cem com n° pares
+                tendo cor de texto branca e fundo azul e os
+                ímpares cor de texto vermelha e fundo preto.</p>
+        </div>
+
+        <div class="container-php">
+            <?php
+            for ($n = 0; $n <= 100; $n++) {
+                if ($n % 2 == 0) { ?>
+                    <h1>
+                        <?php
+                        echo $n;
+                        ?>
+                    </h1>
+
+
+                <?php } else { ?>
+                    <h2>
+                    <?php echo $n;
+                } ?>
+                    </h2>
+                <?php } ?>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
