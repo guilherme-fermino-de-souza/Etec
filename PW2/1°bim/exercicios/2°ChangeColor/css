@@ -1,0 +1,24 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container-content {
+    color: aliceblue;
+    width: 70%;
+    margin-left: 10%;
+    background-color: rgb(87, 87, 87);
+}
+.container-php h1 {
+    background-color: blue;
+    color: aliceblue;
+    font-size: small;
+    margin-left: 10px;
+}
+.container-php h2 {
+    background-color: rgb(0, 0, 0);
+    color: red;
+    font-size: medium;
+    margin-left: 5px;
+}
