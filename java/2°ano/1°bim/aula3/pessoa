@@ -1,0 +1,16 @@
+package questOne;
+import java.util.Scanner;
+public class One {
+
+	public static void main(String[] args) {
+
+		Pessoa p = new Pessoa();
+		p.nome ="João";
+		p.idade = 40;
+		// exibição
+		System.out.println("nome: "+p.nome);
+		System.out.println("idade: "+p.idade);
+		
+	}
+
+}
