@@ -1,6 +1,6 @@
 package questOne;
 import java.util.Scanner;
-public class One {
+public class Pessoa {
 
 	public static void main(String[] args) {
 
