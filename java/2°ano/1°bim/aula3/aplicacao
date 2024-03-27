@@ -1,0 +1,7 @@
+package questOne;
+
+public class Aplicacao {
+	char nome;
+	int idade;
+
+}
