@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cliente</title>
-    <link href="style.css" rel="stylesheet" >
+    <link  rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
 
     <section id="container"> <!--começo seção formulário -->
-        <form action="dadoscliente.php" method="post"> <!-- começo formulário -->
+        <form action="dados.php" method="post"> <!-- começo formulário -->
             <h1>Formulário</h1>
             <div class="nome">
                <label>Nome</label>
@@ -36,7 +36,7 @@
                 <label>Gênero</label>
                 <select name="txGenero">
                     <option value="masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
+                    <option value="feminino">Feminino</option>
                     <option value="naobinario">Não-Binário</option>
                 </select>
             </div>
