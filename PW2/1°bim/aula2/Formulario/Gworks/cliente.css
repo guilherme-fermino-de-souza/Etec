@@ -1,0 +1,86 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 75vh;
+    width: auto;
+    background-color: #f1f5f9;
+}
+
+#container{
+    margin-top: 100px;
+    margin-bottom: 115px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    background-color: firebrick;
+    color: #f1f5f9;
+    font-weight: 10px;
+    line-height: 1.6;
+    word-spacing: 1.4px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    border: solid 10px #0f172a;
+    border-radius: 12px;
+}
+
+.nome{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 15px;
+    background-color: firebrick;
+    color: #f1f5f9;
+}
+
+.estCivil{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.gender{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;    
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.dataNasci{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.email{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.cpf{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.estado{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f1f5f9;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+.envio {
+    margin-top: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /*background-color: #0f172a !important;
+    border-color: #f1f5f9;
+    color: #0f172a !important;
+    transition: 0.3 ease-in-out;*/
+    margin-bottom: 30px;
+}
