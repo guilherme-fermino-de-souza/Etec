@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../auladois/dados.css" </head>
+    <title>Dados do Cliente</title>
+    <link rel="stylesheet" href="dados.css">
+ </head>
 
 <body>
     <?php include('navbar.php') ?>
 
-<?php
-$nome = $_POST['txNome'];
-$estadocivil = $_POST['txCivil'];
-$genero = $_POST['txGenero'];
-$datanas = $_POST['txNas'];
-$email = $_POST['txEmail'];
-$cpf = $_POST['txCpf'];
-$estado = $_POST['txEstado'];
-?>
+        <?php
+        $nome = $_POST['txNome'];
+        $estadocivil = $_POST['txCivil'];
+        $genero = $_POST['txGenero'];
+        $datanas = $_POST['txNas'];
+        $email = $_POST['txEmail'];
+        $cpf = $_POST['txCpf'];
+        $estado = $_POST['txEstado'];
+    ?>
 
     <div class="container-content">
 
@@ -47,7 +48,7 @@ $estado = $_POST['txEstado'];
         </div>
 
         <div class="container-conteudo">         
-            <h1>Estado do usuário: <?php echo"$estado"; ?></h1>
+            <h1>Estado do usuário: <?php echo "$estado"; ?></h1>
         </div>
 
     </div>
