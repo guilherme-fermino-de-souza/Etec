@@ -1,0 +1,28 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-content {
+    display: flex;
+    flex-direction: column;
+    background-color: firebrick;
+    margin-top: 100px;
+    margin-bottom: 115px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    color: #f1f5f9;
+    font-weight: 10px;
+    line-height: 1.6;
+    word-spacing: 1.4px;
+    justify-content: space-around;
+    text-align: center;
+    border: solid 10px #0f172a;
+    border-radius: 12px;
+}
+
+.container-conteudo {
+    display: flex;
+}
