@@ -9,7 +9,7 @@
 <body>
     <section id = "containerNav">        <!--Começo conteiner nav-->
         <div class = "logo">  <!--logo sustentável-->
-            <i><img src="./img/img-imc-logo.avif"></i>
+            <h1>HealthCare</h1>
         </div>
         
         <div class = "navbarLinks">  <!--Começo links-->
@@ -21,12 +21,7 @@
                     <li><a href="#">Periódicos</a></li>
                 </ul>
             </nav>
-        </div>  <!--Fim links nav-->
-
-          <!--  <div class = "btn-cadastro">    <!--Começo botão
-                <a href = "#"><button>Cadastra-te</button></a>
-            </div>  -->
-
+        </div> 
     </section>
 </body>
 </html>
