@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import { Button, Picker, ScrollView, Switch, TouchableOpacity } from 'react-native';
+import { CheckBox } from 'react-native-web';
 
 export default function App() {
   const [name, setName] = useState('');
@@ -51,12 +52,12 @@ export default function App() {
                 uri: 'https://l-mobimobile.nl/wp-content/uploads/2021/10/user-lmobi-v5.png'
               }}
             />
-            <Text style={styles.title}>Nome Usuário</Text>
+            <Text style={styles.title}>User Name</Text>
           </View>
         </View>
 
         <View style={styles.formContainer}>
-          <Text style={styles.formTitle}>Formulário</Text>
+          <Text style={styles.formTitle}>Form</Text>
           <StatusBar style="auto" />
           <TextInput
             style={styles.input}
@@ -126,8 +127,9 @@ export default function App() {
               onValueChange={toggleSwitch}
               value={termsAccepted}>
             </Switch>
-          </TouchableOpacity>
+          </TouchableOpacity>         
         </View>
+
         <View style={styles.answerContainer}>
           <Text style={styles.tableTitle}>log In:</Text>
           <View style={styles.answerColuna}>
@@ -150,6 +152,9 @@ export default function App() {
               <Text style={styles.answerCell}>E-mail:</Text>
               <Text style={styles.answerCell}>{userData.email}</Text>
             </View>
+            <View style={styles.answerLinha}>
+              <Text style={styles.answerCell}>Accepted: {termsAccepted ? "Yes" : "No"}</Text>
+            </View> 
           </View>
         </View>
       </ScrollView>
@@ -239,7 +244,7 @@ const styles = StyleSheet.create({
 
   answerLinha: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   answerCell: {
