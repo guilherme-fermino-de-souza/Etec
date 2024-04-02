@@ -1,8 +1,3 @@
-/*body{
-    width: auto;
-    background-color: #a1b6cb;
-    margin-bottom: 205px;
-}*/
 
 #containerNav{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -42,13 +37,4 @@ a{
     font-size: 20px;
     align-items: baseline;
 }
-
-/*.btn-cadastro{
-    width: 35px;
-    height: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-bottom: 5px #0f172a;
-    padding-bottom: 2,5px;
-    color: firebrick;
-    margin-right: 45px;
 }*/
