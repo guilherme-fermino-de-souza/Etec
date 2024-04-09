@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class EscolherConta {
+	Scanner in = new Scanner(System.in);
+	int escolha, conta;
+	public int EscolhadaConta() {
+		System.out.println("Escolha entre soma(1), subtração(2), multiplicação(3), divisão(4) ou Porcentagem(5)");
+		int i = 0;
+		while (i==0) {
+			conta = in.nextInt();
+			if (conta==1){
+				escolha=1;
+				i = 1;
+			}else if (conta==2){
+				escolha=2;
+				i = 1;
+			}else if (conta==3){
+				escolha=3;
+				i = 1;
+			}else if (conta==4){
+				escolha=4;
+				i = 1;
+			}else if (conta==5){
+				escolha=5;
+				i = 1;
+			}else {
+				System.out.println("Operação invalida, coloque outra");
+				i=0;
+			}
+		}
+		return escolha;
+	}
+}
