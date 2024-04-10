@@ -24,7 +24,26 @@ public class Calculadora {
 			
 		}
 		
-		public void Calculo (int tipo) {
+		public void Soma() {
+			resul = num1+num2;
+		    System.out.println("O resultado da soma é: "+resul);
+		}
+		
+		public void Subtracao() {
+			resul = num1-num2;
+		    System.out.println("O resultado da subtração é: "+resul);
+		}
+		
+		public void Multiplicacao() {
+			resul = num1*num2;
+		    System.out.println("O resultado da multiplicação é: "+resul);
+		}
+		
+		public void Divisao() {
+			resul = num1/num2;
+		    System.out.println("O resultado da divisão é: "+resul);
+		}
+		/*public void Calculo (int tipo) {
 			switch(tipo) {
 			case 1:
 				resul = num1+num2;
@@ -42,6 +61,6 @@ public class Calculadora {
 				resul = num1/num2;
 				System.out.println("O resultado da divisão é "+resul);
 			}
-		}
+		}*/
 		
 	}
