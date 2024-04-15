@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+    background-image: url(../img/galeria/conteudo-sede-02.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+/*conteudo start*/
+.conteudo {
+    display: flex;
+    align-items: center;
+    margin-left: 17%;
+    margin-right: 17%;
+    margin-top: 12.5%;
+}
+
+.texts-conteudo {
+    padding-right: 10%;
+    color: #ffffff;
+}
+
+.titulo-conteudo {
+    font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.text-conteudo {
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 20px;
+}
+
+.img-conteudo h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 38px;
+}
+
+.btn-contato {
+    padding-top: 20px;
+}
+
+.btn-contato button {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    height: 60px;
+    width: 190px;
+    font-size: 17.5px;
+    margin-left: 1%;
+    border-radius: 20px;
+}
+
+.btn-contato button:hover {
+    background-color: #7096BB;
+}
+
+.img-conteudo img {
+    height: 400px;
+}
+
+/*conteudo end*/
