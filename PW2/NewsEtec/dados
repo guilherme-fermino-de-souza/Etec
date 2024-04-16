@@ -1,0 +1,37 @@
+Projeto NewsEtec
+
+  Páginas
+   index, login, usuario, administrador e professor.
+     devem contar com navbar, menu de opções (admin, user, login e pág inicial) e footer
+
+       aluno(usuário)
+        codUser
+        nomeUser
+        rgUser
+        cpfUser
+        dataNasUser
+        lograUser...
+        turmaAluno
+
+       professor(prof)
+        codProf
+        nomeProf
+        cpfProf
+        rgProf
+        dataNasProf
+        lograProf
+        materiaProf
+        periodosProf
+        salasQueDaAula
+
+       direcao(admin)
+        codAdmin
+        nomeAdmin
+        cpfAdmin
+        rgAdmin
+        dataNasAdmin
+        lograAdmin
+
+       
+
+       
