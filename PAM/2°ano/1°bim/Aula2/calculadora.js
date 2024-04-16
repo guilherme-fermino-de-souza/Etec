@@ -26,7 +26,12 @@ export default function App() {
       <StatusBar style='auto' />
 
         <View>
-          <Text>Numeradores</Text>
+          <Text style={{
+            color: 'white',
+            fontSize: 40,
+            marginBottom: 20,
+            marginLeft: 45,
+          }}>Calculadora</Text>
 
           <TextInput
              style={styles.campo}
@@ -35,12 +40,13 @@ export default function App() {
              onChangeText={(value) => setNum1(value)}
             />
             <TextInput
-             style={StyleSheet.campo}
+             style={styles.campo}
              value={num2}
              placeholder="Digite o 2° Número"
              onChangeText={(value) => setNum2(value)}
             />
             <Picker
+            style={styles.forma}
               selectedValue={forma}
               onValueChange={(itemValue, itemIndex) => setForma(itemValue)}
               >
@@ -51,13 +57,17 @@ export default function App() {
               </Picker>
         </View>
 
-        <View>
+        <View style={styles.answer}>
          <Button
+         style={styles.botao}
           title="Calcular"
           onPress={() => Calcular()} 
           />
 
-          <View>
+          <View style={{
+            color: 'white',
+            fontSize: 30,
+          }}>
             <Text>Resultado: {resultado}</Text>
           </View>
 
@@ -70,15 +80,51 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    color: 'black',
+    backgroundColor: '#2A3640',
+    color: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: 'red',
+    border: 100,
   },
   campo: {
-    backgroundColor: '#fff',
-    color: 'black',
-    width: 300,
+    backgroundColor: '#025949',
+    color: 'white',
+    marginLeft: 25,
+    width: 250,
     height: 50,
-  }
-})
+    borderRadius: 200,
+    marginBottom: 40,
+    textAlign: 'center',
+  },
+  forma: {
+    width: '80%',
+    borderRadius: 20,
+    Color:'#025949',
+    marginLeft: 35,
+  },
+  calcul: {
+    backgroundColor: 'green',
+    borderRadius: 20,
+    fontSize: 300,
+    color: 'white',
+  },
+  answer: {
+    padding: 20,
+    borderRadius: 20,
+    fontSize: 300,
+    color: 'white',
+  },
+  botao: {
+    backgroundColor: '#55038C', // Cor de fundo do botão
+    borderRadius: 20, // Borda arredondada
+    padding: 10, // Espaçamento interno
+    marginTop: 20, // Espaço superior
+  },
+  resultado: {
+    fontSize: 3,
+    backgroundColor: 'yellow',
+    color: 'white',
+    fontSize: 40,
+  },
+});
