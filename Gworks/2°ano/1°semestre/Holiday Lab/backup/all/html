@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HolidayLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <header>
+        <nav>
+            <a class="logo" href="/">Holiday Lab</a>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#conteudo">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#cards">Integrantes</a></li>
+                <li><a href="#">Projetos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--navbar end-->
+
+
+    <!--conteudo start-->
+    <section id="conteudo">
+        <div class="container conteudo">
+            <div class="texts-conteudo">
+                <div class="titulo-conteudo">
+                    <h1>TÍTULO</h1>
+                </div>
+                <div class="text-conteudo">
+                    <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                        voluptas. Aut necessitatibus nulla eum illo velit sed quidem molestiae sit earum blanditiis aut
+                        ipsam ullam cum eligendi possimus.
+
+                        Sed cumque velit At labore delectus aut ipsum blanditiis At similique libero. Eos velit iure ab
+                        rerum exercitationem qui iste reprehenderit eum sunt eveniet est quia pariatur ad labore
+                        deleniti
+                        sit sint vero.
+
+                        Sit dicta accusamus At laudantium labore id laborum tempore. Quo internos magni ut assumenda
+                        beatae
+                        ea totam facilis id suscipit placeat. Et pariatur sint quo minima sint non exercitationem
+                        praesentium eum consectetur perferendis et consequatur pariatur non ratione expedita At enim
+                        totam.
+                        Aut repudiandae dignissimos qui sint suscipit et ipsa enim et incidunt quaerat et architecto
+                        perferendis!</p>
+                </div>
+                <div class="btn-contato">
+                    <a href="#"><button>Entre em contato</button></a>
+                </div>
+            </div>
+
+            <div class="img-conteudo">
+                <img src="../img/galeria/conteudo-sede-01.webp">
+                <h1>Holiday Lab</h1>
+            </div>
+        </div>
+    </section>
+    <!--conteudo end-->
+
+    <!--sobre start-->
+    <section id="sobre">
+        <div class="container sobre">
+            <div class="img-sobre">
+                <img src="../img/galeria/conteudo-sede-01.webp">
+                <h2>Moscou, paridfhg</h2>
+            </div>
+            <div class="text-sobre">
+                <div class="titulo-sobre">
+                    <h1>QUEM SOMOS</h1>
+                </div>
+                <div class="textos-sobre">
+                    <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                        voluptas. Aut necessitatibus nulla eum illo velit sed quidem molestiae sit earum blanditiis aut
+                        ipsam ullam cum eligendi possimus.
+
+                        Sed cumque velit At labore delectus aut ipsum blanditiis At similique libero. Eos velit iure ab
+                        rerum exercitationem qui iste reprehenderit eum sunt eveniet est quia pariatur ad labore
+                        deleniti
+                        sit sint vero.
+
+                        Sit dicta accusamus At laudantium labore id laborum tempore. Quo internos magni ut assumenda
+                        beatae
+                        ea totam facilis id suscipit placeat. Et pariatur sint quo minima sint non exercitationem
+                        praesentium eum consectetur perferendis et consequatur pariatur non ratione expedita At enim
+                        totam.
+                        Aut repudiandae dignissimos qui sint suscipit et ipsa enim et incidunt quaerat et architecto
+                        perferendis!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--sobre end-->
+
+    <!--cards start-->
+    <section id="cards">
+        <div class="container cards">
+            <div class="cards-firstrow">
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-01-man.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-02-woman.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-03-woman.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-secondrow">
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-04-man.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-05-woman.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="img-card">
+                        <img src="../img/galeria/portrait-06-man.webp">
+                    </div>
+                    <div class="text-card">
+                        <h2>Título</h2>
+                        <p>loLorem ipsum dolor sit amet. Et porro natus cum impedit sunt cum aspernatur facilis qui quas
+                            voluptas.</p>
+                    </div>
+                    <div class="button-card">
+                        <button type="button" class="bnt">Contate-me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--cards end-->
+
+
+    <!--footer start-->
+    <div class="footer">
+        <div class="footer-01"></div>
+
+        <div class="footer-02"></div>
+    </div>
+    <!--footer end-->
+
+    <script src="../js/java.js"></script>
+</body>
+
+</html>
