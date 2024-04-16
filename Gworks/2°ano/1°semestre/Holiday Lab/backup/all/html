@@ -1,3 +1,4 @@
+15/04/2024
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -203,9 +204,37 @@
 
     <!--footer start-->
     <div class="footer">
-        <div class="footer-01"></div>
+        <div class="footer-01">
+            <h1>Contate-nos</h1>
+            <div class="btn-footer-button">
+                <a href="#"><button>Entre em contato</button></a>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-02">
 
-        <div class="footer-02"></div>
+            <div class="footer-left">
+                <div class="left-logo">
+                    <img src="">
+                    <h1>HolidayLab®</h1>
+                </div>
+                <p>inspirado no Kelectrix Design no dorik.com/blog/website-footer-examples</p>
+            </div>
+
+            <div class="footer-subleft">
+                <h1>TITULO</h1>
+                <H2>lorem ipsum</H2>
+                <H2>contact directly (99)11 2212-12122 to more options</H2> 
+            </div>
+
+            <div class="footer-right">
+                <h1>TITULO</h1>
+                <H2>lorem ipsum</H2>
+                <H2>contact directly (99)11 2212-12122 to more options</H2>
+            </div>
+
+
+        </div>
     </div>
     <!--footer end-->
 
