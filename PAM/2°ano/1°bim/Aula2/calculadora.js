@@ -60,6 +60,7 @@ export default function App() {
         <View style={styles.answer}>
          <Button
          style={styles.botao}
+         color="#55038C"
           title="Calcular"
           onPress={() => Calcular()} 
           />
@@ -67,7 +68,9 @@ export default function App() {
           <View style={{
             color: 'white',
             fontSize: 30,
-          }}>
+          }}
+          color="white"
+          fontSize="30">
             <Text>Resultado: {resultado}</Text>
           </View>
 
