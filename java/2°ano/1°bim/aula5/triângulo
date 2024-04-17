@@ -1,0 +1,27 @@
+package aula5;
+import java.util.Scanner;
+	public class Triangulo {
+	
+		public static void main(String[] args) {
+			Scanner in = new Scanner(System.in);
+			
+			Calculo angA;
+			Calculo angB;
+			Calculo angc;
+			
+			
+			Calculo Calc = new Calculo();
+			Calculo calc;
+			
+			if(Calc.calc < 180) {
+				System.out.println("Estes ângulos não compõem um triângulo.");
+				
+				
+			}	else {
+				System.out.println("Vai arrumar o que fazer da vida, fracassado.");
+				
+			}
+			
+		}
+
+}
