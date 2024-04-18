@@ -225,6 +225,6 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 	--Urubundí
 
 	
-	--Parte 2
+	--Parte 2  18/04/2024
 	SELECT descricaoProduto, nomeFabricante AS 'Descrição e fabricante do produto' FROM tbProduto
 		INNER JOIN tbFabricante on tbProduto.idFabricante = tbFabricante.nomeFabricante
