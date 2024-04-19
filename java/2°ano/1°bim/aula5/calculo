@@ -1,31 +1,15 @@
-package aula5;
-import java.util.Scanner;
-	public class Calculo {
-		double angA;
-		double angB;
-		double angC;
-		double calc;
+public class Calculo {
+	public boolean Calc(double angA, double angB, double angC) {
+		
+		double calc = angA + angB + angC;
+
 	
-		public double Calc() {
-			Scanner in = new Scanner(System.in);
-			System.out.println("Digite o valor do 1° ângulo");
-			angA = in.nextDouble();
-			
-			System.out.println("Digite o valor do 2° ângulo");
-			angB = in.nextDouble();
-			
-			
-			System.out.println("Digite o valor do 3° ângulo");
-			angC = in.nextDouble();
-			
-			calc = angA + angB + angC;
 			if(calc<180) {
 				System.out.println("Não compõe um triângulo");
-				return calc;
+				return false;
 			} else {
 				System.out.println("Compõe um triângulo");
-				return calc;
+				return true;
 			}
 		}
 		
-	}
