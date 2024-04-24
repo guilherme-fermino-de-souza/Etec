@@ -291,23 +291,22 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 		   ON tbProduto.idFornecedor = tbFornecedor.idFornecedor
 	     GROUP BY tbFornecedor.nomeFornecedor
 
-	-- I listar a soma das vendas agrupadas pelo nome do produto =
+	-- I listar a soma das vendas agrupadas pelo nome do produto =-
+	  SELECT (descricaoProduto) AS 'Nome Produto',
+	  SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
+	  INNER JOIN tbVenda
+	  ON tbVenda.idvenda = tbProduto.idProduto
+	  GROUP BY tbProduto.descricaoProduto
 
-	    SELECT descricaoProduto AS 'Nome Produto',
-		SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
-		  INNER JOIN tbVenda
-		    ON tbVenda.idvenda = tbProduto.idProduto
-			  GROUP BY tbProduto.descricaoProduto
+           SELECT (descricaoProduto) AS 'Nome Produto',
+	   SUM (valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
+	   INNER JOIN tbItensVenda ON tbProduto.idProduto = tbItensVenda.idProduto
+	   INNER JOIN tbVenda ON tbItensVenda.idVenda = tbVenda.idvenda 
+	   GROUP BY descricaoProduto 
 
-	-- J listar a soma das vendas pelo nome do cliente somente das vendas realizadas em fev. de 2024 ---
-	    
-		/*SELECT nomeCliente as 'Cliente', dataVenda AS 'Data' FROM tbCliente,tbVenda
-		  INNER JOIN tbVenda
-		     ON tbCliente.idCliente = tbVenda.idCliente*/
-
-	    SELECT nomeCliente AS 'Nome cliente', 
-		SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbCliente
-		  INNER JOIN tbVenda
-		     ON tbCliente.idCliente = tbVenda.idvenda 
+	-- J listar a soma das vendas pelo nome do cliente somente das vendas realizadas em fev. de 2024 +
+	    SELECT (nomeCliente) AS 'Nome cliente', 
+		 SUM (valorTotalVenda) AS 'Soma das vendas' FROM tbCliente
+		  INNER JOIN tbVenda ON tbVenda.idCliente = tbCliente.idCliente 
 			 WHERE MONTH(dataVenda) = 2 AND YEAR(dataVenda) = 2014
-			   GROUP BY tbCliente.nomeCliente
+			   GROUP BY nomeCliente	  
