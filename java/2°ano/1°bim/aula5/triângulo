@@ -1,21 +1,29 @@
+package aula1;
 import java.util.Scanner;
+public class Triangule {
 
-public class Tryangle {
+	public static void main(String[] args) {		//entrada e leitura dos dados
+		double angA, angB, angC;
+		double trian;
+		Scanner in = new Scanner(System.in);
+			//System.out.println(Calculo.Calc (in.nextDouble(angA), in.nextDouble(angB), in.nextDouble(angC)));
+
+		Calculo resul = new Calculo();
+		
+		System.out.println("Insira o valor do 1° ângulo do triângulo");
+		angA = in.nextDouble();
+		
+		System.out.println("Insira o valor do 2° ângulo do triângulo");
+		angB = in.nextDouble();
 	
-
-	public static void main(String[] args) {
-			Scanner in = new Scanner(System.in);
-			
-			
-			Calculo Calc = new Calculo();
-			
-			System.out.println(Calculo.Calc (in.nextDouble(angA), in.nextDouble(angB), in.nextDouble(angC));
-			
-			
-			
-		}
-
+		System.out.println("Insira o valor do 3° ângulo do triângulo");
+		angC = in.nextDouble();
+	
+		trian = angA + angB + angC;
+	
 		
+		resul.Calc(trian);
 		
-	}
-}
+		in.close();
+	}	
+}	
