@@ -1,15 +1,14 @@
-public class Calculo {
-	public boolean Calc(double angA, double angB, double angC) {
+package aula1;
+public class Calculo {			//processamento e retorno DOS dados
 		
-		double calc = angA + angB + angC;
-
-	
-			if(calc<180) {
-				System.out.println("Não compõe um triângulo");
-				return false;
-			} else {
-				System.out.println("Compõe um triângulo");
-				return true;
-			}
+	public boolean Calc(double trian) {
+		if(trian!=180) {
+			System.out.println("A junção desses ângulos não compõe um triângulo");
+			return false;
+		} else {
+			System.out.println("A junção desses ângulos compõe um triângulo");
+			return true;
 		}
+	}	
+}		
 		
