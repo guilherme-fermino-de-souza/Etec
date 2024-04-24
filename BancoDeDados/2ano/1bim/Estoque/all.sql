@@ -242,7 +242,7 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 	     INNER JOIN tbFornecedor
 		   ON tbProduto.idFornecedor = tbFornecedor.idFornecedor
 
-	-- C listar a soma das quantidades dos produtos agrupados pelo nome do fabricante =+ 
+	-- C listar a soma das quantidades dos produtos agrupados pelo nome do fabricante + 
 
 	   SELECT nomeFabricante AS 'Fabricante',
 	   SUM (tbProduto.quantidadeProduto) AS 'Quantidade de produtos por fabricante' FROM tbFabricante
@@ -258,7 +258,7 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 		   ON tbVenda.idCliente = tbCliente.idCliente
 		     GROUP BY tbCliente.nomeCliente
 
-	-- E listar a média dos preços dos produtos agrupados pelo nome do fornecedor =+
+	-- E listar a média dos preços dos produtos agrupados pelo nome do fornecedor +
 
 	    SELECT nomeFornecedor AS 'Nome fornecedor', 
 		AVG (tbProduto.valorProduto) AS 'Media preco produto' FROM tbFornecedor
@@ -266,8 +266,7 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 		    ON tbProduto.idFornecedor = tbFornecedor.idFornecedor
 			  GROUP BY tbFornecedor.nomeFornecedor
 
-
-	-- F listar todas as somas das vendas agrupadas pelo nome do cliente em ordem alfabetica =+
+	-- F listar todas as somas das vendas agrupadas pelo nome do cliente em ordem alfabetica +
 
 	    SELECT nomeCliente AS 'Nome Cliente', -- Não Entendi --
 		SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbCliente
@@ -275,36 +274,30 @@ SELECT AVG(valorTotalVenda) AS 'T - Somatória das quantidades dos produtos com 
 		    ON tbVenda.idCliente = tbCliente.idCliente
 			  GROUP BY tbCliente.nomeCliente
 
-	-- G listar a soma dos preços dos produtos agrupados pelo nome do fabricante =+
+	-- G listar a soma dos preços dos produtos agrupados pelo nome do fabricante +
 
 	   SELECT nomeFabricante AS 'Nome fabricante',
-	   SUM (tbProduto.valorProduto) AS 'Soma dos precos' FROM tbFabricante
+	   SUM (valorProduto) AS 'Soma dos precos' FROM tbFabricante
 	     INNER JOIN tbProduto
 		   ON tbProduto.idFabricante = tbFabricante.idFabricante
-		     GROUP BY tbFabricante.nomeFabricante
+		     GROUP BY nomeFabricante
 
-	-- H listar a média dos preços dos produtos agrupados pelo nome do fornecedor =
+	-- H listar a média dos preços dos produtos agrupados pelo nome do fornecedor =-
 
 	   SELECT nomeFornecedor AS 'Nome fornecedor',  --Repetida E
-	   AVG (tbProduto.valorProduto) AS 'Média dos preços' FROM tbFornecedor
-	     INNER JOIN tbProduto
-		   ON tbProduto.idFornecedor = tbFornecedor.idFornecedor
-	     GROUP BY tbFornecedor.nomeFornecedor
+	   AVG (valorProduto) AS 'Média dos preços' FROM tbFornecedor
+	     INNER JOIN tbProduto ON tbProduto.idFornecedor = tbFornecedor.idFornecedor
+	     GROUP BY nomeFornecedor
 
 	-- I listar a soma das vendas agrupadas pelo nome do produto =-
-	  SELECT (descricaoProduto) AS 'Nome Produto',
-	  SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
-	  INNER JOIN tbVenda
-	  ON tbVenda.idvenda = tbProduto.idProduto
-	  GROUP BY tbProduto.descricaoProduto
 
-           SELECT (descricaoProduto) AS 'Nome Produto',
-	   SUM (valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
-	   INNER JOIN tbItensVenda ON tbProduto.idProduto = tbItensVenda.idProduto
-	   INNER JOIN tbVenda ON tbItensVenda.idVenda = tbVenda.idvenda 
-	   GROUP BY descricaoProduto 
+	    SELECT (descricaoProduto) AS 'Nome Produto',
+		SUM (tbVenda.valorTotalVenda) AS 'Soma das vendas' FROM tbProduto
+		  INNER JOIN tbVenda
+		    ON tbVenda.idvenda = tbProduto.idProduto GROUP BY tbProduto.descricaoProduto
 
 	-- J listar a soma das vendas pelo nome do cliente somente das vendas realizadas em fev. de 2024 +
+
 	    SELECT (nomeCliente) AS 'Nome cliente', 
 		 SUM (valorTotalVenda) AS 'Soma das vendas' FROM tbCliente
 		  INNER JOIN tbVenda ON tbVenda.idCliente = tbCliente.idCliente 
