@@ -31,13 +31,13 @@ CREATE TABLE tbMatricula(
 INSERT INTO tbAluno
   (nomeAluno, dataNasciAluno, rgAluno, naturalidadeAluno)
     VALUES
-	 ('Paulo Santos', '10-03-2000', 822821220, 'SP')
-	 ,('Maria da Gloria', '03-10-1999', 822821220, 'SP')
-	 ,('Pedro Noqueira da Silva', '04-04-1998', 822821220, 'SP')
-	 ,('Gilsonn Barros Silva', '09-09-1995', 822821220, 'PE')
-	 ,('Mariana Barbosa Santos', '10-10-2001', 822821220, 'RJ')
-	 ,('Alessandro Pereira', '11-10-2003', 822821220, 'ES')
-	 ,('Aline Melo', '08-10-2001', 822821220, 'RJ')
+	 ('Paulo Santos', '2000-03-10', 822821220, 'SP')
+	 ,('Maria da Gloria', '1999-10-03', 822821220, 'SP')
+	 ,('Pedro Noqueira da Silva', '1998-04-04', 822821220, 'SP')
+	 ,('Gilsonn Barros Silva', '1995-09-09', 822821220, 'PE')
+	 ,('Mariana Barbosa Santos', '2001-10-10', 822821220, 'RJ')
+	 ,('Alessandro Pereira', '2003-10-11', 822821220, 'ES')
+	 ,('Aline Melo', '2001-10-08', 822821220, 'RJ')
 
 INSERT INTO tbCurso
    (nomeCurso, cargaHorariaCurso, valorCurso)
@@ -49,56 +49,120 @@ INSERT INTO tbCurso
 INSERT INTO tbTurma
   (nomeTurma, horarioTurma, idCurso)
   VALUES
-   ('1|A', '01-01-1900 12:00:00', 1)
-   ,('1|B', '01-01-1900 18:00:00', 3)
-   ,('1|C', '01-01-1900 18:00:00', 1)
-   ,('1|AA', '01-01-1900 19:00:00', 2)
+   ('1|A', '1900-01-01 12:00:00', 1)
+   ,('1|B', '1900-01-01 18:00:00', 3)
+   ,('1|C', '1900-01-01 18:00:00', 1)
+   ,('1|AA', '1900-01-01 19:00:00', 2)
 
 INSERT INTO tbMatricula
    (dataMatricula, idAluno, idTurma)
    VALUES
-     ('03-10-2015', 1, 1)
-	 ,('04-05-2014', 2, 1)
-	 ,('04-05-2014', 2, 4)
-	 ,('03-05-2012', 3, 2)
-	 ,('03-03-2016', 1, 3)
-	 ,('07-05-2015', 4, 2)
-	 ,('05-07-2015', 4, 3)
+     ('2015-10-03', 1, 1)
+	 ,('2014-05-04', 2, 1)
+	 ,('2014-05-04', 2, 4)
+	 ,('2012-05-03', 3, 2)
+	 ,('2016-03-03', 1, 3)
+	 ,('2015-05-07', 4, 2)
+	 ,('2015-07-05', 4, 3)
 
-	 -- 1 Apresentar os nomes dos alunos ao lado do curso  
+	 -- FEITO
+
+	 -- 1 Apresentar os nomes dos alunos ao lado do curso + 
 	 SELECT nomeAluno AS 'Nome Aluno', 
-	 nomeCurso AS 'Curso' FROM tbCurso
-	 INNER JOIN tbCurso ON tbCurso.idCurso = tbTurma.idCurso
-	 INNER JOIN tbTurma ON tbTurma.idCurso = tbMatricula.idTurma
-	 INNER JOIN tbMatricula ON tbMatricula.idMatricula = tbAluno.idAluno
-	 GROUP BY nomeAluno
+	 nomeCurso AS 'Curso' FROM tbAluno
+	 INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
 
 
-	 -- 2 Apresentar a quantidade de alunos matriculados por curso
+	 -- 2 Apresentar a quantidade de alunos matriculados por curso +
 
 	 SELECT nomeCurso AS 'Curso',
-	 COUNT (tbMatricula.idAluno) AS 'quant Alunos' FROM tbAluno
-	 INNER JOIN tbMatricula ON tbMatricula.idAluno = tbAluno.idAluno
+	 COUNT (idAluno) AS 'Quantidade Alunos' FROM tbMatricula
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
 	  GROUP BY nomeCurso
 
-	 -- 3 Apresentar a quantidade de alunos matriculados por turma
+	 -- 3 Apresentar a quantidade de alunos matriculados por turma +
 
-	 -- 4 Apresentar a quantidade de alunos que se matricularam em maio de 2016
+	 SELECT nomeTurma AS 'Turma',
+	 COUNT (idAluno) AS 'Quantidade Alunos' FROM tbMatricula
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 GROUP BY nomeTurma
 
-	 -- 5 Apresentar o nome dos alunos em ordem alfabética ao lado do nome das turmas e os nomes dos cursos em que estão matriculados
+	 -- 4 Apresentar a quantidade de alunos que se matricularam em maio de 2016 +?
 
-	 -- 6 Apresentar o nome nome dos cursos e os horários em que eles são oferecidos
+	 SELECT COUNT (tbAluno.idAluno) AS 'Quantidade Alunos' FROM tbMatricula
+	 INNER JOIN tbAluno ON tbAluno.idAluno = tbMatricula.idAluno
+	 WHERE MONTH(dataMatricula) = 5 AND YEAR(dataMatricula) = 2016
+	 GROUP BY tbAluno.idAluno
 
-	 -- 7 Apresentar a quantidade de alunos nascidos por estado que estejam matriculados no curso de inglês
+	 -- 5 Apresentar o nome dos alunos em ordem alfabética ao lado do nome das turmas e os nomes dos cursos em que estão matriculados +
 
-	 -- 8 Apresentar o nome dos alunos ao lado da data de matrícula no formato dd/mm/aaaa
+	 SELECT nomeAluno AS 'Nome Aluno',
+	 nomeTurma AS 'Turma',
+	 nomeCurso AS 'Curso' FROM tbAluno
+	 INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
+	 ORDER BY nomeAluno
+
+	 -- 6 Apresentar o nome dos cursos e os horários em que eles são oferecidos +
+
+	 SELECT nomeCurso AS 'Curso',
+	 horarioTurma AS 'Horário' FROM tbCurso
+	 INNER JOIN tbTurma ON tbCurso.idCurso = tbTurma.idCurso
+
+	 -- 7 Apresentar a quantidade de alunos nascidos por estado que estejam matriculados no curso de inglês +
+
+	  SELECT COUNT (nomeAluno) AS 'Quantidade de Alunos',
+	  naturalidadeAluno AS 'Estado', (tbTurma.idCurso) AS 'Curso de Inglês' FROM tbAluno
+	  INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	  INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	  WHERE (tbTurma.idCurso) = 1
+	  GROUP BY tbTurma.idCurso, naturalidadeAluno
+
+	 -- 8 Apresentar o nome dos alunos ao lado da data de matrícula no formato dd/mm/aaaa +
+
+	 SELECT nomeAluno AS 'Aluno',
+	 FORMAT (dataMatricula, 'dd-MM-yyyy') AS 'Data Matrícula' FROM tbAluno
+	 INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	 ORDER BY nomeAluno
 	 
-	 -- 9 Apresentar os alunos cujo nome comece com A e que estejam matriculados no curso de inglês
+	 -- 9 Apresentar os alunos cujo nome comece com A e que estejam matriculados no curso de inglês +?
 
-	 -- 10 Apresentar a quantidade de matriculas feitas no ano de ano 2016
+	  SELECT nomeAluno AS 'Aluno' FROM tbAluno
+	  INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	  INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	  WHERE idCurso = 1 AND nomeAluno = 'A%'
+	 
 
-	 -- 11 Apresentar a quantidade de matriculas por nome do curso
 
-	 -- 12 Apresentar a quantidade de alunos que fazem os cursos que cursos que custam mais de R$ 300,00
+	 -- 10 Apresentar a quantidade de matriculas feitas no ano de ano 2016 +?
 
-	 -- 13 Apresentar os nomes dos alunos que fazem o curso de alemão
+	 SELECT COUNT (tbAluno.idAluno) AS 'Números Matrículas' FROM tbMatricula
+	 INNER JOIN tbAluno ON tbAluno.idAluno = tbMatricula.idAluno
+	 WHERE YEAR(dataMatricula) = 2016
+
+	 -- 11 Apresentar a quantidade de matriculas por nome do curso +
+
+	 SELECT idMatricula AS 'Quantidade Matrículas Curso', 
+	 nomeCurso AS 'Curso' FROM tbMatricula
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
+
+	 -- 12 Apresentar a quantidade de alunos que fazem os cursos que cursos que custam mais de R$ 300,00 +
+
+	 SELECT COUNT (tbAluno.idAluno) AS 'Quantidade Alunos' FROM tbAluno
+	 INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
+	 WHERE valorCurso > 300
+
+	 -- 13 Apresentar os nomes dos alunos que fazem o curso de alemão +
+
+	 SELECT nomeAluno AS 'Aluno' FROM tbAluno
+	 INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	 INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	 INNER JOIN tbCurso ON tbTurma.idCurso = tbCurso.idCurso
+	 WHERE tbCurso.idCurso = 2
