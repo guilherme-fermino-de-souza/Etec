@@ -140,7 +140,7 @@ INSERT INTO tbMatricula
 
 	 -- 10 Apresentar a quantidade de matriculas feitas no ano de ano 2016 +?
 
-	 SELECT COUNT (tbAluno.idAluno) AS 'Números Matrículas' FROM tbMatricula
+	 SELECT COUNT (idMatricula) AS 'Números Matrículas' FROM tbMatricula
 	 INNER JOIN tbAluno ON tbAluno.idAluno = tbMatricula.idAluno
 	 WHERE YEAR(dataMatricula) = 2016
 
