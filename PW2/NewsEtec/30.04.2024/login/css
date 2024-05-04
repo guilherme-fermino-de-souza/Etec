@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container-login {
+    display: flex;
+    background-color: #ffffff;
+    margin: 5% 30%;   
+}
+/*container direito*/
+.login {
+    background-color: rgb(255, 0, 0);
+    color: #000000;
+    border-radius: 20px;
+    width: 30vw;
+    padding: 5% 4.5%;
+}
+
+.login h1{
+    font-size: 2.5vw;
+    margin-top: 10%;
+}
+
+.card-login {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 36px 35px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 5px 5px #000000 ;
+} 
+
+.card-login > h1{
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    margin: 0;
+}
+
+.textfield {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.textfield label{
+    font-size: large;
+    font-weight: 700;
+    margin-top: 10%;
+}
+
+.textfield > input {
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 2%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #c2c2c2;
+    color: #000000;
+    font-size: 12pt;
+    box-shadow: 5px 5px #000000 ;
+    outline: none;
+}
+
+.enviar {
+    margin-top: 10%;
+}
+
+input[type="submit"] {
+    background-color: #c2c2c2;
+    color: #000000; /* Define a cor do texto do botão */
+    border-radius: 25%; /* Remove a borda do botão */
+    padding: 10px 20px; /* Adiciona preenchimento interno ao botão */
+    cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
+}
+
+input[type="submit"]:hover {
+    background-color: #d24c4c; /* Muda a cor de fundo quando o mouse passa por cima */
+}
