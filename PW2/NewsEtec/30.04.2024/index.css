@@ -38,6 +38,16 @@ nav {
     margin-left: 32px;
 }
 
+.nav-img {
+    background-color: #ffffff;
+    border-radius: 35px;
+    height: auto;
+    width: auto;
+}
+
+.nav-img img {
+    height: 60px;
+}
 .mobile-menu {
     display: none;
     cursor: pointer;
@@ -56,7 +66,7 @@ nav {
 .cards {
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 185, 185);
     margin-right: 17%;
     margin-left: 17%;
     margin-top: 12.5%;
@@ -70,7 +80,7 @@ nav {
 }
 
 .bnt button:hover {
-    background-color: #7096BB;
+    background-color: #ff0000;
 }
 
 .button-card {
@@ -88,10 +98,9 @@ nav {
 }
 
 .card {
-    width: 220px;
-    padding: 100px 100px;
+    width: 320px;
+    padding: 100px 150px;
     background-color: rgb(255, 255, 255);
-
 }
 
 .card img {
@@ -99,6 +108,7 @@ nav {
     height: 225px;
     border-radius: 50%;
     margin-top: 20px;
+    margin-left: 45px;
 }
 
 .card h2 {
@@ -111,6 +121,25 @@ nav {
     text-align: center;
     margin-top: 20px;
     color: #000000;
+}
+
+.card button {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 10px;
+    border-color: #000000;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 110px;
+}
+
+.card button:hover {
+    background-color: #cdcdcd;
+}
+
+.text-card a {
+    font-size: large;
+    color: #77b0f2;
 }
 /*CARD END*/
 
