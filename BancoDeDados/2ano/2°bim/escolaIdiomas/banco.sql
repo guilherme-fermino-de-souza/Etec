@@ -117,7 +117,7 @@ INSERT INTO tbMatricula
 
 	  SELECT COUNT (nomeAluno) AS 'Quantidade de Alunos',
 	  naturalidadeAluno AS 'Estado', (tbTurma.idCurso) AS 'Curso de Inglês' FROM tbAluno
-	  INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	  INNER JOIN tbMatricula ON tbMatricula.idAluno = tbAluno.idAluno
 	  INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
 	  WHERE (tbTurma.idCurso) = 1
 	  GROUP BY tbTurma.idCurso, naturalidadeAluno
