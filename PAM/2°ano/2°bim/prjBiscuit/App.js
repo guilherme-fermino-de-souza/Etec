@@ -2,9 +2,70 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
-  
-class App extends Component{
-  render(){
+
+
+export default function App() {
+  //Frase apresentada
+  const [impressao, setImpressao] = useState("")
+    //Número da imagem exposta
+  const[img, setImg] = useState(0)
+
+  const frases = [
+    'Seja como for o que penses, creio que é melhor dizê-lo com boas palavras.',
+    'Um homem não é outra coisa senão o que faz de si mesmo.',
+    'O que importa afinal, viver ou saber que se está vivendo?',
+    'A vida é maravilhosa se não se tem medo dela.',
+    'Quero a delícia de poder sentir as coisas mais simples.',
+    'Tenho em mim todos os sonhos do mundo.',
+    'O homem não morre quando deixa de viver, mas sim quando deixa de amar.',
+    'Aquilo que se faz por amor está sempre além do bem e do mal',
+    'Ainda não vi ninguém que ame a virtude tanto quanto ama a beleza do corpo.',
+    'As flores desabrocham para continuar a viver, pois reter é perecer.',
+    'Não é difícil morrer nesta vida. Viver é muito mais difícil.',
+    'Escuta e serás sábio. O começo da sabedoria é o silêncio.',
+    'Se as pessoas falam de você pelas costas, fique feliz que você está na frente.',
+    'De que serve ao homem conquistar o mundo inteiro se perder a alma?',
+    'As melhores coisas na vida não são coisas.',
+    'O medo é um preconceito dos nervos. E um preconceito, desfaz-se; basta a simples reflexão.'
+  ];
+
+  function quebrar(){
+    if(img == 0){
+      let numAleatorio = Math.floor(Math.random() * frases.length);
+      setImpressao(frases[num])
+      setImg(1)
+    }
+  }
+
+  function novo(){
+    setImpressao(frases[''])
+    setImg(0)
+  }
+
+  function exibirImagem(numero){
+    if(numero == 0){
+      return(<image source={require('./assets/biscuInt.jpeg')} style={styles.img}/>)
+    } else{
+        return(<image source={require('./assets/biscuÍdo.jpeg')} style={styles.img}/>)
+    }
+  }
+
+  <View style={styles.container}>
+          {exibirImagem(img)}     //Func exibirImagem retornará img biscuit
+          <StatusBar style="auto"/>
+        <Text style={styles.textFrase}>{impressao}</Text>     //Frase sorteada
+        <TouchableOpacity style={styles.botao} onPress={()=>quebrar()}>
+          <View style={styles.btnArea}>     //Func quebrar| - Optará por nova frase e altera *img biscuInt* p/ *img biscuÍdo*
+            <Text style={styles.btnTexto}>Quebrar bolacha.</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
+          <View style={styles.btnArea}>     //Func quebrar| - Removerá a frase e altera *img biscuÍdo* p/ *img biscuInt*
+            <Text style={styles.btnTexto}>Nova bolacha.</Text>
+          </View>
+        </TouchableOpacity>
+    </View>
+
     return(
       <View style={styles.container}>
         <View style={{borderStyle:'solid',borderWidth:1, flex:1, flexDirection:'column', justifyContent:'flex-start', alignItems:'center', width:'100%'}}>
@@ -28,70 +89,6 @@ class App extends Component{
       </View>
     )
   }
-}
-
-//Frase apresentada
-const [impressao, setImpressao] = useState("")
-  //Número da imagem exposta
-const[img, setImg] = useState(0)
-
-const frases = [
-  'Seja como for o que penses, creio que é melhor dizê-lo com boas palavras.',
-  'Um homem não é outra coisa senão o que faz de si mesmo.',
-  'O que importa afinal, viver ou saber que se está vivendo?',
-  'A vida é maravilhosa se não se tem medo dela.',
-  'Quero a delícia de poder sentir as coisas mais simples.',
-  'Tenho em mim todos os sonhos do mundo.',
-  'O homem não morre quando deixa de viver, mas sim quando deixa de amar.',
-  'Aquilo que se faz por amor está sempre além do bem e do mal',
-  'Ainda não vi ninguém que ame a virtude tanto quanto ama a beleza do corpo.',
-  'As flores desabrocham para continuar a viver, pois reter é perecer.',
-  'Não é difícil morrer nesta vida. Viver é muito mais difícil.',
-  'Escuta e serás sábio. O começo da sabedoria é o silêncio.',
-  'Se as pessoas falam de você pelas costas, fique feliz que você está na frente.',
-  'De que serve ao homem conquistar o mundo inteiro se perder a alma?',
-  'As melhores coisas na vida não são coisas.',
-  'O medo é um preconceito dos nervos. E um preconceito, desfaz-se; basta a simples reflexão.'
-];
-export default function App() {
-  return (
-    <View style={styles.container}>
-        {exibirImagem(img)} //Func exibirImagem retornará img biscuit
-        <StatusBar style="auto"/>
-      <Text style={styles.textFrase}>{impressao}</Text> //Frase sorteada
-      <TouchableOpacity style={styles.botao} onPress={()=>quebrar()}>
-        <View style={styles.btnArea}> //Func quebrar| - Optará por nova frase e altera *img biscuInt* p/ *img biscuÍdo*
-          <Text style={styles.btnTexto}>Quebrar bolacha.</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-        <View style={styles.btnArea}> //Func quebrar| - Removerá a frase e altera *img biscuÍdo* p/ *img biscuInt*
-          <Text style={styles.btnTexto}>Nova bolacha.</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
-  function quebrar(){
-    if(img == 0){
-      let numAleatorio = Math.floor(Math.random() * frases.length);
-      setImpressao(frases[num])
-      setImg(1)
-    }
-  }
-
-  function novo(){
-    setImpressao(frases[''])
-    setImg(0)
-  }
-
-  function exibirImagem(numero){
-    if(numero == 0){
-      return(<image source={require('./assets/biscuInt.jpeg')} style={styles.img}/>)
-    } else{
-        return(<image source={require('./assets/biscuÍdo.jpeg')} style={styles.img}/>)
-    }
-  }
-}
 
 
 const styles = StyleSheet.create({
