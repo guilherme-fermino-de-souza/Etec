@@ -103,3 +103,57 @@ INSERT INTO tbAutor
 		FULL JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
 		WHERE nomeAutor = 'Machado de Assis' OR 'Graciliano Ramos' OR 'Clarisce Lispector' OR 'Cora Coralina'
 		GROUP BY nomeAutor		-- NÃO CONCLUI´´DA
+
+
+-- PARTE DO GUI
+		
+	/* I O nome dos livros ao lado dos nomes do autor somente daqueles cujo nome da editora
+	for "Cia das Letra" + */
+
+	SELECT tbLivro.nomeLivro AS 'Livro', 
+	nomeAutor As 'Autor' FROM tbAutor INNER JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor
+	WHERE idEditora = 4
+
+	/* J O nome dos livros ao lado dos nomes dos autores, somente dos livros que não forem do autor 
+	“Érico Veríssimo”  + */
+
+	SELECT tbLivro.nomeLivro AS 'Livro', 
+	nomeAutor As 'Autor' FROM tbAutor INNER JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor
+	WHERE NOT nomeAutor <> 'Érico Veríssimo'
+
+	/*K Os nomes  dos  autores  ao  lado  dos  nomes dos  livros,  inclusive  daqueles  que  não  
+	tem livros cadastrados + */
+
+	SELECT tbAutor.nomeAutor AS 'Autor', 
+	nomeLivro As 'Livro' FROM tbAutor FULL JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor
+
+	/*L Os nomes  dos  autores  ao  lado  dos  nomes dos  livros,  inclusive  daqueles  que  não 
+	tem autores cadastrados =+ */
+
+    SELECT tbAutor.nomeAutor AS 'Autor', 
+	nomeLivro As 'Livro' FROM tbAutor FULL JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor 
+
+	/*M O nome dos autores ao lado dos nomes dos livros, indiferente do autor ter ou não livro 
+	publicado, e indiferente do livro pertencer a algum autor + */
+
+	SELECT tbAutor.nomeAutor AS 'Autor', 
+	nomeLivro As 'Livro' FROM tbAutor CROSS JOIN tbLivro
+
+	/*N A editora Ática irá publicar todos os títulos dessa livraria. Criar um select que associe 
+	os nomes de todos os livros ao lado do nome da editora Ática. + */
+
+    SELECT tbEditora.nomeEditora AS 'Editora Ática',
+	nomeLivro AS 'Livro' FROM tbLivro CROSS JOIN tbEditora
+	WHERE tbEditora.idEditora = 3
+
+	/*O Somente os nomes dos autores que não tem livros cadastrados +~ */
+
+	SELECT nomeAutor AS 'Autor',
+	tbLivro.nomeLivro AS 'Livro' FROM tbAutor LEFT JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor
+	WHERE tbLivro.idAutor IS NULL
+
+	/*P Os nomes dos gêneros que não possuem nenhum livro cadastrado + */
+
+	SELECT tbGenero.nomeGenero AS 'Gênero',
+	tbLivro.nomeLivro AS 'Livro' FROM tbGenero LEFT JOIN tbLivro ON tbLivro.idGenero = tbGenero.idGenero
+	WHERE tbLivro.idGenero IS NULL
