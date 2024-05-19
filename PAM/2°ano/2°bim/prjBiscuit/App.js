@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
-
-
+  
 export default function App() {
   //Frase apresentada
   const [impressao, setImpressao] = useState("")
@@ -32,7 +31,7 @@ export default function App() {
   function quebrar(){
     if(img == 0){
       let numAleatorio = Math.floor(Math.random() * frases.length);
-      setImpressao(frases[num])
+      setImpressao(frases[numAleatorio])
       setImg(1)
     }
   }
@@ -50,43 +49,27 @@ export default function App() {
     }
   }
 
+  return(
   <View style={styles.container}>
-          {exibirImagem(img)}     //Func exibirImagem retornará img biscuit
-          <StatusBar style="auto"/>
-        <Text style={styles.textFrase}>{impressao}</Text>     //Frase sorteada
+      <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+        {exibirImagem(img)}
+      </View>
+      <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+        <Text style={styles.textFrase}>{impressao}</Text>
+      </View>
+      <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
         <TouchableOpacity style={styles.botao} onPress={()=>quebrar()}>
-          <View style={styles.btnArea}>     //Func quebrar| - Optará por nova frase e altera *img biscuInt* p/ *img biscuÍdo*
+          <View style={styles.btnArea}>
             <Text style={styles.btnTexto}>Quebrar bolacha.</Text>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-          <View style={styles.btnArea}>     //Func quebrar| - Removerá a frase e altera *img biscuÍdo* p/ *img biscuInt*
-            <Text style={styles.btnTexto}>Nova bolacha.</Text>
-          </View>
-        </TouchableOpacity>
-    </View>
-
-    return(
-      <View style={styles.container}>
-        <View style={{borderStyle:'solid',borderWidth:1, flex:1, flexDirection:'column', justifyContent:'flex-start', alignItems:'center', width:'100%'}}>
-          {exibirImagem(img)}
+      </TouchableOpacity>
+       <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
+        <View style={styles.btnArea}>
+           <Text style={styles.btnTexto}>Nova bolacha</Text>
         </View>
-        <View style={{borderStyle:'solid',borderWidth:1, flex:2, flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%'}}>
-          <Text style={styles.textFrase}>{impressao}</Text>
-        </View>
-        <View style={{borderStyle:'solid', borderWidth:1, flex:3,  flexDirection:'column', justifyContent:'flex-end', alignItems:'center', width:'100%'}}>
-          <TouchableOpacity style={styles.botao} onPress={()=>quebrar()}>
-            <View style={styles.btnArea}>
-              <Text style={styles.btnTexto}>Quebrar bolacha.</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-            <View style={styles.btnArea}>
-              <Text style={styles.btnTexto}>Nova bolacha</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </TouchableOpacity>
+     </View>
+  </View>
     )
   }
 
@@ -115,6 +98,14 @@ const styles = StyleSheet.create({
     borderRadius:25,
     margin:10
   },
+  botao:{
+    width:230,
+    height:50,
+    borderWidth:2,
+    borderColor:'#dd7b22',
+    borderRadius:25,
+    margin:10
+  },
   btnArea:{
     flex:1,
     alignItems:'center',
@@ -128,8 +119,8 @@ btnTexto:{
 //messi
 });
 
-/*<View style={styles.container}>
-<Text>Open up App.js to start working on your app!</Text>
-<StatusBar style="auto" />
-</View>
+/*<View style={styles.container}> //Func exibirImagem retornará img biscuit
+<Text>Open up App.js to start working on your app!</Text> //Frase sorteada
+<StatusBar style="auto" />  Func quebrar| - Removerá a frase e altera *img biscuÍdo* p/ *img biscuInt*
+</View> Func quebrar| - Optará por nova frase e altera *img biscuInt* p/ *img biscuÍdo* 
 );*/
