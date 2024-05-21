@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-web';
-  
+import { TouchableOpacity, Image } from 'react-native-web';
+
 export default function App() {
   //Frase apresentada
   const [impressao, setImpressao] = useState("")
@@ -42,10 +42,10 @@ export default function App() {
   }
 
   function exibirImagem(numero){
-    if(numero == 0){
-      return(<image source={require('./assets/biscuInt.jpeg')} style={styles.img}/>)
+    if(numero==0){
+      return(<Image source={require('./assets/images/livroFechado.png')} style={styles.img}/>)
     } else{
-        return(<image source={require('./assets/biscuÍdo.jpeg')} style={styles.img}/>)
+        return(<Image source={require('./assets/images/25922797_detail.jpg')} style={styles.img}/>)
     }
   }
 
@@ -57,15 +57,15 @@ export default function App() {
       <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
         <Text style={styles.textFrase}>{impressao}</Text>
       </View>
-      <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+      <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%', backgroundColor:'#F06800'}}>
         <TouchableOpacity style={styles.botao} onPress={()=>quebrar()}>
           <View style={styles.btnArea}>
-            <Text style={styles.btnTexto}>Quebrar bolacha.</Text>
+            <Text style={styles.btnTexto}>Abrir livro.</Text>
           </View>
       </TouchableOpacity>
        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
         <View style={styles.btnArea}>
-           <Text style={styles.btnTexto}>Nova bolacha</Text>
+           <Text style={styles.btnTexto}>Ora fechá-lo.</Text>
         </View>
       </TouchableOpacity>
      </View>
@@ -79,13 +79,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'#F06800',
   },
   img: {
     height:250,
   }, 
   textFrase:{
     fontSize: 20,
-    color:'#dd7b22',
+    color:'#FFE74A',
     margin:30,
     fontStyle:'italic',
     textAlign:'center',
@@ -94,15 +95,7 @@ const styles = StyleSheet.create({
     width:230,
     height:50,
     borderWidth:2,
-    borderColor:'#dd7b22',
-    borderRadius:25,
-    margin:10
-  },
-  botao:{
-    width:230,
-    height:50,
-    borderWidth:2,
-    borderColor:'#dd7b22',
+    borderColor:'#F06800',
     borderRadius:25,
     margin:10
   },
@@ -112,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
 btnTexto:{
-  color:'#dd7b22',
+  color:'#FFE74A',
   fontSize:18,
   fontWeight:'bold'
 }
