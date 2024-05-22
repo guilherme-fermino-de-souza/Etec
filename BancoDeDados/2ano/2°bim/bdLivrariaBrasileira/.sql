@@ -77,34 +77,47 @@ INSERT INTO tbAutor
 		FULL JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
 		GROUP BY nomeAutor
 
-	-- Questão C) A média de páginas agrupada pelo nome do autorem ordem alfabética (de A a Z)
+	-- Questão C) A média de páginas agrupada pelo nome do autor em ordem alfabética (de A a Z)
 	SELECT AVG(tbLivro.numPaginas) AS 'Média das páginas',
 	nomeAutor 'Autor' FROM tbLivro
 		FULL JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
 		GROUP BY nomeAutor
 
-	-- Questão D) A quantidade de livros agrupada pelo nome da editoraem ordem alfabética inversa (de Z a A)
+	-- Questão D) A quantidade de livros agrupada pelo nome da editora em ordem alfabética inversa (de Z a A)
 	SELECT COUNT(tbLivro.idLivro) AS 'Quantidade de livros',
 	nomeEditora AS 'Editora'  FROM tbLivro
 		FULL JOIN tbEditora ON tbLivro.idEditora = tbEditora.idEditora
-		GROUP BY nomeEditora 			-- NÃO CONCLUÍDA
+		GROUP BY nomeEditora 			
+		ORDER BY nomeEditora DESC
 
 	-- Questão E) A soma de páginas dos livros agrupados pelo nome de autores cujo nome comece com a letra “C”
 	SELECT SUM(numPaginas) AS 'Soma das páginas',
-	nomeAutor 'Autor de inicial C ' FROM tbLivro
+	nomeAutor AS 'Autor de inicial C ' FROM tbLivro
 		FULL JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
-		WHERE tbAutor.nomeAutor = 'C%'
-		GROUP BY nomeAutor		-- NÃO CONCLUÍDA
+		WHERE tbAutor.nomeAutor LIKE 'C%'
+		GROUP BY nomeAutor
 
 	-- Questão F) A  quantidade  de  livros  agrupados  pelo  nome  do  autor,  
 	--cujo  nome  do  autor  seja “Machado de Assis”, “Cora Coralina”, “Graciliano Ramos”, “Clarice Lispector”
 	SELECT SUM(tbLivro.numPaginas) AS 'Soma das páginas',
-	nomeAutor 'Autor' FROM tbLivro
-		FULL JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
-		WHERE nomeAutor = 'Machado de Assis' OR 'Graciliano Ramos' OR 'Clarisce Lispector' OR 'Cora Coralina'
-		GROUP BY nomeAutor		-- NÃO CONCLUI´´DA
+	nomeAutor AS 'Autor' FROM tbLivro
+		INNER JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
+		WHERE nomeAutor LIKE 'Machado de Assis' OR 'Graciliano Ramos' OR 'Clarice Lispector' OR 'Cora Coralina'
+		GROUP BY nomeAutor									-- Não concluída
+
+	-- Questão G) A soma das páginas dos livros agrupada pelo nome da editora cujo número de páginas
+	--esteja entre 200 e 500 (inclusive)
+	SELECT SUM(tbLivro.numPaginas) AS 'Número de páginas entre 200 e 500',
+	nomeEditora AS 'Ordenado por editora' FROM tbLivro
+	FULL JOIN tbEditora ON tbLivro.idEditora = tbEditora.idEditora
+	WHERE numPaginas BETWEEN 200 AND 500
+	GROUP BY nomeEditora								-- Não concluída
 
 
+	-- Questão H) O nome dos livros ao lado do nome das editoras e do nome dos autores
+	SELECT nomeLivro AS 'Livro', nomeAutor AS 'Autor', nomeEditora AS 'Editora' FROM tbLivro
+	INNER JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
+	INNER JOIN tbEditora ON tbLivro.idEditora = tbEditora.idEditora
 -- PARTE DO GUI
 		
 	/* I O nome dos livros ao lado dos nomes do autor somente daqueles cujo nome da editora
@@ -119,7 +132,7 @@ INSERT INTO tbAutor
 
 	SELECT tbLivro.nomeLivro AS 'Livro', 
 	nomeAutor As 'Autor' FROM tbAutor INNER JOIN tbLivro ON tbLivro.idAutor = tbAutor.idAutor
-	WHERE NOT nomeAutor <> 'Érico Veríssimo'
+	WHERE  nomeAutor <> 'Érico Veríssimo'
 
 	/*K Os nomes  dos  autores  ao  lado  dos  nomes dos  livros,  inclusive  daqueles  que  não  
 	tem livros cadastrados + */
