@@ -102,7 +102,7 @@ INSERT INTO tbAutor
 	SELECT SUM(tbLivro.numPaginas) AS 'Soma das páginas',
 	nomeAutor AS 'Autor' FROM tbLivro
 		INNER JOIN tbAutor ON tbLivro.idAutor = tbAutor.idAutor
-		WHERE nomeAutor LIKE 'Machado de Assis' OR 'Graciliano Ramos' OR 'Clarice Lispector' OR 'Cora Coralina'
+		WHERE nomeAutor LIKE 'Machado de Assis' OR nomeAutor LIKE 'Graciliano Ramos' OR nomeAutor LIKE 'Clarice Lispector' OR nomeAutor LIKE 'Cora Coralina'
 		GROUP BY nomeAutor									-- Não concluída
 
 	-- Questão G) A soma das páginas dos livros agrupada pelo nome da editora cujo número de páginas
@@ -111,6 +111,7 @@ INSERT INTO tbAutor
 	nomeEditora AS 'Ordenado por editora' FROM tbLivro
 	FULL JOIN tbEditora ON tbLivro.idEditora = tbEditora.idEditora
 	WHERE numPaginas BETWEEN 200 AND 500
+	ORDER BY numPaginas
 	GROUP BY nomeEditora								-- Não concluída
 
 
