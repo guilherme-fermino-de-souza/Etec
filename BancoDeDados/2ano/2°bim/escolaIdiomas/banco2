@@ -99,19 +99,54 @@ VALUES
 -- feito até aqui --
 
 /* A) Criar uma consulta que retorne o nome e o preço dos cursos que 
-custem abaixo do valor médio */
+custem abaixo do valor médio + */
 
-/* B) Criar uma consulta que retorne o nome e o rg do aluno mais novo*/
+   SELECT nomeCurso AS 'Curso',
+   valorCurso AS 'Valor' FROM tbCurso 
+   FULL JOIN tbTurma ON (tbCurso.valorCurso = tbTurma.codCurso)
+   WHERE tbCurso.valorCurso < (SELECT AVG(tbCurso.valorCurso) FROM tbCurso)
 
-/* C) Criar uma consulta que retorne o nome do aluno mais velho*/
+/* B) Criar uma consulta que retorne o nome e o rg do aluno mais novo + */
 
-/* D) Criar uma consulta que retorne o nome e o valor do curso mais caro */
+   SELECT nomeAluno AS 'Aluno',
+   rgAluno AS 'RG aluno' FROM tbAluno 
+   FULL JOIN tbMatricula ON (tbAluno.rgAluno = tbMatricula.codAluno)
+   WHERE tbAluno.dataNascAluno = (SELECT MAX(tbAluno.dataNascAluno) FROM tbAluno)
+
+/* C) Criar uma consulta que retorne o nome do aluno mais velho + */
+
+   SELECT nomeAluno AS 'Aluno'FROM tbAluno 
+   LEFT JOIN tbMatricula ON (tbAluno.codAluno = tbMatricula.codAluno)
+   WHERE tbAluno.dataNascAluno = (SELECT MIN(tbAluno.dataNascAluno) FROM tbAluno) 
+
+/* D) Criar uma consulta que retorne o nome e o valor do curso mais caro + */
+
+   SELECT nomeCurso AS 'Curso', 
+   valorCurso AS 'Valor' FROM tbCurso
+   FULL JOIN tbTurma ON (tbCurso.valorCurso = tbTurma.codCurso)
+   WHERE tbCurso.valorCurso = (SELECT MAX(tbCurso.valorCurso) FROM tbCurso)
 
 /* E) Criar uma consulta que retorne o nome do aluno e o nome do curso,
-do aluno que fez a última matrícula */
+do aluno que fez a última matrícula + */
+
+   SELECT nomeAluno AS 'Aluno',
+   (tbMatricula.dataMatricula) AS 'Matrícula' FROM tbAluno
+   INNER JOIN tbMatricula ON (tbMatricula.codAluno = tbAluno.codAluno)
+   WHERE tbMatricula.dataMatricula = (SELECT MAX(dataMatricula) FROM tbMatricula) 
 
 /* F) Criar uma consulta que retorne o nome do primeiro aluno a ser 
-matrículado na escola de idiomas */
+matrículado na escola de idiomas + */
+
+   SELECT nomeAluno AS 'Aluno',
+   (tbMatricula.dataMatricula) AS 'Matrícula' FROM tbAluno
+   INNER JOIN tbMatricula ON (tbMatricula.codAluno = tbAluno.codAluno)
+   WHERE tbMatricula.dataMatricula = (SELECT MIN(dataMatricula) FROM tbMatricula)  
 
 /* G) Criar uma consulta que retorne o nome, rg e data de nascimento de 
-todos os alunos que estejam matrículados no curso de inglês */
+todos os alunos que estejam matrículados no curso de inglês + */
+
+   SELECT nomeAluno, rgAluno, dataNascAluno FROM tbAluno
+    INNER JOIN tbMatricula ON tbAluno.codAluno = tbMatricula.codAluno
+	INNER JOIN tbTurma ON tbMatricula.codTurma = tbTurma.codTurma
+	INNER JOIN tbCurso ON tbTurma.codCurso = tbCurso.codCurso
+	 WHERE tbTurma.codCurso = 1 
