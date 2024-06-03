@@ -150,3 +150,53 @@ todos os alunos que estejam matrículados no curso de inglês + */
 	INNER JOIN tbTurma ON tbMatricula.codTurma = tbTurma.codTurma
 	INNER JOIN tbCurso ON tbTurma.codCurso = tbCurso.codCurso
 	 WHERE tbTurma.codCurso = 1 
+
+
+
+
+
+-- SUBQUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE4E4EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERIES
+
+USE bdEscolaIdiomasTwo
+
+--A) Criar uma consulta que retorne o nome e o preço dos cursos que custem abaixo do valor médio
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso < (SELECT AVG(valorCurso) FROM tbCurso)
+
+--B) Criar uma consulta que retorne o nome e o RG do aluno mais novo
+SELECT rgAluno, nomeAluno FROM tbAluno
+	WHERE dataNascAluno = (SELECT MAX(dataNascAluno) FROM tbAluno)
+
+
+--C) Criar uma consulta que retorne o nome do aluno mais velho
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso < (SELECT AVG(valorCurso) FROM tbCurso)
+
+
+
+--D) Criar uma consulta que retorne o nome e o valor do curso mais caro
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso = (SELECT MAX(valorCurso) FROM tbCurso)
+
+
+
+
+--E) Criar uma consulta que retorne o nome do aluno (que fez a última matrícula) e o nome do curso
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso < (SELECT AVG(valorCurso) FROM tbCurso)
+
+
+	-- NÃO CONCLUÍDO
+
+--F) Criar uma consulta que retorne o nome do primeiro aluno a ser matriculado na escola de idiomas
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso < (SELECT AVG(valorCurso) FROM tbCurso)
+
+	-- NÃO CONCLUÍDO
+
+--G) Criar uma consulta que retorne o nome, RG e data de nascimento
+-- de todos os alunos que estejam matriculados no curso de inglês
+SELECT valorCurso, nomeCurso FROM tbCurso
+	WHERE valorCurso < (SELECT AVG(valorCurso) FROM tbCurso)
+
+	-- NÃO CONCLUÍDO
