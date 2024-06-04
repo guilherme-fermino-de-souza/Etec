@@ -41,7 +41,7 @@ export default function App() {
 
     <Modal visible={visivel} animationType="fade">
       <View style={styles.modal}>
-        <Text style={styles.title}>{horoscopo[indiceselecionado].nome}</Text>
+        <Text style={styles.title}>{horoscopo[indiceSelecionado].nome}</Text>
         <Text>{horoscopo[indiceSelecionado].dias}</Text>
         <Text>{horoscopo[indiceSelecionado].leitura}</Text>
         <Text>{horoscopo[indiceSelecionado].caracteristicas}</Text>
