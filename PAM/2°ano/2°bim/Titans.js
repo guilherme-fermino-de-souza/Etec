@@ -60,7 +60,7 @@ export default function App() {
     simbolo:'Constelações',
   },
   {
-    imagem:'https://www.zodiacpage.com/wp-content/uploads/2018/09/aries.jpg',
+    imagem:'https://i.pinimg.com/originals/41/4c/83/414c839e392c8175a971782ec4acb5ec.jpg',
     nome:'Jápeto',
     deus:'Mortalidade',
     lacos:'Filho do Céu e da Terra',
@@ -69,7 +69,7 @@ export default function App() {
     simbolo:'Morte',
   },
   {
-    imagem:'https://www.zodiacpage.com/wp-content/uploads/2018/09/aries.jpg',
+    imagem:'https://cdna.artstation.com/p/assets/images/images/000/261/510/large/mike-azevedo-3.jpg?1443929937',
     nome:'Cronos',
     deus:'Tempo',
     lacos:'Filho do Céu e da Terra',
@@ -92,14 +92,54 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button style={styles.button} title="Urano" onPress={() => carregar(0)}/>
-      <Button style={styles.button} title="Gaia" onPress={() => carregar(1)}/>
-      <Button style={styles.button} title="Oceano" onPress={() => carregar(2)}/>
-      <Button style={styles.button} title="Cós" onPress={() => carregar(3)}/>
-      <Button style={styles.button} title="Hipérion" onPress={() => carregar(4)}/>
-      <Button style={styles.button} title="Crio" onPress={() => carregar(5)}/>
-      <Button style={styles.button} title="Jápeto" onPress={() => carregar(6)}/>
-      <Button style={styles.button} title="Cronos" onPress={() => carregar(7)}/>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button} 
+      color="#55038C" 
+      title="Urano" onPress={() => carregar(0)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button} 
+      color="#55038C"
+      title="Gaia" onPress={() => carregar(1)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button} 
+      color="#55038C"
+      title="Oceano" onPress={() => carregar(2)}/>
+     </View> 
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button}
+      color="#55038C" 
+      title="Cós" onPress={() => carregar(3)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button}
+      color="#55038C" 
+      title="Hipérion" onPress={() => carregar(4)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button}
+      color="#55038C" 
+      title="Crio" onPress={() => carregar(5)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button}
+      color="#55038C" 
+      title="Jápeto" onPress={() => carregar(6)}/>
+     </View>
+
+     <View style={styles.buttonCont}>
+      <Button style={styles.button}
+      color="#55038C" 
+      title="Cronos" onPress={() => carregar(7)}/>
+     </View>
 
     <Modal visible={visivel} animationType="fade">
       <View style={styles.modal}>
@@ -108,11 +148,11 @@ export default function App() {
       style={styles.image}
       />
         <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
-        <Text>{titans[indiceSelecionado].deus}</Text>
-        <Text>{titans[indiceSelecionado].lacos}</Text>
-        <Text>{titans[indiceSelecionado].caracteristicas}</Text>
-        <Text>{titans[indiceSelecionado].nomegrego}</Text>
-        <Text>{titans[indiceSelecionado].simbolo}</Text>
+        <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
+        <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
+        <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
+        <Text style={styles.desc}>{titans[indiceSelecionado].nomegrego}</Text>
+        <Text style={styles.desc}>{titans[indiceSelecionado].simbolo}</Text>
       <Button title="Voltar" onPress={() => voltar()}/> 
       </View>
       </Modal>
@@ -123,27 +163,39 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonCont: {
+    marginBottom: 20,
+  },
   button: {
-    fontSize: 20,
+    fontSize: 80,
     color:'#FFE74A',
   },
   modal: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 800,
+    marginBottom: 30,
+    color: 'white',
+  },
+  desc: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 500,
+    marginBottom: 15,
+    textAlign: 'center',
   },
   image: {
-    width: 400,
-    height: 400,
+    width: 700,
+    height: 600,
     margin: 20,
   },
 });
