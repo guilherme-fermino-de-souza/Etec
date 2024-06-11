@@ -60,7 +60,7 @@ export default function App() {
     simbolo:'Constelações',
   },
   {
-    imagem:'https://i.pinimg.com/originals/41/4c/83/414c839e392c8175a971782ec4acb5ec.jpg',
+    imagem:'https://1.bp.blogspot.com/-HC1q1Ykzs-I/X2npJVOWhvI/AAAAAAAAxdQ/4-Wn7JXcu1wGeeDV2-g03U8d6x4Ji8nUACLcBGAsYHQ/w1600/J%25C3%25A1peto-Mitologia-Grega.jpg',
     nome:'Jápeto',
     deus:'Mortalidade',
     lacos:'Filho do Céu e da Terra',
@@ -143,10 +143,12 @@ export default function App() {
 
     <Modal visible={visivel} animationType="fade">
       <View style={styles.modal}>
+      <View style={styles.img}>
       <Image
       source={{ uri: titans[indiceSelecionado].imagem}} 
       style={styles.image}
       />
+      </View>
         <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
         <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
         <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
@@ -193,9 +195,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+  img: {
+    maxWidth: 700,
+    alignItems: 'center',
+  },
   image: {
-    width: 700,
-    height: 600,
+    width: 400,
+    height: 300,
     margin: 20,
   },
 });
