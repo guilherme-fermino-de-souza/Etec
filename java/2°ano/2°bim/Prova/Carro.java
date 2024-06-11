@@ -12,8 +12,8 @@ public class Carro {
  public void setFabricante(String fabricante) {
    this.fabricante = fabricante;
  }
- public void setanoFabricacao(String anoFabricacao) {
-   this.anofabricacao = anoFabricacao;
+ public void setAnoFabricacao(String anoFabricacao) {
+   this.anoFabricacao = anoFabricacao;
  }
 
 public String getModelo() {
@@ -24,4 +24,5 @@ public String getFabricante() {
 }
 public String getAnoFabricacao() {
   return anoFabricacao;
+}
 }
