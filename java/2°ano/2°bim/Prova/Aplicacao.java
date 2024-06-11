@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Aplicacao {
+public class App {
 
 	public static void main(String[] args) {
 		
@@ -8,13 +8,13 @@ public class Aplicacao {
 		Carro c = new Carro();
 
 		System.out.print("Insira o modelo: ");
-		carro.setModelo(in.next());
+		c.setModelo(in.next());
 		System.out.print("Insira a fabricante: ");
-		carro.setFabricante(in.next());
+		c.setFabricante(in.next());
 		System.out.print("Insira o Ano de fabricacao: ");
-		carro.setAnoFabricacao(in.next());
+		c.setAnoFabricacao(in.next());
 		
-		System.out.println("\n"+carro.getModelo()+"\n"+carro.getFabricante()+"\n"+carro.getAnoDeFabricacao());
+		System.out.println("\n"+c.getModelo()+"\n"+c.getFabricante()+"\n"+c.getAnoFabricacao());
 		
 	}
 
