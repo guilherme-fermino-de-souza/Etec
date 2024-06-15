@@ -6,9 +6,13 @@ public class App {
 		
 		Matematica m = new Matematica();
 		
-		m.Soma();
-		System.out.println("O resultado da soma é: "+m.Soma(0));
-		m.Soma(0, 0, 0);
+		System.out.println("Os valores da são Soma: "+m.getSoma());
+		
+		System.out.println("Os valores da são Soma: "+m.getSoma(0));
+		/*System.out.print("Insira os valores da Soma: ");
+		m.setSoma();
+		System.out.println("resultado: "+m.setSoma(0));
+		m.setSoma(0, 0, 0);*/
 
 	}
 
