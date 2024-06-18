@@ -95,37 +95,37 @@ export default function App() {
       <scrollView>
       <Pressable onPress={() => carregar(0)} style={styles.buttonCont}>
           <Image style={{
-            width: 100,
+            width: 110,
             height: 100,
           }} 
                   source={{
-                    uri: 'https://images.librotea.com/uploads/media/2017/05/29/los-libros-fundamentales-de-urano-para-la-flm.jpeg',   
+                    uri: 'https://mythology.guru/wp-content/uploads/2023/05/urano-god.jpg',   
                   }}/>
         </Pressable>
 
         <Pressable onPress={() => carregar(1)} style={styles.buttonCont}>
           <Image style={{
-            width: 100,
-            height: 100,
+            width: 95,
+            height: 110,
           }} 
                   source={{
-                    uri: 'https://www.shutterstock.com/shutterstock/photos/2092442179/display_1500/stock-vector-greek-goddess-gaia-logo-design-2092442179.jpg',   
+                    uri: 'https://i.pinimg.com/736x/a1/47/a5/a147a533ac281351ceb0b57817153b21.jpg',   
                   }}/>
         </Pressable>
 
         <Pressable onPress={() => carregar(2)} style={styles.buttonCont}>
           <Image style={{
-            width: 130,
+            width: 110,
             height: 100,
           }} 
                   source={{
-                    uri: 'https://i.ytimg.com/vi/HtPrFBxAiCs/hqdefault.jpg',   
+                    uri: 'https://ideasnuevas.net/wp-content/uploads/2019/04/MITOposeidon_water_greek_god_abstract_fantasy_hd-wallpaper-1576510-250x156.jpg',   
                   }}/>
         </Pressable>
 
         <Pressable onPress={() => carregar(3)} style={styles.buttonCont}>
           <Image style={{
-            width: 110,
+            width: 105,
             height: 120,
           }} 
                   source={{
@@ -135,7 +135,7 @@ export default function App() {
 
       <Pressable onPress={() => carregar(4)} style={styles.buttonCont}>
           <Image style={{
-            width: 120,
+            width: 110,
             height: 100,
           }} 
                   source={{
@@ -145,8 +145,8 @@ export default function App() {
 
       <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
           <Image style={{
-            width: 120,
-            height: 100,
+            width: 110,
+            height: 90,
           }} 
                   source={{
                     uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGeSC7-45pDXwWkc1VUQfb2TWW3z0rM9qxRXzcjOUHsNs8NO2Q78JuCm4wQL2X0BV4WM&usqp=CAU',   
@@ -155,28 +155,23 @@ export default function App() {
 
       <Pressable onPress={() => carregar(6)} style={styles.buttonCont}>
           <Image style={{
-            width: 130,
-            height: 100,
+            width: 110,
+            height: 90,
           }} 
                   source={{
-                    uri: 'https://static.wikia.nocookie.net',   
+                    uri: 'https://c4.wallpaperflare.com/wallpaper/393/505/304/wizard-odin-wallpaper-preview.jpg',   
                   }}/>
         </Pressable>
 
       <Pressable onPress={() => carregar(7)} style={styles.buttonCont}>
           <Image style={{
-            width: 130,
+            width: 110,
             height: 100,
           }} 
                   source={{
-                    uri: 'https://i.ytimg.com/vi/HtPrFBxAiCs/hqdefault.jpg',   
+                    uri: 'https://goombastomp.com/wp-content/uploads/2022/12/Cronos-768x432.jpg',   
                   }}/>
         </Pressable>
-      <View style={styles.buttonCont}>
-        <Button style={styles.button}
-        color="#55038C" 
-        title="Cronos" onPress={() => carregar(7)}/>
-      </View>
 
       <Modal visible={visivel} animationType="fade">
         <View style={styles.modal}>
