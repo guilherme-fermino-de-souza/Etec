@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Image, Modal, Button, Text, View } from 'react-native';
+import { StyleSheet, Image, Modal, Button, Text, View, Pressable, TouchableOpacity } from 'react-native';
 
 export default function App() {
 
@@ -33,7 +33,7 @@ export default function App() {
     simbolo:'Lagos, rios e mares',
   },
   {
-    imagem:'https://elrincondemagic.wordpress.com/wp-content/uploads/2019/04/bearer-of-the-heavens-mtg-art.0.0.jpg',
+    imagem:'https://2.bp.blogspot.com/-k8KiAli8sxI/WL0sPwwq00I/AAAAAAAAN-s/XX2UtJJdqpkSoSRNRGB5PuGX8MnYi2V1gCLcB/w1200-h630-p-k-no-nu/coeus_by_chamakoso-d3h1lzp.jpg',
     nome:'Ceos',
     deus:'Conhecimento',
     lacos:'Filho do Céu e da Terra',
@@ -69,7 +69,7 @@ export default function App() {
     simbolo:'Morte',
   },
   {
-    imagem:'https://cdna.artstation.com/p/assets/images/images/000/261/510/large/mike-azevedo-3.jpg?1443929937',
+    imagem:'https://cdna.artstation.com/p/assets/images/images/000/261/510/large/mike-azevedo-3.jpg',
     nome:'Cronos',
     deus:'Tempo',
     lacos:'Filho do Céu e da Terra',
@@ -92,72 +92,110 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <scrollView>
+      <Pressable onPress={() => carregar(0)} style={styles.buttonCont}>
+          <Image style={{
+            width: 100,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://images.librotea.com/uploads/media/2017/05/29/los-libros-fundamentales-de-urano-para-la-flm.jpeg',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button} 
-      color="#55038C" 
-      title="Urano" onPress={() => carregar(0)}/>
-     </View>
+        <Pressable onPress={() => carregar(1)} style={styles.buttonCont}>
+          <Image style={{
+            width: 100,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://www.shutterstock.com/shutterstock/photos/2092442179/display_1500/stock-vector-greek-goddess-gaia-logo-design-2092442179.jpg',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button} 
-      color="#55038C"
-      title="Gaia" onPress={() => carregar(1)}/>
-     </View>
+        <Pressable onPress={() => carregar(2)} style={styles.buttonCont}>
+          <Image style={{
+            width: 130,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://i.ytimg.com/vi/HtPrFBxAiCs/hqdefault.jpg',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button} 
-      color="#55038C"
-      title="Oceano" onPress={() => carregar(2)}/>
-     </View> 
+        <Pressable onPress={() => carregar(3)} style={styles.buttonCont}>
+          <Image style={{
+            width: 110,
+            height: 120,
+          }} 
+                  source={{
+                    uri: 'https://1.bp.blogspot.com/-MDQnEvpWFN4/YJc_FkE5gvI/AAAAAAAAWZI/EEBGGj9-N8ARnEvLFn3v5pZEilN1Y5wBwCLcBGAsYHQ/s480/coios.png',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button}
-      color="#55038C" 
-      title="Cós" onPress={() => carregar(3)}/>
-     </View>
+      <Pressable onPress={() => carregar(4)} style={styles.buttonCont}>
+          <Image style={{
+            width: 120,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://pm1.aminoapps.com/6608/08f82683c0e8a5a30b0bcc470a161bdd7f4d6051_00.jpg',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button}
-      color="#55038C" 
-      title="Hipérion" onPress={() => carregar(4)}/>
-     </View>
+      <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
+          <Image style={{
+            width: 120,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGeSC7-45pDXwWkc1VUQfb2TWW3z0rM9qxRXzcjOUHsNs8NO2Q78JuCm4wQL2X0BV4WM&usqp=CAU',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button}
-      color="#55038C" 
-      title="Crio" onPress={() => carregar(5)}/>
-     </View>
+      <Pressable onPress={() => carregar(6)} style={styles.buttonCont}>
+          <Image style={{
+            width: 130,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://static.wikia.nocookie.net',   
+                  }}/>
+        </Pressable>
 
-     <View style={styles.buttonCont}>
-      <Button style={styles.button}
-      color="#55038C" 
-      title="Jápeto" onPress={() => carregar(6)}/>
-     </View>
-
-     <View style={styles.buttonCont}>
-      <Button style={styles.button}
-      color="#55038C" 
-      title="Cronos" onPress={() => carregar(7)}/>
-     </View>
-
-    <Modal visible={visivel} animationType="fade">
-      <View style={styles.modal}>
-      <View style={styles.img}>
-      <Image
-      source={{ uri: titans[indiceSelecionado].imagem}} 
-      style={styles.image}
-      />
+      <Pressable onPress={() => carregar(7)} style={styles.buttonCont}>
+          <Image style={{
+            width: 130,
+            height: 100,
+          }} 
+                  source={{
+                    uri: 'https://i.ytimg.com/vi/HtPrFBxAiCs/hqdefault.jpg',   
+                  }}/>
+        </Pressable>
+      <View style={styles.buttonCont}>
+        <Button style={styles.button}
+        color="#55038C" 
+        title="Cronos" onPress={() => carregar(7)}/>
       </View>
-        <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
-        <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
-        <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
-        <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
-        <Text style={styles.desc}>{titans[indiceSelecionado].nomegrego}</Text>
-        <Text style={styles.desc}>{titans[indiceSelecionado].simbolo}</Text>
-      <Button title="Voltar" onPress={() => voltar()}/> 
-      </View>
-      </Modal>
+
+      <Modal visible={visivel} animationType="fade">
+        <View style={styles.modal}>
+        <View style={styles.img}>
+        <Image
+        source={{ uri: titans[indiceSelecionado].imagem}} 
+        style={styles.image}
+        />
+        </View>
+          <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
+          <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
+          <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
+          <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
+          <Text style={styles.desc}>{titans[indiceSelecionado].nomegrego}</Text>
+          <Text style={styles.desc}>{titans[indiceSelecionado].simbolo}</Text>
+        <Button title="Voltar" onPress={() => voltar()}/> 
+        </View>
+        </Modal>
+      </scrollView>
     </View>
   );
 }
