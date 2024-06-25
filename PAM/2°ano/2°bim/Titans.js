@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Image, Modal, Button, Text, View, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, Modal, Button, Text, View, Pressable, TouchableOpacity, ScrollView } from 'react-native';
 
 export default function App() {
 
@@ -92,34 +92,34 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <scrollView>
-      <Pressable onPress={() => carregar(0)} style={styles.buttonCont}>
-          <Image style={{
-            width: 110,
-            height: 100,
-          }} 
-                  source={{
-                    uri: 'https://mythology.guru/wp-content/uploads/2023/05/urano-god.jpg',   
-                  }}/>
+      <ScrollView>
+        <Pressable onPress={() => carregar(0)} style={styles.buttonCont}>
+            <Image style={{
+              width: 110,
+              height: 100,
+            }} 
+                    source={{
+                      uri: 'https://mythology.guru/wp-content/uploads/2023/05/urano-god.jpg',   
+                    }}/>
         </Pressable>
 
         <Pressable onPress={() => carregar(1)} style={styles.buttonCont}>
-          <Image style={{
-            width: 95,
-            height: 110,
-          }} 
+           <Image style={{
+             width: 95,
+             height: 110,
+           }} 
                   source={{
-                    uri: 'https://i.pinimg.com/736x/a1/47/a5/a147a533ac281351ceb0b57817153b21.jpg',   
-                  }}/>
-        </Pressable>
+                     uri: 'https://i.pinimg.com/736x/a1/47/a5/a147a533ac281351ceb0b57817153b21.jpg',   
+                   }}/>
+         </Pressable>
 
         <Pressable onPress={() => carregar(2)} style={styles.buttonCont}>
           <Image style={{
-            width: 110,
-            height: 100,
+             width: 110,
+             height: 100,
           }} 
                   source={{
-                    uri: 'https://ideasnuevas.net/wp-content/uploads/2019/04/MITOposeidon_water_greek_god_abstract_fantasy_hd-wallpaper-1576510-250x156.jpg',   
+                     uri: 'https://ideasnuevas.net/wp-content/uploads/2019/04/MITOposeidon_water_greek_god_abstract_fantasy_hd-wallpaper-1576510-250x156.jpg',   
                   }}/>
         </Pressable>
 
@@ -133,27 +133,27 @@ export default function App() {
                   }}/>
         </Pressable>
 
-      <Pressable onPress={() => carregar(4)} style={styles.buttonCont}>
+        <Pressable onPress={() => carregar(4)} style={styles.buttonCont}>
           <Image style={{
-            width: 110,
+             width: 110,
             height: 100,
-          }} 
+           }} 
                   source={{
                     uri: 'https://pm1.aminoapps.com/6608/08f82683c0e8a5a30b0bcc470a161bdd7f4d6051_00.jpg',   
                   }}/>
         </Pressable>
 
-      <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
-          <Image style={{
-            width: 110,
-            height: 90,
-          }} 
-                  source={{
-                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGeSC7-45pDXwWkc1VUQfb2TWW3z0rM9qxRXzcjOUHsNs8NO2Q78JuCm4wQL2X0BV4WM&usqp=CAU',   
-                  }}/>
+        <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
+            <Image style={{
+              width: 110,
+              height: 90,
+            }} 
+                    source={{
+                      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGeSC7-45pDXwWkc1VUQfb2TWW3z0rM9qxRXzcjOUHsNs8NO2Q78JuCm4wQL2X0BV4WM&usqp=CAU',   
+                    }}/>
         </Pressable>
 
-      <Pressable onPress={() => carregar(6)} style={styles.buttonCont}>
+        <Pressable onPress={() => carregar(6)} style={styles.buttonCont}>
           <Image style={{
             width: 110,
             height: 90,
@@ -163,34 +163,34 @@ export default function App() {
                   }}/>
         </Pressable>
 
-      <Pressable onPress={() => carregar(7)} style={styles.buttonCont}>
+        <Pressable onPress={() => carregar(7)} style={styles.buttonCont}>
           <Image style={{
             width: 110,
             height: 100,
           }} 
-                  source={{
+                source={{
                     uri: 'https://goombastomp.com/wp-content/uploads/2022/12/Cronos-768x432.jpg',   
                   }}/>
         </Pressable>
 
-      <Modal visible={visivel} animationType="fade">
-        <View style={styles.modal}>
-        <View style={styles.img}>
-        <Image
-        source={{ uri: titans[indiceSelecionado].imagem}} 
-        style={styles.image}
-        />
-        </View>
-          <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
-          <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
-          <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
-          <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
-          <Text style={styles.desc}>{titans[indiceSelecionado].nomegrego}</Text>
-          <Text style={styles.desc}>{titans[indiceSelecionado].simbolo}</Text>
-        <Button title="Voltar" onPress={() => voltar()}/> 
-        </View>
+        <Modal visible={visivel} animationType="fade">
+          <View style={styles.modal}>
+          <View style={styles.img}>
+          <Image
+          source={{ uri: titans[indiceSelecionado].imagem}} 
+          style={styles.image}
+          />
+          </View>
+            <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
+            <Text style={styles.desc}>{titans[indiceSelecionado].deus}</Text>
+            <Text style={styles.desc}>{titans[indiceSelecionado].lacos}</Text>
+            <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
+            <Text style={styles.desc}>{titans[indiceSelecionado].nomegrego}</Text>
+            <Text style={styles.desc}>{titans[indiceSelecionado].simbolo}</Text>
+          <Button title="Voltar" onPress={() => voltar()}/> 
+          </View>
         </Modal>
-      </scrollView>
+      </ScrollView>
     </View>
   );
 }
