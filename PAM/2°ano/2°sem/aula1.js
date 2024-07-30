@@ -35,7 +35,7 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <View style={styles.title}>
+      <View style={{borderWidth:1, marginTop:'2px', margin:'auto',}}>
       <Text>JO KEN PO!</Text>
       </View>
 
@@ -44,7 +44,7 @@ export default function App() {
       </View>
 
       <View style={styles.joken}>
-
+        <TouchableOpacity style={styles.botao} on
       </View>
 
       <View style={styles.novapartida}>
