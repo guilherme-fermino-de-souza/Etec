@@ -1,0 +1,79 @@
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native-web';
+
+export default function App() {
+
+
+  const frases = [
+    1,
+    2,
+    3
+  ]
+
+  function jogo(){
+    if(img == 0){
+      let numAleatorio = Math.floor(Math.random() * frases.legth);
+      setImpressao(frases[numAleatorio])
+      setImg(1)
+    }
+  }
+
+  function novo(){
+    setImpressao(frases[''])
+    setImg(0)
+  }
+
+  function exibirImagem(numero){
+    if(numero==0){
+      
+    }
+
+  }
+
+  return (
+    <View style={styles.container}>
+
+      <View style={styles.title}>
+      <Text>JO KEN PO!</Text>
+      </View>
+
+      <View style={styles.placar}>
+
+      </View>
+
+      <View style={styles.joken}>
+
+      </View>
+
+      <View style={styles.novapartida}>
+
+      </View>
+
+      <View style={styles.botoes}>
+        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
+          <Text>Pedra</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
+          <Text>Tesoura</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
+          <Text>Papel</Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
