@@ -1,7 +1,7 @@
 package heranca;
 import java.util.Scanner;
 public class Conta {
-
+	//Feito
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		int escolha;
@@ -26,5 +26,4 @@ public class Conta {
 			System.out.println("Número inválido");
 		}
 	}
-
 }
