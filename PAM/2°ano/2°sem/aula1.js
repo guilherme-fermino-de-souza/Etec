@@ -1,70 +1,89 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity, Image } from 'react-native-web';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button, TouchableOpacity, Image } from 'react-native-web';
 
 export default function App() {
+  const [jogo, setJogo] = useState();
+  const [resultado, setResultado] = useState(0);
 
-
-  const frases = [
-    1,
-    2,
-    3
-  ]
-
-  function jogo(){
-    if(img == 0){
-      let numAleatorio = Math.floor(Math.random() * frases.legth);
-      setImpressao(frases[numAleatorio])
-      setImg(1)
-    }
-  }
-
-  function novo(){
-    setImpressao(frases[''])
-    setImg(0)
-  }
-
-  function exibirImagem(numero){
-    if(numero==0){
-      
-    }
-
-  }
+  const jogada = [
+    1, 2, 3
+  ];
+  const Jogos = () => {
+    if(jogo==1){//pedra
+      if(jogada==1){
+        setResultado("EMPATE!");
+      } else if(jogada==2){
+        setResultado("DERROTA!");
+      } else {
+        setResultado("VITÓRIA!");
+      }
+    } else if(jogo==2){//papel
+      if(jogada==1){
+        setResultado("VITÓRIA!");
+      } else if(jogada==2){
+        setResultado("EMPATE!");
+      } else {
+        setResultado("DERROTA!");
+      }
+    } else {//tesoura
+      if(jogada==1){
+        setResultado("DERROTA!");
+      } else if(jogada==2){
+        setResultado("VITÓRIA!");
+      } else {
+        setResultado("EMPATE!");
+      }
+    } ;
 
   return (
     <View style={styles.container}>
 
-      <View style={{borderWidth:1, marginTop:'2px', margin:'auto',}}>
-      <Text>JO KEN PO!</Text>
+      <View style={styles.view}>
+        <Text style={{fontSize:45}}>Jokenpo</Text>
       </View>
 
-      <View style={styles.placar}>
-
+      <View style={styles.view}>
+        <Text>Placar</Text>
       </View>
 
-      <View style={styles.joken}>
-        <TouchableOpacity style={styles.botao} on
+      <View style={styles.view}>
+        <Text style={{paddingRight:200}}>0</Text>
+        <Text>0</Text>
       </View>
 
-      <View style={styles.novapartida}>
-
+      <View style={styles.view}>
+        <Image style={{width:150,height:150}}
+        source={{uri:"https://w7.pngwing.com/pngs/424/347/png-transparent-question-block-super-mario-icon-thumbnail.png"}}/>
+        <Text>VS</Text>
+        <Image style={{width:150,height:150}} 
+        source={{uri:"https://w7.pngwing.com/pngs/424/347/png-transparent-question-block-super-mario-icon-thumbnail.png"}}/>
       </View>
 
-      <View style={styles.botoes}>
-        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-          <Text>Pedra</Text>
+      <View style={styles.view}>
+        <Button style={styles.butao}
+        title="Nova Partida"
+        color="gray"/>
+      </View>
+
+      <View style={styles.view}>
+        <TouchableOpacity value='1'
+        onValueChange={(itemValue, itemIndex) => setJogo(itemValue)}>
+          <Image style={{width:120, height:200}}
+          source={{uri:"https://www.playclick.com.br/jogo_jokenpo/img/pedra.png"}}/>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-          <Text>Tesoura</Text>
+        <TouchableOpacity value='1'
+        onValueChange={(itemValue, itemIndex) => setJogo(itemValue)}>
+          <Image style={{width:100,height:200}}
+          source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU"}}/>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.botao} onPress={()=>novo()}>
-          <Text>Papel</Text>
+        <TouchableOpacity value='1'
+        onValueChange={(itemValue, itemIndex) => setJogo(itemValue)}>
+          <Image style={{width:105,height:200}}
+          source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU"}}/>
         </TouchableOpacity>
       </View>
-
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -76,4 +95,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  view:{
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row'
+  },
+
+})};
