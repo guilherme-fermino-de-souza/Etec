@@ -96,32 +96,33 @@ export default function App() {
         source={{uri:"https://w7.pngwing.com/pngs/424/347/png-transparent-question-block-super-mario-icon-thumbnail.png"}}/>
       </View>
 
-      {/* BOTÃO NOVA PARTIDA*/}
+      {/* BOTÃO NOVA PARTIDA
       <View style={styles.view}>
         <Button style={styles.butao}
         title="VER RESULTADOS"
         color="gray"
         onPress={jogo}/>
       </View>
+      */}
 
       {/* JOGO */}
       <View style={styles.view}>
         <TouchableOpacity onPress={() => jogo(1)}>
           <Image 
-            style={{width:120, height:200}}
+            style={{width:80, height:160, marginRight: '45%'}}
             source={{uri:"https://www.playclick.com.br/jogo_jokenpo/img/pedra.png"}}
             />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => jogo(2)}>
           <Image 
-            style={{width:100,height:200}}
+            style={{width:80, height:160,  marginLeft: '15%'}}
             source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU"}}
             />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => jogo(3)}>
-          <Image style={{width:105,height:200}}
+          <Image style={{width:80, height:160, marginLeft: '45%'}}
           source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU"}}/>
         </TouchableOpacity>
       </View>
