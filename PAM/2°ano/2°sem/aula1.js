@@ -6,42 +6,42 @@ export default function App() {
   const [resultado, setResultado] = useState('');
   const [playerwins, setPlayerwins] = useState(0);
   const [machinewins, setMachinewins] = useState(0);
+  const [machineChoice, setMachineChoice] = useState(null);
+  const [playerChoice, setPlayerChoice] = useState(null);
 
   const minJogada = 1
   const maxJogada = 3
 
-  const jogo = () => {
-    const jogada = Math.floor(Math.random() * (maxJogada - minJogada + 1)) + minJogada
-    if(jogo === 1) { // PEDRA
-      if(jogada === 1 ){
+  const jogo = (playerSelection) => {
+    const machineSelection = Math.floor(Math.random() * (maxJogada - minJogada + 1)) + minJogada
+    setPlayerChoice(playerSelection);
+    setMachineChoice(machineSelection);
+
+    if (playerSelection === machineSelection) { // EMPATE
         setResultado("EMPATE!");
-      } else if(jogada === 2){
-        setResultado("DERROTA!");
-        setMachinewins(machinewins => machinewins + 1);
-      } else {
+    } else if // VITÓRIA
+    (playerSelection === 1 && machineSelection === 3 ||
+      playerSelection === 2 && machineSelection === 1 ||
+      playerSelection === 3 && machineSelection === 2){
         setResultado("VITÓRIA!");
-        setPlayerwins(playerwins => playerwins + 1);
-      }
-    } else if(jogo === 2){ // PAPEL
-      if(jogada === 1){
-        setResultado("VITÓRIA!");
-        setPlayerwins(playerwins => playerwins + 1);
-      } else if(jogada === 2){
-        setResultado("EMPATE!");
-      } else {
-        setResultado("DERROTA!");
-        setMachinewins(machinewins => machinewins + 1);
-      }
-    } else { // TESOURA 
-      if(jogada === 1){
-        setResultado("DERROTA!");
-        setMachinewins(machinewins => machinewins + 1);
-      } else if(jogada==2){
-        setResultado("VITÓRIA!");
-        setPlayerwins(playerwins => playerwins + 1);
-      } else {
-        setResultado("EMPATE!");
-      }
+        setPlayerwins(playerwins => playerwins + 1);    
+    } else {
+      setResultado("DERROTA!");
+      setMachinewins(machinewins => machinewins + 1);
+    }
+  };
+    
+ 
+  const exibirImagem = (escolha) => {
+    switch (escolha) {
+      case 1:
+        return <Image source={{ uri: 'https://www.playclick.com.br/jogo_jokenpo/img/pedra.png' }} style={styles.img} />;
+      case 2:
+        return <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU' }} style={styles.img} />;
+      case 3:
+        return <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU' }} style={styles.img} />;
+      default:
+        return null;
     }
   };
 
@@ -77,23 +77,25 @@ export default function App() {
       {/* CONTAGEM */}
       <View style={styles.view}>
         <View style={styles.placar}>
-        <Text> MÁQUINA </Text>
+        <Text> JOGADOR </Text>
         <Text> {machinewins} </Text>
         </View>
 
         <View style={styles.placar}>
-        <Text> JOGADOR </Text>
+        <Text> MÁQUINA </Text>
         <Text> {playerwins} </Text>
         </View>
       </View>
 
-      {/* CAIXAS */}
+      {/* IMAGENS */}
       <View style={styles.view}>
-        <Image style={{width:150,height:150}}
-        source={{uri:"https://w7.pngwing.com/pngs/424/347/png-transparent-question-block-super-mario-icon-thumbnail.png"}}/>
-        <Text>VS</Text>
-        <Image style={{width:150,height:150}} 
-        source={{uri:"https://w7.pngwing.com/pngs/424/347/png-transparent-question-block-super-mario-icon-thumbnail.png"}}/>
+        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+          {exibirImagem(playerChoice)}
+        </View>
+          <Text>VS</Text>
+        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+          {exibirImagem(machineChoice)}
+        </View>
       </View>
 
       {/* BOTÃO NOVA PARTIDA
@@ -128,8 +130,7 @@ export default function App() {
       </View>
       
     </View>
-  );
-}
+  )};
 
 const styles = StyleSheet.create({
   container: {
@@ -148,5 +149,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '5%',
+  },
+  img: {
+    width:50,
+    height:90,
   },
 });
