@@ -1,0 +1,119 @@
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image, TextInput } from 'react-native';
+
+export default function App() {
+
+  return (
+    <View style={styles.container}>
+       <StatusBar style='auto' />
+      {/* TÍTULO */}
+      <View style={{
+        marginBottom: 20,
+        marginLeft: 45,
+      }}>
+        <Text style={{
+          fontSize: 35,
+          color: '#F2CB05',
+          borderBottomWidth: 4, // largura
+          borderBottomColor: 'red', // cor
+        }}>JOKENPO</Text>
+      </View>
+
+      {/* PLACAR */}
+      <View style={styles.view}>
+        <View style={styles.placar}>
+        <Text style={{color: 'white'}}> PLACAR </Text>
+        <TextInput style={{fontSize: 20, marginLeft: '50%', color: 'red'}}
+          placeholder="RESULTADO"
+          maxLength={25}
+          editable={false}
+          />
+        </View>
+      </View>
+
+      {/* CONTAGEM */}
+      <View style={styles.view}>
+        <View style={styles.placar}>
+        <Text style={styles.nomes}> JOGADOR </Text>
+        <Text style={styles.nomes}> vitóriaDaMáquina </Text>
+        </View>
+
+        <View style={styles.placar}>
+        <Text style={styles.nomes}> MÁQUINA </Text>
+        <Text style={styles.nomes}> vitóriaDoJogador </Text>
+        </View>
+      </View>
+
+      {/* IMAGENS */}
+      <View style={styles.view}>
+        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+          
+        </View>
+          <Text style={styles.nomes}>VS</Text>
+        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+          
+        </View>
+      </View>
+
+      {/* BOTÃO NOVA PARTIDA
+      <View style={styles.view}>
+        <Button style={styles.butao}
+        title="VER RESULTADOS"
+        color="gray"
+        onPress={jogo}/>
+      </View>
+      */}
+
+      {/* JOGO */}
+      <View style={styles.view}>
+        <TouchableOpacity >
+          <Image 
+            style={{width:80, height:160, marginRight: '45%'}}
+            source={{uri:"https://www.playclick.com.br/jogo_jokenpo/img/pedra.png"}}
+            />
+        </TouchableOpacity>
+
+        <TouchableOpacity >
+          <Image 
+            style={{width:80, height:160,  marginLeft: '15%'}}
+            source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU"}}
+            />
+        </TouchableOpacity>
+
+        <TouchableOpacity >
+          <Image style={{width:80, height:160, marginLeft: '45%'}}
+          source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU"}}/>
+        </TouchableOpacity>
+      </View>
+      
+    </View>
+  )};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#011126',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  view: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '0.5%',
+  },
+  placar: {
+    display:'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: '5%',
+  },
+  nomes: {
+    color: 'white',
+    fontSize: 20,
+  },
+  img: {
+    width:50,
+    height:90,
+  },
+});
