@@ -5,7 +5,7 @@ CREATE DATABASE bdTransito
 CREATE TABLE tbMotorista(
 	idMotorista INT PRIMARY KEY IDENTITY(1,1)
 	,nomeMotorista VARCHAR(75) NOT NULL
-	,dataNascimentoMotorista SMALLDATETIME NOT NULL
+	,dataNascimentoMotorista DATE NOT NULL
 	,cpfMotorista CHAR(11) UNIQUE NOT NULL
 	,cnhMotorista VARCHAR(4) UNIQUE NOT NULL
 	,pontuacaoMotorista INT
@@ -38,8 +38,18 @@ INSERT INTO tbVeiculo
 		VALUES
 		('Coupe Mercedes-Benz Classe C', '123ABCD', '12345678901', '07-10-2014', '1')
 		,('SUV Porshe Macan', '321ABCD', '12345678911', '25-07-2014', '1')
+		,('Muscle Ford Mustang', '321HJCI', '12345620911', '13-06-2022', '1')
 		,('Compacto Fiat Uno', '426AXYN', '12345678933', '19-01-1983', '2')
 		,('Sedan Chevrolet Onix Plus', '753SDFG', '12345678977', '15-08-2006', '2')
+		,('Hatchback Chevrolet Chevette', '428QZLP', '18345658933', '04-09-1987', '2')
 		,('Desportivo Mazda RX-7', '089TJKC', '12345678909', '30-05-2002', '3')
 		,('Sedan Citroen C4 Lounge', '476EQUV', '21346578910', '01-03-2018', '3')
+		,('SUV Ford Explorer', '049TJSP', '12605678909', '25-11-2006', '3')
+
+INSERT INTO tbMultas
+	(dataMulta, horaMulta, pontosMulta, idVeiculo)
+		VALUES
+		('Adriana Noqueira Silva', '11-04-1991', '12345678901', 'A', '2301')
+		,('Diego Moreira Castro', '11-04-1991', '12345678902', 'C', '196')
+		,('Plínio Salgado Marconde', '05-10-2001', '12345678903', 'C', '747')
 -- OBS: falta o da multa! Cuidado!
