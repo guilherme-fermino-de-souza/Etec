@@ -70,4 +70,123 @@ INSERT INTO tbMulta
 
 --Executado até aqui
 
---A)
+--A) Quantos motoristas existem no banco de dados?
+	SELECT SUM(idMotorista) AS 'Quantidade de motoristas, somada a cada novo cadastrado', nomeMotorista AS 'Nome do motorista' FROM tbMotoristas
+	GROUP BY nomeMotorista
+
+--B) Quantos motoristas possuem Silva no sobrenome?
+	SELECT COUNT(idMotorista) AS 'Quantidade de motoristas com o sobrenome Silva', nomeMotorista AS 'Nome do motorista' FROM tbMotoristas
+		WHERE nomeMotorista LIKE '%Silva'
+	GROUP BY nomeMotorista
+
+--C) Quantos motoristas nasceram no ano 2000?
+	SELECT COUNT(YEAR(dataNascimentoMotorista)) AS 'Quantidade de motoristas nascidos em 2000' FROM tbMotoristas
+		WHERE YEAR(dataNascimentoMotorista) = '2000'
+	GROUP BY idMotorista
+
+--D) Quantos motoristas possuem mais de 10 pontos de pontuação acumulada?
+	SELECT COUNT(pontuacaoMotorista) AS 'Quantidade de motoristas com mais de 10 em pontuação' FROM tbMotoristas
+		WHERE pontuacaoMotorista > 10
+
+--E) A somatória da pontuação de todos os motoristas.
+	SELECT SUM(pontuacaoMotorista) AS 'Soma da pontuação dos motoristas' FROM tbMotoristas
+		WHERE pontuacaoMotorista > 10
+
+--F) A média da pontuação de todos os motoristas.
+	SELECT AVG(pontuacaoMotorista) AS 'Pontuação média de todos os motoristas' FROM tbMotoristas
+
+--G) Quantos veículos o motorista de código 1 possui.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos do motorista de código 1' FROM tbVeiculos
+		INNER JOIN tbMotoristas	ON tbVeiculos.idMotorista = tbMotoristas.idMotorista
+		WHERE tbMotoristas.idMotorista = 1
+	GROUP BY tbMotoristas.idMotorista
+
+--H) Quantos veículos a placa começa em A?
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa inicia em A', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '%A%'
+	GROUP BY placaVeiculo
+
+--I) Quantos veículos foram fabricados antes de 2010?
+	SELECT COUNT(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010' FROM tbVeiculos
+		WHERE YEAR(anoVeiculo) < '2010'
+
+--J) A média do ano de fabricação de todos os veículos.
+	SELECT AVG(YEAR(anoVeiculo)) AS 'Média do ano de fabricação de todos os veículos' FROM tbVeiculos
+	
+--K) A quantidade de veículos que tenha, a palavra Sedan em seu modelo.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que possuam a palavra Sedan em seu modelo', modeloVeiculo AS 'Modelo do veículo' FROM tbVeiculos
+		WHERE modeloVeiculo LIKE '%Sedan%'
+	GROUP BY modeloVeiculo
+
+--L)  A somatória dos pontosMulta do veículo de id 02.
+	SELECT SUM(pontosMulta) AS 'Soma dos pontos de multa do veículo de id 2' FROM tbMulta
+		INNER JOIN tbVeiculos	ON tbMulta.idVeiculo = tbVeiculos.idVeiculo
+		WHERE tbVeiculos.idVeiculo = 2
+	GROUP BY tbVeiculos.idVeiculo
+
+--M)  A média de pontosMulta entre todas as multas aplicadas.
+	SELECT AVG(pontosMulta) AS 'Média dos pontos de multa aplicados' FROM tbMulta
+	
+--N)  A quantidade de multas aplicadas no mês de abril de 2018.
+	SELECT COUNT(YEAR(dataMulta)) AS 'Quantidade de multas aplicadas em abil de 2018', idMulta AS 'Identificação da multa' FROM tbMulta
+		WHERE MONTH(dataMulta) = '04' AND YEAR(dataMulta) = '2018'
+	GROUP BY idMulta
+
+--O)  A quantidade de veículos cuja placa termine com o número 1 ou 2.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 1 ou 2', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
+	GROUP BY placaVeiculo
+
+--P)  A quantidade de veículos cuja placa termine com o número 3 ou 4.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 3 ou 4', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__3%' OR placaVeiculo LIKE '__4%'
+	GROUP BY placaVeiculo
+
+--Q)  A quantidade de veículos cuja placa termine com o número 5 ou 6.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 5 ou 6', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__5%' OR placaVeiculo LIKE '__6%'
+	GROUP BY placaVeiculo
+
+--R)  A quantidade de veículos cuja placa termine em 7 ou 8.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 7 ou 8', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__7%' OR placaVeiculo LIKE '__8%'
+	GROUP BY placaVeiculo
+
+--S)  A quantidade de veículos cuja placa termine em 9 ou 0.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 9 ou 0', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__9%' OR placaVeiculo LIKE '__0%'
+	GROUP BY placaVeiculo
+
+--T)  A quantidade de veículos por ano de fabricação.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos por...', YEAR(anoVeiculo) AS 'Ano de fabricação'FROM tbVeiculos
+	GROUP BY anoVeiculo
+	ORDER BY anoVeiculo
+
+	-- distinct não quer funcionar u.u
+
+
+--U)  A quantidade de motoristas por pontuação acumulada.
+	SELECT COUNT(idMotorista) AS 'Quantidade de motoristas por...', pontuacaoMotorista AS 'Pontuação' FROM tbMotoristas
+	GROUP BY pontuacaoMotorista
+	ORDER BY pontuacaoMotorista
+
+--V)  A quantidade de motoristas que ultrapassaram os 20 pontos.
+	SELECT COUNT(pontuacaoMotorista) AS 'Quantidade de motoristas acima de 20 em pontuação' FROM tbMotoristas
+		WHERE pontuacaoMotorista > '20'
+
+--W)  A pontuação média dos motoristas nascidos no ano de 2000.
+	SELECT AVG(idMotorista) AS 'Quantidade de motoristas à esquerda', pontuacaoMotorista AS 'Pontuação média' FROM tbMotoristas
+		WHERE YEAR(dataNascimentoMotorista) = 2000
+	GROUP BY pontuacaoMotorista
+	ORDER BY pontuacaoMotorista
+
+--X)  A média dos pontos das multas aplicadas em julho de 2017.
+	SELECT AVG(pontosMulta) AS 'Pontuação média das multas', dataMulta 'Data da multa' FROM tbMulta
+		WHERE MONTH(dataMulta) = 07 AND YEAR(dataMulta) = 2017
+	GROUP BY dataMulta
+	ORDER BY dataMulta
+	
+--Y)  A quantidade de veículos não podem circular na segunda-feira (placa final 1 ou 2).
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que não podem circular na segunda-feira', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
+	GROUP BY placaVeiculo
