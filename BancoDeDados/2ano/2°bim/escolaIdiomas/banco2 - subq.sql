@@ -85,22 +85,15 @@ INSERT INTO tbMulta
 	GROUP BY idMotorista
 
 --D) Quantos motoristas possuem mais de 10 pontos de pontuação acumulada?
-	SELECT COUNT(tbMotoristas.pontuacaoMotorista) AS 'Quantidade de motoristas', pontuacaoMotorista AS 'pontuação' FROM tbMotoristas
+	SELECT COUNT(pontuacaoMotorista) AS 'Quantidade de motoristas com mais de 10 em pontuação' FROM tbMotoristas
 		WHERE pontuacaoMotorista > 10
-	GROUP BY idMotorista
-	--não completado
 
 --E) A somatória da pontuação de todos os motoristas.
-	SELECT SUM(tbMotoristas.pontuacaoMotorista) AS 'Quantidade de motoristas', pontuacaoMotorista AS 'pontuação' FROM tbMotoristas
+	SELECT SUM(pontuacaoMotorista) AS 'Soma da pontuação dos motoristas' FROM tbMotoristas
 		WHERE pontuacaoMotorista > 10
-	GROUP BY idMotorista
-	--não completado
 
 --F) A média da pontuação de todos os motoristas.
-	SELECT AVG(pontuacaoMotorista) AS 'Pontuação' FROM tbMotoristas
-		
-	GROUP BY pontuacaoMotorista
-	--não completado
+	SELECT AVG(pontuacaoMotorista) AS 'Pontuação média de todos os motoristas' FROM tbMotoristas
 
 --G) Quantos veículos o motorista de código 1 possui.
 	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos do motorista de código 1' FROM tbVeiculos
@@ -114,15 +107,12 @@ INSERT INTO tbMulta
 	GROUP BY placaVeiculo
 
 --I) Quantos veículos foram fabricados antes de 2010?
-	SELECT COUNT(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010', modeloVeiculo AS 'Modelo do carro' FROM tbVeiculos
+	SELECT COUNT(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010' FROM tbVeiculos
 		WHERE YEAR(anoVeiculo) < '2010'
-	GROUP BY modeloVeiculo
 
 --J) A média do ano de fabricação de todos os veículos.
-	SELECT AVG(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010', modeloVeiculo AS 'Modelo do carro' FROM tbVeiculos
-	GROUP BY modeloVeiculo
-	--Não concluído
-
+	SELECT AVG(YEAR(anoVeiculo)) AS 'Média do ano de fabricação de todos os veículos' FROM tbVeiculos
+	
 --K) A quantidade de veículos que tenha, a palavra Sedan em seu modelo.
 	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que possuam a palavra Sedan em seu modelo', modeloVeiculo AS 'Modelo do veículo' FROM tbVeiculos
 		WHERE modeloVeiculo LIKE '%Sedan%'
@@ -136,10 +126,7 @@ INSERT INTO tbMulta
 
 --M)  A média de pontosMulta entre todas as multas aplicadas.
 	SELECT AVG(pontosMulta) AS 'Média dos pontos de multa aplicados' FROM tbMulta
-		WHERE pontosMulta > 2
-	GROUP BY tbMulta.idVeiculo
-	--Não concluído
-
+	
 --N)  A quantidade de multas aplicadas no mês de abril de 2018.
 	SELECT COUNT(YEAR(dataMulta)) AS 'Quantidade de multas aplicadas em abil de 2018', idMulta AS 'Identificação da multa' FROM tbMulta
 		WHERE MONTH(dataMulta) = '04' AND YEAR(dataMulta) = '2018'
@@ -171,19 +158,36 @@ INSERT INTO tbMulta
 	GROUP BY placaVeiculo
 
 --T)  A quantidade de veículos por ano de fabricação.
-	SELECT SUM(idVeiculo) AS 'Quantidade de veículos por...', anoVeiculo AS 'Ano de fabricação', modeloVeiculo AS 'Modelo' FROM tbVeiculos
-	GROUP BY placaVeiculo
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos por...', YEAR(anoVeiculo) AS 'Ano de fabricação'FROM tbVeiculos
+	GROUP BY anoVeiculo
 	ORDER BY anoVeiculo
 
+	-- distinct não quer funcionar u.u
+
+
 --U)  A quantidade de motoristas por pontuação acumulada.
+	SELECT COUNT(idMotorista) AS 'Quantidade de motoristas por...', pontuacaoMotorista AS 'Pontuação' FROM tbMotoristas
+	GROUP BY pontuacaoMotorista
+	ORDER BY pontuacaoMotorista
 
 --V)  A quantidade de motoristas que ultrapassaram os 20 pontos.
+	SELECT COUNT(pontuacaoMotorista) AS 'Quantidade de motoristas acima de 20 em pontuação' FROM tbMotoristas
+		WHERE pontuacaoMotorista > '20'
 
 --W)  A pontuação média dos motoristas nascidos no ano de 2000.
+	SELECT AVG(idMotorista) AS 'Quantidade de motoristas à esquerda', pontuacaoMotorista AS 'Pontuação média' FROM tbMotoristas
+		WHERE YEAR(dataNascimentoMotorista) = 2000
+	GROUP BY pontuacaoMotorista
+	ORDER BY pontuacaoMotorista
 
 --X)  A média dos pontos das multas aplicadas em julho de 2017.
-
+	SELECT AVG(pontosMulta) AS 'Pontuação média das multas', dataMulta 'Data da multa' FROM tbMulta
+		WHERE MONTH(dataMulta) = 07 AND YEAR(dataMulta) = 2017
+	GROUP BY dataMulta
+	ORDER BY dataMulta
 --Y)  A quantidade de veículos não podem circular na segunda-feira (placa final 1 ou 2).
 	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que não podem circular na segunda-feira', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
 		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
 	GROUP BY placaVeiculo
+
+
