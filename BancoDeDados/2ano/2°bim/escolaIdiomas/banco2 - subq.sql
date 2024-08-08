@@ -1,153 +1,189 @@
-CREATE DATABASE bdEscolaIdiomasTwo
+CREATE DATABASE bdTransito
+-- Executado até aqui!
+--DROP DATABASE
 
-create table tbAluno(
-	codAluno int primary key identity (1,1)
-	, nomeAluno varchar (70) not null
-	, rgAluno varchar (12) not null
-	, cpfAluno varchar (15) not null
-	, logradouro varchar (70) not null
-	, numero varchar (20) not null
-	, complemento varchar (50)
-	, cep varchar (9) not null
-	, bairro varchar (50) not null
-	, cidade varchar (50) not null
-	, dataNascAluno smalldatetime not null
+CREATE TABLE tbMotoristas(
+	idMotorista INT PRIMARY KEY IDENTITY(1,1)
+	,nomeMotorista VARCHAR(75) NOT NULL
+	,dataNascimentoMotorista DATE NOT NULL
+	,cpfMotorista CHAR(11) UNIQUE NOT NULL
+	,cnhMotorista VARCHAR(4) NOT NULL
+	,pontuacaoMotorista INT
+)
+CREATE TABLE tbVeiculos(
+	idVeiculo INT PRIMARY KEY IDENTITY(1,1)
+	,modeloVeiculo VARCHAR(55) NOT NULL
+	,placaVeiculo CHAR(7) NOT NULL
+	,renavamVeiculo VARCHAR(11) NOT NULL
+	,anoVeiculo DATE NOT NULL
+	,idMotorista INT FOREIGN KEY REFERENCES tbMotoristas(idMotorista)
+)
+CREATE TABLE tbMulta(
+	idMulta INT PRIMARY KEY IDENTITY(1,1)
+	,dataMulta DATE NOT NULL
+	,horaMulta SMALLDATETIME NOT NULL
+	,pontosMulta INT NOT NULL
+	,idVeiculo INT FOREIGN KEY REFERENCES tbVeiculos(idVeiculo)
 )
 
-create table tbTelefoneAluno(
-	codTelAlu int primary key identity (1,1)
-	, numTelAlu varchar (12) not null
-	, codAluno int foreign key references tbAluno(codAluno)
-)
+INSERT INTO tbMotoristas
+	(nomeMotorista, dataNascimentoMotorista, cpfMotorista, cnhMotorista, pontuacaoMotorista)
+		VALUES
+		('Adriana Noqueira Silva', '11-04-1991', '12345678901', 'A', 2301)	--1
+		,('Diego Moreira Castro', '11-04-1991', '12345678902', 'C', 196)		--2
+		,('Plínio Salgado Marconde', '05-10-2001', '12345678903', 'C', 747)	--3
 
-create table tbCurso(
-	codCurso int primary key identity (1,1)
-	, nomeCurso varchar (50) not null
-	, valorCurso smallmoney not null
-)
+INSERT INTO tbVeiculos
+	(modeloVeiculo, placaVeiculo, renavamVeiculo, anoVeiculo, idMotorista)
+		VALUES
+		('Coupe Mercedes-Benz Classe C', '123ABCD', '12345678901', '07-10-2014', '1')	--1
+		,('SUV Porshe Macan', '321ABCD', '12345678911', '25-07-2014', '1')		--2
+		,('Muscle Ford Mustang', '321HJCI', '12345620911', '13-06-2022', '1')	--3
+		,('Compacto Fiat Uno', '426AXYN', '12345678933', '19-01-1983', '2')		--4
+		,('Sedan Chevrolet Onix Plus', '753SDFG', '12345678977', '15-08-2006', '2')	--5
+		,('Hatchback Chevrolet Chevette', '428QZLP', '18345658933', '04-09-1987', '2')	--6
+		,('Desportivo Mazda RX-7', '089TJKC', '12345678909', '30-05-2002', '3')		--7
+		,('Sedan Citroen C4 Lounge', '476EQUV', '21346578910', '01-03-2018', '3')		--8
+		,('SUV Ford Explorer', '049TJSP', '12605678909', '25-11-2006', '3')		--9
 
-create table tbNivel(
-	codNivel int primary key identity (1,1)
-	, descNivel varchar (50)
-)
+INSERT INTO tbMulta
+	(dataMulta, horaMulta, pontosMulta, idVeiculo)
+		VALUES
+		('08-02-2016', '08-02-2016 23:21:00', '7', '1')			--1
+		,('30-04-2023', '30-04-2023 18:11:00', '7', '1')		--2
+		,('03-12-2021', '03-12-2021 04:08:00', '3', '2')		--3
+		,('05-05-2015', '05-05-2015 02:19:00', '4', '2')		--4
+		,('19-04-2023', '19-04-2023 19:51:00', '4', '3')		--5
+		,('14-05-2024', '14-05-2024 21:19:00', '3', '3')		--6
+		,('11-09-2001', '11-09-2001 11:47:00', '3', '4')		--7
+		,('18-08-1988', '18-08-1988 08:28:00', '7', '4')		--8
+		,('01-07-2011', '01-07-2011 15:30:00', '4', '5')		--9
+		,('16-06-2014', '16-06-2014 13:26:00', '3', '5')		--10
+		,('22-05-1993', '22-05-1993 01:31:00', '4', '6')		--11
+		,('11-09-1999', '11-09-1999 00:16:00', '4', '6')		--12
+		,('20-11-2003', '20-11-2003 05:28:00', '7', '7')		--13
+		,('26-10-2004', '26-10-2004 16:40:00', '7', '7')		--14
+		,('04-08-2019', '04-08-2019 18:05:00', '3', '8')		--15
+		,('08-12-2021', '08-12-2021 09:50:00', '3', '8')		--16
+		,('31-01-2018', '31-01-2018 22:06:00', '4', '9')		--17
+		,('09-12-2019', '09-12-2019 03:01:00', '7', '9')		--18
 
-create table tbPeriodo(
-	codPeriodo int primary key identity (1,1)
-	, descPeriodo varchar (50) not null
-)
+--Executado até aqui
 
-create table tbTurma(
-	codTurma int primary key identity (1,1)
-	, descTurma varchar (50) not null
-	, codCurso int foreign key references tbCurso(codCurso)
-	, codNivel int foreign key references tbNivel(codNivel)
-	, codPeriodo int foreign key references tbPeriodo(codPeriodo)
-	, horario smalldatetime not null
-	, diaSemana varchar (15) not null
-)
+--A) Quantos motoristas existem no banco de dados?
+	SELECT SUM(idMotorista) AS 'Quantidade de motoristas, somada a cada novo cadastrado', nomeMotorista AS 'Nome do motorista' FROM tbMotoristas
+	GROUP BY nomeMotorista
 
-create table tbMatricula(
-	codMatricula int primary key identity (1,1)
-	, dataMatricula smalldatetime not null
-	, codAluno int foreign key references tbAluno(codAluno)
-	, codTurma int foreign key references tbTurma(codTurma)
-) 
+--B) Quantos motoristas possuem Silva no sobrenome?
+	SELECT COUNT(idMotorista) AS 'Quantidade de motoristas com o sobrenome Silva', nomeMotorista AS 'Nome do motorista' FROM tbMotoristas
+		WHERE nomeMotorista LIKE '%Silva'
+	GROUP BY nomeMotorista
 
-INSERT INTO tbAluno(nomeAluno, rgAluno, cpfAluno, logradouro, numero, complemento, cep, bairro, cidade, dataNascAluno)
-VALUES
-	('Patrick Lessa Teixeira', '123456789', '12345678900', 'Rua Faultline', '10A', 'casa', '08121210', 'Silverchair Paulista', 'São Paulo', '03/05/2002')
-	, ('Igor Morais Da Silva', '123456789', '12345678900', 'Rua Hardwired', '31', 'casa', '08120565', 'Nirvana Paulistano', 'Campo Grande', '10/02/2001')
-	, ('Ana Silva', '123456789', '12345678900', 'Rua Blackened', 'Bloco B-10A', 'apartamento', '08121880', 'Bairro do Limoeiro', 'São Paulo', '11/11/2003')
-	, ('Icaro Oliva', '123456789', '12345678900', 'Rua Shade', '654', 'casa', '08121770', 'Silverchair Paulista', 'São Paulo', '06/02/2001')
-	, ('Beatriz Campos', '123456789', '12345678900', 'Rua Sirens', '789', 'casa', '08121990', 'Vadder Paulista', 'São Paulo', '23/08/2001')
+--C) Quantos motoristas nasceram no ano 2000?
+	SELECT COUNT(YEAR(dataNascimentoMotorista)) AS 'Quantidade de motoristas nascidos em 2000' FROM tbMotoristas
+		WHERE YEAR(dataNascimentoMotorista) = '2000'
+	GROUP BY idMotorista
 
-INSERT INTO tbTelefoneAluno(numTelAlu, codAluno)
-VALUES 
-	('1125629643', 1)
-	, ('35962925729', 2)
-	, ('1186547998', 4)
+--D) Quantos motoristas possuem mais de 10 pontos de pontuação acumulada?
+	SELECT COUNT(tbMotoristas.pontuacaoMotorista) AS 'Quantidade de motoristas', pontuacaoMotorista AS 'pontuação' FROM tbMotoristas
+		WHERE pontuacaoMotorista > 10
+	GROUP BY idMotorista
+	--não completado
 
-INSERT INTO tbCurso(nomeCurso, valorCurso)
-VALUES
-	('Inglês', 150.99)
-	, ('Espanhol', 99.99)
+--E) A somatória da pontuação de todos os motoristas.
+	SELECT SUM(tbMotoristas.pontuacaoMotorista) AS 'Quantidade de motoristas', pontuacaoMotorista AS 'pontuação' FROM tbMotoristas
+		WHERE pontuacaoMotorista > 10
+	GROUP BY idMotorista
+	--não completado
 
-INSERT INTO tbNivel(descNivel)
-VALUES
-	('Iniciante')
-	, ('Intermediário')
-	, ('Avançado')
+--F) A média da pontuação de todos os motoristas.
+	SELECT AVG(pontuacaoMotorista) AS 'Pontuação' FROM tbMotoristas
+		
+	GROUP BY pontuacaoMotorista
+	--não completado
 
-INSERT INTO tbPeriodo(descPeriodo)
-VALUES
-	('Manhã')
-	, ('Tarde')
+--G) Quantos veículos o motorista de código 1 possui.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos do motorista de código 1' FROM tbVeiculos
+		INNER JOIN tbMotoristas	ON tbVeiculos.idMotorista = tbMotoristas.idMotorista
+		WHERE tbMotoristas.idMotorista = 1
+	GROUP BY tbMotoristas.idMotorista
 
-INSERT INTO tbTurma(descTurma, codCurso, codNivel, codPeriodo, horario, diaSemana)
-VALUES 
-	('Inglês 1A', 1, 1, 1, '07:00:00', 'Sábado')
-	, ('Inglês 2A', 1, 2, 2, '13:00:00', 'Sábado')
-	, ('Espanhol 1A', 2, 1, 2, '13:00:00', 'Sábado')
+--H) Quantos veículos a placa começa em A?
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa inicia em A', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '%A%'
+	GROUP BY placaVeiculo
 
-INSERT INTO tbMatricula(dataMatricula, codAluno, codTurma)
-VALUES
-	('18/07/2019', 1, 1)
-	, ('10/01/2019', 2, 2)
-	, ('17/07/2019', 3, 3)
-	, ('24/05/2019', 4, 1)
-	, ('11/01/2019', 5, 2)
--- feito até aqui --
+--I) Quantos veículos foram fabricados antes de 2010?
+	SELECT COUNT(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010', modeloVeiculo AS 'Modelo do carro' FROM tbVeiculos
+		WHERE YEAR(anoVeiculo) < '2010'
+	GROUP BY modeloVeiculo
 
-/* A) Criar uma consulta que retorne o nome e o preço dos cursos que 
-custem abaixo do valor médio + */
+--J) A média do ano de fabricação de todos os veículos.
+	SELECT AVG(YEAR(anoVeiculo)) AS 'Quantidade de veículos fabricados antes de 2010', modeloVeiculo AS 'Modelo do carro' FROM tbVeiculos
+	GROUP BY modeloVeiculo
+	--Não concluído
 
-   SELECT nomeCurso AS 'Curso',
-   valorCurso AS 'Valor' FROM tbCurso 
-   FULL JOIN tbTurma ON (tbCurso.valorCurso = tbTurma.codCurso)
-   WHERE tbCurso.valorCurso < (SELECT AVG(tbCurso.valorCurso) FROM tbCurso)
+--K) A quantidade de veículos que tenha, a palavra Sedan em seu modelo.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que possuam a palavra Sedan em seu modelo', modeloVeiculo AS 'Modelo do veículo' FROM tbVeiculos
+		WHERE modeloVeiculo LIKE '%Sedan%'
+	GROUP BY modeloVeiculo
 
-/* B) Criar uma consulta que retorne o nome e o rg do aluno mais novo + */
+--L)  A somatória dos pontosMulta do veículo de id 02.
+	SELECT SUM(pontosMulta) AS 'Soma dos pontos de multa do veículo de id 2' FROM tbMulta
+		INNER JOIN tbVeiculos	ON tbMulta.idVeiculo = tbVeiculos.idVeiculo
+		WHERE tbVeiculos.idVeiculo = 2
+	GROUP BY tbVeiculos.idVeiculo
 
-   SELECT nomeAluno AS 'Aluno',
-   rgAluno AS 'RG aluno' FROM tbAluno 
-   FULL JOIN tbMatricula ON (tbAluno.rgAluno = tbMatricula.codAluno)
-   WHERE tbAluno.dataNascAluno = (SELECT MAX(tbAluno.dataNascAluno) FROM tbAluno)
+--M)  A média de pontosMulta entre todas as multas aplicadas.
+	SELECT AVG(pontosMulta) AS 'Média dos pontos de multa aplicados' FROM tbMulta
+		WHERE pontosMulta > 2
+	GROUP BY tbMulta.idVeiculo
+	--Não concluído
 
-/* C) Criar uma consulta que retorne o nome do aluno mais velho + */
+--N)  A quantidade de multas aplicadas no mês de abril de 2018.
+	SELECT COUNT(YEAR(dataMulta)) AS 'Quantidade de multas aplicadas em abil de 2018', idMulta AS 'Identificação da multa' FROM tbMulta
+		WHERE MONTH(dataMulta) = '04' AND YEAR(dataMulta) = '2018'
+	GROUP BY idMulta
 
-   SELECT nomeAluno AS 'Aluno'FROM tbAluno 
-   LEFT JOIN tbMatricula ON (tbAluno.codAluno = tbMatricula.codAluno)
-   WHERE tbAluno.dataNascAluno = (SELECT MIN(tbAluno.dataNascAluno) FROM tbAluno) 
+--O)  A quantidade de veículos cuja placa termine com o número 1 ou 2.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 1 ou 2', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
+	GROUP BY placaVeiculo
 
-/* D) Criar uma consulta que retorne o nome e o valor do curso mais caro + */
+--P)  A quantidade de veículos cuja placa termine com o número 3 ou 4.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 3 ou 4', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__3%' OR placaVeiculo LIKE '__4%'
+	GROUP BY placaVeiculo
 
-   SELECT nomeCurso AS 'Curso', 
-   valorCurso AS 'Valor' FROM tbCurso
-   FULL JOIN tbTurma ON (tbCurso.valorCurso = tbTurma.codCurso)
-   WHERE tbCurso.valorCurso = (SELECT MAX(tbCurso.valorCurso) FROM tbCurso)
+--Q)  A quantidade de veículos cuja placa termine com o número 5 ou 6.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 5 ou 6', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__5%' OR placaVeiculo LIKE '__6%'
+	GROUP BY placaVeiculo
 
-/* E) Criar uma consulta que retorne o nome do aluno e o nome do curso,
-do aluno que fez a última matrícula + */
+--R)  A quantidade de veículos cuja placa termine em 7 ou 8.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 7 ou 8', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__7%' OR placaVeiculo LIKE '__8%'
+	GROUP BY placaVeiculo
 
-   SELECT nomeAluno AS 'Aluno',
-   (tbMatricula.dataMatricula) AS 'Matrícula' FROM tbAluno
-   INNER JOIN tbMatricula ON (tbMatricula.codAluno = tbAluno.codAluno)
-   WHERE tbMatricula.dataMatricula = (SELECT MAX(dataMatricula) FROM tbMatricula) 
+--S)  A quantidade de veículos cuja placa termine em 9 ou 0.
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos cuja placa finda em 9 ou 0', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__9%' OR placaVeiculo LIKE '__0%'
+	GROUP BY placaVeiculo
 
-/* F) Criar uma consulta que retorne o nome do primeiro aluno a ser 
-matrículado na escola de idiomas + */
+--T)  A quantidade de veículos por ano de fabricação.
+	SELECT SUM(idVeiculo) AS 'Quantidade de veículos por...', anoVeiculo AS 'Ano de fabricação', modeloVeiculo AS 'Modelo' FROM tbVeiculos
+	GROUP BY placaVeiculo
+	ORDER BY anoVeiculo
 
-   SELECT nomeAluno AS 'Aluno',
-   (tbMatricula.dataMatricula) AS 'Matrícula' FROM tbAluno
-   INNER JOIN tbMatricula ON (tbMatricula.codAluno = tbAluno.codAluno)
-   WHERE tbMatricula.dataMatricula = (SELECT MIN(dataMatricula) FROM tbMatricula)  
+--U)  A quantidade de motoristas por pontuação acumulada.
 
-/* G) Criar uma consulta que retorne o nome, rg e data de nascimento de 
-todos os alunos que estejam matrículados no curso de inglês + */
+--V)  A quantidade de motoristas que ultrapassaram os 20 pontos.
 
-   SELECT nomeAluno, rgAluno, dataNascAluno FROM tbAluno
-    INNER JOIN tbMatricula ON tbAluno.codAluno = tbMatricula.codAluno
-	INNER JOIN tbTurma ON tbMatricula.codTurma = tbTurma.codTurma
-	INNER JOIN tbCurso ON tbTurma.codCurso = tbCurso.codCurso
-	 WHERE tbTurma.codCurso = 1 
+--W)  A pontuação média dos motoristas nascidos no ano de 2000.
 
+--X)  A média dos pontos das multas aplicadas em julho de 2017.
+
+--Y)  A quantidade de veículos não podem circular na segunda-feira (placa final 1 ou 2).
+	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que não podem circular na segunda-feira', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
+		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
+	GROUP BY placaVeiculo
