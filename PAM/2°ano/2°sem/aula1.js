@@ -35,11 +35,11 @@ export default function App() {
   const exibirImagem = (escolha) => {
     switch (escolha) {
       case 1:
-        return <Image source={{ uri: 'https://www.playclick.com.br/jogo_jokenpo/img/pedra.png' }} style={styles.img} />;
+        return <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3562/3562093.png' }} style={styles.img} />;
       case 2:
-        return <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU' }} style={styles.img} />;
+        return <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/12355/12355903.png' }} style={styles.img} />;
       case 3:
-        return <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU' }} style={styles.img} />;
+        return <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/17392/17392068.png' }} style={styles.img} />;
       default:
         return null;
     }
@@ -51,7 +51,7 @@ export default function App() {
       {/* TÍTULO */}
       <View style={{
         marginBottom: 20,
-        marginLeft: 45,
+        margin: '0 auto'
       }}>
         <Text style={{
           fontSize: 35,
@@ -62,10 +62,16 @@ export default function App() {
       </View>
 
       {/* PLACAR */}
-      <View style={styles.view}>
+      <View>
         <View style={styles.placar}>
-        <Text> PLACAR </Text>
-        <TextInput style={{fontSize: 20, marginLeft: '50%', color: 'red'}}
+        <Text style={{color: 'white',}}> PLACAR </Text>
+        <TextInput style={{
+          fontSize: 30, 
+          fontWeight: 600, 
+          color: 'blue', 
+          width: '100%', 
+          backgroundColor: 'green', 
+          margin: 20, }}
           value={resultado}
           placeholder="RESULTADO"
           maxLength={25}
@@ -77,23 +83,23 @@ export default function App() {
       {/* CONTAGEM */}
       <View style={styles.view}>
         <View style={styles.placar}>
-        <Text> JOGADOR </Text>
-        <Text> {machinewins} </Text>
+        <Text style={styles.nomes}> JOGADOR </Text>
+        <Text style={styles.nomes}> {machinewins} </Text>
         </View>
 
         <View style={styles.placar}>
-        <Text> MÁQUINA </Text>
-        <Text> {playerwins} </Text>
+        <Text style={styles.nomes}> MÁQUINA </Text>
+        <Text style={styles.nomes}> {playerwins} </Text>
         </View>
       </View>
 
       {/* IMAGENS */}
-      <View style={styles.view}>
-        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+      <View style={styles.imagens}>
+        <View style={{margin:'auto', width:'40%'}}>
           {exibirImagem(playerChoice)}
         </View>
-          <Text>VS</Text>
-        <View style={{borderWidth:1, flex:2, justifyContent:'center', alignItems:'center', width:'100%'}}>
+          <Text style={{marginTop: 25,margin: 10, fontSize: 35, color: '#F2CB05'}}>VS</Text>
+        <View style={{margin:'auto', width:'40%'}}>
           {exibirImagem(machineChoice)}
         </View>
       </View>
@@ -108,24 +114,24 @@ export default function App() {
       */}
 
       {/* JOGO */}
-      <View style={styles.view}>
+      <View style={styles.jogo}>
         <TouchableOpacity onPress={() => jogo(1)}>
           <Image 
-            style={{width:80, height:160, marginRight: '45%'}}
-            source={{uri:"https://www.playclick.com.br/jogo_jokenpo/img/pedra.png"}}
+            style={{width:80, height:80, margin: '0 auto'}}
+            source={{uri:"https://cdn-icons-png.flaticon.com/128/3562/3562093.png"}}
             />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => jogo(2)}>
           <Image 
-            style={{width:80, height:160,  marginLeft: '15%'}}
-            source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpEBk3izn0lexaAO-MHv9xzXYLITSr7G6ZaHo9D212yy9DuUBOkqRkwGUOZoL_SPbp4jM&usqp=CAU"}}
+            style={{width:80, height:80,  margin: '0 auto'}}
+            source={{uri:"https://cdn-icons-png.flaticon.com/128/12355/12355903.png"}}
             />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => jogo(3)}>
-          <Image style={{width:80, height:160, marginLeft: '45%'}}
-          source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYq3zekA2TVgoHVm4yHySKms7HHQePyGX4fjtctPs-N7n5Jy8KyBQHZVpd04WVp6wM3t4&usqp=CAU"}}/>
+          <Image style={{width:80, height:80, margin: '0 auto'}}
+          source={{uri:"https://cdn-icons-png.flaticon.com/128/17392/17392068.png"}}/>
         </TouchableOpacity>
       </View>
       
@@ -135,23 +141,43 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#032859',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 'auto',
   },
   view: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '0.5%',
+    margin: 'auto 2%',
+  },
+  imagens: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '0%',
+  },
+  jogo: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginHorizontal: "auto",
+    marginVertical: 10,
+    backgroundColor: 'yellow'
   },
   placar: {
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: '5%',
+    margin: 'auto',
+    width: '50%'
+  },
+  nomes: {
+    color: 'white',
+    fontSize: 20,
+    margin: 15,
   },
   img: {
-    width:50,
-    height:90,
+    width:100,
+    height:100,
+    margin: 10,
   },
 });
