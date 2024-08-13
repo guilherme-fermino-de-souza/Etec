@@ -41,10 +41,13 @@ export default function App() {
       case 3:
         return <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/17392/17392068.png' }} style={styles.img} />;
       default:
-        return null;
-    }
+        return <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3562/3562093.png' }} style={styles.img} />;    }
   };
 
+  const Reiniciar  = (reiniciar) => {
+    setPlayerwins(playerwins => 0);
+    setMachinewins(machinewins => 0);
+  };
   return (
     <View style={styles.container}>
        <StatusBar style='auto' />
@@ -68,9 +71,9 @@ export default function App() {
         <TextInput style={{
           fontSize: 30, 
           fontWeight: 600, 
-          color: 'blue', 
-          width: '100%', 
-          backgroundColor: 'green', 
+          color: '#02731E', 
+          textAlign: 'center',
+          width: '100%',                   
           margin: 20, }}
           value={resultado}
           placeholder="RESULTADO"
@@ -84,12 +87,12 @@ export default function App() {
       <View style={styles.view}>
         <View style={styles.placar}>
         <Text style={styles.nomes}> JOGADOR </Text>
-        <Text style={styles.nomes}> {machinewins} </Text>
+        <Text style={styles.nomes}> {playerwins} </Text>
         </View>
 
         <View style={styles.placar}>
         <Text style={styles.nomes}> MÁQUINA </Text>
-        <Text style={styles.nomes}> {playerwins} </Text>
+        <Text style={styles.nomes}> {machinewins} </Text>
         </View>
       </View>
 
@@ -104,14 +107,14 @@ export default function App() {
         </View>
       </View>
 
-      {/* BOTÃO NOVA PARTIDA
+      {/* BOTÃO NOVA PARTIDA*/}
       <View style={styles.view}>
         <Button style={styles.butao}
-        title="VER RESULTADOS"
-        color="gray"
-        onPress={jogo}/>
+        title="NOVO JOGO"
+        color="#F2CB05"
+        onPress={Reiniciar}/>
       </View>
-      */}
+      
 
       {/* JOGO */}
       <View style={styles.jogo}>
@@ -161,7 +164,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: "auto",
     marginVertical: 10,
-    backgroundColor: 'yellow'
   },
   placar: {
     display:'flex',
@@ -178,6 +180,9 @@ const styles = StyleSheet.create({
   img: {
     width:100,
     height:100,
+    margin: 10,
+  },
+  butao: {
     margin: 10,
   },
 });
