@@ -50,16 +50,24 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 ( 'Arthur Mendes Silva', '2010-07-07', 'M', 6);
 
 -- a) Criar uma view para exibir a quantidade de funcionários por nome de departamento --
+	CREATE VIEW vwQuantFunc	AS 
+		SELECT COUNT(idFuncionario) AS'Quantidade de funcionários por departamento', nomeDepartamento FROM tbFuncionario	
+		INNER JOIN tbDepartamento ON tbDepartamento.idDepartamento = tbFuncionario.idFuncionario
+		GROUP BY nomeDepartamento
 
-
+		SELECT * FROM vwQuantFunc
 
 --b) Usando a view anterior, exibir somente o nome do departamento que possui o menor número de funcionários--
-
-
+	SELECT MIN([Quantidade de funcionários por departamento]) FROM vwQuantFunc
+	GROUP BY nomeDepartamento
 
 -- c) Criar uma view para exibir a soma dos salários por nome de departamento --
+CREATE VIEW vwSomaSalarios	AS 
+		SELECT SUM(salarioFuncionario) AS'Salários dos funcionários por	 nome', nomeDepartamento FROM tbFuncionario	
+		INNER JOIN tbDepartamento ON tbDepartamento.idDepartamento = tbFuncionario.idFuncionario
+		GROUP BY nomeDepartamento
 
-
+		SELECT * FROM vwSomaSalarios
 -- d) Utilizando a view do exercício anterior, mostrar somente a maior soma dentre os departamentos --
 
 
