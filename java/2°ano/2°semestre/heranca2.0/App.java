@@ -19,7 +19,11 @@ public class App {
 		    } else if (escolha==2) {
 			    c.CalcularArea();
 		    } else if (escolha==3) {
+		    	if (t.eUmTriangulo() == true) {
 			    t.CalcularArea();
+		    	} else {
+			    System.out.println("Não é possível calcular.");
+			    }
 		    } else if (escolha==4) {
 		    	r.CalcularArea();
 		    } else {
