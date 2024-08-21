@@ -1,4 +1,4 @@
-package prjFiguras;
+package heranca;
 
 public abstract class FiguraGeometrica {
 	
