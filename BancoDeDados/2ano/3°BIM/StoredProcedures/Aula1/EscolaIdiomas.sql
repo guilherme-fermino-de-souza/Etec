@@ -11,7 +11,7 @@ CREATE TABLE tbAluno(
 	idAluno INT PRIMARY KEY IDENTITY(1,1)
 	, nomeAluno VARCHAR(75) NOT NULL
 	, dataNasciAluno SMALLDATETIME NOT NULL
-  , cpfAluno VARCHAR(11) NOT NULL
+  	, cpfAluno CHAR(11) NOT NULL
 	, rgAluno VARCHAR(14) NOT NULL
 	, naturalidadeAluno VARCHAR(20) NOT NULL
 )
