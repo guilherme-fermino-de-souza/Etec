@@ -1,3 +1,55 @@
+--1Criar uma stored procedure “ Busca_Aluno ” que receba o código do aluno e retorne seu nome e data de nascimento
+CREATE PROCEDURE spBusca_Aluno
+	@dataNasciAluno SMALLDATETIME
+	,@nomeAluno VARCHAR(75)
+AS
+BEGIN
+	DECLARE @idAluno INT
+	IF EXISTS(SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno WHERE idAluno NOT LIKE @idAluno)
+	BEGIN
+		PRINT ( 'Não foi possivel identificar o aluno! ID ' + CONVERT(VARCHAR(5), @idAluno) +' não encontrado!')
+	END
+	ELSE (SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno WHERE idAluno LIKE @idAluno)
+	BEGIN
+		PRINT ('O aluno de ID ' + CONVERT(VARCHAR(5), @idAluno) +' se chama' + @nomeAluno + 'e nasceu no dia' + @dataNasciAluno + '.')
+	END
+END
+
+ EXEC spBusca_Aluno 2
+
+	-- Não concluído
+
+--DROP PROCEDURE spBusca_Aluno
+
+/*
+CREATE PROCEDURE spBusca_Aluno
+@codAluno INT
+AS
+SELECT nomeAluno, DataNascAluno FROM tbAluno
+WHERE codAluno = @codAluno
+
+EXEC spBusca_Aluno 1*/
+
+
+-- 2
+	CREATE PROCEDURE spInsereAluninho
+	@nomeAluno VARCHAR(75)
+	,@dataNasciAluno SMALLDATETIME
+	,@naturaliAluno VARCHAR(20)
+	,@rgAluno VARCHAR(14)
+AS
+BEGIN
+	DECLARE @idAluno INT
+	SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno WHERE idAluno LIKE @idAluno
+		INSERT tbAluno (nomeAluno, dataNasciAluno, naturalidadeAluno, rgAluno) VALUES
+			(@nomeAluno, @dataNasciAluno, @naturaliAluno, @rgAluno)
+		--PRINT('O aluno de ID ' + CONVERT(VARCHAR(5), @idAluno) +' se chama' + @nomeAluno + ', é natural de ' + @naturaliAluno + ', seu RG é ' + @rgAluno + 'e nasceu no dia' + @dataNasciAluno + '.')--
+END
+
+EXEC spInsereAluninho 'Aurélio','02/08/2009',  'Americano', '12365673912345'
+	-- Não concluído
+	
+
 -- 4. Criar uma stored procedure Exibe_Turma que, dados o nome da turma exiba todas as informações dela + --
 	
 	CREATE PROCEDURE Exibe_Turma
