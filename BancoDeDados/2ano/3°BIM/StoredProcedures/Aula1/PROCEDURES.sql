@@ -1,35 +1,25 @@
--- Técnica para a realização de ações repetitivas --
--- Funciona como um método sem retorno para a realização de comandos repetitivos --
+-- 4. Criar uma stored procedure Exibe_Turma que, dados o nome da turma exiba todas as informações dela + --
+	
+	CREATE PROCEDURE Exibe_Turma
+	@nomeTurma VARCHAR(20)
+	AS 'Nome Turma'
+	SELECT * FROM tbTurma
+	WHERE @nomeTurma = nomeTurma
 
+	EXEC Exibe_Turma 'Turma A'
 
--- 1. Criar uma stored procedure Busca_Aluno que receba o Id do aluno e retorne seu nome e data de nascimento. --	
-/*CREATE PROCEDURE spBuscaAluno
+	SELECT * FROM tbTurma
+-- 5. Criar uma stored procedure Exibe_AlunosdaTurma que, dado o nome da turma exiba os seus alunos. + --
 
- @nome VARCHAR(70)
-,@dataNasci SMALLDATETIME
-AS
-	SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno
-BEGIN
-	DECLARE @idAluno INT
-	PRINT ('Insira o código de identificação do aluno.')
-	IF EXISTS (SELECT idAluno FROM tbAluno)
-	BEGIN 
-		PRINT ('O aluno de código ' + @idAluno + ' se chama ' + @idAluno + ' e nasceu em ' + @dataNasci)
-	END
-	ELSE
-	BEGIN
-		PRINT (Essa identificação é inválida!)
-	END
-END*/
+	CREATE PROCEDURE Exibe_AlunodasTurma
+	@nomeTurma VARCHAR(20)
+	AS
+	SELECT nomeTurma, (tbAluno.nomeAluno) FROM tbTurma
+	INNER JOIN  tbMatricula ON tbTurma.idTurma = tbMatricula.idTurma
+	INNER JOIN tbAluno ON tbMatricula.idAluno = tbAluno.idAluno
+	WHERE @nomeTurma LIKE nomeTurma
 
--- 2. Criar uma stored procedure Insere_Aluno que insira um registro na tabela de Alunos. --
-
-/* 3. Criar uma stored procedure Aumenta_Preco que, dados o nome do curso e um percentual, 
-aumente o valor do curso com a porcentagem. */
-
--- 4. Criar uma stored procedure Exibe_Turma que, dados o nome da turma exiba todas as informações dela--
-
--- 5. Criar uma stored procedure Exibe_AlunosdaTurma que, dado o nome da turma exiba os seus alunos. --
+	EXEC Exibe_AlunodasTurma 'Turma A'
 
 /* 6. Criar uma stored procedure para inserir alunos, verificando pelo cpf se o 
 aluno existe ou não, e informar a condição via mensagem. + */
@@ -58,5 +48,20 @@ aluno existe ou não, e informar a condição via mensagem. + */
 			EXEC spInsereAlunos 'Thomas','02/08/2009', '12345665432', '12345678912345', 'Americano'
 
 	SELECT * FROM tbAluno
-/* 7. Criar uma stored procedure que rebeba o nome do curso o nome do curso e 
+
+/* 7. Criar uma stored procedure que rebeba o nome do curso e 
 o nome do aluno e matricule o mesmo no curso pretendido. */
+
+	CREATE PROCEDURE spInsere_Curso
+	@nomeAluno VARCHAR(75)
+	,@nomeCurso VARCHAR(45)
+	AS 
+	BEGIN
+		DECLARE @idAluno INT
+		SELECT nomeCurso, nomeAluno FROM tbAluno
+		INNER JOIN tbMatricula ON tbMatricula.idAluno = tbMatricula.idAluno
+		INNER JOIN tbCurso ON tbAluno.idAluno = tbAluno.idAluno
+		INSERT tbMatricula(dataMatricula, idAluno, idTurma) VALUES (,@idAluno,)
+
+		SELECT * FROM tbAluno
+		
