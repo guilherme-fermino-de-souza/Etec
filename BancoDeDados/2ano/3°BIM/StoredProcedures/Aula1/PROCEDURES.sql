@@ -104,7 +104,7 @@ aluno existe ou não, e informar a condição via mensagem. + */
 	SELECT * FROM tbAluno
 
 /* 7. Criar uma stored procedure que rebeba o nome do curso e 
-o nome do aluno e matricule o mesmo no curso pretendido. */
+o nome do aluno e matricule o mesmo no curso pretendido. -*/
 
 	CREATE PROCEDURE spInsere_CursosFIVE
 	@nomeAluno VARCHAR(75)
