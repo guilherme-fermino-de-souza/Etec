@@ -1,37 +1,13 @@
---1Criar uma stored procedure “ Busca_Aluno ” que receba o código do aluno e retorne seu nome e data de nascimento
+--1. Criar uma stored procedure “ Busca_Aluno ” que receba o código do aluno e retorne seu nome e data de nascimento
 CREATE PROCEDURE spBusca_Aluno
-	@dataNasciAluno SMALLDATETIME
-	,@nomeAluno VARCHAR(75)
+	@idAluno INT
 AS
-BEGIN
-	DECLARE @idAluno INT
-	IF EXISTS(SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno WHERE idAluno NOT LIKE @idAluno)
-	BEGIN
-		PRINT ( 'Não foi possivel identificar o aluno! ID ' + CONVERT(VARCHAR(5), @idAluno) +' não encontrado!')
-	END
-	ELSE (SELECT idAluno, nomeAluno, dataNasciAluno FROM tbAluno WHERE idAluno LIKE @idAluno)
-	BEGIN
-		PRINT ('O aluno de ID ' + CONVERT(VARCHAR(5), @idAluno) +' se chama' + @nomeAluno + 'e nasceu no dia' + @dataNasciAluno + '.')
-	END
-END
+		SELECT nomeAluno, dataNasciAluno FROM tbAluno 
+			WHERE @idAluno LIKE idAluno
 
- EXEC spBusca_Aluno 2
+EXEC spBusca_Aluno 1
 
-	-- Não concluído
-
---DROP PROCEDURE spBusca_Aluno
-
-/*
-CREATE PROCEDURE spBusca_Aluno
-@codAluno INT
-AS
-SELECT nomeAluno, DataNascAluno FROM tbAluno
-WHERE codAluno = @codAluno
-
-EXEC spBusca_Aluno 1*/
-
-
--- 2
+-- 2. Criar uma Stored Procedure ``spInsereAluno`` que insira um registro na tabela de Alunos.
 	CREATE PROCEDURE spInsereAluninho
 	@nomeAluno VARCHAR(75)
 	,@dataNasciAluno SMALLDATETIME
@@ -48,7 +24,9 @@ END
 
 EXEC spInsereAluninho 'Aurélio','02/08/2009',  'Americano', '12365673912345'
 	-- Não concluído
-	
+
+
+-- 3. Criar uma Sored Procedure ``spAumentaPreco`` que, dados o nome do curso e um percentual, aumente o valor do curso conforme a porcentagem informada.
 
 -- 4. Criar uma stored procedure Exibe_Turma que, dados o nome da turma exiba todas as informações dela + --
 	
