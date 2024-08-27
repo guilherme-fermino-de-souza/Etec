@@ -31,14 +31,15 @@ SELECT * FROM tbAluno
 
 -- 3. Criar uma Sored Procedure ``spAumentaPreco`` que, dados o nome do curso e um percentual, aumente o valor do curso conforme a porcentagem informada.
 CREATE PROCEDURE spAumentaPreco
-	@nomeCurso VARCHAR(30)
-	,@percentAumentoCurso INT
+	@nomeCurso VARCHAR(45)
+	,@percentAumentoCurso MONEY
 AS
-	SELECT nomeCurso, valorCurso FROM tbCurso
-	valorCurso = valorCurso + valorCurso * (@percentAumentoCurso/100)
-
+	SELECT nomeCurso, valorCurso --@percentAumentoCurso-- FROM tbCurso
+	SET valorCurso = valorCurso / @percentAumentoCurso  
+	WHERE nomeCurso = @nomeCurso
 
 EXEC spAumentaPreco 'Alemão', 15
+
 
 --DROP PROCEDURE spAumentaPreco--
 
