@@ -29,21 +29,21 @@ EXEC spInsereAluninho 'Aurélio de Assis','02/08/2009', '09876543217', '12365673
 
 SELECT * FROM tbAluno
 
--- 3. Criar uma Sored Procedure ``spAumentaPreco`` que, dados o nome do curso e um percentual, aumente o valor do curso conforme a porcentagem informada.
+-- 3. Criar uma Sored Procedure ``spAumentaPreco`` que, dados o nome do curso e um percentual, aumente o valor do 
+	curso conforme a porcentagem informada + .
 CREATE PROCEDURE spAumentaPreco
 	@nomeCurso VARCHAR(45)
-	,@percentAumentoCurso MONEY
+	,@percentAumentoCurso FLOAT NULL
 AS
-	SELECT nomeCurso, valorCurso --@percentAumentoCurso-- FROM tbCurso
-	SET valorCurso = valorCurso / @percentAumentoCurso  
+	SELECT nomeCurso, valorCurso FROM tbCurso --@percentAumentoCurso-- FROM tbCurso
+	UPDATE tbCurso
+	SET valorCurso = valorCurso + (valorCurso * (@percentAumentoCurso / 100))
 	WHERE nomeCurso = @nomeCurso
 
 EXEC spAumentaPreco 'Alemão', 15
 
-
 --DROP PROCEDURE spAumentaPreco--
 
-	--NÃO CONCLUÍDA--
 -- 4. Criar uma stored procedure Exibe_Turma que, dados o nome da turma exiba todas as informações dela + --
 	
 CREATE PROCEDURE Exibe_Turma
