@@ -121,4 +121,39 @@ EXEC spInsere_CursosFIVE 'denovan', 'Alemão', '2014-05-04'
 	SELECT * FROM tbAluno
 	SELECT * FROM tbMatricula
 	SELECT * FROM tbCurso
-		
+
+
+
+
+
+-- AULA DE HOJE 29/08/24
+
+/* 7. Criar uma stored procedure que rebeba o nome do curso e 
+o nome do aluno e matricule o mesmo no curso pretendido. -*/
+
+CREATE PROCEDURE spInsere_Cursos
+	@nomeAluno VARCHAR(75)
+	,@nomeCurso VARCHAR(45)
+	,@dataMatricula DATETIME
+AS 
+BEGIN
+	DECLARE @idAluno INT, @idTurma INT
+	SELECT nomeCurso ,nomeAluno  FROM tbAluno
+	INNER JOIN tbMatricula ON tbAluno.idAluno = tbMatricula.idAluno
+	INNER JOIN tbTurma ON tbMatricula.idTurma = tbTurma.idTurma
+	INNER JOIN tbCurso ON tbTurma.idCurso  = tbCurso.idCurso
+	WHERE nomeAluno LIKE  @nomeAluno
+	INSERT tbMatricula(dataMatricula, idAluno, idTurma) VALUES (@dataMatricula, @idAluno, @idTurma)
+	PRINT('Aluno '+@nomeAluno+' cadastrado no curso '+@nomeCurso+' com o código '+CONVERT(VARCHAR(5), @idAluno) )
+END
+
+EXEC spInsere_Cursos 'denovan', 'Alemão', '2014-05-04'
+
+	SELECT * FROM tbAluno
+	SELECT * FROM tbMatricula
+	SELECT * FROM tbCurso
+
+
+--DROP PROCEDURE spInsere_Cursos--
+
+	--NÃO CONCLUÍDA--
