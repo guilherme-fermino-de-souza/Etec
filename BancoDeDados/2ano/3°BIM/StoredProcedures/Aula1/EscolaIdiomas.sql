@@ -4,7 +4,7 @@ CREATE TABLE tbCurso(
 	idCurso INT PRIMARY KEY IDENTITY(1,1)
 	, nomeCurso VARCHAR(45) NOT NULL
 	, cargaHorariaCurso INT NOT NULL
-	, valorCurso MONEY NOT NULL
+	, valorCurso FLOAT NOT NULL
 )
 
 CREATE TABLE tbAluno(
