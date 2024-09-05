@@ -134,7 +134,7 @@ o nome do aluno e matricule o mesmo no curso pretendido. -*/
 CREATE PROCEDURE spInsere_Cursos
 	@nomeAluno VARCHAR(75)
 	,@nomeCurso VARCHAR(45)
-	,@dataMatricula DATETIME
+	,@dataMatricula SMALLDATETIME
 AS 
 BEGIN
 	DECLARE @idAluno INT, @idTurma INT
