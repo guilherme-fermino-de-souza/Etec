@@ -156,3 +156,31 @@ EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
 --SELECT idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente FROM tbEncomenda
 
 --DROP PROCEDURE  spEncomenCert	
+
+
+/*  E. Ao adicionar a encomenda, criar uma Stored Procedure, para que sejam inseridos os itens da encomenda conforme a tabela a seguir.
+
+
+*/
+
+
+
+
+/*  F. Após todos os cadastros, criar uma Stored Procedure para alterar o que se pede:
+1 - O preço dos produtos da categoria "Bolo Festa" sofreram um aumento de 10%;
+2 - O preço dos produtos da categoria "Bolo Simples" estão em promoção e terão um desconto de 20%;
+3 - O preço dos produtos da categoria "Torta" aumentaram 25%;
+4 - O preço dos produtos da categoria "Salgado", com exceção da esfiha de carne, sofreram um aumento de 20%.
+*/
+
+
+/*  G. Criar uma Procedure para excluir clientes pelo CPF sendo que:
+1 - Caso o cliente possua encomendas, emitir a mensagem "Impossível remover esse cliente, pois o cliente XXXX possui encomendas".
+2 - Caso o cliente não possua encomendas, realizar a remoção e emitir a mensagem "Cliente XXXXX removido com sucesso".
+*/
+
+
+/*  H. Criar uma Procedure que permita excluir qualquer item de uma encomenda cuja data de entrega seja maior que a data atual. Para tal o cliente deverá 
+fornecer o código da encomenda e o código do produto que será excluído da encomenda. A Procedure deverá remover o item e atualizar
+o valor total da encomenda, do qual deverá ser subtraído o valor do item a ser removido. A Procedure poderá remover apenas um item da encomenda de cada vez.
+*/
