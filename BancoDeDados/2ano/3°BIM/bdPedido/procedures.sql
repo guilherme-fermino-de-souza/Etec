@@ -1,4 +1,4 @@
----1. Criar uma Stored Procedure para exibir as categorias de produto conforme abaixo (imagens)
+---A. Criar uma Stored Procedure para exibir as categorias de produto conforme abaixo (imagens)
 CREATE PROCEDURE spCatPro
 	@nomeCategoriaProduto VARCHAR(25)
 AS 
@@ -18,7 +18,7 @@ END
 --DROP PROCEDURED spCatPro			''
 
 
---2. Criar uma Stored Procedure para inserir os produtos abaixo, sendo que, a procedure deverá 
+--B. Criar uma Stored Procedure para inserir os produtos abaixo, sendo que, a procedure deverá 
 --antes de inserir verificar se o nome do produto já existe, evitando assim que um produto seja duplicado
 CREATE PROCEDURE spDifNomePro
 	@nomeProduto VARCHAR(25)
@@ -57,7 +57,7 @@ EXECUTE spDifNomePro 'Risole Misto', 29, 4
 --DROP PROCEDURE spDifNomeCatPro
 
 
---3. Criar uma Stored Procedure para cadastrar os clientes abaixo relacionados, sendo que deverão ser feitas
+--C. Criar uma Stored Procedure para cadastrar os clientes abaixo relacionados, sendo que deverão ser feitas
 --duas validações:			- Verificar pelo CPF se o cliente já existe. Caso já exista emitir a mensagem: 
 --´´Cliente de CPF XXXXX já cadastrado´´ (acrescentar a coluna CPF)			- Verificar se o cliente é mora
 ---dor de Itaquera ou Guaianases, pois a confeitaria não realiza entregas para clientes doutros bairros.
@@ -77,7 +77,7 @@ BEGIN
 	DECLARE @idClien INT
 	IF EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
 	BEGIN
-	--Acabo de perceber que o CPF possui 11 números, e não 9. Talvez eu e lembre disso ao passar o código para o GitHub, mas n garanto
+	--Acabo de perceber que o CPF possui 11 números, e não 9. Talvez eu me lembre disso ao passar o código para o GitHub, mas n garanto
 		PRINT('O cpf ' + @cpfClien + ' não pôde ser cadastrado pois já existe: ')
 		SELECT cpfCliente FROM tbCliente
 	END
@@ -105,3 +105,54 @@ EXECUTE spEntreClien '012308638', 'awmud', '05/10/1983', 'Beco do Clóvis', '90'
 */
 --SELECT idCliente, nomeCliente, dataNasCliente, ruaCliente, numCasaCliente, cepCliente, bairroCliente, sexoCliente FROM tbCliente
 --DROP PROCEDURE spEntreClien	
+
+
+
+/*D. Criar via Stored Procedure as encomendas abaixo relacionadas, fazendo as verificações descritas abaixo:
+- No momento da encomenda o cliente fornecerá seu CPF. Caso ele não tenha sido cadastrado ainda, enviar a mensagem 
+´´Não foi possível efetivar a encomenda pois o cliente XXXX não está cadastrado´´		- Verificar se a 
+data de entrega não é menor do que a data de encomenda. Caso seja enviar a mensagem ´´Não é possível entregar uma 
+encomenda antes da encomenda ser realizada´´		- Caso esteja tudo certo, efetuar a encomenda e emitir 
+a mensagem: ´´Encomenda XXXX para o cliente YYYY efetuada com sucesso´´. XXXX: Número da encomenda. YYYY: nomeClien.
+*/
+CREATE PROCEDURE spEncomenCert
+	@cpfClien CHAR (9)
+	,@idClien INT
+	,@dataEncomen DATE				--  NÃO COMPLETADA
+	,@valorTotalEncomen MONEY
+	,@dataEntregaEncomen DATE
+	--,@nomeCliente VARCHAR (40)
+AS
+BEGIN
+	DECLARE @idEncomen INT
+	--SELECT  cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien
+	IF EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente NOT LIKE @cpfClien)
+	BEGIN
+		PRINT('O cpf ' + @cpfClien + ' não pôde ser cadastrado pois já existe: ')
+		SELECT cpfCliente FROM tbCliente
+	END
+	ELSE IF (@dataEntregaEncomen > @dataEncomen)
+	BEGIN
+		PRINT('Não é possível entregar uma encomenda antes da encomenda ser realizada.')
+	END
+	ELSE
+	BEGIN
+		INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente)
+		VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien)
+		SELECT nomeCliente FROM tbCliente
+		PRINT('Encomenda ' + @idEncomen + ' para o cliente ' + nomeCliente + 'efetuada com sucesso')
+
+	END
+END
+
+/* EXECUTES CORRETOS
+EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
+EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
+
+EXECUTES ´´INCORRETOS´´
+EXECUTE spEncomenCert '012345678'
+EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
+*/
+--SELECT idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente FROM tbEncomenda
+
+--DROP PROCEDURE  spEncomenCert	
