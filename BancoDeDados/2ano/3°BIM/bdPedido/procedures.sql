@@ -116,12 +116,12 @@ encomenda antes da encomenda ser realizada´´		- Caso esteja tudo certo, efetua
 a mensagem: ´´Encomenda XXXX para o cliente YYYY efetuada com sucesso´´. XXXX: Número da encomenda. YYYY: nomeClien.
 */
 CREATE PROCEDURE spEncomenCert
-	@cpfClien CHAR (9)
-	,@idClien INT
-	,@dataEncomen DATE				--  NÃO COMPLETADA
+	@idClien INT
+	,@dataEncomen SMALLDATETIME
 	,@valorTotalEncomen MONEY
-	,@dataEntregaEncomen DATE
-	--,@nomeCliente VARCHAR (40)
+	,@dataEntregaEncomen SMALLDATETIME
+	,@nomeCliente VARCHAR (40)
+	,@cpfClien CHAR (9)
 AS
 BEGIN
 	DECLARE @idEncomen INT
@@ -137,10 +137,13 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente)
-		VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien)
-		SELECT nomeCliente FROM tbCliente
-		PRINT('Encomenda ' + @idEncomen + ' para o cliente ' + nomeCliente + 'efetuada com sucesso')
+		INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente /*, nomeCliente, cpfCliente*/) 
+		VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
+		INSERT tbCliente (nomeCliente, cpfCliente) 
+		VALUES (@nomeCliente, @cpfClien)
+		WHERE idCliente = @idClien
+			--INNER JOIN  ON tbEncomenda.idCliente = tbCliente.idCliente
+				PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
 
 	END
 END
@@ -148,6 +151,9 @@ END
 /* EXECUTES CORRETOS
 EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
 EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
+
+
+
 
 EXECUTES ´´INCORRETOS´´
 EXECUTE spEncomenCert '012345678'
