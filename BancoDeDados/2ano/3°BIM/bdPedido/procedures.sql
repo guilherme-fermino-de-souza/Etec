@@ -158,11 +158,35 @@ EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
 --DROP PROCEDURE  spEncomenCert	
 
 
-/*  E. Ao adicionar a encomenda, criar uma Stored Procedure, para que sejam inseridos os itens da encomenda conforme a tabela a seguir.
-
-
+/*  E. Ao adicionar a encomenda, criar uma Stored Procedure, para que sejam inseridos os itens da encomenda ´´conforme a tabela a seguir.´´
 */
+CREATE PROCEDURE spAddItemEncom
+	@idEncomenda  INT
+	,@idProduto INT
+	,@quantiQuilos FLOAT
+	,@subTotal MONEY NOT NULL
+AS 
+BEGIN
+		DECLARE @idItemEncom INT
+		INSERT tbItensEncomenda (idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal)
+		VALUES (@idItemEncom, @idEncomenda, @idProduto, @quantiQuilos, @subTotal)
+END
 
+/*
+	EXECUTE spAddItemEncom 1, 1, 1, '2,5', '105,00'
+	EXECUTE spAddItemEncom 2, 1, 10, '2,6', '70,00'
+	EXECUTE spAddItemEncom 3, 1, 9, '6', '150,00'
+	EXECUTE spAddItemEncom 4, 1, 12, '4,3', '125,00'
+	EXECUTE spAddItemEncom 5, 2, 9, '8', '200,00'
+	EXECUTE spAddItemEncom 6, 3, 11, '3,2', '100,00'
+	EXECUTE spAddItemEncom 7, 3, 9, '2', '50,00'
+	EXECUTE spAddItemEncom 8, 4, 2, '2,5', '150,00'
+	EXECUTE spAddItemEncom 9, 4, 3, '2,5', '100,00'
+	EXECUTE spAddItemEncom 10, 5, 6, '3,4', '150,00'
+*/
+--SELECT idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal FROM tbItensEncomenda
+
+--DROP PROCEDURED spAddItemEncom
 
 
 
