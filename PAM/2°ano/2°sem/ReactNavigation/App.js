@@ -6,6 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'; // 
 primeiro, devemos criar rotas nele para os outros 
 componetes */
 
+/* PROJETO: criar uma pasta "src" na raiz do projeto, nesta pasta criar outra chamada "pages",
+que será onde armazenaremos nossas páginas.
+Páginas:   Home
+              index.js
+              style.js
+           Sobre
+              index.js
+              style.js*/
+
+
 import Home from './src/Pages/Home';
 import Sobre from './src/Pages/Sobre';
 
