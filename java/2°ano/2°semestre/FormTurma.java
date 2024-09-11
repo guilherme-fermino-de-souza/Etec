@@ -52,7 +52,7 @@ public class FormularioTurma extends JFrame{
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setVisible(true); // SEMPRE A ÚLTIMA LINHA (False por padrão)
 	    /* Seu código
-     import javax.swing.JButton;
+    import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -61,7 +61,6 @@ import javax.swing.JTextField;
 public class FormularioTurma extends JFrame {
 
 
-	
 	private static final long serialVersionUID = 1L;
 	private JLabel lbNome;
 	private JTextField txNome;
