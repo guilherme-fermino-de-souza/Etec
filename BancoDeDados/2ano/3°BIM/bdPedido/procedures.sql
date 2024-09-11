@@ -206,6 +206,34 @@ END
 3 - O preço dos produtos da categoria "Torta" aumentaram 25%;
 4 - O preço dos produtos da categoria "Salgado", com exceção da esfiha de carne, sofreram um aumento de 20%.
 */
+CREATE PROCEDURE spAlterValor
+	--@CategoriaProduto VARCHAR(25)
+AS 
+BEGIN	-- 1
+		UPDATE tbProduto 
+		SET precoQuiloProduto = precoQuiloProduto * 1.10
+		WHERE idCategoriaProduto =(SELECT idCategoriaProduto FROM tbCategoriaProduto WHERE nomeCategoriaProduto  = 'Bolo Festa')
+		-- 2
+		UPDATE tbProduto 
+		SET precoQuiloProduto = precoQuiloProduto * 0.80
+		WHERE idCategoriaProduto =(SELECT idCategoriaProduto FROM tbCategoriaProduto WHERE nomeCategoriaProduto  = 'Bolo Simples')
+		-- 3
+		UPDATE tbProduto 
+		SET precoQuiloProduto = precoQuiloProduto * 1.25
+		WHERE idCategoriaProduto =(SELECT idCategoriaProduto FROM tbCategoriaProduto WHERE nomeCategoriaProduto  = 'Torta')
+		-- 4
+		UPDATE tbProduto 
+		SET precoQuiloProduto = precoQuiloProduto * 1.20
+		WHERE idCategoriaProduto =(SELECT idCategoriaProduto FROM tbCategoriaProduto WHERE nomeCategoriaProduto  = 'Salgado' AND nomeProduto != 'Esfiha de carne')
+END
+
+/*
+	EXECUTE spAlterValor
+*/
+--SELECT * FROM tbProduto
+
+--DROP PROCEDURED spAlterValor
+
 
 
 /*  G. Criar uma Procedure para excluir clientes pelo CPF sendo que:
