@@ -115,6 +115,7 @@ data de entrega não é menor do que a data de encomenda. Caso seja enviar a men
 encomenda antes da encomenda ser realizada´´		- Caso esteja tudo certo, efetuar a encomenda e emitir 
 a mensagem: ´´Encomenda XXXX para o cliente YYYY efetuada com sucesso´´. XXXX: Número da encomenda. YYYY: nomeClien.
 */
+
 CREATE PROCEDURE spEncomenCert
 	@idClien INT
 	,@dataEncomen SMALLDATETIME
@@ -137,13 +138,16 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente /*, nomeCliente, cpfCliente*/) 
-		VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
-		INSERT tbCliente (nomeCliente, cpfCliente) 
-		VALUES (@nomeCliente, @cpfClien)
-		WHERE idCliente = @idClien
+		BEGIN TRANSACTION
+			INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente) /*, nomeCliente, cpfCiente*/
+			VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
+			INSERT tbCliente (nomeCliente, cpfCliente)
+			VALUES (@nomeCliente, @cpfClien)
+		COMMIT TRANSACTION
+		--VALUES (@nomeCliente, @cpfClien)
+		--WHERE idCliente = @idClien
 			--INNER JOIN  ON tbEncomenda.idCliente = tbCliente.idCliente
-				PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
+		PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
 
 	END
 END
