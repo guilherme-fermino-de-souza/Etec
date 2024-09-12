@@ -283,9 +283,9 @@ CREATE PROCEDURE spRemovItemEncom
 	--,@idEncomen VARCHAR(25)
 AS 
 BEGIN
-	INSERT tbEncomenda(idEncomenda, idProduto)
+	INSERT tbItensEncomenda(idEncomenda, idProduto)
 	VALUES (@idEncomen, @idProduto)
-	IF (SELECT idEncomenda FROM tbEncomenda WHERE dataEncomenda > dataEntregaEncomenda WHERE idEncomenda = @idEncomen)
+	IF (@idProduto = (SELECT idProduto FROM tbEncomenda WHERE dataEncomenda > dataEntregaEncomenda AND idEncomenda = @idEncomen))
 	BEGIN
 		DELETE FROM tbCliente 
 			WHERE idCliente IN (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
@@ -295,7 +295,6 @@ BEGIN
 		PRINT('A encomenda ' + @idEncomen + ' não pôde ser excluído pois possui encomendas.')
 	END
 END
-
 /* 
 EXECUTE spRemovItemEncom '018503678', 'Rodrigo Favaroni'
 */
