@@ -268,7 +268,6 @@ EXECUTE spDeletCpf '018503678', 'Rodrigo Favaroni'
 --DROP PROCEDURE spDeletCpf
 
 
-
 /*  H. Criar uma Procedure que permita excluir qualquer item de uma encomenda cuja data de entrega seja maior que a data atual. Para tal o cliente deverá 
 fornecer o código da encomenda e o código do produto que será excluído da encomenda. A Procedure deverá remover o item e atualizar
 o valor total da encomenda, do qual deverá ser subtraído o valor do item a ser removido. A Procedure poderá remover apenas um item da encomenda de cada vez.
@@ -292,11 +291,15 @@ BEGIN
 	END
 	ELSE
 	BEGIN
+		UPDATE tbItensEncomenda
+		SET subTotal = subTotal - precoQuiloProduto
+		WHERE idProduto /*=(SELECT idProduto FROM tbProduto WHERE @idProduto*/  = @idProduto)
 		PRINT('A encomenda ' + @idEncomen + ' não pôde ser excluído pois possui encomendas.')
 	END
 END
+
 /* 
-EXECUTE spRemovItemEncom '018503678', 'Rodrigo Favaroni'
+EXECUTE spRemovItemEncom '5', '8'
 */
 --SELECT * FROM tbCliente
 --DROP PROCEDURE spRemovItemEncom
