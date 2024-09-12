@@ -127,9 +127,9 @@ AS
 BEGIN
 	DECLARE @idEncomen INT
 	--SELECT  cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien
-	IF EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente NOT LIKE @cpfClien)
+	IF NOT EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
 	BEGIN
-		PRINT('O cpf ' + @cpfClien + ' não pôde ser cadastrado pois já existe: ')
+		PRINT('Não foi possível efetivar a encomenda pois o cliente ' + @nomeCliente + ' não está cadastrado.')
 		SELECT cpfCliente FROM tbCliente
 	END
 	ELSE IF (@dataEntregaEncomen > @dataEncomen)
