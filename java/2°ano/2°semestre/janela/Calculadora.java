@@ -21,6 +21,9 @@ public class Calculadora extends JFrame{
     private JLabel lbNumero2;
     private JTextField txNumero2;
     private JButton btSoma; 
+    private JButton btSubtracao; 
+    private JButton btMultiplicacao; 
+    private JButton btDivisao; 
 
     public void Calcular() {    	
     	Scanner ler = new Scanner(System.in);
@@ -46,7 +49,7 @@ public class Calculadora extends JFrame{
         
         // Soma
         btSoma = new JButton();
-        btSoma.setBounds(200, 200, 75, 35);
+        btSoma.setBounds(200, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
         btSoma.setText("Somar");
         add(btSoma);
         btSoma.addActionListener(new ActionListener() {
@@ -55,7 +58,52 @@ public class Calculadora extends JFrame{
         		double numero1 = Double.parseDouble(txNumero1.getText());
         		double numero2 = Double.parseDouble(txNumero2.getText());
         		double Resultado = numero1 + numero2;
-        		JOptionPane.showMessageDialog(null, "O resultado é "+Resultado);
+        		JOptionPane.showMessageDialog(null, "O resultado da Soma é: "+Resultado);
+        	}
+        });
+
+	// Subtração
+        btSubtracao = new JButton();
+        btSubtracao.setBounds(250, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btSubtracao.setText("Subtração");
+        add(btSubtracao);
+        btSubtracao.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		double numero1 = Double.parseDouble(txNumero1.getText());
+        		double numero2 = Double.parseDouble(txNumero2.getText());
+        		double Resultado = numero1 - numero2;
+        		JOptionPane.showMessageDialog(null, "O resultado da Subtração é: "+Resultado);
+        	}
+        });
+	    
+	// Multiplicação
+        btMultiplicacao = new JButton();
+        btMultiplicacao.setBounds(275, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btMultiplicacao.setText("Multiplicar");
+        add(btMultiplicacao);
+        btMultiplicacao.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		double numero1 = Double.parseDouble(txNumero1.getText());
+        		double numero2 = Double.parseDouble(txNumero2.getText());
+        		double Resultado = numero1 * numero2;
+        		JOptionPane.showMessageDialog(null, "O resultado da Multiplicação é: "+Resultado);
+        	}
+        });
+
+	// Divisão
+        btDivisao = new JButton();
+        btDivisao.setBounds(275, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btDivisao.setText("Dividir");
+        add(btDivisao);
+        btDivisao.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		double numero1 = Double.parseDouble(txNumero1.getText());
+        		double numero2 = Double.parseDouble(txNumero2.getText());
+        		double Resultado = numero1 / numero2;
+        		JOptionPane.showMessageDialog(null, "O resultado da Divisão é: "+Resultado);
         	}
         });
         
