@@ -157,7 +157,7 @@ EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
 EXECUTE spEncomenCert 1, '08/08/2015', 450, '08/08/2015', 1
 
 
-
+-- NÃO COMPLETADA
 
 EXECUTES ´´INCORRETOS´´
 EXECUTE spEncomenCert '012345678'
@@ -240,6 +240,33 @@ END
 1 - Caso o cliente possua encomendas, emitir a mensagem "Impossível remover esse cliente, pois o cliente XXXX possui encomendas".
 2 - Caso o cliente não possua encomendas, realizar a remoção e emitir a mensagem "Cliente XXXXX removido com sucesso".
 */
+CREATE PROCEDURE spDeletCpf
+	
+	@cpfClien CHAR (9)
+	,@nomeClien VARCHAR (40)
+	--,@idEncomen VARCHAR(25)
+AS 
+BEGIN
+	INSERT tbCliente (cpfCliente/*, idCliente = (SELECT idCliente FROM tbEncomenda WHERE idEncomenda LIKE @idEncomen)*/,  nomeCliente)
+	VALUES (@cpfClien, /*@idClien,*/  @nomeClien)
+	IF EXISTS (SELECT idEncomenda FROM tbEncomenda WHERE idCliente = (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien))
+	BEGIN
+		PRINT('O cpf ' + @cpfClien + ' não pôde ser excluído pois possui encomendas.')
+	END
+	ELSE
+	BEGIN
+		DELETE FROM tbCliente 
+			WHERE idCliente IN (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
+		PRINT('O cliente' + @nomeClien +' de CPF ' + @cpfClien + ' foi removido com sucesso.')
+	END
+END
+
+/* 
+EXECUTE spDeletCpf '018503678', 'Rodrigo Favaroni'
+*/
+--SELECT * FROM tbCliente
+--DROP PROCEDURE spDeletCpf
+
 
 
 /*  H. Criar uma Procedure que permita excluir qualquer item de uma encomenda cuja data de entrega seja maior que a data atual. Para tal o cliente deverá 
