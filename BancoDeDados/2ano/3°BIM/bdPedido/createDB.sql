@@ -3,7 +3,7 @@ CREATE DATABASE bdPedido
 
 CREATE TABLE	tbCliente(
 	idCliente INT PRIMARY KEY IDENTITY(1,1)
-   ,nomeCliente VARCHAR (40) NOT NULL
+   ,nomeCliente VARCHAR (40)
    ,cpfCliente CHAR (11) UNIQUE NOT NULL
    ,ruaCliente VARCHAR(55)
    ,numCasaCliente VARCHAR(5)
@@ -11,7 +11,7 @@ CREATE TABLE	tbCliente(
    ,cidadeCliente VARCHAR(25)
    ,estadoCliente VARCHAR(20)
    ,cepCliente CHAR(9)
-   ,sexoCliente CHAR (1) NOT NULL
+   ,sexoCliente CHAR (1)
    ,dataNasCliente SMALLDATETIME 
 )
 
@@ -31,14 +31,14 @@ CREATE TABLE	tbCategoriaProduto(
 CREATE TABLE	tbProduto(
 	idProduto INT PRIMARY KEY IDENTITY(1,1)
 	,nomeProduto VARCHAR (35)
-	,precoQuiloProduto MONEY NOT NULL
+	,precoQuiloProduto MONEY
 	,idCategoriaProduto INT FOREIGN KEY REFERENCES tbCategoriaProduto(idCategoriaProduto)
 )
 
 CREATE TABLE	tbItensEncomenda(
 	idItensEncomenda INT PRIMARY KEY IDENTITY(1,1)
 	,quantidadeQuilos FLOAT
-	,subTotal MONEY NOT NULL
+	,subTotal MONEY
 	,idEncomenda INT FOREIGN KEY REFERENCES tbEncomenda(idEncomenda)
 	,idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 
