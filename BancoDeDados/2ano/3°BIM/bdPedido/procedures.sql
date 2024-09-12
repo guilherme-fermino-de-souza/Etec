@@ -285,7 +285,7 @@ AS
 BEGIN
 	INSERT tbItensEncomenda(idEncomenda, idProduto)
 	VALUES (@idEncomen, @idProduto)
-	IF (@idProduto = (SELECT idProduto FROM tbEncomenda WHERE dataEncomenda > dataEntregaEncomenda AND idEncomenda = @idEncomen))
+	IF (@idEncomen = (SELECT idEncomenda FROM tbEncomenda WHERE dataEncomenda > dataEntregaEncomenda AND idEncomenda = @idEncomen))
 	BEGIN
 		DELETE FROM tbCliente 
 			WHERE idCliente IN (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
