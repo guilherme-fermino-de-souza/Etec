@@ -68,21 +68,6 @@ export default function App() {
           />
           <TextInput
             style={styles.input}
-            onChangeText={setPhone}
-            value={phone}
-            placeholder="Phone"
-            keyboardType="numeric"
-            maxLength={9}
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={setAddress}
-            value={address}
-            placeholder="Address"
-            maxLength={25}
-          />
-          <TextInput
-            style={styles.input}
             onChangeText={setEmail}
             value={email}
             placeholder="E-mail"
