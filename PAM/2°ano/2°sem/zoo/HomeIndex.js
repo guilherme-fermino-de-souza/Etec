@@ -10,7 +10,7 @@ export default function Home() { // Nome da página
     return (
         <View style={styles.container}>
             <Text>Página de home </Text>
-            <Button title="Ter1" onPress={ () => navigation.navigate('Ter2')}/>
+            <Button title="Ter1" onPress={ () => navigation.navigate('Ter1')}/>
             <Button title="Ter2" onPress={ () => navigation.navigate('Ter2')}/>
             <Button title="Ter3" onPress={ () => navigation.navigate('Ter3')}/>
             <Button title="Ter4" onPress={ () => navigation.navigate('Ter4')}/>
