@@ -117,20 +117,23 @@ a mensagem: ´´Encomenda XXXX para o cliente YYYY efetuada com sucesso´´. XXX
 */
 
 CREATE PROCEDURE spEncomenCert
-	@idEncomen INT
-	,@dataEncomen SMALLDATETIME
+	@dataEncomen SMALLDATETIME
 	,@valorTotalEncomen MONEY
 	,@dataEntregaEncomen SMALLDATETIME
-	,@nomeCliente VARCHAR (40)
-	,@cpfClien CHAR (9)
+	,@idClien INT
 AS
 BEGIN
-	DECLARE @idClien INT
-	--SELECT  cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien
-	IF NOT EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
+	
+	DECLARE @idEncomen INT
+	DECLARE @cpfClien CHAR (9)
+	DECLARE @nomeCliente VARCHAR (40)
+	
+	INSERT tbEncomenda (dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente) /*, nomeCliente, cpfCiente*/
+	VALUES (@dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
+	
+	IF EXISTS (SELECT idCliente FROM tbCliente WHERE idCliente NOT LIKE @idClien)
 	BEGIN
 		PRINT('Não foi possível efetivar a encomenda pois o cliente ' + @nomeCliente + ' não está cadastrado.')
-		SELECT cpfCliente FROM tbCliente
 	END
 	ELSE IF (@dataEncomen > @dataEntregaEncomen)
 	BEGIN
@@ -138,28 +141,31 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		BEGIN TRANSACTION
-			INSERT tbEncomenda (idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente) /*, nomeCliente, cpfCiente*/
-			VALUES (@idEncomen, @dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
-			INSERT tbCliente (nomeCliente, cpfCliente)
-			VALUES (@nomeCliente, @cpfClien)
-		COMMIT TRANSACTION
-		--VALUES (@nomeCliente, @cpfClien)
-		--WHERE idCliente = @idClien
-			--INNER JOIN  ON tbEncomenda.idCliente = tbCliente.idCliente
-		PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
+		
+		
+		UPDATE tbEncomenda
+		SET @idEncomen = idEncomenda
+		WHERE @idClien = idCliente
 
+		UPDATE tbCliente 
+		SET @cpfClien = cpfCliente
+		WHERE @idClien = idCliente
+		
+		UPDATE tbCliente
+		SET @nomeCliente = nomeCliente 
+		WHERE @idClien = idCliente
+		PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
 	END
 END
 
 	
-EXECUTE spEncomenCert 1, '08/08/2015', 450, '15/08/2015', 'Samira Fatah', '012345678'
+EXECUTE spEncomenCert '08/08/2015', 450, '15/08/2015', 1
 /* EXECUTES CORRETOS
 
 EXECUTE spEncomenCert 1, '08/08/2015', 450, '10/08/2015', 1
 
 
--- NÃO COMPLETADA
+-- NÃO COMPLETADA, POR POUCO!
 
 EXECUTES ´´INCORRETOS´´
 EXECUTE spEncomenCert '012345678'
@@ -167,7 +173,7 @@ EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
 */
 --SELECT idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente FROM tbEncomenda
 
---DROP PROCEDURE  spEncomenCert	
+--DROP PROCEDURE  spEncomenCert		
 
 
 /*  E. Ao adicionar a encomenda, criar uma Stored Procedure, para que sejam inseridos os itens da encomenda ´´conforme a tabela a seguir.´´
@@ -176,30 +182,31 @@ CREATE PROCEDURE spAddItemEncom
 	@idEncomenda  INT
 	,@idProduto INT
 	,@quantiQuilos FLOAT
-	,@subTotal MONEY NOT NULL
+	,@subTotal MONEY
 AS 
 BEGIN
 		DECLARE @idItemEncom INT
-		INSERT tbItensEncomenda (idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal)
-		VALUES (@idItemEncom, @idEncomenda, @idProduto, @quantiQuilos, @subTotal)
+		INSERT tbItensEncomenda (idEncomenda, idProduto, quantidadeQuilos, subTotal)
+		VALUES (@idEncomenda, @idProduto, @quantiQuilos, @subTotal)
 END
 
 /*
-	EXECUTE spAddItemEncom 1, 1, 1, '2,5', '105,00'
-	EXECUTE spAddItemEncom 2, 1, 10, '2,6', '70,00'
-	EXECUTE spAddItemEncom 3, 1, 9, '6', '150,00'
-	EXECUTE spAddItemEncom 4, 1, 12, '4,3', '125,00'
-	EXECUTE spAddItemEncom 5, 2, 9, '8', '200,00'
-	EXECUTE spAddItemEncom 6, 3, 11, '3,2', '100,00'
-	EXECUTE spAddItemEncom 7, 3, 9, '2', '50,00'
-	EXECUTE spAddItemEncom 8, 4, 2, '2,5', '150,00'
-	EXECUTE spAddItemEncom 9, 4, 3, '2,5', '100,00'
-	EXECUTE spAddItemEncom 10, 5, 6, '3,4', '150,00'
+	EXECUTE spAddItemEncom 1, 1, 2.5, 105.00
+	EXECUTE spAddItemEncom 2, 1, 10, 2.6, 70.00
+	EXECUTE spAddItemEncom 3, 1, 9, 6, 150.00
+	EXECUTE spAddItemEncom 4, 1, 12, 4.3, 125.00
+	EXECUTE spAddItemEncom 5, 2, 9, 8, 200.00
+	EXECUTE spAddItemEncom 6, 3, 11, 3.2, 100.00
+	EXECUTE spAddItemEncom 7, 3, 9, 2, 50.00
+	EXECUTE spAddItemEncom 8, 4, 2, 2.5, 150.00
+	EXECUTE spAddItemEncom 9, 4, 3, 2.5, 100.00
+	EXECUTE spAddItemEncom 10, 5, 6, 3.4, 150.00
 */
 --SELECT idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal FROM tbItensEncomenda
 
 --DROP PROCEDURED spAddItemEncom
 
+	-- QUASE COMPLETADA
 
 
 /*  F. Após todos os cadastros, criar uma Stored Procedure para alterar o que se pede:
