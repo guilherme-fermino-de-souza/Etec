@@ -117,7 +117,7 @@ a mensagem: ´´Encomenda XXXX para o cliente YYYY efetuada com sucesso´´. XXX
 */
 
 CREATE PROCEDURE spEncomenCert
-	@idClien INT
+	@idEncomen INT
 	,@dataEncomen SMALLDATETIME
 	,@valorTotalEncomen MONEY
 	,@dataEntregaEncomen SMALLDATETIME
@@ -125,14 +125,14 @@ CREATE PROCEDURE spEncomenCert
 	,@cpfClien CHAR (9)
 AS
 BEGIN
-	DECLARE @idEncomen INT
+	DECLARE @idClien INT
 	--SELECT  cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien
 	IF NOT EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
 	BEGIN
 		PRINT('Não foi possível efetivar a encomenda pois o cliente ' + @nomeCliente + ' não está cadastrado.')
 		SELECT cpfCliente FROM tbCliente
 	END
-	ELSE IF (@dataEntregaEncomen > @dataEncomen)
+	ELSE IF (@dataEncomen > @dataEntregaEncomen)
 	BEGIN
 		PRINT('Não é possível entregar uma encomenda antes da encomenda ser realizada.')
 	END
@@ -152,8 +152,10 @@ BEGIN
 	END
 END
 
+	
+EXECUTE spEncomenCert 1, '08/08/2015', 450, '15/08/2015', 'Samira Fatah', '012345678'
 /* EXECUTES CORRETOS
-EXECUTE spEncomenCert 1, '08/08/2015', 450, '15/08/2015', 1
+
 EXECUTE spEncomenCert 1, '08/08/2015', 450, '10/08/2015', 1
 
 
