@@ -1,3 +1,4 @@
+package caixaDialogo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.util.Scanner;
 
-public class Calculadora extends JFrame{
+public class Calculo extends JFrame{
 
     /**
 	 * 
@@ -49,7 +50,7 @@ public class Calculadora extends JFrame{
         
         // Soma
         btSoma = new JButton();
-        btSoma.setBounds(200, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btSoma.setBounds(175, 200, 85, 35); // Posição x(horizontal),y(vertical) e largura e altura
         btSoma.setText("Somar");
         add(btSoma);
         btSoma.addActionListener(new ActionListener() {
@@ -57,6 +58,11 @@ public class Calculadora extends JFrame{
         	public void actionPerformed(ActionEvent e) {
         		double numero1 = Double.parseDouble(txNumero1.getText());
         		double numero2 = Double.parseDouble(txNumero2.getText());
+        		if (numero1 == 0.0) {
+        			JOptionPane.showMessageDialog(null, "Insira um valor na 1° tabela.");
+        		} else if (numero2 == 0.0) {
+        			JOptionPane.showMessageDialog(null, "Insira um valor na 2° tabela.");
+        		}
         		double Resultado = numero1 + numero2;
         		JOptionPane.showMessageDialog(null, "O resultado da Soma é: "+Resultado);
         	}
@@ -64,7 +70,7 @@ public class Calculadora extends JFrame{
 
 	// Subtração
         btSubtracao = new JButton();
-        btSubtracao.setBounds(250, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btSubtracao.setBounds(275, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
         btSubtracao.setText("Subtração");
         add(btSubtracao);
         btSubtracao.addActionListener(new ActionListener() {
@@ -79,7 +85,7 @@ public class Calculadora extends JFrame{
 	    
 	// Multiplicação
         btMultiplicacao = new JButton();
-        btMultiplicacao.setBounds(275, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btMultiplicacao.setBounds(375, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
         btMultiplicacao.setText("Multiplicar");
         add(btMultiplicacao);
         btMultiplicacao.addActionListener(new ActionListener() {
@@ -94,7 +100,7 @@ public class Calculadora extends JFrame{
 
 	// Divisão
         btDivisao = new JButton();
-        btDivisao.setBounds(275, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
+        btDivisao.setBounds(475, 200, 75, 35); // Posição x(horizontal),y(vertical) e largura e altura
         btDivisao.setText("Dividir");
         add(btDivisao);
         btDivisao.addActionListener(new ActionListener() {
