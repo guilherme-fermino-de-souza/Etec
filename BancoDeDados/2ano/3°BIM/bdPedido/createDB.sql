@@ -4,7 +4,7 @@ CREATE DATABASE bdPedido
 CREATE TABLE	tbCliente(
 	idCliente INT PRIMARY KEY IDENTITY(1,1)
    ,nomeCliente VARCHAR (40)
-   ,cpfCliente CHAR (11) UNIQUE NOT NULL
+   ,cpfCliente CHAR (11) NOT NULL
    ,ruaCliente VARCHAR(55)
    ,numCasaCliente VARCHAR(5)
    ,bairroCliente VARCHAR(20)
