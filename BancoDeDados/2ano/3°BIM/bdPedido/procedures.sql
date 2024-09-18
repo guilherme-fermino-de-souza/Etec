@@ -128,51 +128,62 @@ BEGIN
 	DECLARE @cpfClien CHAR (9)
 	DECLARE @nomeCliente VARCHAR (40)
 	
-	INSERT tbEncomenda (dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente) /*, nomeCliente, cpfCiente*/
-	VALUES (@dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien) -- , @nomeCliente, @cpfClien)
-	
-	IF EXISTS (SELECT idCliente FROM tbCliente WHERE idCliente NOT LIKE @idClien)
-	BEGIN
-		PRINT('Não foi possível efetivar a encomenda pois o cliente ' + @nomeCliente + ' não está cadastrado.')
-	END
-	ELSE IF (@dataEncomen > @dataEntregaEncomen)
+	IF (@dataEncomen > @dataEntregaEncomen)
 	BEGIN
 		PRINT('Não é possível entregar uma encomenda antes da encomenda ser realizada.')
+		RETURN
 	END
-	ELSE
-	BEGIN
-		
-		
-		UPDATE tbEncomenda
-		SET @idEncomen = idEncomenda
-		WHERE @idClien = idCliente
 
-		UPDATE tbCliente 
-		SET @cpfClien = cpfCliente
-		WHERE @idClien = idCliente
-		
-		UPDATE tbCliente
-		SET @nomeCliente = nomeCliente 
-		WHERE @idClien = idCliente
+	ELSE IF NOT EXISTS (SELECT idCliente FROM tbCliente WHERE @idClien LIKE idCliente)
+	BEGIN
+		SET @cpfClien = (SELECT cpfCliente FROM tbCliente WHERE @idClien = idCliente)
+		PRINT('Não foi possível efetivar a encomenda pois o cliente de CPF ' + @cpfClien + ' não está cadastrado.')
+		RETURN
+	END
+
+	ELSE IF EXISTS (SELECT idEncomenda, dataEntregaEncomenda, dataEncomenda FROM tbEncomenda 
+		WHERE idCliente = @idClien AND idEncomenda = @idEncomen AND dataEntregaEncomenda = @dataEntregaEncomen AND dataEncomenda = @dataEncomen)
+		BEGIN
+			PRINT ('A entrega já foi cadastrada')
+			RETURN
+		END
+
+	ELSE IF (@dataEncomen < @dataEntregaEncomen)
+	BEGIN
+		INSERT tbEncomenda (dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente) 
+		VALUES (@dataEncomen, @valorTotalEncomen, @dataEntregaEncomen, @idClien)
+		SET @idEncomen = (SELECT MAX(idEncomenda) FROM tbEncomenda WHERE @idClien = idCliente)
 		PRINT('Encomenda ' + CONVERT(VARCHAR(5), @idEncomen) + ' para o cliente ' + @nomeCliente + 'efetuada com sucesso')
 	END
+	ELSE
+	BEGIN	
+		SET @nomeCliente = (SELECT nomeCliente FROM tbCliente WHERE @idClien = idCliente)
+		SET @cpfClien = (SELECT cpfCliente FROM tbCliente WHERE @idClien = idCliente)
+		
+			END
 END
 
-	
-EXECUTE spEncomenCert '08/08/2015', 450, '15/08/2015', 1
+
 /* EXECUTES CORRETOS
 
-EXECUTE spEncomenCert 1, '08/08/2015', 450, '10/08/2015', 1
+EXECUTE spEncomenCert '08/08/2015', 450, '15/08/2015', 1
+EXECUTE spEncomenCert '10/10/2015', 200, '15/10/2015', 2
+EXECUTE spEncomenCert '10/10/2015', 150, '10/12/2015', 3
+EXECUTE spEncomenCert '06/10/2015', 250, '12/10/2015', 1
+EXECUTE spEncomenCert '05/10/2015', 150, '12/10/2015', 4
+
+	
+-- Está correta, mas os prints teimam em ocultar-se...
 
 
--- NÃO COMPLETADA, POR POUCO!
-
+	
 EXECUTES ´´INCORRETOS´´
 EXECUTE spEncomenCert '012345678'
-EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
+EXECUTE spEncomenCert '08/08/2015', 450, '06/08/2015', 1
 */
---SELECT idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente FROM tbEncomenda
 
+--SELECT idEncomenda, dataEncomenda, valorTotalEncomenda, dataEntregaEncomenda, idCliente FROM tbEncomenda
+--SELECT * FROM tbCliente
 --DROP PROCEDURE  spEncomenCert		
 
 
@@ -180,35 +191,42 @@ EXECUTE spEncomenCert 1, '08/08/2015', 450, '06/08/2015', 1
 */
 CREATE PROCEDURE spAddItemEncom
 	@idEncomenda  INT
-	,@idProduto INT
+	,@idItemEncom INT
 	,@quantiQuilos FLOAT
 	,@subTotal MONEY
 AS 
 BEGIN
-		DECLARE @idItemEncom INT
+	DECLARE @idProduto INT
+	IF NOT EXISTS (SELECT idProduto FROM tbProduto WHERE nomeProduto LIKE @idProduto)
+		BEGIN
+			PRINT ('O produto não existe.')
+			RETURN
+		END
+	ELSE
+	BEGIN
 		INSERT tbItensEncomenda (idEncomenda, idProduto, quantidadeQuilos, subTotal)
 		VALUES (@idEncomenda, @idProduto, @quantiQuilos, @subTotal)
+	END
 END
 
 /*
-	EXECUTE spAddItemEncom 1, 1, 2.5, 105.00
-	EXECUTE spAddItemEncom 2, 1, 10, 2.6, 70.00
-	EXECUTE spAddItemEncom 3, 1, 9, 6, 150.00
-	EXECUTE spAddItemEncom 4, 1, 12, 4.3, 125.00
-	EXECUTE spAddItemEncom 5, 2, 9, 8, 200.00
-	EXECUTE spAddItemEncom 6, 3, 11, 3.2, 100.00
-	EXECUTE spAddItemEncom 7, 3, 9, 2, 50.00
-	EXECUTE spAddItemEncom 8, 4, 2, 2.5, 150.00
-	EXECUTE spAddItemEncom 9, 4, 3, 2.5, 100.00
-	EXECUTE spAddItemEncom 10, 5, 6, 3.4, 150.00
+	EXECUTE spAddItemEncom 1, 1, '2.5', '105'
+	EXECUTE spAddItemEncom 1, 10, '2.6', '70'
+	EXECUTE spAddItemEncom 1, 9, '6', '150'
+	EXECUTE spAddItemEncom 1, 12, '4.3', '125'
+	EXECUTE spAddItemEncom 2, 9, '8', '200'
+	EXECUTE spAddItemEncom 3, 11, '3.2', '100'
+	EXECUTE spAddItemEncom 3, 9, '2', '50'
+	EXECUTE spAddItemEncom 4, 2, '2.5', '150'
+	EXECUTE spAddItemEncom 4, 3, '2.5', '100'
+	EXECUTE spAddItemEncom 5, 6, '3.4', '150'
 */
 --SELECT idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal FROM tbItensEncomenda
 
---DROP PROCEDURED spAddItemEncom
-
-	-- QUASE COMPLETADA
+--DROP PROCEDURE spAddItemEncom
 
 
+	
 /*  F. Após todos os cadastros, criar uma Stored Procedure para alterar o que se pede:
 1 - O preço dos produtos da categoria "Bolo Festa" sofreram um aumento de 10%;
 2 - O preço dos produtos da categoria "Bolo Simples" estão em promoção e terão um desconto de 20%;
@@ -240,7 +258,6 @@ END
 	EXECUTE spAlterValor
 */
 --SELECT * FROM tbProduto
-
 --DROP PROCEDURED spAlterValor
 
 
@@ -250,65 +267,63 @@ END
 2 - Caso o cliente não possua encomendas, realizar a remoção e emitir a mensagem "Cliente XXXXX removido com sucesso".
 */
 CREATE PROCEDURE spDeletCpf
-	
 	@cpfClien CHAR (9)
 	,@nomeClien VARCHAR (40)
-	--,@idEncomen VARCHAR(25)
 AS 
 BEGIN
-	INSERT tbCliente (cpfCliente/*, idCliente = (SELECT idCliente FROM tbEncomenda WHERE idEncomenda LIKE @idEncomen)*/,  nomeCliente)
-	VALUES (@cpfClien, /*@idClien,*/  @nomeClien)
-	IF EXISTS (SELECT idEncomenda FROM tbEncomenda WHERE idCliente = (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien))
-	BEGIN
-		PRINT('O cpf ' + @cpfClien + ' não pôde ser excluído pois possui encomendas.')
-	END
-	ELSE
-	BEGIN
-		DELETE FROM tbCliente 
-			WHERE idCliente IN (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
-		PRINT('O cliente' + @nomeClien +' de CPF ' + @cpfClien + ' foi removido com sucesso.')
-	END
-END
+		IF EXISTS (SELECT cpfCliente FROM tbCliente WHERE cpfCliente = @cpfClien)
+		BEGIN
+			SET @nomeClien = (SELECT nomeCliente FROM tbCliente WHERE cpfCliente = @cpfClien)
+		END
 
+		IF EXISTS(SELECT tbCliente.idCliente FROM tbEncomenda
+			INNER JOIN tbCliente ON tbEncomenda.idCliente = tbCliente.idCliente
+				WHERE cpfCliente = @cpfClien)
+			BEGIN
+				PRINT ('Impossivel remover esse cliente, pois o cliente ' + @nomeClien + ' possui encomendas.')
+			END
+		ELSE
+		BEGIN
+			DELETE FROM tbCliente WHERE cpfCliente = @cpfClien
+			PRINT ('Cliente de nome '+@nomeClien+' removido com sucesso.')
+		END
+	END
 /* 
+EXECUTE spDeletCpf '012851678', 'Flávia Regina Brito'
+
 EXECUTE spDeletCpf '018503678', 'Rodrigo Favaroni'
 */
 --SELECT * FROM tbCliente
 --DROP PROCEDURE spDeletCpf
 
 
-/*  H. Criar uma Procedure que permita excluir qualquer item de uma encomenda cuja data de entrega seja maior que a data atual. Para tal o cliente deverá 
-fornecer o código da encomenda e o código do produto que será excluído da encomenda. A Procedure deverá remover o item e atualizar
-o valor total da encomenda, do qual deverá ser subtraído o valor do item a ser removido. A Procedure poderá remover apenas um item da encomenda de cada vez.
+/*  H. Criar uma Procedure que permita excluir qualquer item de uma encomenda cuja data de entrega seja maior que a data atual.
+Para tal o cliente deverá fornecer o código da encomenda e o código do produto que será excluído da encomenda. 
+A Procedure deverá remover o item e atualizar o valor total da encomenda, do qual deverá ser subtraído o valor do item a ser removido. 
+A Procedure poderá remover apenas um item da encomenda de cada vez.
 */
 CREATE PROCEDURE spRemovItemEncom
-	
-	@cpfClien CHAR (9)
-	,@nomeClien VARCHAR (40)
-	,@idEncomen INT
+	--,@nomeClien VARCHAR (40)
+	@idEncomen INT
 	,@idProduto INT
-	,@idItemEncomen INT
-	--,@idEncomen VARCHAR(25)
 AS 
 BEGIN
-	INSERT tbItensEncomenda(idEncomenda, idProduto)
-	VALUES (@idEncomen, @idProduto)
-	IF (@idEncomen = (SELECT idEncomenda FROM tbEncomenda WHERE dataEncomenda > dataEntregaEncomenda AND idEncomenda = @idEncomen))
-	BEGIN
-		DELETE FROM tbCliente 
-			WHERE idCliente IN (SELECT idCliente FROM tbCliente WHERE cpfCliente LIKE @cpfClien)
-	END
-	ELSE
-	BEGIN
-		UPDATE tbItensEncomenda
-		SET subTotal = subTotal - precoQuiloProduto
-		WHERE idProduto /*=(SELECT idProduto FROM tbProduto WHERE @idProduto*/  = @idProduto)
-		PRINT('A encomenda ' + @idEncomen + ' não pôde ser excluído pois possui encomendas.')
-	END
-END
+	DECLARE @newSubTotal MONEY
+	IF EXISTS (SELECT idEncomenda, idProduto FROM tbItensEncomenda
+		WHERE idEncomenda = @idEncomen AND idProduto = @idProduto)
+		BEGIN
+			SET @newSubTotal = (SELECT subTotal FROM tbItensEncomenda WHERE idEncomenda = @idEncomen AND idProduto = @idProduto)
+
+			UPDATE tbEncomenda
+			SET valorTotalEncomenda = valorTotalEncomenda - @newSubTotal
+			WHERE idEncomenda = @idEncomen
+				DELETE FROM tbItensEncomenda WHERE idEncomenda = @idEncomen AND idProduto = @idProduto
+			END
+		END
+
 
 /* 
-EXECUTE spRemovItemEncom '5', '8'
-*/
+EXECUTE spRemovItemEncom '3', '9'
+
 --SELECT * FROM tbCliente
 --DROP PROCEDURE spRemovItemEncom
