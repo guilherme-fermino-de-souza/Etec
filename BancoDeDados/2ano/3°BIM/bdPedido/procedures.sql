@@ -302,8 +302,7 @@ EXECUTE spDeletCpf '018503678', 'Rodrigo Favaroni'
 Para tal o cliente deverá fornecer o código da encomenda e o código do produto que será excluído da encomenda. 
 A Procedure deverá remover o item e atualizar o valor total da encomenda, do qual deverá ser subtraído o valor do item a ser removido. 
 A Procedure poderá remover apenas um item da encomenda de cada vez.
-*/
-CREATE PROCEDURE spRemovItemEncom
+*/CREATE PROCEDURE spRemovItemEncom
 	--,@nomeClien VARCHAR (40)
 	@idEncomen INT
 	,@idProduto INT
@@ -325,6 +324,7 @@ BEGIN
 
 /* 
 EXECUTE spRemovItemEncom '3', '9'
-
---SELECT * FROM tbCliente
---DROP PROCEDURE spRemovItemEncom
+SELECT * FROM tbItensEncomenda
+SELECT * FROM tbCliente
+DROP PROCEDURE spRemovItemEncom
+*/
