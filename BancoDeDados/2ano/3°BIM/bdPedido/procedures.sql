@@ -187,22 +187,23 @@ EXECUTE spEncomenCert '08/08/2015', 450, '06/08/2015', 1
 --DROP PROCEDURE  spEncomenCert		
 
 
+	
 /*  E. Ao adicionar a encomenda, criar uma Stored Procedure, para que sejam inseridos os itens da encomenda ´´conforme a tabela a seguir.´´
 */
 CREATE PROCEDURE spAddItemEncom
 	@idEncomenda  INT
-	,@idItemEncom INT
+	,@idProduto INT
 	,@quantiQuilos FLOAT
 	,@subTotal MONEY
 AS 
 BEGIN
-	DECLARE @idProduto INT
-	IF NOT EXISTS (SELECT idProduto FROM tbProduto WHERE nomeProduto LIKE @idProduto)
+	DECLARE @idItemEncom INT
+	IF NOT EXISTS (SELECT idProduto FROM tbProduto WHERE idProduto LIKE @idProduto)
 		BEGIN
 			PRINT ('O produto não existe.')
 			RETURN
 		END
-	ELSE
+	ELSE IF EXISTS (SELECT idProduto FROM tbProduto WHERE idProduto LIKE @idProduto)
 	BEGIN
 		INSERT tbItensEncomenda (idEncomenda, idProduto, quantidadeQuilos, subTotal)
 		VALUES (@idEncomenda, @idProduto, @quantiQuilos, @subTotal)
@@ -222,8 +223,8 @@ END
 	EXECUTE spAddItemEncom 5, 6, '3.4', '150'
 */
 --SELECT idItensEncomenda, idEncomenda, idProduto, quantidadeQuilos, subTotal FROM tbItensEncomenda
-
 --DROP PROCEDURE spAddItemEncom
+
 
 
 	
