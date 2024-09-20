@@ -1,7 +1,7 @@
-package heranca;
+package figuras;
 
 public abstract class FiguraGeometrica {
-	
-	public abstract void CalcularArea();
-  
+	double lado;
+	double altura;
+	double area;
 }
