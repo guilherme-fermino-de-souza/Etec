@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Triangulo extends FiguraGeometrica{
 	//Feito
 	double ladoUm,ladoDois, ladoTres;
+	Scanner ler  = new Scanner(System.in);
 	public boolean eUmTriangulo() {
-		Scanner ler  = new Scanner(System.in);
 		System.out.println("Insira o Valor do 1º Lado: ");
 		ladoUm = ler.nextDouble();
 		System.out.println("Insira o Valor do 2º Lado: ");
@@ -23,10 +23,10 @@ public class Triangulo extends FiguraGeometrica{
 	}
 
 	public void CalcularArea() {
-		Scanner ler = new Scanner(System.in);
 		if (ladoUm == ladoDois && ladoDois == ladoTres) { //Equilatero
 				System.out.println("O Triângulo é Equilatero");
-				this.area = ((lado*lado) * Math.sqrt(3))/4;
+				this.area = ((ladoUm*ladoUm) * Math.sqrt(3))/4;
+				this.altura = (ladoUm * Math.sqrt(3)) / 2;
 		} else if (ladoUm != ladoDois && ladoDois != ladoTres) { //Escaleno
 				System.out.println("O Triângulo é Escaleno");
 			
@@ -45,7 +45,7 @@ public class Triangulo extends FiguraGeometrica{
 					this.altura = Math.sqrt(hDois);
 					this.lado = ladoDois;
 				}
-				this.area = (lado*altura)/2;
+				area = (lado*altura)/2;
 				
 		    }
 		
