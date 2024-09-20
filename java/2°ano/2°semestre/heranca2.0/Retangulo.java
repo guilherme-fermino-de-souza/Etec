@@ -1,4 +1,4 @@
-package heranca;
+package figuras;
 import java.util.Scanner;
 
 public class Retangulo extends FiguraGeometrica{
@@ -6,10 +6,10 @@ public class Retangulo extends FiguraGeometrica{
 	public void CalcularArea() {
     		Scanner ler = new Scanner(System.in);
     		System.out.println("Insira o valor da Base: ");
-      		double base = ler.nextDouble();
+      		this.lado = ler.nextDouble();
       		System.out.println("Insira o valor da Altura: ");
-      		double altura = ler.nextDouble();
-		double area = base*altura;
+      		this.altura = ler.nextDouble();
+      		this.area = lado*altura;
 		System.out.println("A área do Retangulo é: "+area);
 	}
 }
