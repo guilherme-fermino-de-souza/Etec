@@ -1,4 +1,4 @@
-package heranca;
+package figuras;
 import java.util.Scanner;
 
 public class Quadrado extends FiguraGeometrica{
@@ -6,8 +6,8 @@ public class Quadrado extends FiguraGeometrica{
 	public void CalcularArea() {
     	Scanner ler = new Scanner(System.in);
     		System.out.println("Insira o valor do Lado: ");
-    		double lado = ler.nextDouble();
-    		double area = lado*lado;
+    		this.lado = ler.nextDouble();
+    		this.area = lado*lado;
     		System.out.println("A área do Quadrado é: "+area);
 	}
 }
