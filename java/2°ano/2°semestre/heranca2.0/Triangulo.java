@@ -23,32 +23,33 @@ public class Triangulo extends FiguraGeometrica{
 	}
 
 	public void CalcularArea() {
-		if (ladoUm == ladoDois && ladoDois == ladoTres) { //Equilatero
-				System.out.println("O Triângulo é Equilatero");
-				this.area = ((ladoUm*ladoUm) * Math.sqrt(3))/4;
-				this.altura = (ladoUm * Math.sqrt(3)) / 2;
-		} else if (ladoUm != ladoDois && ladoDois != ladoTres) { //Escaleno
-				System.out.println("O Triângulo é Escaleno");
-			
-		} else { //Isósceles
-				System.out.println("O Triângulo é Isósceles");
-				if (ladoUm <= ladoDois && ladoDois == ladoTres) {
-					double hDois = ((ladoUm/2)*(ladoUm/2)) - (ladoDois*ladoDois);
-					this.altura = Math.sqrt(hDois);
-					this.lado = ladoUm;
-				} else if (ladoTres <= ladoUm && ladoUm == ladoDois) {
-					double hDois = ((ladoTres/2)*(ladoTres/2)) - (ladoDois*ladoDois);
-					this.altura = Math.sqrt(hDois);
-					this.lado = ladoTres;
-				} else {
-					double hDois = ((ladoDois/2)*(ladoDois/2)) - (ladoTres*ladoTres);
-					this.altura = Math.sqrt(hDois);
-					this.lado = ladoDois;
-				}
-				area = (lado*altura)/2;
-				
-		    }
-		
-		System.out.println("A área do Triângulo é: "+this.area+" e a Altura é "+this.altura+".");
-	}
+    if (ladoUm == ladoDois && ladoDois == ladoTres) { // Equilátero
+        System.out.println("O Triângulo é Equilátero");
+        this.area = (Math.pow(ladoUm, 2) * Math.sqrt(3)) / 4;
+        this.altura = (ladoUm * Math.sqrt(3)) / 2;
+    } else if (ladoUm != ladoDois && ladoDois != ladoTres && ladoUm != ladoTres) { // Escaleno
+        System.out.println("O Triângulo é Escaleno");
+        // Calcular a área usando a fórmula de Heron
+        double semiPerimetro = (ladoUm + ladoDois + ladoTres) / 2;
+        this.area = Math.sqrt(semiPerimetro * (semiPerimetro - ladoUm) * (semiPerimetro - ladoDois) * (semiPerimetro - ladoTres));
+        // Para a altura, precisamos de um dos lados
+        this.altura = (2 * area) / ladoUm; // Exemplo, usando ladoUm
+    } else { // Isósceles
+        System.out.println("O Triângulo é Isósceles");
+        if (ladoUm == ladoDois) {
+            this.lado = ladoUm;
+            this.altura = Math.sqrt(Math.pow(ladoUm, 2) - Math.pow(ladoTres / 2, 2));
+        } else if (ladoDois == ladoTres) {
+            this.lado = ladoDois;
+            this.altura = Math.sqrt(Math.pow(ladoDois, 2) - Math.pow(ladoUm / 2, 2));
+        } else {
+            this.lado = ladoTres;
+            this.altura = Math.sqrt(Math.pow(ladoTres, 2) - Math.pow(ladoUm / 2, 2));
+        }
+        area = (lado * altura) / 2;
+    }
+
+    System.out.println("A área do Triângulo é: " + this.area + " e a Altura é " + this.altura + ".");
+}
+
 }
