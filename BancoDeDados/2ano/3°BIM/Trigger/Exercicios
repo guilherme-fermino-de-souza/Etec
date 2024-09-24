@@ -1,0 +1,8 @@
+/* 1. Criar um trigger que, ao ser feita uma venda (insert na tabela tbItensVenda), todos os produtos vendidos 
+tenham sua quantidade atualizada na tabela tbProduto*/
+
+/* 2. Criar um trigger que quando for inserida uma nova entrada de produtos na tbEntradaProduto, a quantidade 
+desse produto seja atualizada e aumentada*/
+
+/* 3. Criar uma trigger que, quando for feita uma venda de um produto determinado, seja feito um insert na 
+tbSaidaProduto*/
