@@ -4,7 +4,7 @@ import { StyleSheet, Image, Modal, Button, Text, View, Pressable, TouchableOpaci
 
 export default function App() {
 
-  const [titans, setTitans] = useState([
+  const [animais, setanimais] = useState([
     {
      imagem:'https://global-uploads.webflow.com/62f27b69eafac54f0255bab4/646c690ec939a9d01739491c_Cronus.jpg',
      nome:'Leão',
@@ -127,14 +127,14 @@ export default function App() {
           <View style={styles.modal}>
           <View style={styles.img}>
           <Image
-          source={{ uri: titans[indiceSelecionado].imagem}} 
+          source={{ uri: animais[indiceSelecionado].imagem}} 
           style={styles.image}
           />
           </View>
-            <Text style={styles.title}>{titans[indiceSelecionado].nome}</Text>
-            <Text style={styles.desc}>{titans[indiceSelecionado].nomecientifico}</Text>
-            <Text style={styles.desc}>{titans[indiceSelecionado].habitat}</Text>
-            <Text style={styles.desc}>{titans[indiceSelecionado].caracteristicas}</Text>
+            <Text style={styles.title}>{animais[indiceSelecionado].nome}</Text>
+            <Text style={styles.desc}>{animais[indiceSelecionado].nomecientifico}</Text>
+            <Text style={styles.desc}>{animais[indiceSelecionado].habitat}</Text>
+            <Text style={styles.desc}>{animais[indiceSelecionado].caracteristicas}</Text>
           <Button title="Voltar" onPress={() => voltar()}/> 
           </View>
         </Modal>
