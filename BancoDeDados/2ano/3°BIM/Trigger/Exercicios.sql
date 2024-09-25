@@ -36,7 +36,25 @@ tenham sua quantidade atualizada na tabela tbProduto FEITO*/
 
 
 /* 2. Criar um trigger que quando for inserida uma nova entrada de produtos na tbEntradaProduto, a quantidade 
-desse produto seja atualizada e aumentada*/
+desse produto seja atualizada e aumentada FEITO*/
+
+	CREATE TRIGGER tgAtualizaEntradaProduto
+	ON tbEntradaProduto
+	FOR INSERT
+	AS
+	DECLARE @idProduto INT, @quantidadeEntradaProduto INT
+	SELECT @idProduto = idProduto,
+	@quantidadeEntradaProduto = quantidadeEntradaProduto FROM inserted
+
+	UPDATE tbProduto
+		SET quantidadeProduto = quantidadeProduto + @quantidadeEntradaProduto
+		WHERE idProduto = @idProduto
+
+	-- Testando Trigger
+	SELECT * FROM tbProduto
+
+		INSERT INTO tbEntradaProduto (dataEntradaProduto, quantidadeEntradaProduto, idProduto)
+	VALUES (GETDATE(), 50, 2); -- Adiciona 50 unidades do Produto com idProduto 1
 
 /* 3. Criar uma trigger que, quando for feita uma venda de um produto determinado, seja feito um insert na 
 tbSaidaProduto*/
