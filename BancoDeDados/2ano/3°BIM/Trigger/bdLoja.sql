@@ -28,14 +28,14 @@ CREATE TABLE tbProduto (
 
 CREATE TABLE tbSaidaProduto (
     idSaidaProduto INT PRIMARY KEY IDENTITY(1,1),
-    dataSaidaProduto DATE,
+    dataSaidaProduto SMALLDATETIME,
     quantidadeSaidaProduto INT,
     idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 );
 
 CREATE TABLE tbVenda (
     idVenda INT PRIMARY KEY IDENTITY(1,1),
-    dataVenda DATE,
+    dataVenda SMALLDATETIME,
     valorTotalVenda MONEY,
     idCliente INT FOREIGN KEY REFERENCES tbCliente(idCliente)
 );
@@ -47,4 +47,3 @@ CREATE TABLE tbItensVenda (
     idVenda INT FOREIGN KEY REFERENCES tbVenda(idVenda),
     idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 );
--- Código gerado por IA. Examine e use com cuidado. --
