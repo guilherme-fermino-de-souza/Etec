@@ -1,42 +1,38 @@
-package Janela;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.swing.ButtonGroup;
-import java.swing.JButton;
-import java.swing.JCheckBox;
-import java.Swing.JComboBox;
-import java.Swing.JFrame;
-import java.Swing.JLabel;
-import java.Swing.JList;
-import java.Swing.JOptionPane;
-import java.Swing.JRadioButton;
-import java.Swing.JTextField;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
   public class PrimeiraJanela extends JFrame{
-    JLabel lbNome;
-    JTextField txNome;
-    JButton btExibir;
-    JComboBox cbCurso;
-    JRadioButton rdTurma1;
-    JRadioButton rdTurma2;
-    JRadioButton rdTurma3;
-    ButtonGroup bgTurma;
-    JCheckBox ckCoresPreferida1;
-    JCheckBox ckCoresPreferida2;
-    JCheckBox ckCoresPreferida3;
-    ButtonGroup bgCore;
+	  private JLabel lbNome;
+	  private JTextField txNome;
+	  private JButton btExibir;
+	  private JComboBox cbCurso;
+	  private JRadioButton rdTurma1;
+	  private JRadioButton rdTurma2;
+	  private JRadioButton rdTurma3;
+	  private ButtonGroup bgTurma;
+	  private JCheckBox ckCorPreferida1;
+	  private JCheckBox ckCorPreferida2;
+	  private JCheckBox ckCorPreferida3;
+	  private ButtonGroup bgCore;
 
-    public PrimeiraJanela() {
-      this.setTitle(“Minha Primeira Janela!“);
-      this.setSize(300, 300);
-      this.setLocotaionRelativeTo(null);
-      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public void aJanela() {
+      
 
       lbNome = new JLabel();
-      lbNome setBounds(20, 20, 100, 20);
-      lbNome.setText(“Digite seu Nome: “);
+      lbNome.setText("Digite seu Nome: ");
+      lbNome.setBounds(20, 20, 100, 20);
       add(lbNome);
 
       txNome = new JTextField();
@@ -45,59 +41,55 @@ import java.Swing.JTextField;
 
       btExibir = new JButton();
       btExibir.setBounds(100, 100, 100, 40);
-      btExibir.setText(“Exibir“);
+      btExibir.setText("Exibir");
       btExibir.setBackground(Color.BLACK);
       btExibir.setForeground(Color.YELLOW);
       add(btExibir);
-
       btExibir.addActionListener(new ActionListener() {
         @Override
-        public void ActionPerformed(ActionEvent e) {
-          String nome, curso, turma=““, cor=““;
-          nome = txNome.getTExt();
-          curso = cbCurso.getSelected().toString();
+        public void actionPerformed(ActionEvent e) {
+          String nome, curso, turma="", cor="";
+          nome = txNome.getText();
+          curso = cbCurso.getSelectedItem().toString();
           if(rdTurma1.isSelected()) {
             turma = rdTurma1.getText();
-          } else if(rdTurma2.isSelect()) {
+          } else if(rdTurma2.isSelected()) {
             turma = rdTurma2.getText();
           } else {
             turma = rdTurma3.getText();
           }
-          if(ckCoresPreferida1.isSelected()) {
-            cor = cor + “ “ + ckCoresPreferida1.getText();
+          if(ckCorPreferida1.isSelected()) {
+            cor = cor + " " + ckCorPreferida1.getText();
           }
-          if(ckCoresPreferida2.isSelected()) {
-            cor = cor + “ “ + ckCoresPreferida2.getText();
+          if(ckCorPreferida2.isSelected()) {
+            cor = cor + " " + ckCorPreferida2.getText();
           }
-          if(ckCoresPreferida3.isSelected()) {
-            cor = cor + “ “ + ckCoresPreferida3.getText();
+          if(ckCorPreferida3.isSelected()) {
+            cor = cor + " " + ckCorPreferida3.getText();
           }
-
-            JOptionPane.showMessageDialog(null, “Nome do Aluno: “+ nome +
-            “\nNome do Curso: “ + curso + “\nNome da Turma:  + turma + “\nCor Preferida: “ + cor);
-        }
-      }
-      
+          JOptionPane.showMessageDialog(null, "Nome do Aluno: "+ nome +
+          "\nNome do Curso: "+ curso + "\nNome da Turma: "  + turma + "\nCor Preferida: " + cor);
+        }});
       cbCurso = new JComboBox();
       cbCurso.setBounds(20, 20, 150, 20);
-      cbCurso.addItem(“ ETEC Ds“);
-      cbCurso.addItem(“ MTEC Nutrição“);
-      cbCurso.addItem(“ Técnico em ADM“);
+      cbCurso.addItem("ETEC D.S.");
+      cbCurso.addItem("MTEC Nutrição");
+      cbCurso.addItem("Técnico em ADM");
       add(cbCurso);
 
       rdTurma1 = new JRadioButton();
-      rdTurma1.setBoumds(20, 100, 100, 20);
-      rdTurma1.setText(“ 1° série “);
+      rdTurma1.setBounds(20, 100, 100, 20);
+      rdTurma1.setText("1° série");
       add(rdTurma1);
 
       rdTurma2 = new JRadioButton();
-      rdTurma2.setBoumds(125, 100, 100, 20);
-      rdTurma2.setText(“ 2° série “);
+      rdTurma2.setBounds(125, 100, 100, 20);
+      rdTurma2.setText("2° série");
       add(rdTurma2);
 
       rdTurma3 = new JRadioButton();
-      rdTurma3.setBoumds(225, 100, 100, 20);
-      rdTurma3.setText(“ 3° série “);
+      rdTurma3.setBounds(225, 100, 100, 20);
+      rdTurma3.setText(" 3° série ");
       add(rdTurma3);
 
       bgTurma = new ButtonGroup();
@@ -105,8 +97,24 @@ import java.Swing.JTextField;
       bgTurma.add(rdTurma2);
       bgTurma.add(rdTurma3);
       
-      ckCoresPreferidas = new JCheckBox();
-      ckCoresPreferidas.setBoumds(20, 130, 100, 20);
-      ckCoresPreferidas.setText(“ Azul “);
-    }
-  }
+      ckCorPreferida1 = new JCheckBox();
+      ckCorPreferida1.setBounds(20, 130, 100, 20);
+      ckCorPreferida1.setText("Azul");
+    
+      ckCorPreferida2 = new JCheckBox();
+      ckCorPreferida2.setBounds(125, 130, 100, 20);
+      ckCorPreferida2.setText("Branco");
+      
+      ckCorPreferida3 = new JCheckBox();
+      ckCorPreferida3.setBounds(225, 130, 100, 20);
+      ckCorPreferida3.setText("Vermelho");
+     
+      setTitle("Minha Primeira Janela!");
+      setSize(800, 600);  // Largura e altura (pixels)
+      setDefaultCloseOperation(EXIT_ON_CLOSE); // Libera da memória ao fechar
+      setLayout(null);
+      setResizable(false); // Não será possível redimensionar o tamanho da janela
+      setLocationRelativeTo(null); // Centraliza a janela na tela
+      setVisible(true); // SEMPRE A ÚLTIMA LINHA (False por padrão) 
+    }}     
+    
