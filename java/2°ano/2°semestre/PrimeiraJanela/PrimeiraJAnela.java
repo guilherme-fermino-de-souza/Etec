@@ -34,7 +34,7 @@ import javax.swing.JTextField;
       this.setLayout(null);
 
       lbNome = new JLabel();
-      lbNome.setBounds(20, 20, 100, 20);
+      lbNome.setBounds(20, 40, 100, 20);
       lbNome.setText("Digite seu Nome: ");
       add(lbNome);
 
