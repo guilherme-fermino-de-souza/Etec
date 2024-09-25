@@ -1,3 +1,5 @@
+CREATE DATABASE bdLoja
+
 CREATE TABLE tbFornecedor (
     idFornecedor INT PRIMARY KEY IDENTITY(1,1),
     nomeFornecedor VARCHAR(100),
@@ -33,6 +35,13 @@ CREATE TABLE tbSaidaProduto (
     idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 );
 
+CREATE TABLE tbEntradaProduto (
+    idEntradaProduto INT PRIMARY KEY IDENTITY(1,1),
+    dataEntradaProduto SMALLDATETIME,
+    quantidadeEntradaProduto INT,
+    idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
+);
+
 CREATE TABLE tbVenda (
     idVenda INT PRIMARY KEY IDENTITY(1,1),
     dataVenda SMALLDATETIME,
@@ -47,3 +56,4 @@ CREATE TABLE tbItensVenda (
     idVenda INT FOREIGN KEY REFERENCES tbVenda(idVenda),
     idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 );
+-- Código gerado por IA. Examine e use com cuidado. --
