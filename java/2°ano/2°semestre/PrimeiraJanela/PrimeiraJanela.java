@@ -25,11 +25,17 @@ import javax.swing.JTextField;
 	  private JCheckBox ckCorPreferida1;
 	  private JCheckBox ckCorPreferida2;
 	  private JCheckBox ckCorPreferida3;
-	  private ButtonGroup bgCore;
+	  private ButtonGroup bgCores;
 
-    public void aJanela() {
-      
+    public aJanela() {
+      setTitle("Minha Primeira Janela!");
+      setSize(800, 600);  // Largura e altura (pixels)
+      setDefaultCloseOperation(EXIT_ON_CLOSE); // Libera da memória ao fechar
+      setLayout(null);
+      setResizable(false); // Não será possível redimensionar o tamanho da janela
+      setLocationRelativeTo(null); // Centraliza a janela na tela
 
+	    
       lbNome = new JLabel();
       lbNome.setText("Digite seu Nome: ");
       lbNome.setBounds(20, 20, 100, 20);
@@ -109,12 +115,7 @@ import javax.swing.JTextField;
       ckCorPreferida3.setBounds(225, 130, 100, 20);
       ckCorPreferida3.setText("Vermelho");
      
-      setTitle("Minha Primeira Janela!");
-      setSize(800, 600);  // Largura e altura (pixels)
-      setDefaultCloseOperation(EXIT_ON_CLOSE); // Libera da memória ao fechar
-      setLayout(null);
-      setResizable(false); // Não será possível redimensionar o tamanho da janela
-      setLocationRelativeTo(null); // Centraliza a janela na tela
+
       setVisible(true); // SEMPRE A ÚLTIMA LINHA (False por padrão) 
     }}     
     
