@@ -2,7 +2,9 @@
 
 /* 1. Criar um trigger que, ao ser feita uma venda (insert na tabela tbItensVenda), todos os produtos vendidos 
 tenham sua quantidade atualizada na tabela tbProduto FEITO*/
-
+	--FOR(disparado junto da ação)
+	--AFTER(disparado após a ação)
+	--INSTEAD OF(faz com que o Trigger seja realizado no lugar da ação)
 	CREATE TRIGGER tgAtualizaProduto -- Nome do Trigger
 	ON tbItensVenda   -- Nome da tabela (Ativara o Trigger mediante uma ação INSERT, UPDATE ou DELETE)
 	FOR INSERT        -- define o momento que o Trigger é disparado (FOR/AFTER/INSTEAD OF)
