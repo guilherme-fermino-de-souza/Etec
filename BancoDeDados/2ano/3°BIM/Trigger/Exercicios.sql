@@ -57,4 +57,25 @@ desse produto seja atualizada e aumentada FEITO*/
 	VALUES (GETDATE(), 50, 2); -- Adiciona 50 unidades do Produto com idProduto 1
 
 /* 3. Criar uma trigger que, quando for feita uma venda de um produto determinado, seja feito um insert na 
-tbSaidaProduto*/
+tbSaidaProduto  FEITO*/
+
+	CREATE TRIGGER tgAtualizaSaidaProduto
+	ON tbItensVenda
+	FOR INSERT
+	AS
+	DECLARE @idProduto INT, @quantidadeItensVenda INT
+	SELECT @idProduto = idProduto,
+	@quantidadeItensVenda = quantidadeItensVenda FROM inserted
+
+	UPDATE tbSaidaProduto
+		SET quantidadeSaidaProduto = quantidadeSaidaProduto + @quantidadeItensVenda
+		WHERE idProduto = @idProduto
+
+	-- Testando Trigger
+	SELECT * FROM tbProduto	
+	SELECT * FROM tbSaidaProduto
+		
+		INSERT INTO tbSaidaProduto (dataSaidaProduto, quantidadeSaidaProduto, idProduto)
+	VALUES (GETDATE(), 20, 2); -- Retira 20 unidades do Produto com idProduto 2
+		INSERT INTO tbItensVenda (quantidadeItensVenda, subTotalItensVenda, idVenda, idProduto)
+	VALUES (2, 100.00, 2, 2); -- 2 unidades do Produto com idProduto 2 na Venda com idVenda 2
