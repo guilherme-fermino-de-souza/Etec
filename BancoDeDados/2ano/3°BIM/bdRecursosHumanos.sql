@@ -55,13 +55,17 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 		SELECT COUNT(tbFuncionario.idFuncionario) AS [Quantidade de funcionários por departamento], nomeDepartamento AS 'Departamento' FROM tbFuncionario	
 		INNER JOIN tbDepartamento ON tbDepartamento.idDepartamento = tbFuncionario.idDepartamento
 		GROUP BY tbDepartamento.nomeDepartamento
+		
+	SELECT * FROM vwQuant_Func
 
 --b) Usando a view anterior, exibir somente o nome do departamento que possui o menor número de funcionários + --
 
 		SELECT Departamento AS [Departamento com menos funcionários] FROM vwQuant_Func
 			WHERE [Quantidade de funcionários por departamento] = 
 				(SELECT MIN([Quantidade de funcionários por departamento]) 
-		FROM vwQuant_Func)
+				FROM vwQuant_Func)
+
+		SELECT * FROM vwQuant_Func
 		
 -- c) Criar uma view para exibir a soma dos salários por nome de departamento + --
 
@@ -70,12 +74,15 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 		INNER JOIN tbDepartamento ON tbDepartamento.idDepartamento = tbFuncionario.idDepartamento
 		GROUP BY tbDepartamento.nomeDepartamento
 
+	SELECT * FROM vwSoma_Salario
+
 -- d) Utilizando a view do exercício anterior, mostrar somente a maior soma dentre os departamentos + --
 
 		SELECT Soma FROM vwSoma_Salario
 		WHERE [Soma] = (SELECT MAX([Soma])
 		FROM vwSoma_Salario)
 
+		SELECT * FROM vwSoma_Salario
 
 -- e) Criar uma view para exibir somente o nome dos funcionários e o nome dos departamentos daqueles funcionários que não possuem dependentes + --
 
@@ -84,6 +91,8 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 		INNER JOIN tbDepartamento ON tbDepartamento.idDepartamento = tbFuncionario.idDepartamento
 		LEFT JOIN tbDependente ON tbFuncionario.idFuncionario = tbDependente.idFuncionario
 		WHERE tbDependente.idFuncionario IS NULL
+
+	SELECT * FROM vwFunc_NoDepen
 	
 -- f) Criar uma view que exiba a quantidade de dependentes por nome de funcionário  + --
 
@@ -92,12 +101,16 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 		INNER JOIN tbDependente ON tbFuncionario.idFuncionario = tbDependente.idFuncionario
 		GROUP BY nomeFuncionario
 
+	SELECT * FROM vwFunc_Depen
+
 -- g) Utilizando a view anterior, mostrar somente o nome do funcionário que possui mais dependentes + --
 
 		SELECT Funcionario FROM vwFunc_Depen
 		WHERE Dependentes = 
 		(SELECT MAX(Dependentes) 
 		FROM vwFunc_Depen)
+
+		SELECT * FROM vwFunc_Depen
 
 -- h) Criar uma view para exibir a quantidade de dependentes por departamento + --
 
@@ -106,6 +119,7 @@ INSERT INTO tbDependente ( nomeDependente, dataNascimento, sexoDependente, idFun
 		INNER JOIN tbFuncionario ON tbDependente.idFuncionario = tbFuncionario.idfuncionario
 		INNER JOIN tbDepartamento ON tbFuncionario.idDepartamento = tbDepartamento.idDepartamento
 		GROUP BY nomeDepartamento
+	SELECT * FROM vwDepar_Depen
 
 -- i) Utilizando a view do exercícios anterior, apresentar a soma geral dos dependentes + --
 
