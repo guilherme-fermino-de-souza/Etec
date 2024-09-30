@@ -17,6 +17,7 @@ Páginas:   Home
 
 
 import Home from './src/Pages/Home';
+import Sobre from './src/Pages/Sobre';
 import Sobre from './src/Pages/Territorio1';
 import Sobre from './src/Pages/Territorio2';
 import Sobre from './src/Pages/Territorio3';
