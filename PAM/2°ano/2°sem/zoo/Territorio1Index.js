@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { StyleSheet, Image, Modal, Button, Text, View, Pressable, TouchableOpacity, ScrollView } from 'react-native';
 
 export default function App() {
-
+// Felinos
   const [animais, setanimais] = useState([
     {
-     imagem:'https://global-uploads.webflow.com/62f27b69eafac54f0255bab4/646c690ec939a9d01739491c_Cronus.jpg',
-     nome:'Leão',
-     nomecientifico:'Panthera leo',
+     imagem:'https://www.sunhome.ru/i/wallpapers/241/afrikanskii-lev.orig.jpg', // Picture Lion
+     nome:'Leão', // Title
+     nomecientifico:'Panthera leo', // Subtitle
      habitat:'Os leões, Panthera leo, habitam principalmente savanas, pastagens e florestas abertas. Na África, eles são encontrados em regiões como o Serengeti e o Parque Nacional Kruger, onde as grandes planícies oferecem tanto abrigo quanto presas abundantes.',
      caracteristicas:'Os leões são predadores sociais, vivendo em grupos que facilitam a caça e a proteção dos filhotes. Eles são conhecidos por sua força e agilidade, caçando principalmente grandes herbívoros como zebras e antílopes. Os machos defendem o território, enquanto as fêmeas costumam cuidar dos filhotes e caçar. Além disso, os leões têm uma comunicação complexa, usando rugidos e vocalizações para se organizar e alertar sobre perigos.',
     },
@@ -69,7 +69,7 @@ export default function App() {
               height: 100,
             }} 
                     source={{
-                      uri: 'https://mythology.guru/wp-content/uploads/2023/05/urano-god.jpg',   
+                      uri: 'https://i.pinimg.com/originals/1b/a5/2c/1ba52caca8089427f122c0068c282a78.png', //Draw Lion   
                     }}/>
         </Pressable>
 
@@ -79,7 +79,7 @@ export default function App() {
              height: 110,
            }} 
                   source={{
-                     uri: 'https://i.pinimg.com/736x/a1/47/a5/a147a533ac281351ceb0b57817153b21.jpg',   
+                     uri: 'https://i.pinimg.com/736x/a1/47/a5/a147a533ac281351ceb0b57817153b21.jpg', //Draw Leopardo  
                    }}/>
          </Pressable>
 
@@ -89,7 +89,7 @@ export default function App() {
              height: 100,
           }} 
                   source={{
-                     uri: 'https://ideasnuevas.net/wp-content/uploads/2019/04/MITOposeidon_water_greek_god_abstract_fantasy_hd-wallpaper-1576510-250x156.jpg',   
+                     uri: 'https://ideasnuevas.net/wp-content/uploads/2019/04/MITOposeidon_water_greek_god_abstract_fantasy_hd-wallpaper-1576510-250x156.jpg', //Draw Chita    
                   }}/>
         </Pressable>
 
@@ -99,7 +99,7 @@ export default function App() {
             height: 120,
           }} 
                   source={{
-                    uri: 'https://1.bp.blogspot.com/-MDQnEvpWFN4/YJc_FkE5gvI/AAAAAAAAWZI/EEBGGj9-N8ARnEvLFn3v5pZEilN1Y5wBwCLcBGAsYHQ/s480/coios.png',   
+                    uri: 'https://w7.pngwing.com/pngs/581/763/png-transparent-white-tiger-drawing-tiger-white-mammal-animals.png', //Draw Tiger   
                   }}/>
         </Pressable>
 
@@ -112,7 +112,8 @@ export default function App() {
                     uri: 'https://pm1.aminoapps.com/6608/08f82683c0e8a5a30b0bcc470a161bdd7f4d6051_00.jpg',   
                   }}/>
         </Pressable>
-
+                
+        <ScrollView>
         <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
             <Image style={{
               width: 110,
@@ -125,19 +126,20 @@ export default function App() {
 
         <Modal visible={visivel} animationType="fade">
           <View style={styles.modal}>
-          <View style={styles.img}>
+          <View style={styles.imagemContainer}>
           <Image
           source={{ uri: animais[indiceSelecionado].imagem}} 
           style={styles.image}
           />
           </View>
             <Text style={styles.title}>{animais[indiceSelecionado].nome}</Text>
-            <Text style={styles.desc}>{animais[indiceSelecionado].nomecientifico}</Text>
-            <Text style={styles.desc}>{animais[indiceSelecionado].habitat}</Text>
-            <Text style={styles.desc}>{animais[indiceSelecionado].caracteristicas}</Text>
+            <Text style={styles.description}>{animais[indiceSelecionado].nomecientifico}</Text>
+            <Text style={styles.description}>{animais[indiceSelecionado].habitat}</Text>
+            <Text style={styles.description}>{animais[indiceSelecionado].caracteristicas}</Text>
           <Button title="Voltar" onPress={() => voltar()}/> 
           </View>
         </Modal>
+        </ScrollView>
       </ScrollView>
     </View>
   );
@@ -146,7 +148,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#e8f0fe',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -161,28 +163,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#e8f0fe',
   },
   title: {
     fontSize: 24,
-    fontWeight: 800,
+    fontWeight: 'bold',
     marginBottom: 30,
-    color: 'white',
+    color: '#0C0C0D',
   },
-  desc: {
-    fontSize: 16,
-    color: 'white',
+  
+  description: {
+    fontSize: 10,
+    color: 'black',
     fontWeight: 500,
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left',
+    width: '80%'
   },
-  img: {
-    maxWidth: 700,
-    alignItems: 'center',
+  imagemContainer: {
+    width: '80%',
+    height: '20%',
+    marginBottom: 15,
   },
   image: {
-    width: 400,
-    height: 300,
-    margin: 20,
+    width: '100%',
+    height: '100%',
+    margin: 5,
   },
 });
