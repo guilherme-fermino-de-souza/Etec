@@ -33,12 +33,12 @@ export default function App() {
                 uri: 'https://l-mobimobile.nl/wp-content/uploads/2021/10/user-lmobi-v5.png'
               }}
             />
-            <Text style={styles.title}>User Name</Text>
+            <Text style={styles.title}>Login</Text>
           </View>
         </View>
 
         <View style={styles.formContainer}>
-          <Text style={styles.formTitle}>Form</Text>
+          <Text style={styles.formTitle}>Entre Na Sua Conta</Text>
           <StatusBar style="auto" />
           <TextInput
             style={styles.input}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#e8f0fe',
   },
   header: {
     alignItems: 'center',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   formTitle: {
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 10,
   },
   input: {
@@ -107,13 +107,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   button: {
-    backgroundColor: 'rgb(65, 212, 225)',
+    backgroundColor: '#0C0C0D',
     paddingVertical: 10,
     borderRadius: 20,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: '#e8f0fe',
     fontSize: 18,
   },
 });
