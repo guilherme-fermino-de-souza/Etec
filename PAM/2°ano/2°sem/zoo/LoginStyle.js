@@ -1,75 +1,51 @@
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    margin: 10,
-    padding: 10,
-    maxWidth: 300,
-  },
 
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
+    padding: 16,
+    backgroundColor: '#e8f0fe',
   },
-
   header: {
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
-    borderTopWidth: 5,
-    borderBottomWidth: 5,
-    backgroundColor: '#3e3e3e'
-  },
-
-  headerTwo: {
-    flexDirection: 'row',
-    margin: 25,
-  },
-
-  title: {
-    fontSize: 28,
-    marginLeft: 10,
-    marginTop: 7,
-    color: 'white',
-  },
-
-  formContainer: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderTopWidth: 5,
-    borderBottomWidth: 5,
-    padding: 10,
-  },
-
-  formTitle: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-
-  infoContainer: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderTopWidth: 5,
-    borderBottomWidth: 5,
-    padding: 10,
-  },
-
-  answerContainer: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderTopWidth: 5,
-    borderBottomWidth: 5,
-    padding: 10,
     marginBottom: 20,
   },
-
-  tableTitle: {
-    fontSize: 18,
+  headerTwo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  profileImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  formContainer: {
+    marginTop: 20,
+  },
+  formTitle: {
+    fontSize: 16,
     marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  button: {
+    backgroundColor: '#0C0C0D',
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#e8f0fe',
+    fontSize: 18,
   },
 });
