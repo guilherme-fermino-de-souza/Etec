@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <View>
         <View style={styles.header}>
           <View style={styles.headerTwo}>
             <Image
@@ -64,8 +64,22 @@ export default function Login() {
           >
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
+            
         </View>
-      </ScrollView>
+                    <View style={styles.buttonArea}>
+
+        <TouchableOpacity style={styles.button}
+        onPress={ () => navigation.navigate('Territorios')}>
+          <Text>Visitante</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}> 
+          <Text>Entrar</Text>
+        </TouchableOpacity>
+
+      </View>
+      <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
