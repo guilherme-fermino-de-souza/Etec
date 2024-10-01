@@ -11,9 +11,9 @@ export default function Territorios() {
       <View style={styles.territorioArea}>
         <View style={styles.buttonArea}>
             <Pressable style={styles.territorio} onPress={ () => navigation.navigate('Felinos')}>
-              <Image style={{width:'100%',height:'90%'}}
+              <Image style={{width:'100%',height:'30%'}}
               source={{uri:'https://w7.pngwing.com/pngs/581/763/png-transparent-white-tiger-drawing-tiger-white-mammal-animals.png'}} />
-              <Text>Felinos</Text>
+              <Text style={styles.text}>Felinos</Text>
             </Pressable>
         </View>
       </View>
