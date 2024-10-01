@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-web';
+import { useNavigation } from '@react-navigation/native';
+import styles from './style';
 
-export default function App() {
+export default function Login() {
+  const navigation = useNavigation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
