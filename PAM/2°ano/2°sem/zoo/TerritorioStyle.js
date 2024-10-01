@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: '#e8f0fe',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -15,10 +15,13 @@ export default StyleSheet.create({
     margin:10,
   },
   buttonArea:{
-    width:'50%',
+    width:'80%',
     height:'100%',
-    marginLeft:'0.5%',
-    marginRight:'1.5%'
+    margin: 'auto'
+  },
+  text:{
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   territorio:{
     width:'100%',
