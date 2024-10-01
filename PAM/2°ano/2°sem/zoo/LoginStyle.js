@@ -1,36 +1,29 @@
+import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    backgroundColor: '#e8f0fe',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputArea:{
+    height: 50,
+    marginTop: 30,
+    width:'80%',
+  },
+  imageArea:{
+    flex:1,
+    width:'100%',
+    backgroundColor:'blue'
+  },
+  buttonArea:{
+    flex:0.7,
+    width:'100%',
+    flexDirection:'row',
     backgroundColor: '#e8f0fe',
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  headerTwo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  profileImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 10,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  formContainer: {
-    marginTop: 20,
-  },
-  formTitle: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  input: {
+  input:{  //Textfield
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
@@ -38,14 +31,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5,
   },
-  button: {
+  button:{
+    borderWidth:2,
+    width:'35%',
+    height:35,
+    marginLeft:'10%',
+    marginTop:20,
+    borderRadius:30,
+    justifyContent:'center',
+    alignItems:'center',
     backgroundColor: '#0C0C0D',
-    paddingVertical: 10,
-    borderRadius: 20,
-    alignItems: 'center',
   },
-  buttonText: {
+  buttontext:{
     color: '#e8f0fe',
-    fontSize: 18,
   },
-});
+  textInput:{
+    alignSelf:'center',
+    fontSize: 16,
+    color: '#0C0C0D',
+    marginTop:10,
+    marginBottom:-25,
+  }, 
+  });
