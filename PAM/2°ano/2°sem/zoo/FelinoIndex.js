@@ -16,7 +16,7 @@ export default function Felinos() {
      caracteristicas:'Os leões são predadores sociais, vivendo em grupos que facilitam a caça e a proteção dos filhotes. Eles são conhecidos por sua força e agilidade, caçando principalmente grandes herbívoros como zebras e antílopes. Os machos defendem o território, enquanto as fêmeas costumam cuidar dos filhotes e caçar. Além disso, os leões têm uma comunicação complexa, usando rugidos e vocalizações para se organizar e alertar sobre perigos.',
     },
     {
-     imagem:'https://bucket.mlcdn.com/a/2846/2846371/images/b713390f8ffe473b32873d59cb39d3ba8513189c.jpeg',
+     imagem:'https://cdn.pixabay.com/photo/2012/03/01/00/28/animal-19621_1280.jpg', // Leopardo
      nome:'Leopardo',
      nomecientifico:'Panthera pardus',
      habitat:'Os leopardos preferem florestas densas, savanas, montanhas e áreas rochosas. Sua habilidade de se adaptar a diferentes tipos de habitat é uma das razões pelas quais eles são tão bem-sucedidos. Eles também são conhecidos por serem excelentes escaladores, frequentemente se escondendo em árvores para descansar e armazenar suas presas, evitando assim concorrência com outros predadores, como leões.',
