@@ -7,6 +7,10 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    linha: {
+      flex: 1,
+      flexDirection:'row',
+    },
     buttonCont: {
       marginBottom: 20,
     },
@@ -23,10 +27,15 @@ export default StyleSheet.create({
     title: {
       fontSize: 24,
       fontWeight: 'bold',
-      marginBottom: 30,
-      color: '#0C0C0D',
+      marginBottom: 10,
+      color: '#BF7E04',
     },
-    
+    secondTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 30,
+      color: 'black',
+    },
     description: {
       fontSize: 10,
       color: 'black',
@@ -34,6 +43,12 @@ export default StyleSheet.create({
       marginBottom: 15,
       textAlign: 'left',
       width: '80%'
+    },
+    subTitles: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 30,
+      color: '#BF7E04',
     },
     imagemContainer: {
       width: '80%',
