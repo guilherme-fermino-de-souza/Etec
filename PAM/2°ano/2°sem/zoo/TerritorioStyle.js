@@ -1,33 +1,32 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
+  container: { //Corpo
     flex: 1,
     backgroundColor: '#e8f0fe',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  territorioArea:{
+  territorioArea:{ //Container
     flex:1,
     flexDirection:'row',
     height:'100%',
-    width:'85%',
-    margin:10,
-  },
-  buttonArea:{
     width:'80%',
+    marginBottom: 30,
+  },
+  buttonArea:{ //Area
     height:'100%',
-    margin: 'auto'
+    width:'50%',
   },
   text:{
     fontSize: 24,
     fontWeight: 'bold',
+    textAlign: 'center', 
+    color: '#BF7E04',
   },
-  territorio:{
+  territorio:{ //Pressable
     width:'100%',
     height:'100%',
-    alignItems:'center',
-    justifyContent:'center',
   },
   header:{
     flex:0.5
