@@ -20,6 +20,7 @@ import Home from './src/Pages/Home';
 import Login from './src/Pages/Login';
 import Territorios from './src/Pages/Territorios';
 import Felinos from './src/Pages/Felinos';
+import Canideos from './src/Pages/Canideos';
 
 const Stack = createNativeStackNavigator ();
 
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
       <Stack.Screen name="Home" component={Home}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
       <Stack.Screen name="Login" component={Login}
@@ -35,6 +37,9 @@ export default function App() {
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
       <Stack.Screen name="Felinos" component={Felinos}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
+      <Stack.Screen name="Canideos" component={Canideos}
+        options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
