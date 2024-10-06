@@ -1,22 +1,31 @@
 import { StyleSheet } from "react-native";
 export default StyleSheet.create({
-    container: {
+    container: { //Corpo
       flex: 1,
-      width: '100%',
       backgroundColor: '#e8f0fe',
       alignItems: 'center',
       justifyContent: 'center',
     },
-    linha: {
-      flex: 1,
+    felinosArea:{ //Container
+      flex:1,
       flexDirection:'row',
+      height:'100%',
+      width:'80%',
+      marginBottom: 30,
     },
-    buttonCont: {
-      marginBottom: 20,
+    buttonArea:{ //Area
+      height:'100%',
+      width:'50%',
     },
-    button: {
-      fontSize: 80,
-      color:'#FFE74A',
+    text:{
+      fontSize: 24,
+      fontWeight: 'bold',
+      textAlign: 'center', 
+      color: '#BF7E04',
+    },
+    felinos:{ //Pressable
+      width:'100%',
+      height:'100%',
     },
     modal: {
       flex: 1,
@@ -30,6 +39,7 @@ export default StyleSheet.create({
       marginBottom: 10,
       color: '#BF7E04',
     },
+    //MODAL
     secondTitle: {
       fontSize: 20,
       fontWeight: 'bold',
