@@ -36,7 +36,7 @@ export default StyleSheet.create({
     title: {
       fontSize: 24,
       fontWeight: 'bold',
-      marginBottom: 10,
+      marginBottom: 40,
       color: '#BF7E04',
     },
     //MODAL
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     },
     image: {
       width: '100%',
-      height: '100%',
+      height: '150%',
       margin: 5,
     },
   });
