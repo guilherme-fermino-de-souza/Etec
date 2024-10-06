@@ -71,54 +71,58 @@ export default function Felinos() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.linha}>
-        <Pressable onPress={() => carregar(0)} style={styles.buttonCont}>
-            <Image style={{
-              width: '100%',height: '100%',}} 
-                    source={{
-                      uri: 'https://avatars.mds.yandex.net/i?id=0261d65e7695f527c78e88a6b6913300c2460607-5272510-images-thumbs&n=13', //Draw Lion   
-                    }}/>
-        </Pressable>
+      <View style={styles.felinosArea}>
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(0)} >
+              <Image style={{width: '100%',height: '100%',}} //Draw Lion
+              source={{uri: 'https://avatars.mds.yandex.net/i?id=0261d65e7695f527c78e88a6b6913300c2460607-5272510-images-thumbs&n=13', }}/>
+              <Text style={styles.text}>Leão</Text>
+            </Pressable>
+          </View>
 
-        <Pressable onPress={() => carregar(1)} style={styles.buttonCont}>
-           <Image style={{width: '100%',height: '100%',}} 
-                  source={{
-                     uri: 'https://s1.1zoom.ru/big0/219/Big_cats_Leopards_Black_background_534034_1024x1024.jpg', //Draw Leopardo  
-                   }}/>
-         </Pressable>
-         </View>
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(1)}>
+              <Image style={{width: '100%',height: '100%',}} //Draw Leopardo
+              source={{uri: 'https://s1.1zoom.ru/big0/219/Big_cats_Leopards_Black_background_534034_1024x1024.jpg',}}/>
+              <Text style={styles.text}>Leopardo</Text>
+              </Pressable>
+          </View>
+      </View>
 
-         <View style={styles.linha}>
-        <Pressable onPress={() => carregar(2)} style={styles.buttonCont}>
-          <Image style={{width: '100%',height: '100%',}} 
-                  source={{
-                     uri: 'https://avatars.mds.yandex.net/i?id=227c2712fd04e5923e6234177b402177-5485758-images-thumbs&n=13', //Draw Chita    
-                  }}/>
-        </Pressable>
+        <View style={styles.felinosArea}>
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(2)}>
+              <Image style={{width: '100%',height: '100%',}} //Draw Chita 
+              source={{uri: 'https://avatars.mds.yandex.net/i?id=227c2712fd04e5923e6234177b402177-5485758-images-thumbs&n=13',}}/>
+              <Text style={styles.text}>Chita</Text>
+            </Pressable>
+          </View>
 
-        <Pressable onPress={() => carregar(3)} style={styles.buttonCont}>
-          <Image style={{width: '100%',height: '100%',}} 
-                  source={{
-                    uri: 'https://avatars.mds.yandex.net/i?id=b66e66e305f83fab84d3c508ae3513221434aa7d-5115981-images-thumbs&n=13', //Draw Tiger   
-                  }}/>
-        </Pressable>
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(3)}>
+              <Image style={{width: '100%',height: '100%',}} //Draw Tiger
+              source={{uri: 'https://avatars.mds.yandex.net/i?id=b66e66e305f83fab84d3c508ae3513221434aa7d-5115981-images-thumbs&n=13',}}/>
+              <Text style={styles.text}>Tigre</Text>
+            </Pressable>
+          </View>
         </View>
 
-        <View style={styles.linha}>
-        <Pressable onPress={() => carregar(4)} style={styles.buttonCont}>
-          <Image style={{width: '100%',height: '100%',}} 
-                  source={{
-                    uri: 'https://cdn.discordapp.com/avatars/206192752638164993/a57f58cd4371cc21c934409476523cff.png?size=2048', //Lince-Ibérico
-                  }}/>
-        </Pressable>
-                   
-        <Pressable onPress={() => carregar(5)} style={styles.buttonCont}>
-            <Image style={{width: '100%',height: '100%',}} 
-                    source={{
-                      uri: 'https://avatars.mds.yandex.net/i?id=ff315c824080d960f570d9db6a3f7fba8b11a32b-5256374-images-thumbs&n=13', //Onça-Pintada 
-                    }}/>
-        </Pressable>
+        <View style={styles.felinosArea}>
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(4)}>
+              <Image style={{width: '100%',height: '100%',}} //Lince-Ibérico 
+              source={{uri: 'https://cdn.discordapp.com/avatars/206192752638164993/a57f58cd4371cc21c934409476523cff.png?size=2048',}}/>
+              <Text style={styles.text}>Lince-Ibérico</Text>
+            </Pressable>
+          </View>
+   
+          <View style={styles.buttonArea}>
+            <Pressable style={styles.felinos} onPress={() => carregar(5)}>
+              <Image style={{width: '100%',height: '100%',}} //Onça-Pintada 
+              source={{uri: 'https://avatars.mds.yandex.net/i?id=ff315c824080d960f570d9db6a3f7fba8b11a32b-5256374-images-thumbs&n=13',}}/>
+              <Text style={styles.text}>Onça-Pintada</Text>
+            </Pressable>
+          </View>
         </View>
 
         <ScrollView>
@@ -142,7 +146,6 @@ export default function Felinos() {
           </View>
         </Modal>
         </ScrollView>
-      </ScrollView>
     </View>
   );
 }
