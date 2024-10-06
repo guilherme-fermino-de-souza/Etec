@@ -22,6 +22,7 @@ import Territorios from './src/Pages/Territorios';
 import Felinos from './src/Pages/Felinos';
 import Canideos from './src/Pages/Canideos';
 import Ursidae from './src/Pages/Ursidae';
+import Hienideos from './src/Pages/Hienideos';
 
 const Stack = createNativeStackNavigator ();
 
@@ -41,6 +42,8 @@ export default function App() {
       <Stack.Screen name="Canideos" component={Canideos}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
       <Stack.Screen name="Ursidae" component={Ursidae}
+        options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
+      <Stack.Screen name="Hienideos" component={Hienideos}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
 
       </Stack.Navigator>
