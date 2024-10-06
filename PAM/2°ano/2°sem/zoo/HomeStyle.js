@@ -14,6 +14,7 @@ export default StyleSheet.create({
     texto:{
       alignSelf:'center',
       marginBottom:'25%',
+      color: '#BF7E04',
       fontSize:30,
       fontWeight: 'bold'
     },
