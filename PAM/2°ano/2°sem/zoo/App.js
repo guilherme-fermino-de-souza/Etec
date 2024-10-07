@@ -23,6 +23,8 @@ import Felinos from './src/Pages/Felinos';
 import Canideos from './src/Pages/Canideos';
 import Ursidae from './src/Pages/Ursidae';
 import Hienideos from './src/Pages/Hienideos';
+import Baleias from './src/Pages/Baleias';
+import AvesdeRapina from './src/Pages/AvesdeRapina';
 
 const Stack = createNativeStackNavigator ();
 
@@ -44,6 +46,10 @@ export default function App() {
       <Stack.Screen name="Ursidae" component={Ursidae}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
       <Stack.Screen name="Hienideos" component={Hienideos}
+        options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
+      <Stack.Screen name="Baleias" component={Baleias}
+        options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
+      <Stack.Screen name="AvesdeRapina" component={AvesdeRapina}
         options={{headerStyle:{backgroundColor:'#545454'},headerTintColor:'white'}}/>
 
       </Stack.Navigator>
