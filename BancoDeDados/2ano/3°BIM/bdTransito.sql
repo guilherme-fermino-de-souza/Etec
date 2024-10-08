@@ -18,10 +18,10 @@ CREATE TABLE tbVeiculos(
 	,anoVeiculo DATE NOT NULL
 	,idMotorista INT FOREIGN KEY REFERENCES tbMotoristas(idMotorista)
 )
-CREATE TABLE tbMulta(
+CREATE TABLE tbMultas(
 	idMulta INT PRIMARY KEY IDENTITY(1,1)
 	,dataMulta DATE NOT NULL
-	,horaMulta SMALLDATETIME NOT NULL
+	,horaMulta SMALLDATETIME
 	,pontosMulta INT NOT NULL
 	,idVeiculo INT FOREIGN KEY REFERENCES tbVeiculos(idVeiculo)
 )
