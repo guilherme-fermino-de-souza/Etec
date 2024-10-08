@@ -1,4 +1,7 @@
-/*2 - Criar dois triggers que:			''      DATE '1990-02-10'     smalldatetime '08-02-2016 23:21:00'
+/*SELECT * FROM tbContaCorrente
+SELECT * FROM tbDeposito
+
+2 - Criar dois triggers que:			''      DATE '1990-02-10'     smalldatetime '08-02-2016 23:21:00'
 
 A) Ao ser feito um depósito atualize o saldo da conta corrente, somando à quantia depositada*/
 CREATE TRIGGER tgAtualizaSaldoConCor
@@ -10,12 +13,10 @@ AS
  
 	 SET @idNumConta = (SELECT idNumConta FROM tbDeposito WHERE idNumConta = @idNumConta)
 
-	 SELECT @idDeposito = idDeposito
- 
-	 SELECT @valDeposito= valorDeposito
+	 SELECT @idDeposito = idDeposito, @valDeposito = valorDeposito FROM INSERTED
  
 	 UPDATE tbContaCorrente
-		SET saldoConta = saldoConta - @valDeposito
+		SET saldoConta = saldoConta + @valDeposito
 		 WHERE idNumConta = @idNumConta
 
 
@@ -23,10 +24,8 @@ AS
 SELECT * FROM tbContaCorrente
 SELECT * FROM tbDeposito
 
-INSERT INTO tbSaque (valorSaque, dataSaque, horaSaque, idNumConta)
-	VALUES (GETDATE(), 5, 1)
-
-
+INSERT INTO tbDeposito (valorDeposito, dataDeposito, horaDeposito, idNumConta)
+	VALUES(150, SELECT CONVERT(VARCHAR(10),GETDATE(), 105) AS , GETDATE() 13:21:00, 1)
 
 
 
