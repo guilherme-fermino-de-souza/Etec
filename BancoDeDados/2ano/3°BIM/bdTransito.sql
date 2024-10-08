@@ -190,3 +190,31 @@ INSERT INTO tbMulta
 	SELECT COUNT(idVeiculo) AS 'Quantidade de veículos que não podem circular na segunda-feira', placaVeiculo AS 'Placa do veículo' FROM tbVeiculos
 		WHERE placaVeiculo LIKE '__1%' OR placaVeiculo LIKE '__2%'
 	GROUP BY placaVeiculo
+
+
+--TRIGGER (copiado da professora Aline Mendonça, para fins de autocorreção/aprendizado por revisão em exercícios posteriores, feitos por *nós*)
+
+CREATE TRIGGER tgAtualizaCaixa 
+ON tbMultas AFTER INSERT
+AS
+
+	 DECLARE @idMotoris INT, @idVeic INT, @numPontos INT
+ 
+	 SET @idVeic = (SELECT idVeiculo FROM INSERTED)
+
+	 SELECT @numPontos = pontosMulta FROM INSERTED
+ 
+	 SET @idMotoris = (SELECT idMotorista FROM tbVeiculos WHERE idVeiculo = @idVeic)
+ 
+	 UPDATE tbMotoristas
+		SET pontuacaoMotorista = pontuacaoMotorista + @numPontos
+		 WHERE idMotorista = @idMotoris
+
+
+SELECT * FROM tbMultas
+SELECT * FROM tbMotoristas
+SELECT * FROM tbVeiculos
+
+INSERT INTO tbMultas(dataMulta, pontosMulta, idVeiculo)
+VALUES
+	(GETDATE(), 5, 1)
