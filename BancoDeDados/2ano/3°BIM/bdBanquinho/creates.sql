@@ -1,5 +1,6 @@
 CREATE DATABASE bdBanquinho
 
+	--DROP DATABASE bdBanquinho
 
 CREATE TABLE tbCliente(
 	idCliente INT PRIMARY KEY IDENTITY(1, 1)
@@ -9,7 +10,6 @@ CREATE TABLE tbCliente(
 
 CREATE TABLE tbContaCorrente(
 	idNumConta INT PRIMARY KEY IDENTITY(1, 1)
-	,numConta INT
 	,saldoConta MONEY
 	,idCliente INT FOREIGN KEY REFERENCES tbCliente(idCliente)
 )	
