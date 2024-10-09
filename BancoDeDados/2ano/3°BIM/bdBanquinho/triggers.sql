@@ -6,29 +6,29 @@ SELECT * FROM tbDeposito
 A) Ao ser feito um depósito atualize o saldo da conta corrente, somando à quantia depositada*/
 CREATE TRIGGER tgAtualizaSaldoConCor
 ON tbDeposito
-AFTER INSERT
+FOR INSERT
 AS
 
-	 DECLARE @idNumConta INT, @idDeposito INT, @valDeposito INT
+	DECLARE @idNumConta INT, @idDeposito INT, @valDeposito MONEY
  
-	 SET @idNumConta = (SELECT idNumConta FROM tbDeposito WHERE idNumConta = @idNumConta)
+	SET @idNumConta = (SELECT idNumConta FROM INSERTED)
 
-	 SELECT @idDeposito = idDeposito, @valDeposito = valorDeposito FROM INSERTED
+	SELECT @idDeposito = idDeposito, @valDeposito = valorDeposito FROM INSERTED
  
-	 UPDATE tbContaCorrente
+	--SET @saldCont = (SELECT saldoConta FROM tbContaCorrente WHERE idNumConta = @idNumConta)
+	UPDATE tbContaCorrente
 		SET saldoConta = saldoConta + @valDeposito
-		 WHERE idNumConta = @idNumConta
-
+			WHERE idNumConta = @idNumConta
 
 	-- Testando Trigger
 SELECT * FROM tbContaCorrente
 SELECT * FROM tbDeposito
 
 INSERT INTO tbDeposito (valorDeposito, dataDeposito, horaDeposito, idNumConta)
-	VALUES(150, SELECT CONVERT(VARCHAR(10),GETDATE(), 105) AS , GETDATE() 13:21:00, 1)
+	VALUES(1125, '14-12-2024', '14-12-2024 10:06:00', 1)
 
-
-
+/*	DROP TRIGGER tgAtualizaSaldoConCor	*/
+	
 --B) Ao ser feito um saque atualize o saldo da conta corrente, descontando o valor da última (caso haja saldo bastante)
 CREATE TRIGGER tgAtualizaSaldoContaCorrente 
 ON tbSaque
