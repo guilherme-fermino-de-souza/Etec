@@ -56,4 +56,4 @@ CREATE TABLE tbItensVenda (
     idVenda INT FOREIGN KEY REFERENCES tbVenda(idVenda),
     idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 );
--- Código gerado por IA. Examine e use com cuidado. --
+-- Código gerado por IA [para evitar a perda de tempo, visto que a atividade é sobre triggers e esta parte é básica]. Examine e use com cuidado. --
