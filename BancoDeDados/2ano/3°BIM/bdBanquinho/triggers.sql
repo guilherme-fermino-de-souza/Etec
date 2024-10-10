@@ -43,6 +43,8 @@ INSERT INTO tbDeposito (valorDeposito, dataDeposito, horaDeposito, idNumConta)
 	
 /*	DROP TRIGGER tgMinusSaldoContaCorrente 	*/
 	
+/*	DROP TRIGGER tgMinusSaldoContaCorrente 	*/
+	
 --B) Ao ser feito um saque atualize o saldo da conta corrente, descontando o valor da última (caso haja saldo bastante)
 CREATE TRIGGER tgMinusSaldoContaCorrente 
 ON tbSaque
@@ -59,7 +61,7 @@ AS
  
 	IF (@valSaque > @saldCont)
 	BEGIN
-		PRINT('Não foi possível efetuar o saque pois o valor de R$' + @valSaque +' é superior ao saldo atual da conta - a saber: R$' + @saldCont + '.')
+		PRINT('Não foi possível efetuar o saque pois o valor demandado é superior ao saldo atual da conta.')
 	END
 	ELSE
 	BEGIN
@@ -77,4 +79,4 @@ INSERT INTO tbSaque (valorSaque, dataSaque, horaSaque, idNumConta)
 	VALUES(55, '15-12-2024', '15-12-2024 17:49:00', 1)
 	
 INSERT INTO tbSaque (valorSaque, dataSaque, horaSaque, idNumConta)
-	VALUES(150, '17-12-2024', '17-12-2024 15:53:00', 1)
+	VALUES(450, '18-12-2024', '18-12-2024 17:02:00', 1)
