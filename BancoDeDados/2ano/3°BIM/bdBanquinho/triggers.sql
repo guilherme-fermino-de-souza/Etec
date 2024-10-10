@@ -21,16 +21,24 @@ AS
 			WHERE idNumConta = @idNumConta
 
 	-- Testando Trigger
+SELECT * FROM tbCliente
 SELECT * FROM tbContaCorrente
 SELECT * FROM tbDeposito
 
-	-- Inserts p/ teste dessa e da próxima questões
+	/* Inserts p/ teste dessa e da próxima questão
+	INSERT INTO tbCliente (nomeCliente, cpfCliente)
+	VALUES('Ramon Antunes', '12345678901')
+	,('Amaral Serqueira', '12345768902')
+
+	INSERT INTO tbContaCorrente (saldoConta, idCliente)
+	VALUES(0, 1)
+	,(0, 2)
+	*/
 INSERT INTO tbDeposito (valorDeposito, dataDeposito, horaDeposito, idNumConta)
 	VALUES(1125, '14-12-2024', '14-12-2024 10:06:00', 2)
 	
 INSERT INTO tbDeposito (valorDeposito, dataDeposito, horaDeposito, idNumConta)
 	VALUES(200, '09-12-2024', '09-12-2024 22:33:00', 1)
-
 /*	DROP TRIGGER tgAtualizaSaldoConCor	*/
 	
 /*	DROP TRIGGER tgMinusSaldoContaCorrente 	*/
