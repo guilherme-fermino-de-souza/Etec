@@ -8,6 +8,15 @@ if (isset($_POST['usuario'], $_POST['senha'], $_POST['tipo'])) {
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
 
+    if ($tipo == 'dev') { // Checa se o tipo é dev
+        $codigo = $_POST['codigo'];
+        if ($codigo !== '123') { // Da erro caso o código esteja errado
+            echo "Código Inválido.";
+            header("Location: criarConta.php?tipo=dev");
+            exit();
+        }
+    }
+
     // Verifica se o usuário já existe
     $stmt = $pdo->prepare('SELECT COUNT(*) FROM tbUsuario WHERE nomeUsuario = :usuario');
     $stmt->execute(['usuario' => $nome]);
@@ -16,7 +25,6 @@ if (isset($_POST['usuario'], $_POST['senha'], $_POST['tipo'])) {
         // Usuário já existe
         echo "Usuário já existe. Escolha outro nome.";
     } else {
-        // Hash da senha(criptografa a senha no Banco de Dados)
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
         
         // Prepara e executa a inserção
