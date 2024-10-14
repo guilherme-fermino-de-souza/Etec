@@ -8,22 +8,18 @@ if (isset($_POST['usuario'], $_POST['senha'])) {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    //Início da consulta
-    $stmt = $pdo->prepare('SELECT tipoUsuario FROM tbUsuario WHERE nomeUsuario = :usuario');
-    $stmt->execute(['usuario' => $usuario]); //Chave da Consulta
-    $tipoUsuario = $stmt->fetchColumn(); //Retorna o valor da coluna
-
-    // Busca a senha da conta com base no nome
-    $stmt = $pdo->prepare('SELECT senhaUsuario FROM tbUsuario WHERE nomeUsuario = :usuario');
+    //Início da consulta (pega os dados do BD conforme o nome da conta)
+    $stmt = $pdo->prepare('SELECT idUsuario, tipoUsuario, senhaUsuario FROM tbUsuario WHERE nomeUsuario = :usuario');
     $stmt->execute(['usuario' => $usuario]);
-    $senhaUsuario = $stmt->fetch();
+    $usuarioDados = $stmt->fetch(PDO::FETCH_ASSOC); // Busca o resto das informações com base no nome
 
     // Verifica se o usuário existe e a senha está correta
 
     // Compara se o Hash da Senha inserida é igual ao Hash do Banco de Dados
-    if ($senhaUsuario && password_verify($senha, $senhaUsuario['senhaUsuario'])) { // Hash da senha(criptografa a senha no Banco de Dados)
+    if ($usuarioDados && password_verify($senha, $usuarioDados['senhaUsuario'])) { // Hash da senha(criptografa a senha no Banco de Dados)
         $_SESSION['usuario'] = $usuario; // Armazena o usuário na sessão
-        $_SESSION['tipo'] = $tipoUsuario;
+        $_SESSION['tipo'] = $usuarioDados['tipoUsuario']; // Pega o tipo de Usuario no BD
+        $_SESSION['id'] = $usuarioDados['idUsuario']; // Pega o id do Usuario no BD
         header('Location: clientes.php');
         exit();
     } else {
