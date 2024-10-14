@@ -27,4 +27,5 @@ if ($_SESSION['tipo'] == 'user') { //Limita o acesso do usuário normal
         <h1>Nome: <?php echo $row["nomeUsuario"]; ?></h1>
         <h2>Tipo Conta: <?php echo $row["tipoUsuario"]; ?></h2>
 
+
 <?php }} ?>
