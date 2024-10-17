@@ -1,6 +1,44 @@
--- 1. Crie uma função que informada uma data da matrícula , retorne o dia da semana.
+-- 1. Crie uma função que informada uma data da matrícula , retorne o dia da semana.		OBS:
+-- O código desta questão foi-nos repassado pela profa. Aline Mendonça como base para resolução de questões posteriores.
+CREATE FUNCTION fc_diaSemanaMatri(@dataMatricula DATETIME)
+	RETURNS VARCHAR(40)
+AS
+BEGIN
+	DECLARE @diaSemana AS VARCHAR(40), @dia INT
+	SET @dia = DATEPART(DW, @dataMatricula)
+	IF @dia = 1
+		BEGIN
+		SET @diaSemana = 'Domingo.'
+		END
+	IF @dia = 2
+		BEGIN
+		SET @diaSemana = 'Segunda-feira.'
+		END
+	IF @dia = 3
+		BEGIN
+		SET @diaSemana = 'Terça-feira.'
+		END
+	IF @dia = 4
+		BEGIN
+		SET @diaSemana = 'Quarta-feira.'
+		END
+	IF @dia = 5
+		BEGIN
+		SET @diaSemana = 'Quinta-feira.'
+		END
+	IF @dia = 6
+		BEGIN
+		SET @diaSemana = 'Sexta-feira.'
+		END
+	IF @dia = 7
+		BEGIN
+		SET @diaSemana = 'Sábado.'
+		END
+	RETURN @diaSemana
+END
 
-
+/*DROP FUNCTION dbo.fc_diaSemanaMatri
+	SELECT dataMatricula AS 'Data da matrícula', Diadasemana = dbo.fc_diaSemanaMatri(dataMatricula) fROM tbMatricula*/
 
 -- 2. Crie uma função que de acordo com a carga horária do curso exiba curso rápido ou curso extenso. (Rápido menos de 1000 horas).
 
