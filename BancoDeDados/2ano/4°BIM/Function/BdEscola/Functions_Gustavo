@@ -63,6 +63,25 @@ END
 
 
 -- 3. Crie uma função que de acordo com o valor do curso exiba curso caro ou curso barato. (Curso caro acima de 400).
+CREATE FUNCTION fc_valorCurso (@valCur INT)
+	RETURNS VARCHAR(20)
+AS
+BEGIN
+	DECLARE @classiVal VARCHAR(20)
+	IF @valCur < 400
+		BEGIN
+		SET @classiVal = 'Curso barato.'
+		END
+	IF @valCur >= 400
+		BEGIN
+		SET @classiVal = 'Curso caro.'
+		END
+	
+	RETURN @classiVal
+END
+
+/*DROP FUNCTION dbo.fc_fc_valorCurso
+	SELECT valorCurso AS 'Valor do curso', TipoDeValorDoCurso = dbo.fc_valorCurso(valorCurso) fROM tbCurso*/
 
 
 
