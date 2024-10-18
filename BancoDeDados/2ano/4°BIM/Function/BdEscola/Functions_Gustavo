@@ -86,7 +86,19 @@ END
 
 
 -- 4. Criar uma função que informada a data da matrícula converta-a no formato dd/mm/aaaa.
+CREATE FUNCTION fc_conversaoDataMatri(@dataMatricula DATETIME)
+	RETURNS VARCHAR(12)
+AS
+BEGIN
+	DECLARE @converDataMa VARCHAR(12)
+	SET @converDataMa = CONVERT(VARCHAR(10), @dataMatricula, 103)
 
+	RETURN @converDataMa
+END
+
+/*DROP FUNCTION dbo.fc_conversaoDataMatri
+	SELECT dataMatricula, DataMatriculaModeloBrasileiro = dbo.fc_conversaoDataMatri(dataMatricula) FROM tbMatricula
+*/
 
       -- BD ESTOQUE --
 -- 5. Criar uma função que retorne o dia de semana da venda (no formato segunda,
