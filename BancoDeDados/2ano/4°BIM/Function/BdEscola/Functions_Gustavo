@@ -38,10 +38,28 @@ BEGIN
 END
 
 /*DROP FUNCTION dbo.fc_diaSemanaMatri
-	SELECT dataMatricula AS 'Data da matrícula', Diadasemana = dbo.fc_diaSemanaMatri(dataMatricula) fROM tbMatricula*/
+	SELECT dataMatricula AS 'Data da matrícula', DiaDaSemana = dbo.fc_diaSemanaMatri(dataMatricula) fROM tbMatricula*/
 
 -- 2. Crie uma função que de acordo com a carga horária do curso exiba curso rápido ou curso extenso. (Rápido menos de 1000 horas).
+CREATE FUNCTION fc_cargaHorariaCurso(@carHorCur INT)
+	RETURNS VARCHAR(20)
+AS
+BEGIN
+	DECLARE @tamanSo VARCHAR(20)
+	IF @carHorCur < 1000
+		BEGIN
+		SET @tamanSo = 'Curso rápido.'
+		END
+	IF @carHorCur >= 1000
+		BEGIN
+		SET @tamanSo = 'Curso extenso.'
+		END
+	
+	RETURN @tamanSo
+END
 
+/*DROP FUNCTION dbo.fc_cargaHorariaCurso
+	SELECT cargaHorariaCurso AS 'Carga horária do curso', CargaHorariaCurso = dbo.fc_cargaHorariaCurso(cargaHorariaCurso) fROM tbCurso*/
 
 
 -- 3. Crie uma função que de acordo com o valor do curso exiba curso caro ou curso barato. (Curso caro acima de 400).
