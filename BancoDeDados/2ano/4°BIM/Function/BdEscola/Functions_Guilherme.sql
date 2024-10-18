@@ -4,11 +4,11 @@
 
 -- 1. Crie uma função que informada uma data da matrícula , retorne o dia da semana.
 
-CREATE FUNCTION fc_DiaSemana(@DiaSemana DATETIME) -- Nome função(@parâmetro tipo dado parâmetro)
-RETURNS VARCHAR(14) AS
+CREATE FUNCTION fc_DiaSemana(@DiaSemana DATE) -- Nome função(@parâmetro tipo dado parâmetro)
+RETURNS VARCHAR(24) AS -- Retorno --
 BEGIN 
 
-DECLARE @Dia INT
+DECLARE @Dia INT -- Váriavel a ser usada na função --
 
 SET @Dia = DATEPART(dw, @DiaSemana)
 
@@ -47,12 +47,45 @@ SET @Dia = DATEPART(dw, @DiaSemana)
 
 
 
--- 2. Crie uma função que de acordo com a carga horária do curso exiba curso rápido ou curso extenso. (Rápido menos de 1000 horas).
+-- 2. Crie uma função que de acordo com a carga horária do curso exiba curso rápido ou curso extenso. (Rápido menos de 1000 horas) +.
+
+CREATE FUNCTION fc_TempoCurso(@CargaHoraria INT) -- Nome função(@parâmetro tipo dado parâmetro)
+RETURNS VARCHAR (14) AS -- Retorno --
+	BEGIN
+
+	DECLARE @TempoCurso VARCHAR(15)
+
+	IF @CargaHoraria < 1000 BEGIN
+		SET @TempoCurso = 'Rápido'
+	END
+	IF @CargaHoraria >= 1000 BEGIN
+		SET @TempoCurso = 'Extenso'
+	END
+
+	RETURN @TempoCurso
+END
+
+-- DROP FUNCTION dbo.fc_TempoCurso --
+-- SELECT  cargaHorariaCurso AS 'Carga Horária Curso', tempoCurso=dbo.fc_TempoCurso(cargaHorariaCurso) FROM tbCurso --
 
 
+-- 3. Crie uma função que de acordo com o valor do curso exiba curso caro ou curso barato. (Curso caro acima de 400) + .
 
--- 3. Crie uma função que de acordo com o valor do curso exiba curso caro ou curso barato. (Curso caro acima de 400).
+CREATE FUNCTION fc_ValorCurso (@PrecoCurso INT) RETURNS VARCHAR(20) AS
+	BEGIN
+	DECLARE @valor VARCHAR(15)
 
+	IF @PrecoCurso < 400 BEGIN
+	SET @valor = 'Curso Barato'
+	END
+	IF @PrecoCurso >= 400 BEGIN
+	SET @valor = 'Curso Caro' 
+	END
 
+	RETURN @valor
+END
+
+-- DROP FUNCTION dbo.fc_ValorCurso --
+-- SELECT valorCurso AS 'Preço Curso', precoCurso = dbo.fc_ValorCurso(valorCurso) FROM tbCurso --
 
 -- 4. Criar uma função que informada a data da matrícula converta-a no formato dd/mm/aaaa.
