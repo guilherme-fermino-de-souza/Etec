@@ -1,32 +1,34 @@
--- 1 Criar uma função que retorne o dia de semana da venda (no formato segunda, terça, etc) ao lado do código da venda, valor total da venda e sua data
+-- 1 Criar uma função que retorne o dia de semana da venda (no formato segunda, terça, etc) ao lado do código da venda, valor total da venda e sua data + --
 CREATE FUNCTION fc_DiaVenda(@diaVenda DATE) RETURNS VARCHAR(40) AS 
 	BEGIN
+
+	DECLARE @DiaSemana VARCHAR(10)
 	DECLARE @Dia INT
 	SET @Dia = DATEPART(dw, @DiaVenda)
 
 	IF @Dia = 1 BEGIN
-		SET @diaVenda = 'Domigo'
+		SET @DiaSemana = 'Domigo'
 	END
 	IF @Dia = 2 BEGIN
-		SET @diaVenda = 'Segunda'
+		SET @DiaSemana = 'Segunda'
 	END
 	IF @Dia = 3 BEGIN
-		SET @diaVenda = 'Terça'
+		SET @DiaSemana = 'Terça'
 	END
 	IF @Dia = 4 BEGIN
-		SET @diaVenda = 'Quarta'
+		SET @DiaSemana = 'Quarta'
 	END
 	IF @Dia = 5 BEGIN
-		SET @diaVenda = 'Quinta'
+		SET @DiaSemana = 'Quinta'
 	END
 	IF @Dia = 6 BEGIN
-		SET @diaVenda = 'Sexta'
+		SET @DiaSemana = 'Sexta'
 	END
 		IF @Dia = 7 BEGIN
-		SET @diaVenda = 'Sábado'
+		SET @DiaSemana = 'Sábado'
 	END
 
-	RETURN @diaVenda
+	RETURN @DiaSemana
 END
 
 -- DROP FUNCTION fc_DiaVenda --
@@ -40,15 +42,15 @@ END
 
 
 
--- 4 Criar uma função que usando o bdEstoque diga se o cpf do cliente é ou não válido
-CREATE FUNCTION fc_VerificarCpf(@cpf VARCHAR(11)) RETURNS CHAR(1) AS
+-- 4 Criar uma função que usando o bdEstoque diga se o cpf do cliente é ou não válido + --
+CREATE FUNCTION fc_VerificarCpf(@cpf CHAR(11)) RETURNS CHAR(1) AS
 	BEGIN
 		DECLARE @indice INT
 			,@soma INT
 			,@dig1 INT
 			,@dig2 INT
-			,@cpfTemporario INT
-			,@digitosIguais INT
+			,@cpfTemporario CHAR(1)
+			,@digitosIguais CHAR(1)
 			,@resultados CHAR(1)
 
 		SET @resultados = 'N'
@@ -70,7 +72,7 @@ CREATE FUNCTION fc_VerificarCpf(@cpf VARCHAR(11)) RETURNS CHAR(1) AS
 				-- Calculo 1° Dígito
 				SET @soma = 0
 				SET @indice = 1 -- Retorna para 1 --
-				WHILE (@indice <= 9)
+					WHILE (@indice <= 9)
 					BEGIN
 						SET @soma = @soma + CONVERT(INT, SUBSTRING(@cpf, @indice, 1)) * (11 - @indice)
 						SET @indice = @indice + 1 -- aumenta o @indice --
@@ -84,7 +86,7 @@ CREATE FUNCTION fc_VerificarCpf(@cpf VARCHAR(11)) RETURNS CHAR(1) AS
 				-- Calculo 2° Dígito
 				SET @soma = 0
 				SET @indice = 1 -- Retorna para 1(dnv) --
-				WHILE (@indice <= 10)
+					WHILE (@indice <= 10)
 					BEGIN
 						SET @soma = @soma + CONVERT(INT, SUBSTRING(@cpf, @indice, 1)) * (12 - @indice)
 						SET @indice = @indice + 1
@@ -95,7 +97,7 @@ CREATE FUNCTION fc_VerificarCpf(@cpf VARCHAR(11)) RETURNS CHAR(1) AS
 					SET @dig2=0
 
 				-- Validando --
-				IF (@dig1 = SUBSTRING(@cpf, LEN(@cpf)-1,1)) AND (@dig2=SUBSTRING(@cpf, LEN(@cpf),1))
+				IF (@dig1 = SUBSTRING(@cpf, LEN(@cpf)-1,1)) AND (@dig2=SUBSTRING(@cpf, LEN(@cpf),1)) -- LEN pega o comprimento(caracteres)
 					SET @resultados = 'S'
 				ELSE
 					SET @resultados = 'N'
