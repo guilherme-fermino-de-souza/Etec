@@ -1,4 +1,4 @@
-CREATE DATABASE bdLojaEstoqueTwo
+CREATE DATABASE bdLojaEstoque
 GO
 
 
@@ -24,13 +24,13 @@ CREATE TABLE tbFornecedor(
 CREATE TABLE tbVenda(
    idvenda INT PRIMARY KEY IDENTITY(1,1)
    ,dataVenda SMALLDATETIME 
-   ,valorTotalVenda MONEY NOT NULL
+   ,valorTotalVenda INT NOT NULL
    ,idCliente INT FOREIGN KEY REFERENCES tbCliente(idCliente)
    )
 CREATE TABLE tbProduto(
    idProduto INT PRIMARY KEY IDENTITY(1,1)
    ,descricaoProduto VARCHAR (60) NOT NULL
-   ,valorProduto MONEY NOT NULL
+   ,valorProduto INT NOT NULL
    ,quantidadeProduto INT NOT NULL 
    ,idFabricante INT FOREIGN KEY REFERENCES tbFabricante(idFabricante)
    ,idFornecedor INT FOREIGN KEY REFERENCES tbFornecedor(idFornecedor)
