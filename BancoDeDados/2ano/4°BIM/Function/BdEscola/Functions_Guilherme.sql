@@ -86,6 +86,16 @@ CREATE FUNCTION fc_ValorCurso (@PrecoCurso INT) RETURNS VARCHAR(20) AS
 END
 
 -- DROP FUNCTION dbo.fc_ValorCurso --
--- SELECT valorCurso AS 'Preço Curso', precoCurso = dbo.fc_ValorCurso(valorCurso) FROM tbCurso --
+-- SELECT valorCurso AS 'Preço Curso', precoCurso = dbo.fc_ValorCurso(valorCurso) FROM tbCurso + --
 
--- 4. Criar uma função que informada a data da matrícula converta-a no formato dd/mm/aaaa.
+-- 4. Criar uma função que informada a data da matrícula converta-a no formato dd/mm/aaaa.]
+CREATE FUNCTION fc_DataMatricula(@DataMatricula DATETIME) RETURNS VARCHAR(20) AS
+	BEGIN
+	DECLARE @data VARCHAR(10)
+	SET @data = CONVERT(VARCHAR(10), @DataMatricula, 103)
+	RETURN @data
+END
+
+-- DROP FUNCTION dbo.fc_DataMatricula --
+-- SELECT  dataMatricula AS 'Data Matrícula', Data=dbo.fc_DataMatricula(dataMatricula) FROM tbMatricula --
+
