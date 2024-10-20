@@ -65,8 +65,31 @@ SELECT idCliente, idVenda, totalDeVendasDoCliente = dbo.fc_numTotalVendasClien(i
 
 
 /* 7. Criar uma função que receba o código de um vendedor e o mês e informe o total
-de vendas do vendedor no mês informado*/
+de vendas do vendedor no mês informado
+   OBS: não faço ideia de como inserir campos de tabelas totalmente diferentes na mesma instrução, DDL ou DML. Triste.*/
+CREATE FUNCTION fc_numTotalVendasFornecedorPorMes(@idVenda INT)
+	RETURNS VARCHAR(60)
+AS
+BEGIN
+	DECLARE @numTotalVendas INT, @idFabricante INT, @mesVenda DATETIME, @retorno VARCHAR(60)
+	SET @idFabricante = (SELECT idFabricante FROM tbVenda 
+		INNER JOIN tbItensVenda ON tbVenda.idVenda = tbItensVenda.idVenda
+		INNER JOIN tbProduto ON tbItensVenda.idProduto = tbProduto.idFabricante)
+	
+	SET @mesVenda = (SELECT MONTH(dataVenda) FROM tbVenda WHERE @idVenda = idvenda)
+	
+	SET @numTotalVendas = (SELECT COUNT(idVenda) FROM tbVenda WHERE @idFabricante = (SELECT idFabricante FROM tbItensVenda 
+		INNER JOIN tbProduto ON tbItensVenda.idProduto = tbProduto.idFabricante))
+	SET @numTotalVendas = ( SELECT COUNT(idVenda) FROM  tbVenda WHERE @mesVenda = MONTH(dataVenda))
+		
+	SET @retorno = @numTotalVendas
 
+	RETURN @retorno 
+END
+
+SELECT dataVenda, idVenda, totalDeVendasDoFornecedorNesteMês = dbo.fc_numTotalVendasFornecedorPorMes(idVenda) FROM tbVenda
+WHERE idVenda = 4 AND dataVenda = '15-02-2014'
+--DROP FUNCTION dbo.fc_numTotalVendasFornecedorPorMes
 
 
 -- 8. Criar uma função que usando o bdEstoque diga se o cpf do cliente é ou não válido
