@@ -46,3 +46,17 @@ BEGIN
 END
 
 SELECT diaDaSemana = dbo.fc_diaSemanaVenda(dataVenda), idvenda, valorTotalVenda, dataVenda FROM tbVenda
+
+
+/* 6. Criar uma função que receba o código do cliente e retorne o total de vendas que
+o cliente já realizou*/
+
+
+
+/* 7. Criar uma função que receba o código de um vendedor e o mês e informe o total
+de vendas do vendedor no mês informado*/
+
+
+
+-- 8. Criar uma função que usando o bdEstoque diga se o cpf do cliente é ou não válido
+
