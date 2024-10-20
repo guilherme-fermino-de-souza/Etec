@@ -50,7 +50,18 @@ SELECT diaDaSemana = dbo.fc_diaSemanaVenda(dataVenda), idvenda, valorTotalVenda,
 
 /* 6. Criar uma função que receba o código do cliente e retorne o total de vendas que
 o cliente já realizou*/
+CREATE FUNCTION fc_numTotalVendasClien(@idCliente INT)
+	RETURNS VARCHAR(40)
+AS
+BEGIN
+	DECLARE @numTotalVendas INT
+	SET @numTotalVendas = (SELECT COUNT(idVenda) FROM tbVenda WHERE idCliente = @idCliente)
 
+	RETURN @numTotalVendas 
+END
+
+SELECT idCliente, idVenda, totalDeVendasDoCliente = dbo.fc_numTotalVendasClien(idCliente) FROM tbVenda
+--WHERE idCliente = 1
 
 
 /* 7. Criar uma função que receba o código de um vendedor e o mês e informe o total
