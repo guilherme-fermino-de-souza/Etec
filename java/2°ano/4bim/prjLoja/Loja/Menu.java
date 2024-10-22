@@ -12,30 +12,31 @@ public class Menu extends JFrame{
     	this.setLocationRelativeTo(null);
     	this.setExtendedState(MAXIMIZED_BOTH);
 
-        JMenu arq = new JMenu("Arquivo");
-        JMenu cad = new JMenu("Cadastrar");        
-        JMenu aju = new JMenu("Ajuda");
+        JMenu arquivo = new JMenu("Arquivo");
+        JMenu cadastrar = new JMenu("Cadastrar");        
+        JMenu ajuda = new JMenu("Ajuda");
                
         JMenuItem sair = new JMenuItem("Sair"); 
         JMenuItem produto = new JMenuItem("Produto");
         JMenuItem clien = new JMenuItem("Cliente");
         JMenuItem pedido = new JMenuItem("Pedido"); 
-        JMenuItem exemploJTabbedPane = new JMenuItem("JTabbedPane"); /*Painel com guias*/
+        JMenuItem exemploJTabbedPane = new JMenuItem("JTabbedPane"); /*Painel com guias Exemplo*/
         JMenuItem sobre = new JMenuItem("Sobre");
                       
         /*ADD no painel*/
-        arq.add(sair); 
-        cad.add(produto);
-        cad.add(clien);
-        cad.add(pedido);
-        cad.add(exemploJTabbedPane);
-        aju.add(sobre);
-        /*MENU*/
+        arquivo.add(sair); 
+        cadastrar.add(clien);
+        cadastrar.add(produto);
+        cadastrar.add(pedido);
+        cadastrar.add(exemploJTabbedPane);
+        ajuda.add(sobre);
+        
+        /*MENU nav*/
         JMenuBar bar = new JMenuBar();
         setJMenuBar(bar);
-        bar.add(arq);
-        bar.add(cad); 
-        bar.add(aju);
+        bar.add(arquivo);
+        bar.add(cadastrar); 
+        bar.add(ajuda);
              
        sair.addActionListener( /* SAIR */
          new ActionListener(){
@@ -45,20 +46,33 @@ public class Menu extends JFrame{
          }
        );
        
+       /* Aba Cliente */
        clien.addActionListener(
          new ActionListener(){
              public void actionPerformed(ActionEvent event){
-            	 Cadastrar cadastroClien = new Cadastrar();
-            	 cadastroClien.setVisible(true);
+            	 Cliente c = new Cliente();
+            	 c.setVisible(true);
              }
          }
        );
        
+       /* Aba Produto */
+       produto.addActionListener(
+    		 new ActionListener() {
+    			 public void actionPerformed(ActionEvent event) {
+    				   Produto ProdutoPainel = new Produto();
+    				   ProdutoPainel.setVisible(true);
+    			 }
+    		 }
+    	);
+       /* Aba Pedido */
+       
+       /* Aba JTabbedPane Exemplo */
        exemploJTabbedPane.addActionListener(
-    	         new ActionListener(){
-    	             public void actionPerformed(ActionEvent event){
-    	            	 ObjJTabbedPane otp = new ObjJTabbedPane();
-    	            	 otp.setVisible(true);
+    	      new ActionListener(){
+    	          public void actionPerformed(ActionEvent event){
+    	            ObjJTabbedPane otp = new ObjJTabbedPane();
+    	            otp.setVisible(true);
     	             }
     	         }
     	       );
