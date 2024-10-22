@@ -66,6 +66,14 @@ public class Menu extends JFrame{
     		 }
     	);
        /* Aba Pedido */
+       pedido.addActionListener(
+    		 new ActionListener() {
+    			 public void actionPerformed(ActionEvent event) {
+    				   Pedido PedidoPainel = new Pedido();
+    				   PedidoPainel.setVisible(true);
+    			 }
+    		 }
+    	);
        
        /* Aba JTabbedPane Exemplo */
        exemploJTabbedPane.addActionListener(
