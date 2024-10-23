@@ -9,6 +9,20 @@ public class Cliente extends JDialog{
 	private JTextField txNomeCliente;
 	private JLabel lbCpfCliente;
 	private JTextField txCpfCliente;
+	private JTextField txSexoCliente;
+	private JLabel lbSexoCliente;
+	private JLabel lbDataNasCliente;
+	private JTextField txDataNasCliente;
+	private JLabel lbRuaCliente; //Início logradouro cliente
+	private JTextField txRuaCliente;
+	private JLabel lbBairroCliente;
+	private JTextField txBairroCliente;
+	private JLabel lbCidadeCliente;
+	private JTextField txCidadeCliente;
+	private JLabel lbEstadoCliente;
+	private JTextField txEstadoCliente;
+	private JLabel lbCepCliente;  
+	private JTextField txCepCliente;
 	private JButton btCadastrarCliente; 
 	private JLabel lbTelefoneCliente; //Telefone Aba2
 	private JTextField txTelefoneCliente;
@@ -48,16 +62,80 @@ public class Cliente extends JDialog{
 		
 		//Cpf Cliente
 		lbCpfCliente = new JLabel("Cliente:");
-		lbCpfCliente.setBounds(10,55,75,20);
+		lbCpfCliente.setBounds(10, 55, 75, 20);
 		painelCliente1.add(lbCpfCliente);
 		
 		txCpfCliente = new JTextField();
 		txCpfCliente.setBounds(85, 55, 150, 20);
 		painelCliente1.add(txCpfCliente);
+
+		/* /Sexo Cliente (logradouro)
+		lbSexoCliente = new JLabel("Sexo do cliente:");
+		lbSexoCliente.setBounds(10, Y, 75, 20);
+		painelCliente1.add(lbSexoCliente); 
+		
+		txSexoCliente = new JTextField();
+		txSexoCliente.setBounds(85, Y, 150, 20);
+		painelCliente1.add(txSexoCliente);*/
+
+		/* /Data de nascimento Cliente
+		lbDataNasCliente = new JLabel("Data de nascimento:");
+		lbDataNasCliente.setBounds(10, Y, 75, 20);
+		painelCliente1.add(lbDataNasCliente); 
+		
+		txDataNasCliente = new JTextField();
+		txDataNasCliente.setBounds(85, Y, 150, 20);
+		painelCliente1.add(txDataNasCliente);*/
+
+		//Rua Cliente (logradouro)
+		lbRuaCliente = new JLabel("Rua do cliente:");
+		lbRuaCliente.setBounds(10, 115, 75, 20);
+		painelCliente1.add(lbRuaCliente);
+		
+		txRuaCliente = new JTextField();
+		txRuaCliente.setBounds(85, 115, 150, 20);
+		painelCliente1.add(txRuaCliente);
+
+		//Bairro Cliente (logradouro)
+		lbBairroCliente = new JLabel("Bairro do cliente:");
+		lbBairroCliente.setBounds(10, 145, 75, 20);
+		painelCliente1.add(lbBairroCliente);
+		
+		txBairroCliente = new JTextField();
+		txBairroCliente.setBounds(85, 145, 150, 20);
+		painelCliente1.add(txBairroCliente);
+
+		//Cidade Cliente (logradouro)
+		lbCidadeCliente = new JLabel("Cidade do cliente:");
+		lbCidadeCliente.setBounds(10, 175, 75, 20);
+		painelCliente1.add(lbCidadeCliente);
+		
+		txCidadeCliente = new JTextField();
+		txCidadeCliente.setBounds(85, 175, 150, 20);
+		painelCliente1.add(txCidadeCliente);
+
+		//Estado Cliente (logradouro)
+		lbEstadoCliente = new JLabel("Estado do cliente:");
+		lbEstadoCliente.setBounds(10, 205, 75, 20);
+		painelCliente1.add(lbEstadoCliente);
+		
+		txEstadoCliente = new JTextField();
+		txEstadoCliente.setBounds(85, 205, 150, 20);
+		painelCliente1.add(txEstadoCliente);
+		
+		//Cep Cliente (logradouro)
+		lbCepCliente = new JLabel("Cep do cliente:");
+		lbCepCliente.setBounds(10, 235, 75, 20);
+		painelCliente1.add(lbCepCliente);
+		
+		txCepCliente = new JTextField();
+		txCepCliente.setBounds(85, 235, 150, 20);
+		painelCliente1.add(txCepCliente);
+
 		
 		//Botão Cadastrar Cliente
 		btCadastrarCliente = new JButton("Cadastrar");
-		btCadastrarCliente.setBounds(15,150,100,20);
+		btCadastrarCliente.setBounds(15, 300, 100, 20);
 		painelCliente1.add(btCadastrarCliente);	
 		
 		 EventoBotaoCliente evbC = new EventoBotaoCliente();
