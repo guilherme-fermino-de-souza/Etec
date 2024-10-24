@@ -86,9 +86,12 @@ BEGIN
 
 	RETURN @retorno 
 END
-
+	
 SELECT dataVenda, idVenda, totalDeVendasDoFornecedorNesteMês = dbo.fc_numTotalVendasFornecedorPorMes(idVenda) FROM tbVenda
 WHERE idVenda = 4 AND dataVenda = '15-02-2014'
+
+SELECT idVenda, idProduto, codItensVenda FROM tbItensVenda
+SELECT idFornecedor, idProduto, idFabricante FROM tbProduto
 --DROP FUNCTION dbo.fc_numTotalVendasFornecedorPorMes
 
 
