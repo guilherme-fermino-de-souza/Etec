@@ -66,7 +66,7 @@ BEGIN
 	END
 
 -- DROP FUNCTION dbo.fc_Fornecedor --
-DECLARE @data DATE = '2024-10-01';
+DECLARE @data DATE = '2014-02-01';
 SELECT idFornecedor, totalVendasFornecedor = dbo.fc_Fornecedor(idFornecedor, @data) FROM tbFornecedor;
 
 -- DROP FUNCTION dbo.fc_Fornecedor --
