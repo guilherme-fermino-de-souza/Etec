@@ -8,6 +8,7 @@ CREATE FUNCTION fc_DiaSemana(@DiaSemana DATE) -- Nome função(@parâmetro tipo 
 RETURNS VARCHAR(24) AS -- Retorno --
 BEGIN 
 
+DECLARE @DiaSemana VARCHAR(40)
 DECLARE @Dia INT -- Váriavel a ser usada na função --
 
 SET @Dia = DATEPART(dw, @DiaSemana)
