@@ -47,22 +47,27 @@ CREATE FUNCTION fc_TotalCompras(@idCliente VARCHAR(10)) RETURNS VARCHAR(10) AS
 
 -- 3 Criar uma função que receba o código de um vendedor e o mês e informe o total de vendas do vendedor no mês informado --
 -- Feita com o Fornecedor
-CREATE FUNCTION fc_Fornecedor(@idFornecedor INT, @data DATE) RETURNS VARCHAR(40)
-	BEGIN
-		DECLARE @totalVendas INT, @mesVenda DATE, @retorno VARCHAR(40), @idVenda INT
+CREATE FUNCTION fc_Fornecedor(@idFornecedor INT, @data DATE) 
+RETURNS VARCHAR(40)
+BEGIN
+		DECLARE @totalVendas INT, @retorno VARCHAR(40)
 
-		SET @totalVendas = (SELECT COUNT(*) idVenda FROM tbVenda
+		SET @totalVendas = (SELECT COUNT(*) FROM tbVenda
 		INNER JOIN tbItensVenda ON tbVenda.idVenda = tbItensVenda.idVenda
-		INNER JOIN tbProduto ON tbItensVenda.idProduto = tbProduto.idFornecedor
-		WHERE idFornecedor = @idFornecedor)
-
-		SET @mesVenda = (SELECT MONTH(dataVenda) FROM tbVenda WHERE dataVenda = @data)
+		INNER JOIN tbProduto ON tbItensVenda.idProduto = tbProduto.idProduto
+		WHERE tbProduto.idFornecedor = @idFornecedor 
+			AND MONTH(tbVenda.dataVenda) = MONTH(@data)
+			AND YEAR(tbVenda.dataVenda) = YEAR(@data))
 
 		SET @retorno = @totalVendas
 
 		RETURN @retorno
 
 	END
+
+-- DROP FUNCTION dbo.fc_Fornecedor --
+DECLARE @data DATE = '2024-10-01';
+SELECT idFornecedor, totalVendasFornecedor = dbo.fc_Fornecedor(idFornecedor, @data) FROM tbFornecedor;
 
 -- DROP FUNCTION dbo.fc_Fornecedor --
 SELECT totalVendasFornecedor = dbo.fc_Fornecedor(idFornecedor) FROM tbFornecedor
