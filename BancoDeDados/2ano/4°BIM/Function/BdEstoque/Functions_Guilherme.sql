@@ -46,7 +46,26 @@ CREATE FUNCTION fc_TotalCompras(@idCliente VARCHAR(10)) RETURNS VARCHAR(10) AS
  SELECT idCliente AS 'Cliente', Nvendas=dbo.fc_TotalCompras(idCliente) FROM tbVenda
 
 -- 3 Criar uma função que receba o código de um vendedor e o mês e informe o total de vendas do vendedor no mês informado --
+-- Feita com o Fornecedor
+CREATE FUNCTION fc_Fornecedor(@idFornecedor INT, @data DATE) RETURNS VARCHAR(40)
+	BEGIN
+		DECLARE @totalVendas INT, @mesVenda DATE, @retorno VARCHAR(40), @idVenda INT
 
+		SET @totalVendas = (SELECT COUNT(*) idVenda FROM tbVenda
+		INNER JOIN tbItensVenda ON tbVenda.idVenda = tbItensVenda.idVenda
+		INNER JOIN tbProduto ON tbItensVenda.idProduto = tbProduto.idFornecedor
+		WHERE idFornecedor = @idFornecedor)
+
+		SET @mesVenda = (SELECT MONTH(dataVenda) FROM tbVenda WHERE dataVenda = @data)
+
+		SET @retorno = @totalVendas
+
+		RETURN @retorno
+
+	END
+
+-- DROP FUNCTION dbo.fc_Fornecedor --
+SELECT totalVendasFornecedor = dbo.fc_Fornecedor(idFornecedor) FROM tbFornecedor
 
 
 -- 4 Criar uma função que usando o bdEstoque diga se o cpf do cliente é ou não válido + --
