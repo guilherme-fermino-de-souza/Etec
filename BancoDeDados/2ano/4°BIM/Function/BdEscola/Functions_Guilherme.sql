@@ -1,17 +1,17 @@
 /* FUNCTION 
 	Bloco de comando SQL resposável por executar um procedimento e retornar um valor
 */
+-- Pego no exemplo do slide --
+-- 1. Crie uma função que informada uma data da matrícula , retorne o dia da semana +.
 
--- 1. Crie uma função que informada uma data da matrícula , retorne o dia da semana.
-
-CREATE FUNCTION fc_DiaSemana(@DiaSemana DATE) -- Nome função(@parâmetro tipo dado parâmetro)
-RETURNS VARCHAR(24) AS -- Retorno --
+CREATE FUNCTION fc_DiaSemana(@Data DATE) -- Nome função(@parâmetro tipo dado parâmetro)
+RETURNS VARCHAR(40) AS -- Retorno --
 BEGIN 
 
 DECLARE @DiaSemana VARCHAR(40)
 DECLARE @Dia INT -- Váriavel a ser usada na função --
 
-SET @Dia = DATEPART(dw, @DiaSemana)
+SET @Dia = DATEPART(dw, @Data)
 
 	IF @Dia = 1 BEGIN
 		SET @DiaSemana='Domingo'
@@ -99,4 +99,3 @@ END
 
 -- DROP FUNCTION dbo.fc_DataMatricula --
 -- SELECT  dataMatricula AS 'Data Matrícula', Data=dbo.fc_DataMatricula(dataMatricula) FROM tbMatricula --
-
