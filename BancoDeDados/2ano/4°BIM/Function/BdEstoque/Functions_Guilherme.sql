@@ -32,7 +32,7 @@ CREATE FUNCTION fc_DiaVenda(@diaVenda DATE) RETURNS VARCHAR(40) AS
 END
 
 -- DROP FUNCTION fc_DiaVenda --
--- SELECT CONVERT(VARCHAR(10), dataVenda, 103) AS 'Data', idVenda, valorTotalVenda, Dia=dbo.fc_DiaVenda(dataVenda) FROM tbVenda --
+--  SELECT Dia=dbo.fc_DiaVenda(dataVenda), idVenda AS 'iD', valorTotalVenda AS 'Valor', CONVERT(VARCHAR(10), dataVenda, 103) AS 'Data' FROM tbVenda --
 
 -- 2 Criar uma função que receba o código do cliente e retorne o total de vendas que o cliente já realizou + --
 CREATE FUNCTION fc_TotalCompras(@idCliente VARCHAR(10)) RETURNS VARCHAR(10) AS
