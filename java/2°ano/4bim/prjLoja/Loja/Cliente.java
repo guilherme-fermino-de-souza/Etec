@@ -9,10 +9,10 @@ public class Cliente extends JDialog{
 	private JTextField txNomeCliente;
 	private JLabel lbCpfCliente;
 	private JTextField txCpfCliente;
-	private JTextField txSexoCliente;
+	/*private JTextField txSexoCliente;
 	private JLabel lbSexoCliente;
 	private JLabel lbDataNasCliente;
-	private JTextField txDataNasCliente;
+	private JTextField txDataNasCliente;*/
 	private JLabel lbRuaCliente; //Início logradouro cliente
 	private JTextField txRuaCliente;
 	private JLabel lbBairroCliente;
@@ -185,7 +185,8 @@ public class Cliente extends JDialog{
 	
 	   private class EventoBotaoCliente implements ActionListener{ //BOTÃO PRIMEIRA GUIA
 	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Nome Cliente: "+txNomeCliente.getText()+"\n"+"CPF Cliente: "+txCpfCliente.getText());
+	    	   	JOptionPane.showMessageDialog(null,"Nome Cliente: "+txNomeCliente.getText()+"\n"+"CPF Cliente: "+txCpfCliente.getText()+"\n"+"Rua do Cliente: "+txRuaCliente.getText()+"\n"+"Bairro do Cliente: "+txBairroCliente.getText()+"\n"
+						      +"Cidade Cliente: "+txCidadeCliente.getText()+"\n"+"Estado do Cliente: "+txEstadoCliente.getText()+"\n"+"CEP do Cliente: "+txCepCliente.getText());
 	        }   
 	   }
 	   
