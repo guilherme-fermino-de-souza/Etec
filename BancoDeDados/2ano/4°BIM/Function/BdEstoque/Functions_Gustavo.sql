@@ -55,13 +55,16 @@ CREATE FUNCTION fc_numTotalVendasClien(@idCliente INT)
 AS
 BEGIN
 	DECLARE @numTotalVendas INT
-	SET @numTotalVendas = (SELECT COUNT(idVenda) FROM tbVenda WHERE idCliente = @idCliente)
+	SET @numTotalVendas = (SELECT SUM(valorTotalVenda) FROM tbVenda WHERE idCliente = @idCliente)
 
 	RETURN @numTotalVendas 
 END
 
 SELECT idCliente, idVenda, totalDeVendasDoCliente = dbo.fc_numTotalVendasClien(idCliente) FROM tbVenda
---WHERE idCliente = 1
+WHERE idCliente = 1
+
+SELECT * FROM tbVenda
+--DROP FUNCTION dbo.fc_numTotalVendasClien
 
 
 /* 7. Criar uma função que receba o código de um vendedor e o mês e informe o total
