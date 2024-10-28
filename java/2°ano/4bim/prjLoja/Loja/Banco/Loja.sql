@@ -43,13 +43,16 @@ CREATE TABLE tbPedido( -- Tabela Pedido
     idPedido INT PRIMARY KEY AUTO_INCREMENT
    ,dataPedido DATE 
    ,valorTotalPedido DOUBLE
-   ,dataEntregaEncomenda SMALLDATETIME 
-   ,idCliente INT FOREIGN KEY REFERENCES tbCliente(idCliente)
+   ,dataEntregaEncomenda DATE
+   ,cliente_id INT
+   ,FOREIGN KEY (cliente_id) REFERENCES tbCliente(idCliente)
 )
 
 CREATE TABLE tbItensPedido( -- Tabela Itens Pedido 
    idItensPedido INT PRIMARY KEY AUTO_INCREMENT
    ,quantidadeProdutoItensPedido INT
-   ,idPedido INT FOREIGN KEY REFERENCES tbPedido(idPedido)
-   ,idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
+   ,pedido_id INT
+   ,FOREIGN KEY (pedido_id) REFERENCES tbPedido(idPedido)
+   ,produto_id INT 
+   ,FOREIGN KEY (produto_id) REFERENCES tbPedido(idPedido)
 )
