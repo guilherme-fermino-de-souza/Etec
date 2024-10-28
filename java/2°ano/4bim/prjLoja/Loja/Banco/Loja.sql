@@ -23,7 +23,12 @@ CREATE TABLE tbTelefoneCliente( -- Tabela Telefone Cliente
     ,FOREIGN KEY (cliente_id) REFERENCES tbCliente(idCliente)
 );
 
--- Cadastrar Produto --
+-- CADASTRAR PRODUTO --
+CREATE TABLE tbCategoriaProduto( -- Tabela Categoria Produto
+    idCategoriaProduto INT PRIMARY KEY AUTO_INCREMENT
+    ,nomeCategoriaProduto VARCHAR(35)
+);   
+    
 CREATE TABLE tbProduto( -- Tabela Produto
     idProduto INT PRIMARY KEY AUTO_INCREMENT
     ,nomeProduto VARCHAR(30)
@@ -33,20 +38,15 @@ CREATE TABLE tbProduto( -- Tabela Produto
     ,FOREIGN KEY (categoriaProduto_id) REFERENCES tbCategoriaProduto(idCategoriaProduto)
 );
 
-CREATE TABLE tbCategoriaProduto( -- Tabela Categoria Produto
-    idCategoriaProduto INT PRIMARY KEY AUTO_INCREMENT
-    nomeCategoriaProduto VARCHAR(35)
-);
-
--- Cadastrar Pedido --
+-- CADASTRAR PEDIDO --
 CREATE TABLE tbPedido( -- Tabela Pedido
     idPedido INT PRIMARY KEY AUTO_INCREMENT
    ,dataPedido DATE 
    ,valorTotalPedido DOUBLE
-   ,dataEntregaEncomenda DATE
+   ,dataEntregaPedido DATE
    ,cliente_id INT
    ,FOREIGN KEY (cliente_id) REFERENCES tbCliente(idCliente)
-)
+);
 
 CREATE TABLE tbItensPedido( -- Tabela Itens Pedido 
    idItensPedido INT PRIMARY KEY AUTO_INCREMENT
@@ -54,5 +54,5 @@ CREATE TABLE tbItensPedido( -- Tabela Itens Pedido
    ,pedido_id INT
    ,FOREIGN KEY (pedido_id) REFERENCES tbPedido(idPedido)
    ,produto_id INT 
-   ,FOREIGN KEY (produto_id) REFERENCES tbPedido(idPedido)
-)
+   ,FOREIGN KEY (produto_id) REFERENCES tbProduto(idProduto)
+);
