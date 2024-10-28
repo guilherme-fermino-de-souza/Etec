@@ -1,135 +1,154 @@
 package prjLoja;
 
-import javax.swing.*;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-
-public class Produto extends JDialog{
-	//Categoria Produto (tbCategoriaProduto) 1°GUIA
-	private JLabel lbNomeCategoriaProduto; //Nome Categoria 1° Coluna
-	private JTextField txNomeCategoriaProduto;
-	private JButton btCadastrarCategoriaProduto;  //Botão Cadastrar 1° Guia
-	//Produto (tbProduto) 2°GUIA
-	private JLabel lbNomeProduto; //Nome 1° Coluna
-	private JTextField txNomeProduto;
-	private JLabel lbValorProduto; //Valor 2° Coluna
-	private JTextField txValorProduto;
-	private JLabel lbQuantidadeProduto; //Quantidade 3° Coluna
-	private JTextField txQuantidadeProduto; 
-	private JLabel lbIdCategoriaProduto; //Id Categoria Produto 4° Coluna
-	private JTextField txIdCategoriaProduto; 
-	private JButton btCadastrarProduto;  //Botão Cadastrar 2° Guia
+public class Pedido extends JDialog{
+	//Pedido (tbPedido) 1°GUIA
+	private JLabel lbDataPedido; //Data 1° Coluna
+	private JTextField txDataPedido;
+	private JLabel lbValorPedido; //Valor 2° Coluna
+	private JTextField txValorPedido;
+	private JLabel lbDataEntregaPedido; //Data Entrega 3° Coluna
+	private JTextField txDataEntregaPedido;
+	private JLabel lbIdCliente; //Id Cliente 4° Coluna
+	private JTextField txIdCliente;
+	private JButton btCadastrarPedido; //Botão Cadastrar 1° Guia
+	//Itens Pedido(tbItensPedido) 2°GUIA
+	private JLabel lbQuantidadePedido; //Quantidade 1° Coluna
+	private JTextField txQuantidadePedido;
+	private JLabel lbIdPedido; //Id Pedido 2° Coluna
+	private JTextField txIdPedido;
+	private JLabel lbIdProduto; //Id Produto 3° Coluna
+	private JTextField txIdProduto;
+	private JButton btCadastrarItensPedido; //Botão Cadastrar 2° Guia
 	
-	public Produto () {
-		this.setTitle("Cadastrar Produto");
-		 this.setModal(true);                       
-		 this.setSize(450,380);
-		 this.setResizable(false);      
-		 
-		 Container ProdutoPainel = getContentPane();
-		 setLocationRelativeTo(ProdutoPainel);
-		 ProdutoPainel.setLayout(null);
-		 
-		//Criar o JTabbedPane(painel cojm guias)
-		 JTabbedPane ProdutoPane = new JTabbedPane();
-		 ProdutoPane.setBounds(0, 0, 500, 470);
-		 
+	
+	public Pedido() {
+		this.setTitle("Cadastrar Pedido");
+		this.setModal(true);
+		this.setSize(450, 380);
+		this.setResizable(false);
+		
+		Container CadastroPedido = this.getContentPane();
+		setLocationRelativeTo(CadastroPedido);
+		CadastroPedido.setLayout(null);
+		
+		//Criar o JTabbedPane(Painel com Guias)
+		JTabbedPane PedidoPane = new JTabbedPane();
+		PedidoPane.setBounds(0, 0, 500, 470); //Tamanho e Posicionamento do JTabbedPane
+		
 		//1° GUIA
-			
-		//Categoria Produto(tbCategoriaProduto)	
-		 JPanel painelProduto1 = new JPanel();
-		 painelProduto1.setLayout(null);
-			
-		//Categoria Produto COLUNA 1
-		 lbNomeCategoriaProduto = new JLabel("Categoria: "); //Nome Produto
-		 lbNomeCategoriaProduto.setBounds(10, 15, 75, 20);
-		 painelProduto1.add(lbNomeCategoriaProduto);
-		 
-		 txNomeCategoriaProduto = new JTextField();
-		 txNomeCategoriaProduto.setBounds(85, 15, 150, 20);
-		 painelProduto1.add(txNomeCategoriaProduto);
-		 
-		 //Botão Cadastrar Categoria Produto(tbCategoriaProduto)
-		 btCadastrarCategoriaProduto = new JButton("Cadastrar Categoria");
-		 btCadastrarCategoriaProduto.setBounds(15,150,175,20);
-		 painelProduto1.add(btCadastrarCategoriaProduto);
-		 
-		 EventoBotaoCategoriaProduto evbC = new EventoBotaoCategoriaProduto();
-		 btCadastrarCategoriaProduto.addActionListener(evbC);
-		 
-		 //Add Painel(tbCategoriaProduto) 1° GUIA
-		 ProdutoPane.addTab("Categoria Produto", null,painelProduto1,"Primeiro Painel");
-		 ProdutoPainel.add(ProdutoPane); 	 
+		
+		//Pedido(tbPedido)
+		JPanel painelPedido1 = new JPanel();
+		painelPedido1.setLayout(null);
+		
+		//Data Pedido COLUNA 1
+		lbDataPedido = new JLabel("Data: ");
+		lbDataPedido.setBounds(10, 15, 75, 20);
+		painelPedido1.add(lbDataPedido);
+		
+		txDataPedido = new JTextField();
+		txDataPedido.setBounds(95, 15, 150, 20);
+		painelPedido1.add(txDataPedido);
+		
+		//Valor Total Pedido COLUNA 2
+		lbValorPedido = new JLabel("Valor Total: ");
+		lbValorPedido.setBounds(10, 35, 75, 20);
+		painelPedido1.add(lbValorPedido);
+		
+		txValorPedido = new JTextField();
+		txValorPedido.setBounds(95, 35, 150, 20);
+		painelPedido1.add(txValorPedido);
+		
+		//Data Entrega Pedido COLUNA 3
+		lbDataEntregaPedido = new JLabel("Data Entrega: ");
+		lbDataEntregaPedido.setBounds(10, 55, 85, 20);
+		painelPedido1.add(lbDataEntregaPedido);
+		
+		txDataEntregaPedido = new JTextField();
+		txDataEntregaPedido.setBounds(95, 55, 150, 20);
+		painelPedido1.add(txDataEntregaPedido);
+		
+		//Id Cliente(FOREIGN KEY) COLUNA 4
+		lbIdCliente = new JLabel("Id Cliente: ");
+		lbIdCliente.setBounds(10, 75, 85, 20);
+		painelPedido1.add(lbIdCliente);
+		
+		txIdCliente = new JTextField();
+		txIdCliente.setBounds(95, 75, 150, 20);
+		painelPedido1.add(txIdCliente);
+		
+		//Botão Cadastrar Pedido(tbPedido)
+		btCadastrarPedido = new JButton("Cadastrar Pedido");
+		btCadastrarPedido.setBounds(15,150,175,20);
+		painelPedido1.add(btCadastrarPedido);	
+		
+		 EventoBotaoPedido evbP = new EventoBotaoPedido();
+		 btCadastrarPedido.addActionListener(evbP);
+		
+		//Add Painel(tbPedido) 1° GUIA
+		 PedidoPane.addTab("Pedido", null,painelPedido1,"Primeiro Painel");
+		 CadastroPedido.add(PedidoPane); 
 		 
 		//2° GUIA
 			
-		//Produto(tbProduto)
-		 JPanel painelProduto2 = new JPanel();
-		 painelProduto2.setLayout(null);
-			
-		//Nome Produto COLUNA 1
-		 lbNomeProduto = new JLabel("Nome Produto:"); //Nome Produto
-		 lbNomeProduto.setBounds(10, 15, 85, 20);
-		 painelProduto2.add(lbNomeProduto);
-		 
-		 txNomeProduto = new JTextField();
-		 txNomeProduto.setBounds(130, 15, 150, 20);
-		 painelProduto2.add(txNomeProduto);
-		 
-		//Valor Produto COLUNA 2
-		 lbValorProduto = new JLabel("Valor:"); //Valor Produto
-		 lbValorProduto.setBounds(10, 35, 75, 20);
-		 painelProduto2.add(lbValorProduto);
-		 
-		 txValorProduto = new JTextField();
-		 txValorProduto.setBounds(130, 35, 150, 20);
-		 painelProduto2.add(txValorProduto);
-		 
-		//Quantidade Produto COLUNA 3
-		 lbQuantidadeProduto = new JLabel("Quantidade:"); //Nome Produto
-		 lbQuantidadeProduto.setBounds(10, 55, 75, 20);
-		 painelProduto2.add(lbQuantidadeProduto);
-		 
-		 txQuantidadeProduto = new JTextField();
-		 txQuantidadeProduto.setBounds(130, 55, 150, 20);
-		 painelProduto2.add(txQuantidadeProduto);
-		 
-		//Id Categoria Produto COLUNA 4
-		 lbIdCategoriaProduto = new JLabel("Id Categoria Produto:"); //Valor Produto
-		 lbIdCategoriaProduto.setBounds(10, 75, 125, 20);
-		 painelProduto2.add(lbIdCategoriaProduto);
-		 
-		 txIdCategoriaProduto = new JTextField();
-		 txIdCategoriaProduto.setBounds(130, 75, 150, 20);
-		 painelProduto2.add(txIdCategoriaProduto);
-		 
-		 
-		//Botão Cadastrar Produto
-		 btCadastrarProduto = new JButton("Cadastrar Produto");
-		 btCadastrarProduto.setBounds(15,150,175,20);
-		 painelProduto2.add(btCadastrarProduto);
-		 
-		 EventoBotaoProduto evbP = new EventoBotaoProduto();
-		 btCadastrarProduto.addActionListener(evbP);
-		 
-		//Add Painel(tbProduto) 2° GUIA
-		 ProdutoPane.addTab("Produto", null,painelProduto2,"Segundo Painel");
-		 ProdutoPainel.add(ProdutoPane); 	 
+		//Itens Pedido(tbItensPedido)
+		JPanel painelPedido2 = new JPanel();
+		painelPedido2.setLayout(null);
+		
+		//Quantidade Pedido COLUNA 1
+		lbQuantidadePedido = new JLabel("Quantidade Pedido: ");
+		lbQuantidadePedido.setBounds(10, 15, 115, 20);
+		painelPedido2.add(lbQuantidadePedido);
+				
+		txQuantidadePedido = new JTextField();
+		txQuantidadePedido.setBounds(120, 15, 150, 20);
+		painelPedido2.add(txQuantidadePedido);
+		
+		//Id Pedido COLUNA 2
+		lbIdPedido = new JLabel("Id Pedido: ");
+		lbIdPedido.setBounds(10, 35, 75, 20);
+		painelPedido2.add(lbIdPedido);
+				
+		txIdPedido = new JTextField();
+		txIdPedido.setBounds(120, 35, 150, 20);
+		painelPedido2.add(txIdPedido);
+		
+		//Id Pedido COLUNA 3
+		lbIdProduto = new JLabel("Id Produto: ");
+		lbIdProduto.setBounds(10, 55, 75, 20);
+		painelPedido2.add(lbIdProduto);
+				
+		txIdProduto = new JTextField();
+		txIdProduto.setBounds(120, 55, 150, 20);
+		painelPedido2.add(txIdProduto);
+		
+		//Botão Cadastrar Itens Pedido(tbItensPedido)
+		btCadastrarItensPedido = new JButton("Cadastrar Itens Pedido");
+		btCadastrarItensPedido.setBounds(15,150,175,20);
+		painelPedido2.add(btCadastrarItensPedido);	
+		
+		 EventoBotaoPedidoItens evbI = new EventoBotaoPedidoItens();
+		 btCadastrarItensPedido.addActionListener(evbI);
+		
+		//Add Painel(tbItensPedido) 2° GUIA
+		 PedidoPane.addTab("Itens", null,painelPedido2,"Segundo Painel");
+		 CadastroPedido.add(PedidoPane); 
+		
 	}
-	
-	   private class EventoBotaoCategoriaProduto implements ActionListener{ //BOTÃO PRIMEIRA GUIA
+	   private class EventoBotaoPedido implements ActionListener{ //BOTÃO PRIMEIRA GUIA
 	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Categoria Produto: "+txNomeCategoriaProduto.getText());
+	    	   	JOptionPane.showMessageDialog(null,"Data: "+txDataPedido.getText()+"\n"+"Valor Total: "+txValorPedido.getText()+"\n"+"Data Entrega: "+txDataEntregaPedido.getText()+"\n"+"Id Cliente: "+txIdCliente.getText());
 	        }   
-	   }
+	  }
 	   
-	   private class EventoBotaoProduto implements ActionListener{ //BOTÃO SEGUNDA GUIA
+	   private class EventoBotaoPedidoItens implements ActionListener{ //BOTÃO SEGUNDA GUIA
 	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Nome Produto: "+txNomeProduto.getText()+"\n"+"Valor Produto: "+txValorProduto.getText()+"\n"+"Quantidade Produto: "+txQuantidadeProduto.getText()+"\n"+"Id Categoria Produto: "+txIdCategoriaProduto.getText());
-	        }   	
-	   }
-	   
+	    	   	JOptionPane.showMessageDialog(null,"Quantidade: "+txQuantidadePedido.getText()+"\n"+"Id Pedido: "+txIdPedido.getText()+"\n"+"Id Produto: "+txIdPedido.getText());
+	        }   
+	  }
 }
