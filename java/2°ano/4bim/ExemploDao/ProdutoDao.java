@@ -19,7 +19,7 @@ public class ProdutoDao {
 		//Gera conexão com o banco toda vez que se instacia um objeto
 	}
 	
-	//Adicionar Produto Banco De Dados
+	//ADICIONAR Produto Banco De Dados
 	public void adicionar(Produto produto) throws SQLException {
 		try {
 			String sql = "insert into tbProduto"+
@@ -41,7 +41,7 @@ public class ProdutoDao {
 		}
 	}
 	
-	//Lista Banco De Dados
+	//CONSULTA Banco De Dados
 	public List<Produto> getLista() throws SQLException{
 		try {
 			List<Produto> produtos = new ArrayList<Produto>(); //Define a Lista
@@ -64,7 +64,49 @@ public class ProdutoDao {
 			return produtos;
 		} 
 		catch(SQLException e) {
-			throw new RuntimeException();
+			throw new RuntimeException("Erro ao consultar tabela", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//UPDATE Banco De Dados
+	public void alterar(Produto produto) throws SQLException{
+		String sql = "update tbProduto set produto = ? , produtoValor = ? where idProduto = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, produto.getProduto());
+			stmt.setDouble(2, produto.getValorProduto());
+			stmt.setInt(3, produto.getIdProduto());
+			
+			stmt.execute();
+			stmt.close();
+			System.out.println("Dados Alterados Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao dar update na tabela", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//Exclusão Banco De Dados
+	public void excluir(Produto produto) throws SQLException{
+		
+		String sql = "delete from tbProduto where idProduto = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, produto.getIdProduto());
+			stmt.execute();
+			stmt.close();
+			System.out.println("Dados excluidos com sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao excluir tabela", e);
 		}
 		finally {
 			connection.close();
