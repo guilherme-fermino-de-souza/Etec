@@ -14,11 +14,16 @@ public class Aplicacao {
 
 		Produto produto = new Produto(); //1° Objeto
 		
-		produto.setProduto("Banana");
-		produto.setValorProduto(7);
+		produto.setIdProduto(1);
+		produto.setProduto("Biscoito de cholate");
+		produto.setValorProduto(5);
 		
 		ProdutoDao produtoDao = new ProdutoDao(); //2° Objeto
 		//produtoDao.adicionar(produto); //Adiciona Novo Produto
+		
+		//produtoDao.alterar(produto); //Altera Produto
+		
+		produtoDao.excluir(produto); //Exclui Produto
 		
 		List<Produto> produtos = new ProdutoDao().getLista(); //Atributo Lista que carrega o SELECT do ProdutoDao
 		
