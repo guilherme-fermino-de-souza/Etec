@@ -9,9 +9,9 @@ public class ConectionFactory {
 	public Connection  getConnection() {
 		
 		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/bdExemploDao", "root", "");
+			return DriverManager.getConnection("jdbc:mysql://localhost/bdexemplodao", "root", "");
 		} catch(SQLException e) {
-			throw new RuntimeException();
+		    throw new RuntimeException("Erro ao conectar ao banco de dados", e);
 		}
 	}
 }
