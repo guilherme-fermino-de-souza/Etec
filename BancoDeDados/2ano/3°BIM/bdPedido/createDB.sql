@@ -10,7 +10,7 @@ CREATE TABLE	tbCliente(
    ,bairroCliente VARCHAR(20)
    ,cidadeCliente VARCHAR(25)
    ,estadoCliente VARCHAR(20)
-   ,cepCliente CHAR(9)
+   ,cepCliente CHAR(8)
    ,sexoCliente CHAR (1)
    ,dataNasCliente SMALLDATETIME 
 )
