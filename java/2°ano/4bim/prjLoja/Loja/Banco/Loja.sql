@@ -40,7 +40,7 @@ CREATE TABLE tbCategoriaProduto( -- Tabela Categoria Produto
 
 -- Cadastrar Pedido --
 CREATE TABLE tbPedido( -- Tabela Pedido
-	idPedido INT PRIMARY KEY AUTO_INCREMENT
+    idPedido INT PRIMARY KEY AUTO_INCREMENT
    ,dataPedido DATE 
    ,valorTotalPedido DOUBLE
    ,dataEntregaEncomenda SMALLDATETIME 
@@ -48,8 +48,8 @@ CREATE TABLE tbPedido( -- Tabela Pedido
 )
 
 CREATE TABLE tbItensPedido( -- Tabela Itens Pedido 
-	idItensPedido INT PRIMARY KEY AUTO_INCREMENT
-	,quantidadeProdutoItensPedido INT
-	,idPedido INT FOREIGN KEY REFERENCES tbPedido(idPedido)
-	,idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
+   idItensPedido INT PRIMARY KEY AUTO_INCREMENT
+   ,quantidadeProdutoItensPedido INT
+   ,idPedido INT FOREIGN KEY REFERENCES tbPedido(idPedido)
+   ,idProduto INT FOREIGN KEY REFERENCES tbProduto(idProduto)
 )
