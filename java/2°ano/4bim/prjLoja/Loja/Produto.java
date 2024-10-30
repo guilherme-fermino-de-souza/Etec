@@ -1,11 +1,13 @@
 package Model; //Apenas Modelagem da aplicação
 //Atributos e Gets and Sets
 import javax.swing.*;
+
+import DAO.ProdutoDao;
+
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-
+import java.sql.SQLException;
 
 public class Produto extends JDialog{
 	//Categoria Produto (tbCategoriaProduto) 1°GUIA
@@ -43,17 +45,17 @@ public class Produto extends JDialog{
     	txNomeProduto.setText(String.valueOf(nomeProduto));
     }
   //Valor Produto
-    public int getValorProduto() { // RECUPERA o Valor Produto
-    	return Integer.parseInt(txValorProduto.getText());
+    public double getValorProduto() { // RECUPERA o Valor Produto
+    	return Double.parseDouble(txValorProduto.getText());
     }
-    public void setValorProduto(int valorProduto) { // DEFINE o Valor Produto
+    public void setValorProduto(double valorProduto) { // DEFINE o Valor Produto
     	txValorProduto.setText(String.valueOf(valorProduto));
     }
   //Quantidade Produto
-    public int getQuantidadeProduto() { // RECUPERA o Nome Produto
+    public int getQuantidadeProduto() { // RECUPERA o Quantidade Produto
     	return Integer.parseInt(txQuantidadeProduto.getText());
     }
-    public void setQuantidadeProduto(String quantidadeProduto) { // DEFINE o Nome Produto
+    public void setQuantidadeProduto(int quantidadeProduto) { // DEFINE o Quantidade Produto
     	txQuantidadeProduto.setText(String.valueOf(quantidadeProduto));
     }
   //Id Categoria Produto 
@@ -161,13 +163,36 @@ public class Produto extends JDialog{
 	
 	   private class EventoBotaoCategoriaProduto implements ActionListener{ //BOTÃO PRIMEIRA GUIA
 	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Categoria Produto: "+txNomeCategoriaProduto.getText());
+	    	   	JOptionPane.showMessageDialog(null,"Categoria Produto: "+txNomeCategoriaProduto.getText()); //Aviso
+	    	   	
+	    	   	Produto categoriaProduto = new Produto(); //OBJETO 1° Guia
+	    	   		categoriaProduto.setNomeCategoriaProduto(txNomeCategoriaProduto.getText()); //Categoria
+	    	   		ProdutoDao produtoDao = new ProdutoDao();
+	    	   			try {
+							produtoDao.adicionarCategoriaProduto(categoriaProduto);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	        }   
 	   }
 	   
 	   private class EventoBotaoProduto implements ActionListener{ //BOTÃO SEGUNDA GUIA
 	       public void actionPerformed(ActionEvent event){
 	    	   	JOptionPane.showMessageDialog(null,"Nome Produto: "+txNomeProduto.getText()+"\n"+"Valor Produto: "+txValorProduto.getText()+"\n"+"Quantidade Produto: "+txQuantidadeProduto.getText()+"\n"+"Id Categoria Produto: "+txIdCategoriaProduto.getText());
+	    	   	
+	    	   	Produto produto = new Produto(); //OBJETO 1° Guia
+    	   			produto.setNomeProduto(txNomeProduto.getText()); //Nome
+    	   			produto.setValorProduto(Double.parseDouble(txValorProduto.getText())); //Valor
+    	   			produto.setQuantidadeProduto(Integer.parseInt(txQuantidadeProduto.getText())); //Quantidade
+    	   			produto.setIdCategoriaProduto(Integer.parseInt(txIdCategoriaProduto.getText())); //Id Categoria Produto
+    	   			ProdutoDao produtoDao = new ProdutoDao();
+    	   				try {
+    	   					produtoDao.adicionarProduto(produto);
+    	   				} catch (SQLException e) {
+    	   					// TODO Auto-generated catch block
+    	   					e.printStackTrace();
+    	   				}
 	        }   	
 	   }
 	   
