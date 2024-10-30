@@ -50,7 +50,7 @@ CREATE TABLE tbPedido( -- Tabela Pedido
 
 CREATE TABLE tbItensPedido( -- Tabela Itens Pedido 
    idItensPedido INT PRIMARY KEY AUTO_INCREMENT
-   ,quantidadeProdutoItensPedido INT
+   ,quantidadeItensPedido INT
    ,pedido_id INT
    ,FOREIGN KEY (pedido_id) REFERENCES tbPedido(idPedido)
    ,produto_id INT 
