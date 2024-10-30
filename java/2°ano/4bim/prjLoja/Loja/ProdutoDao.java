@@ -22,21 +22,45 @@ public class ProdutoDao {
 		//Gera conexão com o banco toda vez que se instacia um objeto
 	}
 	
-	//ADICIONAR Produto Banco De Dados
-	public void adicionar(Produto produto) throws SQLException {
+	//ADICIONAR Categoria Produto Banco De Dados
+	public void adicionarCategoriaProduto(Produto categoriaProduto) throws SQLException {
 		try {
 			String sql = "insert into tbCategoriaProduto"+
 				"(nomeCategoriaProduto)"+
 				"values (?)";
 			
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, produto.getNomeCategoriaProduto());
+			stmt.setString(1, categoriaProduto.getNomeCategoriaProduto());
 			stmt.execute();
 			stmt.close();
 			JOptionPane.showMessageDialog(null,"Categoria Produto Cadastrado Com Sucesso");
 		} 
 		catch(SQLException e) {
-			System.out.println("Erro: "+e);
+			System.out.println("Erro ao registrar Categoria Produto: "+e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//ADICIONAR Produto Banco De Dados
+	public void adicionarProduto(Produto produto) throws SQLException {
+		try {
+			String sql = "insert into tbProduto"+
+				"(nomeProduto, valorProduto, quantidadeProduto, categoriaProduto_id)"+
+				"values (?, ?, ?, ?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, produto.getNomeProduto());
+			stmt.setDouble(2, produto.getValorProduto());
+			stmt.setInt(3, produto.getQuantidadeProduto());
+			stmt.setInt(4, produto.getIdCategoriaProduto());
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Produto Cadastrado Com Sucesso");
+		} 
+		catch(SQLException e) {
+			System.out.println("Erro ao registrar Produto: "+e);
 		}
 		finally {
 			connection.close();
