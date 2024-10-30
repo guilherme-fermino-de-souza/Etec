@@ -1,9 +1,11 @@
-package prjLoja;
-
+package Model;//Apenas Modelagem da aplicação
+//Atributos e Gets and Sets
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.time.LocalDate; //Permite variaveis tipo Data
+import java.time.format.DateTimeFormatter; //Converte o formato do dado
 
 public class Pedido extends JDialog{
 	//Pedido (tbPedido) 1°GUIA
@@ -25,6 +27,25 @@ public class Pedido extends JDialog{
 	private JTextField txIdProduto;
 	private JButton btCadastrarItensPedido; //Botão Cadastrar 2° Guia
 	
+	 //GETs e SETs 
+    //Encapsulação = atributos de uma classe serão escondidos ou privados
+   //GET = retorna o valor de um atributo / SET = define ou modifica o valor de um atributo
+  //Pedido (tbPedido) 1°GUIA
+    public LocalDate getDataPedido() { // RECUPERA a Data Pedido 
+        return LocalDate.parse(txDataPedido.getText(), DateTimeFormatter.ISO_LOCAL_DATE); //Converte para (dd-mm-yyyy)
+    }
+    public void setDataPedido(LocalDate dataPedido) { // DEFINE a Data Pedido
+        txDataPedido.setText(dataPedido.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    }
+    
+  //Produto (tbProduto) 2°GUIA
+  //Nome Produto
+    public String getNomeProduto() { // RECUPERA o Nome Produto
+    	return txNomeProduto.getText();
+    }
+    public void setNomeProduto(String nomeProduto) { // DEFINE o Nome Produto
+    	txNomeProduto.setText(String.valueOf(nomeProduto));
+    }
 	
 	public Pedido() {
 		this.setTitle("Cadastrar Pedido");
@@ -151,4 +172,5 @@ public class Pedido extends JDialog{
 	    	   	JOptionPane.showMessageDialog(null,"Quantidade: "+txQuantidadePedido.getText()+"\n"+"Id Pedido: "+txIdPedido.getText()+"\n"+"Id Produto: "+txIdPedido.getText());
 	        }   
 	  }
+
 }
