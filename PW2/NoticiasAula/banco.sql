@@ -11,6 +11,6 @@ CREATE TABLE tbNoticias (
 CREATE TABLE tbParagrafo (
     idParagrafo INT PRIMARY KEY AUTO_INCREMENT
     ,textoParagrafo VARCHAR(1555)
-    ,noticias_id
+    ,noticias_id INT
     ,FOREIGN KEY (noticias_id) REFERENCES tbNoticias(idNoticias)
 );
