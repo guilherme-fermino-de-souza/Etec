@@ -67,35 +67,60 @@ public class ProdutoDao {
 		}
 	}
 	
-	//CONSULTA Banco De Dados
-	public List<Produto> getLista() throws SQLException{
-		try {
-			List<Produto> produtos = new ArrayList<Produto>(); //Define a Lista
-			
-			PreparedStatement stmt = this.connection.prepareStatement("select * from tbProduto"); //Prepara a instrução MySQL
-			ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
-			
-			while(rs.next()) { // Busca todos o objetos armazenados no BD
-				Produto produto = new Produto();
-				produto.setIdProduto(rs.getInt(1)); //Id
-				produto.setProduto(rs.getString(2)); //Nome
-				produto.setValorProduto(rs.getDouble(3)); //Valor
+	//CONSULTA tbCategoriaProduto
+		public List<Produto> getListaCategoria() throws SQLException{
+			try {
+				List<Produto> categoriaProdutos = new ArrayList<Produto>(); //Define a Lista
+				
+				PreparedStatement stmt = this.connection.prepareStatement("select * from tbCategoriaProduto"); //Prepara a instrução MySQL
+				ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
+				
+				while(rs.next()) { // Busca todos o objetos armazenados no BD
+					Produto categoriaProduto = new Produto();
+					categoriaProduto.setIdCategoriaProduto(rs.getInt(1)); //Id Categoria
+					categoriaProduto.setNomeCategoriaProduto(rs.getString(2)); //Nome Categoria
 
-				produtos.add(produto); //Cria um objeto para cada produto buscado
+					categoriaProdutos.add(categoriaProduto); //Cria um objeto para cada produto buscado
+				}	
+				rs.close();
+				stmt.close();	
+				return categoriaProdutos;
+			} 
+			catch(SQLException e) {
+				throw new RuntimeException("Erro ao consultar tabela", e);
 			}
-			
-			rs.close();
-			stmt.close();
-			
-			return produtos;
-		} 
-		catch(SQLException e) {
-			throw new RuntimeException("Erro ao consultar tabela", e);
+			finally {
+				connection.close();
+			}
 		}
-		finally {
-			connection.close();
+		//CONSULTA tbProduto
+		public List<Produto> getListaProduto() throws SQLException{
+			try {
+				List<Produto> produtos = new ArrayList<Produto>(); //Define a Lista
+				
+				PreparedStatement stmt = this.connection.prepareStatement("select * from tbProduto"); //Prepara a instrução MySQL
+				ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
+				
+				while(rs.next()) { // Busca todos o objetos armazenados no BD
+					Produto produto = new Produto();
+					produto.setNomeProduto(rs.getString(2)); //Nome Produto
+					produto.setValorProduto(rs.getDouble(3)); //Valor Produto
+					produto.setQuantidadeProduto(rs.getInt(4)); //Quantidade Produto
+					produto.setIdCategoriaProduto(rs.getInt(5)); //Id Categoria
+
+					produtos.add(produto); //Cria um objeto para cada produto buscado
+				}	
+				rs.close();
+				stmt.close();	
+				return produtos;
+			} 
+			catch(SQLException e) {
+				throw new RuntimeException("Erro ao consultar tabela", e);
+			}
+			finally {
+				connection.close();
+			}
 		}
-	}
 	
 	//UPDATE Banco De Dados
 	public void alterar(Produto produto) throws SQLException{
