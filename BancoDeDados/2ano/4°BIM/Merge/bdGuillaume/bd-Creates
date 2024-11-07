@@ -1,0 +1,21 @@
+CREATE DATABASE bdLojaUm
+
+--DROP DATABASE bdLojaUm
+
+CREATE TABLE tbProduto(
+  idProduto INT
+  , nomeProduto VARCHAR(36)
+  , valorProduto MONEY
+  , qtddeProduto INT
+)
+
+
+CREATE DATABASE bdLojaDois
+--DROP DATABASE bdLojaUm
+
+CREATE TABLE tbProduto(
+  codProduto INT
+  , descricaoProduto VARCHAR(50)
+  , precoProduto MONEY
+  , quantidadeProduto INT
+)
