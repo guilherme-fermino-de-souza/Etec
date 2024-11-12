@@ -25,6 +25,9 @@ public class Produto extends JDialog{
 	private JTextField txIdCategoriaProduto; 
 	private JButton btCadastrarProduto;  //Botão Cadastrar 2° Guia
 	
+	private int idUpProduto;
+	private int idProduto;
+	private int idCategoriProduto;
 	 //GETs e SETs 
     //Encapsulação = atributos de uma classe serão escondidos ou privados
    //GET = retorna o valor de um atributo / SET = define ou modifica o valor de um atributo
@@ -65,6 +68,29 @@ public class Produto extends JDialog{
     public void setIdCategoriaProduto(int id) { // DEFINE a Id Categoria Produto
         txIdCategoriaProduto.setText(String.valueOf(id));
     }
+    public int getIdCategoriProduto() {
+        return idCategoriProduto;
+    }
+
+    public void setIdCategoriProduto(int idCategoriProduto) {
+        this.idCategoriProduto = idCategoriProduto;
+    }
+    public int getIdUpProduto() { //Atualizar Produto
+        return idUpProduto;
+    }
+
+    public void setIdUpProduto(int idUpProduto) {
+        this.idUpProduto = idUpProduto;
+    }
+    
+    public int getIdProduto() { //Deletar Produto
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+    
 	
 	public Produto () { //Construtor
 		this.setTitle("Cadastrar Produto");
@@ -181,7 +207,7 @@ public class Produto extends JDialog{
 	       public void actionPerformed(ActionEvent event){
 	    	   	JOptionPane.showMessageDialog(null,"Nome Produto: "+txNomeProduto.getText()+"\n"+"Valor Produto: "+txValorProduto.getText()+"\n"+"Quantidade Produto: "+txQuantidadeProduto.getText()+"\n"+"Id Categoria Produto: "+txIdCategoriaProduto.getText());
 	    	   	
-	    	   	Produto produto = new Produto(); //OBJETO 1° Guia
+	    	   	Produto produto = new Produto(); //OBJETO 2° Guia
     	   			produto.setNomeProduto(txNomeProduto.getText()); //Nome
     	   			produto.setValorProduto(Double.parseDouble(txValorProduto.getText())); //Valor
     	   			produto.setQuantidadeProduto(Integer.parseInt(txQuantidadeProduto.getText())); //Quantidade
