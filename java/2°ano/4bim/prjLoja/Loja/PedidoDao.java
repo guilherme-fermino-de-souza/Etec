@@ -119,7 +119,7 @@ public class PedidoDao {
 			
 			while(rs.next()) { // Busca todos o objetos armazenados no BD
 				Pedido pedido = new Pedido();
-				pedido.setQuantidadePedido(rs.getInt(1)); //Quantidade
+				pedido.getQuantidadeItensPedido(rs.getInt(1));; //Quantidade
 				pedido.setIdPedido(rs.getInt(2)); //Id Pedido
 				pedido.setIdProduto(rs.getInt(3)); //Id Produto
 
@@ -139,19 +139,21 @@ public class PedidoDao {
 		}
 	}
 	
-	//UPDATE Banco De Dados
-	public void alterar(Produto produto) throws SQLException{
-		String sql = "update tbProduto set produto = ? , produtoValor = ? where idProduto = ?";
+	//UPDATE Pedido
+	public void updatePedido(Pedido pedido) throws SQLException{
+		String sql = "update tbPedido set dataPedido = ? , valorTotalPedido = ? ,dataEntregaPedido = ?, cliente_id = ? where idPedido = ?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, produto.getProduto());
-			stmt.setDouble(2, produto.getValorProduto());
-			stmt.setInt(3, produto.getIdProduto());
+			stmt.setDate(1, java.sql.Date.valueOf(pedido.getDataPedido()));
+			stmt.setDouble(2, pedido.getValorPedido());
+			stmt.setDate(3, java.sql.Date.valueOf(pedido.getDataEntregaPedido()));
+			stmt.setInt(4, pedido.getIdCliente());
+			stmt.setInt(5, pedido.getIdUpPedido());
 			
 			stmt.execute();
 			stmt.close();
-			System.out.println("Dados Alterados Com Sucesso");
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
 		}
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
@@ -161,20 +163,70 @@ public class PedidoDao {
 		}
 	}
 	
-	//Exclusão Banco De Dados
-	public void excluir(Produto produto) throws SQLException{
+	//Exclusão Pedido
+	public void deletePedido(Pedido pedido) throws SQLException{
 		
-		String sql = "delete from tbProduto where idProduto = ?";
+		String sqlItens = "delete from tbItensPedido where Pedido_id = ?";
+		String sql = "delete from tbPedido where idPedido = ?";
 		
 		try {
+			PreparedStatement stmtItens = connection.prepareStatement(sqlItens);
+			stmtItens.setInt(1, pedido.getIdPedido());
+			stmtItens.execute();
+			stmtItens.close();
+			
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, produto.getIdProduto());
+			stmt.setInt(1, pedido.getIdPedido());
 			stmt.execute();
 			stmt.close();
-			System.out.println("Dados excluidos com sucesso");
+			
+			JOptionPane.showMessageDialog(null,"Dados excluidos com sucesso");
 		}
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao excluir tabela", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//UPDATE ItesPedido
+	public void updateItensPedido(Pedido pedido) throws SQLException{
+		String sql = "update tbItensPedido set quantidadeItensPedido = ? , pedido_id = ? , produto_id = ? where idItensPedido = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pedido.getQuantidadeItensPedido());
+			stmt.setInt(2, pedido.getIdPedido());
+			stmt.setInt(3, pedido.getIdProduto());
+			stmt.setInt(4, pedido.getIdItensPedido());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao dar update na tabela", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//DELETE ItesPedido
+	public void deleteItensPedido(Pedido pedido) throws SQLException{
+		String sql = "delete from tbItensPedido where idItensPedido = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pedido.getIdItensPedido());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Excluidos Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao excluir na tabela", e);
 		}
 		finally {
 			connection.close();
