@@ -1,6 +1,6 @@
 CREATE DATABASE bdLojaUm
+-- DROP DATABASE bdLojaUm
 
--- DROP DATABASE bdLoja
   CREATE TABLE tbProduto(
   idProduto INT
   , nomeProduto VARCHAR(36)
@@ -8,12 +8,30 @@ CREATE DATABASE bdLojaUm
   , qtddeProduto INT
 )
 
-CREATE DATABASE bdLojaDois
 
--- DROP DATABASE bdLoja
-CREATE TABLE tbProduto(
+INSERT INTO tbProduto (idProduto ,nomeProduto, ValorProduto, qtddeProduto) 
+	VALUES(1, 'Amaciante Downy', 5.76, 1500)
+		,(2, 'Odorizante Comfort', 5.45, 2300)
+		,(3,'Sabão em pó OMO', 5.99, 1280)
+		,(4, 'Margarina Qually', 4.76, 2500)
+		,(5, 'Salsicha Hot Dog Sadia', 6.78, 2900)
+		,(6, 'Mortadela Perdigão', 2.50, 1200)
+		,(7, 'Hambuguer Sadia', 9.89, 1600)
+		,(8, 'Fralda Pampers', 36.00, 340)
+		,(9, 'Xampu Seda', 5.89, 800)
+		,(10, 'Condicionador Seda', 6.50, 700)
+
+CREATE TABLE tbProdutoVenda(
   codProduto INT
   , descricaoProduto VARCHAR(50)
   , precoProduto MONEY
   , quantidadeProduto INT
+)
+
+
+CREATE TABLE tbProdutos(
+	idProduto INT
+	, nomeProduto VARCHAR(60)
+	, valorProduto MONEY
+	, quantidadeProduto INT
 )
