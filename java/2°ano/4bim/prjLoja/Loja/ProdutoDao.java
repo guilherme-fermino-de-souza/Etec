@@ -122,19 +122,18 @@ public class ProdutoDao {
 			}
 		}
 	
-	//UPDATE Banco De Dados
-	public void alterar(Produto produto) throws SQLException{
-		String sql = "update tbProduto set produto = ? , produtoValor = ? where idProduto = ?";
+	//UPDATE tbCategoriaProdutos Banco De Dados
+	public void updateCategoriaProduto(Produto produto) throws SQLException{
+		String sql = "update tbCategoriaProduto set nomeCategoriaProduto = ? where idCategoriaProduto = ?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, produto.getProduto());
-			stmt.setDouble(2, produto.getValorProduto());
-			stmt.setInt(3, produto.getIdProduto());
+			stmt.setString(1, produto.getNomeCategoriaProduto());
+			stmt.setInt(2, produto.getIdCategoriaProduto());
 			
 			stmt.execute();
 			stmt.close();
-			System.out.println("Dados Alterados Com Sucesso");
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
 		}
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
@@ -144,20 +143,70 @@ public class ProdutoDao {
 		}
 	}
 	
-	//Exclusão Banco De Dados
-	public void excluir(Produto produto) throws SQLException{
+	//DELETE tbCategoriaProduto Banco De Dados
+	public void deleteCategoriaProduto(Produto produto) throws SQLException{
 		
-		String sql = "delete from tbProduto where idProduto = ?";
+		String sqlProduto = "delete from tbProduto where categoriaProduto_id = ?";
+		String sqlCategoria = "delete from tbCategoriaProduto where idCategoriaProduto = ?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sqlProduto); 
+			stmt.setInt(1, produto.getIdCategoriaProduto());
+			stmt.execute();
+			stmt.close();
+			
+			stmt = connection.prepareStatement(sqlCategoria);
+			stmt.setInt(1, produto.getIdCategoriaProduto());
+			stmt.execute();
+			stmt.close();
+			
+			JOptionPane.showMessageDialog(null,"Dados da Categoria e produtos excluidos com sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao excluir Categoria ou Produtos ", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//UPDATE tbProdutos Banco De Dados
+	public void updateProduto(Produto produto) throws SQLException{
+		String sql = "update tbProduto set nomeProduto = ?, valorProduto = ?, quantidadeProduto = ?, categoriaProduto_id = ? where idProduto = ?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, produto.getNomeProduto());
+			stmt.setDouble(2, produto.getValorProduto());
+			stmt.setInt(3, produto.getQuantidadeProduto());
+			stmt.setInt(4, produto.getIdCategoriProduto());
+			stmt.setInt(5, produto.getIdUpProduto());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao dar update na tabela", e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	//DELETE tbProduto Banco De Dados
+	public void deleteProduto(Produto produto) throws SQLException{
+		
+		String sql = "delete from tbProduto where idProduto = ?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql); 
 			stmt.setInt(1, produto.getIdProduto());
 			stmt.execute();
 			stmt.close();
-			System.out.println("Dados excluidos com sucesso");
+			
+			JOptionPane.showMessageDialog(null,"Dados da Tabela de Produtos excluidos com sucesso");
 		}
 		catch(SQLException e) {
-			throw new RuntimeException("Erro ao excluir tabela", e);
+			throw new RuntimeException("Erro ao excluir Produtos ", e);
 		}
 		finally {
 			connection.close();
