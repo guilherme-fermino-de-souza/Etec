@@ -1,10 +1,22 @@
+package prjLoja;
+
 import java.awt.event. *;
 import javax.swing. *;
 import javax.swing.event. *;
 
+import Model.ObjTabbedPane;
+import Model.Pedido;
+import Model.Produto;
+import Model.Atualizar;
+
 public class Menu extends JFrame{
 	 
-    public Menu(){   
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Menu(){   
               
     	this.setSize(800,600);
     	this.setTitle("Exemplo Menu");
@@ -20,15 +32,17 @@ public class Menu extends JFrame{
         JMenuItem produto = new JMenuItem("Produto");
         JMenuItem clien = new JMenuItem("Cliente");
         JMenuItem pedido = new JMenuItem("Pedido"); 
-        JMenuItem exemploJTabbedPane = new JMenuItem("JTabbedPane"); /*Painel com guias Exemplo*/
+        JMenuItem exemploJTabbedPane = new JMenuItem("Consultar"); /*Consulta Banco*/
         JMenuItem sobre = new JMenuItem("Sobre");
+        JMenuItem atualizar = new JMenuItem("Atualizar");
                       
         /*ADD no painel*/
         arquivo.add(sair); 
-        cadastrar.add(clien);
+        cadastrar.add(clien); //INSERT
         cadastrar.add(produto);
-        cadastrar.add(pedido);
-        cadastrar.add(exemploJTabbedPane);
+        cadastrar.add(pedido); 
+        cadastrar.add(exemploJTabbedPane); //SELECT
+        cadastrar.add(atualizar); //UPDATE-EXCLUDE
         ajuda.add(sobre);
         
         /*MENU nav*/
@@ -79,8 +93,18 @@ public class Menu extends JFrame{
        exemploJTabbedPane.addActionListener(
     	      new ActionListener(){
     	          public void actionPerformed(ActionEvent event){
-    	            ObjJTabbedPane otp = new ObjJTabbedPane();
+    	            ObjTabbedPane otp = new ObjTabbedPane();
     	            otp.setVisible(true);
+    	             }
+    	         }
+    	       );
+       
+       /* Aba JTabbedPane Exemplo */
+       atualizar.addActionListener(
+    	      new ActionListener(){
+    	          public void actionPerformed(ActionEvent event){
+    	            Atualizar atl= new Atualizar();
+    	            atl.setVisible(true);
     	             }
     	         }
     	       );
