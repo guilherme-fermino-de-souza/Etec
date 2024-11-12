@@ -3,7 +3,12 @@ package Model;//Apenas Modelagem da aplicação
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.*;
+
+import DAO.PedidoDao;
+
 import java.time.LocalDate; //Permite variaveis tipo Data
 import java.time.format.DateTimeFormatter; //Converte o formato do dado
 
@@ -19,13 +24,18 @@ public class Pedido extends JDialog{
 	private JTextField txIdCliente;
 	private JButton btCadastrarPedido; //Botão Cadastrar 1° Guia
 	//Itens Pedido(tbItensPedido) 2°GUIA
-	private JLabel lbQuantidadePedido; //Quantidade 1° Coluna
-	private JTextField txQuantidadePedido;
+	private JLabel lbQuantidadeItensPedido; //Quantidade 1° Coluna
+	private JTextField txQuantidadeItensPedido;
 	private JLabel lbIdPedido; //Id Pedido 2° Coluna
 	private JTextField txIdPedido;
 	private JLabel lbIdProduto; //Id Produto 3° Coluna
 	private JTextField txIdProduto;
 	private JButton btCadastrarItensPedido; //Botão Cadastrar 2° Guia
+	
+	private int idUpPedido;
+	private int idItensPedido;
+	private int idPedidoItensPedido;
+	private int idProdutoItensPedido;
 	
 	 //GETs e SETs 
     //Encapsulação = atributos de uma classe serão escondidos ou privados
@@ -38,14 +48,77 @@ public class Pedido extends JDialog{
         txDataPedido.setText(dataPedido.format(DateTimeFormatter.ISO_LOCAL_DATE));
     }
     
-  //Produto (tbProduto) 2°GUIA
-  //Nome Produto
-    public String getNomeProduto() { // RECUPERA o Nome Produto
-    	return txNomeProduto.getText();
+   //Valor Pedido
+    public double getValorPedido() { // RECUPERA o Valor Pedido
+    	return Double.parseDouble(txValorPedido.getText());
     }
-    public void setNomeProduto(String nomeProduto) { // DEFINE o Nome Produto
-    	txNomeProduto.setText(String.valueOf(nomeProduto));
+    public void setValorPedido(double valorPedido) { // DEFINE o Valor Pedido
+    	txValorPedido.setText(String.valueOf(valorPedido));
+    }   
+   //Data Entrega Pedido
+    public LocalDate getDataEntregaPedido() { // RECUPERA a Data Entrega Pedido 
+        return LocalDate.parse(txDataEntregaPedido.getText(), DateTimeFormatter.ISO_LOCAL_DATE); //Converte para (dd-mm-yyyy)
     }
+    public void setDataEntregaPedido(LocalDate dataEntregaPedido) { // DEFINE a Data Pedido
+        txDataEntregaPedido.setText(dataEntregaPedido.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    }
+   //Id Cliente
+    public int getIdCliente() { // RECUPERA o Nome Produto
+    	return Integer.parseInt(txIdCliente.getText());
+    }
+    public void setIdCliente(int idCliente) { // DEFINE o Nome Produto
+    	txIdCliente.setText(String.valueOf(idCliente));
+    }
+    
+  //Itens Pedido (tbItensPedido) 2°GUIA
+  //Id Itens Pedido
+    public int getIdItensPedido() {
+    	return idItensPedido;
+    }
+    public void setIdItensPedido(int idItensPedido) { 
+    	this.idItensPedido = idItensPedido;
+    }
+  //Quantidade Pedido
+    public int getQuantidadeItensPedido() { // RECUPERA o Quantidade Pedido
+    	return Integer.parseInt(txQuantidadeItensPedido.getText());
+    }
+    public void setQuantidadeItensPedido(int quantidadeItensPedido) { // DEFINE o Quantidade Pedido
+    	txQuantidadeItensPedido.setText(String.valueOf(quantidadeItensPedido));
+    }
+   //Id Pedido
+    public int getIdPedido() { // RECUPERA o Id Pedido
+    	return Integer.parseInt(txIdPedido.getText());
+    }
+    public void setIdPedido(int idPedido) { // DEFINE o Id Pedido
+    	txIdPedido.setText(String.valueOf(idPedido));
+    }
+   //Id Produto
+    public int getIdProduto() { // RECUPERA o Id Produto
+    	return Integer.parseInt(txIdProduto.getText());
+    }
+    public void setIdProduto(int idProduto) { // DEFINE o Id Produto
+    	txIdProduto.setText(String.valueOf(idProduto));
+    }
+    //UPDATE pedido
+    public int getIdUpPedido() { 
+        return idUpPedido;
+    }
+    public void setIdUpPedido(int idUpPedido) {
+        this.idUpPedido= idUpPedido;
+    }
+    //UPDATE Itens
+    public int getIdPedidoItensPedido() {
+    	return idPedidoItensPedido;
+    }
+    public void setIdPedidoItensPedido(int idPedidoItensPedido) { 
+    	this.idPedidoItensPedido = idPedidoItensPedido;
+    }  
+    public int getIdProdutoItensPedido() {
+    	return idProdutoItensPedido;
+    }
+    public void setIdProdutoItensPedido(int idProdutoItensPedido) { 
+    	this.idProdutoItensPedido = idProdutoItensPedido;
+    } 
 	
 	public Pedido() {
 		this.setTitle("Cadastrar Pedido");
@@ -122,13 +195,13 @@ public class Pedido extends JDialog{
 		painelPedido2.setLayout(null);
 		
 		//Quantidade Pedido COLUNA 1
-		lbQuantidadePedido = new JLabel("Quantidade Pedido: ");
-		lbQuantidadePedido.setBounds(10, 15, 115, 20);
-		painelPedido2.add(lbQuantidadePedido);
+		lbQuantidadeItensPedido = new JLabel("Quantidade Pedido: ");
+		lbQuantidadeItensPedido.setBounds(10, 15, 115, 20);
+		painelPedido2.add(lbQuantidadeItensPedido);
 				
-		txQuantidadePedido = new JTextField();
-		txQuantidadePedido.setBounds(120, 15, 150, 20);
-		painelPedido2.add(txQuantidadePedido);
+		txQuantidadeItensPedido = new JTextField();
+		txQuantidadeItensPedido.setBounds(120, 15, 150, 20);
+		painelPedido2.add(txQuantidadeItensPedido);
 		
 		//Id Pedido COLUNA 2
 		lbIdPedido = new JLabel("Id Pedido: ");
@@ -164,13 +237,38 @@ public class Pedido extends JDialog{
 	   private class EventoBotaoPedido implements ActionListener{ //BOTÃO PRIMEIRA GUIA
 	       public void actionPerformed(ActionEvent event){
 	    	   	JOptionPane.showMessageDialog(null,"Data: "+txDataPedido.getText()+"\n"+"Valor Total: "+txValorPedido.getText()+"\n"+"Data Entrega: "+txDataEntregaPedido.getText()+"\n"+"Id Cliente: "+txIdCliente.getText());
-	        }   
+	       
+	    	   	Pedido pedido = new Pedido(); //OBJETO 1° Guia
+    	   			pedido.setDataPedido(LocalDate.parse(txDataPedido.getText())); //Data
+    	   			pedido.setValorPedido(Double.parseDouble(txValorPedido.getText())); //Valor
+    	   			pedido.setDataEntregaPedido(LocalDate.parse(txDataEntregaPedido.getText())); //Data Entrega
+    	   			pedido.setIdCliente(Integer.parseInt(txIdCliente.getText())); //Id Cliente
+    	   			PedidoDao pedidoDao = new PedidoDao();
+    	   				try {
+    	   					pedidoDao.adicionarPedido(pedido);
+    	   				} catch (SQLException e) {
+    	   					// TODO Auto-generated catch block
+    	   					e.printStackTrace();
+    	   				}
+	       }   
 	  }
 	   
 	   private class EventoBotaoPedidoItens implements ActionListener{ //BOTÃO SEGUNDA GUIA
 	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Quantidade: "+txQuantidadePedido.getText()+"\n"+"Id Pedido: "+txIdPedido.getText()+"\n"+"Id Produto: "+txIdPedido.getText());
-	        }   
+	    	   	JOptionPane.showMessageDialog(null,"Quantidade: "+txQuantidadeItensPedido.getText()+"\n"+"Id Pedido: "+txIdPedido.getText()+"\n"+"Id Produto: "+txIdPedido.getText());
+	        
+	    	   	Pedido itensPedido = new Pedido(); //OBJETO 2° Guia
+	    	   	itensPedido.setQuantidadeItensPedido(Integer.parseInt(txQuantidadeItensPedido.getText())); //Quantidade Pedido
+	    	   	itensPedido.setIdPedido(Integer.parseInt(txIdPedido.getText())); //Id Pedido
+	    	   	itensPedido.setIdProduto(Integer.parseInt(txIdProduto.getText())); //Id Produto
+	   				PedidoDao pedidoDao = new PedidoDao();
+	   					try {
+	   						pedidoDao.adicionarItensPedido(itensPedido);
+	   					} catch (SQLException e) {
+	   						// TODO Auto-generated catch block
+	   						e.printStackTrace();
+	   					}
+	       }   
 	  }
 
 }
