@@ -7,3 +7,5 @@ MERGE tbAlunos3ano desti
 	ON desti.rmAluno = ori.rmAluno
 	WHEN NOT MATCHED BY TARGET THEN
 		INSERT (rmAluno, nomeAluno, statusAluno) VALUES (ori.rmAluno, ori.nomeAluno, ori.statusAluno);
+
+SELECT * FROM tbAlunos3ano
