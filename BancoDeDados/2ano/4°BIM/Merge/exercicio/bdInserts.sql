@@ -1,0 +1,26 @@
+INSERT INTO tbAlunos2a (nomeAluno, rmAluno, statusAluno)
+    VALUES
+	 ('Paulo Santos', 12345, 'REPROVADO')
+	 ,('Maria da Gloria', 23456, 'APROVADO')
+	 ,('Pedro Noqueira da Silva', 34567, 'APROVADO')
+	 ,('Gilsonn Barros Silva', 45678, 'REPROVADO')
+	 ,('Mariana Barbosa Santos', 37205, 'APROVADO')
+	 ,('Alessandro Pereira', 21220, 'APROVADO')
+	 ,('Aline Melo', 82282, 'APROVADO')
+	 ,('Riquelme Diaz Suárez', 35106, 'APROVADO')
+	 ,('Juliana Prestes Souza', 56205, 'REPROVADO')
+	 ,('Diego Sede Casagrande', 47622, 'APROVADO')
+
+
+INSERT INTO tbAlunos2b (nomeAluno, rmAluno, statusAluno)
+    VALUES
+	 (' Santos', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
+	 ,('', , 'PROVADO')
