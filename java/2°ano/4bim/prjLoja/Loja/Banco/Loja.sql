@@ -7,7 +7,6 @@ CREATE TABLE tbCliente( -- Tabela Cliente
     idCliente INT PRIMARY KEY AUTO_INCREMENT
     ,nomeCliente VARCHAR(60)
     ,sexoCliente CHAR(1)
-    ,dataNascimentoCliente DATE
     ,cpfCliente CHAR(11)  -- Logradouro
     ,ruaCliente VARCHAR(30)
     ,bairroCliente VARCHAR(30)
