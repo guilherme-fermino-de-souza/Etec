@@ -38,9 +38,6 @@ public class ProdutoDao {
 		catch(SQLException e) {
 			System.out.println("Erro ao registrar Categoria Produto: "+e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//ADICIONAR Produto Banco De Dados
@@ -62,16 +59,12 @@ public class ProdutoDao {
 		catch(SQLException e) {
 			System.out.println("Erro ao registrar Produto: "+e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//CONSULTA tbCategoriaProduto
 		public List<Produto> getListaCategoria() throws SQLException{
-			try {
-				List<Produto> categoriaProdutos = new ArrayList<Produto>(); //Define a Lista
-				
+			List<Produto> categoriaProdutos = new ArrayList<Produto>(); //Define a Lista
+			try {		
 				PreparedStatement stmt = this.connection.prepareStatement("select * from tbCategoriaProduto"); //Prepara a instrução MySQL
 				ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
 				
@@ -79,25 +72,19 @@ public class ProdutoDao {
 					Produto categoriaProduto = new Produto();
 					categoriaProduto.setIdCategoriaProduto(rs.getInt(1)); //Id Categoria
 					categoriaProduto.setNomeCategoriaProduto(rs.getString(2)); //Nome Categoria
-
 					categoriaProdutos.add(categoriaProduto); //Cria um objeto para cada produto buscado
 				}	
-				rs.close();
-				stmt.close();	
-				return categoriaProdutos;
+				
 			} 
 			catch(SQLException e) {
 				throw new RuntimeException("Erro ao consultar tabela", e);
 			}
-			finally {
-				connection.close();
-			}
+			return categoriaProdutos;
 		}
 		//CONSULTA tbProduto
 		public List<Produto> getListaProduto() throws SQLException{
+			List<Produto> produtos = new ArrayList<Produto>(); //Define a Lista
 			try {
-				List<Produto> produtos = new ArrayList<Produto>(); //Define a Lista
-				
 				PreparedStatement stmt = this.connection.prepareStatement("select * from tbProduto"); //Prepara a instrução MySQL
 				ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
 				
@@ -107,19 +94,14 @@ public class ProdutoDao {
 					produto.setValorProduto(rs.getDouble(3)); //Valor Produto
 					produto.setQuantidadeProduto(rs.getInt(4)); //Quantidade Produto
 					produto.setIdCategoriaProduto(rs.getInt(5)); //Id Categoria
-
 					produtos.add(produto); //Cria um objeto para cada produto buscado
-				}	
-				rs.close();
-				stmt.close();	
-				return produtos;
+				}		
+
 			} 
 			catch(SQLException e) {
 				throw new RuntimeException("Erro ao consultar tabela", e);
 			}
-			finally {
-				connection.close();
-			}
+			return produtos;
 		}
 	
 	//UPDATE tbCategoriaProdutos Banco De Dados
@@ -138,35 +120,49 @@ public class ProdutoDao {
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//DELETE tbCategoriaProduto Banco De Dados
-	public void deleteCategoriaProduto(Produto produto) throws SQLException{
-		
-		String sqlProduto = "delete from tbProduto where categoriaProduto_id = ?";
-		String sqlCategoria = "delete from tbCategoriaProduto where idCategoriaProduto = ?";
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sqlProduto); 
-			stmt.setInt(1, produto.getIdCategoriaProduto());
-			stmt.execute();
-			stmt.close();
-			
-			stmt = connection.prepareStatement(sqlCategoria);
-			stmt.setInt(1, produto.getIdCategoriaProduto());
-			stmt.execute();
-			stmt.close();
-			
-			JOptionPane.showMessageDialog(null,"Dados da Categoria e produtos excluidos com sucesso");
-		}
-		catch(SQLException e) {
-			throw new RuntimeException("Erro ao excluir Categoria ou Produtos ", e);
-		}
-		finally {
-			connection.close();
-		}
+	public void deleteCategoriaProduto(Produto produto) throws SQLException {
+	    // 1. Consulta o idCategoriaProduto com base no nome da categoria
+	    String sqlSelect = "SELECT idCategoriaProduto FROM tbCategoriaProduto WHERE nomeCategoriaProduto = ?";
+	    
+	    // 2. Exclui os produtos relacionados com a categoria
+	    String sqlDeleteProduto = "DELETE FROM tbProduto WHERE categoriaProduto_id = ?";
+	    
+	    // 3. Exclui a categoria
+	    String sqlDeleteCategoria = "DELETE FROM tbCategoriaProduto WHERE idCategoriaProduto = ?";
+	    
+	    try {
+	        PreparedStatement stmtSelect = connection.prepareStatement(sqlSelect);
+	        stmtSelect.setString(1, produto.getNomeCategoriaProduto());
+	        ResultSet rs = stmtSelect.executeQuery();
+	        
+	        if (rs.next()) {
+	            int idCategoriaProduto = rs.getInt("idCategoriaProduto");
+	            
+	            // 4. Excluir os produtos que pertencem a essa categoria
+	            PreparedStatement stmtDeleteProduto = connection.prepareStatement(sqlDeleteProduto);
+	            stmtDeleteProduto.setInt(1, idCategoriaProduto); // Usando o id da categoria
+	            stmtDeleteProduto.executeUpdate();
+	            stmtDeleteProduto.close();
+	            
+	            // 5. Excluir a categoria
+	            PreparedStatement stmtDeleteCategoria = connection.prepareStatement(sqlDeleteCategoria);
+	            stmtDeleteCategoria.setInt(1, idCategoriaProduto); // Usando o id da categoria
+	            stmtDeleteCategoria.executeUpdate();
+	            stmtDeleteCategoria.close();
+	            
+	            JOptionPane.showMessageDialog(null, "Categoria e produtos excluídos com sucesso!");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Categoria não encontrada!");
+	        }
+	        
+	        stmtSelect.close();
+	        
+	    } catch (SQLException e) {
+	        throw new RuntimeException("Erro ao excluir categoria ou produtos", e);
+	    }
 	}
 	
 	//UPDATE tbProdutos Banco De Dados
@@ -188,28 +184,36 @@ public class ProdutoDao {
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
 		}
-		finally {
-			connection.close();
-		}
-	}
+}
 	
 	//DELETE tbProduto Banco De Dados
 	public void deleteProduto(Produto produto) throws SQLException{
-		
-		String sql = "delete from tbProduto where idProduto = ?";
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sql); 
-			stmt.setInt(1, produto.getIdProduto());
-			stmt.execute();
-			stmt.close();
-			
-			JOptionPane.showMessageDialog(null,"Dados da Tabela de Produtos excluidos com sucesso");
-		}
-		catch(SQLException e) {
-			throw new RuntimeException("Erro ao excluir Produtos ", e);
-		}
-		finally {
-			connection.close();
-		}
+	    String sqlSelect = "SELECT idProduto FROM tbProduto WHERE nomeProduto = ?";
+	    
+	    // 2. Exclui os produtos relacionados com a categoria
+	    String sqlDeleteProduto = "DELETE FROM tbProduto WHERE idProduto = ?";
+	    try {
+	        PreparedStatement stmtSelect = connection.prepareStatement(sqlSelect);
+	        stmtSelect.setString(1, produto.getNomeProduto());
+	        ResultSet rs = stmtSelect.executeQuery();
+	        
+	        if (rs.next()) {
+	            int idProduto = rs.getInt("idProduto");
+	            
+	            PreparedStatement stmtDeleteProduto = connection.prepareStatement(sqlDeleteProduto);
+	            stmtDeleteProduto.setInt(1, idProduto); // Usando o id da categoria
+	            stmtDeleteProduto.executeUpdate();
+	            stmtDeleteProduto.close();
+	            
+	            JOptionPane.showMessageDialog(null, "rodutos excluídos com sucesso!");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Categoria não encontrada!");
+	        }
+	        
+	        stmtSelect.close();
+	        
+	    } catch (SQLException e) {
+	        throw new RuntimeException("Erro ao excluir produtos", e);
+	    }
 	}
-}
+	}
