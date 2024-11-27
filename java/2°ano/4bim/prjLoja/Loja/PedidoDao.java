@@ -43,9 +43,6 @@ public class PedidoDao {
 		catch(SQLException e) {
 			System.out.println("Erro ao registrar Pedido: "+e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//ADICIONAR Itens Pedido Banco De Dados
@@ -56,7 +53,7 @@ public class PedidoDao {
 				"values (?, ?, ?)";
 			
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, itensPedido.getQuantidadePedido());
+			stmt.setInt(1, itensPedido.getQuantidadeItensPedido());
 			stmt.setInt(2, itensPedido.getIdPedido());
 			stmt.setInt(3, itensPedido.getIdProduto());
 			stmt.execute();
@@ -65,9 +62,6 @@ public class PedidoDao {
 		} 
 		catch(SQLException e) {
 			System.out.println("Erro ao registrar Itens Pedido: "+e);
-		}
-		finally {
-			connection.close();
 		}
 	}
 	
@@ -104,9 +98,6 @@ public class PedidoDao {
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao consultar tabela", e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//CONSULTA tbItensPedido
@@ -119,7 +110,11 @@ public class PedidoDao {
 			
 			while(rs.next()) { // Busca todos o objetos armazenados no BD
 				Pedido pedido = new Pedido();
-				pedido.getQuantidadeItensPedido(rs.getInt(1));; //Quantidade
+				
+				
+				pedido.setQuantidadeItensPedido(rs.getInt(1));; //Quantidade AVISO: ESSE CAMPO CONSTAVA COMO "GET" ANTES, TALVEZ DÊ ERRO PELA MUDANÇA
+				
+				
 				pedido.setIdPedido(rs.getInt(2)); //Id Pedido
 				pedido.setIdProduto(rs.getInt(3)); //Id Produto
 
@@ -133,9 +128,6 @@ public class PedidoDao {
 		} 
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao consultar tabela", e);
-		}
-		finally {
-			connection.close();
 		}
 	}
 	
@@ -158,20 +150,19 @@ public class PedidoDao {
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//Exclusão Pedido
 	public void deletePedido(Pedido pedido) throws SQLException{
-		
+		 String sqlSelect = "SELECT idPedido FROM tbPedido WHERE dataPedido = ?";
+		 
 		String sqlItens = "delete from tbItensPedido where Pedido_id = ?";
+		
 		String sql = "delete from tbPedido where idPedido = ?";
 		
 		try {
 			PreparedStatement stmtItens = connection.prepareStatement(sqlItens);
-			stmtItens.setInt(1, pedido.getIdPedido());
+			stmtItens.setDate(1, java.sql.Date.valueOf(pedido.getDataPedido()));
 			stmtItens.execute();
 			stmtItens.close();
 			
@@ -184,9 +175,6 @@ public class PedidoDao {
 		}
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao excluir tabela", e);
-		}
-		finally {
-			connection.close();
 		}
 	}
 	
@@ -208,18 +196,19 @@ public class PedidoDao {
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao dar update na tabela", e);
 		}
-		finally {
-			connection.close();
-		}
 	}
 	
 	//DELETE ItesPedido
 	public void deleteItensPedido(Pedido pedido) throws SQLException{
+		String sqlSelect = "select idItensPedido from tbItensPedido where quantidadeItensPedido = ?";
+		
+		String sqlDelete = "delete from tbPedido where idPedido = ?";
+		
 		String sql = "delete from tbItensPedido where idItensPedido = ?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, pedido.getIdItensPedido());
+			stmt.setInt(1, pedido.getQuantidadeItensPedido());
 			
 			stmt.execute();
 			stmt.close();
@@ -227,9 +216,6 @@ public class PedidoDao {
 		}
 		catch(SQLException e) {
 			throw new RuntimeException("Erro ao excluir na tabela", e);
-		}
-		finally {
-			connection.close();
 		}
 	}
 }
