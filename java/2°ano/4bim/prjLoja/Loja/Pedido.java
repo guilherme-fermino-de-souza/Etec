@@ -1,274 +1,221 @@
-package Model;//Apenas Modelagem da aplicação
-//Atributos e Gets and Sets
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package DAO; /*Data Acess Object
+(Objeto de Acesso a Dados) do Pedido */
+
 import java.sql.SQLException;
+import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
-import DAO.PedidoDao;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.time.LocalDate; //Permite variaveis tipo Data
 import java.time.format.DateTimeFormatter; //Converte o formato do dado
+import Model.Pedido; //Importação do Pedido
 
-public class Pedido extends JDialog{
-	//Pedido (tbPedido) 1°GUIA
-	private JLabel lbDataPedido; //Data 1° Coluna
-	private JTextField txDataPedido;
-	private JLabel lbValorPedido; //Valor 2° Coluna
-	private JTextField txValorPedido;
-	private JLabel lbDataEntregaPedido; //Data Entrega 3° Coluna
-	private JTextField txDataEntregaPedido;
-	private JLabel lbIdCliente; //Id Cliente 4° Coluna
-	private JTextField txIdCliente;
-	private JButton btCadastrarPedido; //Botão Cadastrar 1° Guia
-	//Itens Pedido(tbItensPedido) 2°GUIA
-	private JLabel lbQuantidadeItensPedido; //Quantidade 1° Coluna
-	private JTextField txQuantidadeItensPedido;
-	private JLabel lbIdPedido; //Id Pedido 2° Coluna
-	private JTextField txIdPedido;
-	private JLabel lbIdProduto; //Id Produto 3° Coluna
-	private JTextField txIdProduto;
-	private JButton btCadastrarItensPedido; //Botão Cadastrar 2° Guia
+public class PedidoDao {
 	
-	private int idUpPedido;
-	private int idItensPedido;
-	private int idPedidoItensPedido;
-	private int idProdutoItensPedido;
+	private Connection connection;
 	
-	 //GETs e SETs 
-    //Encapsulação = atributos de uma classe serão escondidos ou privados
-   //GET = retorna o valor de um atributo / SET = define ou modifica o valor de um atributo
-  //Pedido (tbPedido) 1°GUIA
-    public LocalDate getDataPedido() { // RECUPERA a Data Pedido 
-        return LocalDate.parse(txDataPedido.getText(), DateTimeFormatter.ISO_LOCAL_DATE); //Converte para (dd-mm-yyyy)
-    }
-    public void setDataPedido(LocalDate dataPedido) { // DEFINE a Data Pedido
-        txDataPedido.setText(dataPedido.format(DateTimeFormatter.ISO_LOCAL_DATE));
-    }
-    
-   //Valor Pedido
-    public double getValorPedido() { // RECUPERA o Valor Pedido
-    	return Double.parseDouble(txValorPedido.getText());
-    }
-    public void setValorPedido(double valorPedido) { // DEFINE o Valor Pedido
-    	txValorPedido.setText(String.valueOf(valorPedido));
-    }   
-   //Data Entrega Pedido
-    public LocalDate getDataEntregaPedido() { // RECUPERA a Data Entrega Pedido 
-        return LocalDate.parse(txDataEntregaPedido.getText(), DateTimeFormatter.ISO_LOCAL_DATE); //Converte para (dd-mm-yyyy)
-    }
-    public void setDataEntregaPedido(LocalDate dataEntregaPedido) { // DEFINE a Data Pedido
-        txDataEntregaPedido.setText(dataEntregaPedido.format(DateTimeFormatter.ISO_LOCAL_DATE));
-    }
-   //Id Cliente
-    public int getIdCliente() { // RECUPERA o Nome Produto
-    	return Integer.parseInt(txIdCliente.getText());
-    }
-    public void setIdCliente(int idCliente) { // DEFINE o Nome Produto
-    	txIdCliente.setText(String.valueOf(idCliente));
-    }
-    
-  //Itens Pedido (tbItensPedido) 2°GUIA
-  //Id Itens Pedido
-    public int getIdItensPedido() {
-    	return idItensPedido;
-    }
-    public void setIdItensPedido(int idItensPedido) { 
-    	this.idItensPedido = idItensPedido;
-    }
-  //Quantidade Pedido
-    public int getQuantidadeItensPedido() { // RECUPERA o Quantidade Pedido
-    	return Integer.parseInt(txQuantidadeItensPedido.getText());
-    }
-    public void setQuantidadeItensPedido(int quantidadeItensPedido) { // DEFINE o Quantidade Pedido
-    	txQuantidadeItensPedido.setText(String.valueOf(quantidadeItensPedido));
-    }
-   //Id Pedido
-    public int getIdPedido() { // RECUPERA o Id Pedido
-    	return Integer.parseInt(txIdPedido.getText());
-    }
-    public void setIdPedido(int idPedido) { // DEFINE o Id Pedido
-    	txIdPedido.setText(String.valueOf(idPedido));
-    }
-   //Id Produto
-    public int getIdProduto() { // RECUPERA o Id Produto
-    	return Integer.parseInt(txIdProduto.getText());
-    }
-    public void setIdProduto(int idProduto) { // DEFINE o Id Produto
-    	txIdProduto.setText(String.valueOf(idProduto));
-    }
-    //UPDATE pedido
-    public int getIdUpPedido() { 
-        return idUpPedido;
-    }
-    public void setIdUpPedido(int idUpPedido) {
-        this.idUpPedido= idUpPedido;
-    }
-    //UPDATE Itens
-    public int getIdPedidoItensPedido() {
-    	return idPedidoItensPedido;
-    }
-    public void setIdPedidoItensPedido(int idPedidoItensPedido) { 
-    	this.idPedidoItensPedido = idPedidoItensPedido;
-    }  
-    public int getIdProdutoItensPedido() {
-    	return idProdutoItensPedido;
-    }
-    public void setIdProdutoItensPedido(int idProdutoItensPedido) { 
-    	this.idProdutoItensPedido = idProdutoItensPedido;
-    } 
-	
-	public Pedido() {
-		this.setTitle("Cadastrar Pedido");
-		this.setModal(true);
-		this.setSize(450, 380);
-		this.setResizable(false);
-		
-		Container CadastroPedido = this.getContentPane();
-		setLocationRelativeTo(CadastroPedido);
-		CadastroPedido.setLayout(null);
-		
-		//Criar o JTabbedPane(Painel com Guias)
-		JTabbedPane PedidoPane = new JTabbedPane();
-		PedidoPane.setBounds(0, 0, 500, 470); //Tamanho e Posicionamento do JTabbedPane
-		
-		//1° GUIA
-		
-		//Pedido(tbPedido)
-		JPanel painelPedido1 = new JPanel();
-		painelPedido1.setLayout(null);
-		
-		//Data Pedido COLUNA 1
-		lbDataPedido = new JLabel("Data: ");
-		lbDataPedido.setBounds(10, 15, 75, 20);
-		painelPedido1.add(lbDataPedido);
-		
-		txDataPedido = new JTextField();
-		txDataPedido.setBounds(95, 15, 150, 20);
-		painelPedido1.add(txDataPedido);
-		
-		//Valor Total Pedido COLUNA 2
-		lbValorPedido = new JLabel("Valor Total: ");
-		lbValorPedido.setBounds(10, 35, 75, 20);
-		painelPedido1.add(lbValorPedido);
-		
-		txValorPedido = new JTextField();
-		txValorPedido.setBounds(95, 35, 150, 20);
-		painelPedido1.add(txValorPedido);
-		
-		//Data Entrega Pedido COLUNA 3
-		lbDataEntregaPedido = new JLabel("Data Entrega: ");
-		lbDataEntregaPedido.setBounds(10, 55, 85, 20);
-		painelPedido1.add(lbDataEntregaPedido);
-		
-		txDataEntregaPedido = new JTextField();
-		txDataEntregaPedido.setBounds(95, 55, 150, 20);
-		painelPedido1.add(txDataEntregaPedido);
-		
-		//Id Cliente(FOREIGN KEY) COLUNA 4
-		lbIdCliente = new JLabel("Id Cliente: ");
-		lbIdCliente.setBounds(10, 75, 85, 20);
-		painelPedido1.add(lbIdCliente);
-		
-		txIdCliente = new JTextField();
-		txIdCliente.setBounds(95, 75, 150, 20);
-		painelPedido1.add(txIdCliente);
-		
-		//Botão Cadastrar Pedido(tbPedido)
-		btCadastrarPedido = new JButton("Cadastrar Pedido");
-		btCadastrarPedido.setBounds(15,150,175,20);
-		painelPedido1.add(btCadastrarPedido);	
-		
-		 EventoBotaoPedido evbP = new EventoBotaoPedido();
-		 btCadastrarPedido.addActionListener(evbP);
-		
-		//Add Painel(tbPedido) 1° GUIA
-		 PedidoPane.addTab("Pedido", null,painelPedido1,"Primeiro Painel");
-		 CadastroPedido.add(PedidoPane); 
-		 
-		//2° GUIA
-			
-		//Itens Pedido(tbItensPedido)
-		JPanel painelPedido2 = new JPanel();
-		painelPedido2.setLayout(null);
-		
-		//Quantidade Pedido COLUNA 1
-		lbQuantidadeItensPedido = new JLabel("Quantidade Pedido: ");
-		lbQuantidadeItensPedido.setBounds(10, 15, 115, 20);
-		painelPedido2.add(lbQuantidadeItensPedido);
-				
-		txQuantidadeItensPedido = new JTextField();
-		txQuantidadeItensPedido.setBounds(120, 15, 150, 20);
-		painelPedido2.add(txQuantidadeItensPedido);
-		
-		//Id Pedido COLUNA 2
-		lbIdPedido = new JLabel("Id Pedido: ");
-		lbIdPedido.setBounds(10, 35, 75, 20);
-		painelPedido2.add(lbIdPedido);
-				
-		txIdPedido = new JTextField();
-		txIdPedido.setBounds(120, 35, 150, 20);
-		painelPedido2.add(txIdPedido);
-		
-		//Id Pedido COLUNA 3
-		lbIdProduto = new JLabel("Id Produto: ");
-		lbIdProduto.setBounds(10, 55, 75, 20);
-		painelPedido2.add(lbIdProduto);
-				
-		txIdProduto = new JTextField();
-		txIdProduto.setBounds(120, 55, 150, 20);
-		painelPedido2.add(txIdProduto);
-		
-		//Botão Cadastrar Itens Pedido(tbItensPedido)
-		btCadastrarItensPedido = new JButton("Cadastrar Itens Pedido");
-		btCadastrarItensPedido.setBounds(15,150,175,20);
-		painelPedido2.add(btCadastrarItensPedido);	
-		
-		 EventoBotaoPedidoItens evbI = new EventoBotaoPedidoItens();
-		 btCadastrarItensPedido.addActionListener(evbI);
-		
-		//Add Painel(tbItensPedido) 2° GUIA
-		 PedidoPane.addTab("Itens", null,painelPedido2,"Segundo Painel");
-		 CadastroPedido.add(PedidoPane); 
-		
+	public PedidoDao() { //Construtor(O mesmo nome da classe)
+		this.connection = new ConectionFactory().getConnection();
+		//Gera conexão com o banco toda vez que se instacia um objeto
 	}
-	   private class EventoBotaoPedido implements ActionListener{ //BOTÃO PRIMEIRA GUIA
-	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Data: "+txDataPedido.getText()+"\n"+"Valor Total: "+txValorPedido.getText()+"\n"+"Data Entrega: "+txDataEntregaPedido.getText()+"\n"+"Id Cliente: "+txIdCliente.getText());
-	       
-	    	   	Pedido pedido = new Pedido(); //OBJETO 1° Guia
-    	   			pedido.setDataPedido(LocalDate.parse(txDataPedido.getText())); //Data
-    	   			pedido.setValorPedido(Double.parseDouble(txValorPedido.getText())); //Valor
-    	   			pedido.setDataEntregaPedido(LocalDate.parse(txDataEntregaPedido.getText())); //Data Entrega
-    	   			pedido.setIdCliente(Integer.parseInt(txIdCliente.getText())); //Id Cliente
-    	   			PedidoDao pedidoDao = new PedidoDao();
-    	   				try {
-    	   					pedidoDao.adicionarPedido(pedido);
-    	   				} catch (SQLException e) {
-    	   					// TODO Auto-generated catch block
-    	   					e.printStackTrace();
-    	   				}
-	       }   
-	  }
-	   
-	   private class EventoBotaoPedidoItens implements ActionListener{ //BOTÃO SEGUNDA GUIA
-	       public void actionPerformed(ActionEvent event){
-	    	   	JOptionPane.showMessageDialog(null,"Quantidade: "+txQuantidadeItensPedido.getText()+"\n"+"Id Pedido: "+txIdPedido.getText()+"\n"+"Id Produto: "+txIdPedido.getText());
-	        
-	    	   	Pedido itensPedido = new Pedido(); //OBJETO 2° Guia
-	    	   	itensPedido.setQuantidadeItensPedido(Integer.parseInt(txQuantidadeItensPedido.getText())); //Quantidade Pedido
-	    	   	itensPedido.setIdPedido(Integer.parseInt(txIdPedido.getText())); //Id Pedido
-	    	   	itensPedido.setIdProduto(Integer.parseInt(txIdProduto.getText())); //Id Produto
-	   				PedidoDao pedidoDao = new PedidoDao();
-	   					try {
-	   						pedidoDao.adicionarItensPedido(itensPedido);
-	   					} catch (SQLException e) {
-	   						// TODO Auto-generated catch block
-	   						e.printStackTrace();
-	   					}
-	       }   
-	  }
+	
+	//ADICIONAR Pedido Banco De Dados
+	public void adicionarPedido(Pedido pedido) throws SQLException {
+		try {
+			String sql = "insert into tbPedido"+
+				"(dataPedido, valorTotalPedido, dataEntregaPedido, cliente_id)"+
+				"values (?, ?, ?, ?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setDate(1, java.sql.Date.valueOf(pedido.getDataPedido()));
+			stmt.setDouble(2, pedido.getValorPedido());
+			stmt.setDate(3, java.sql.Date.valueOf(pedido.getDataEntregaPedido()));
+			stmt.setInt(4, pedido.getIdCliente());
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Pedido Cadastrado Com Sucesso");
+		} 
+		catch(SQLException e) {
+			System.out.println("Erro ao registrar Pedido: "+e);
+		}
+	}
+	
+	//ADICIONAR Itens Pedido Banco De Dados
+	public void adicionarItensPedido(Pedido itensPedido) throws SQLException {
+		try {
+			String sql = "insert into tbItensPedido"+
+				"(quantidadeItensPedido, pedido_id, produto_id)"+
+				"values (?, ?, ?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, itensPedido.getQuantidadeItensPedido());
+			stmt.setInt(2, itensPedido.getIdPedido());
+			stmt.setInt(3, itensPedido.getIdProduto());
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Itens Pedido Cadastrado Com Sucesso");
+		} 
+		catch(SQLException e) {
+			System.out.println("Erro ao registrar Itens Pedido: "+e);
+		}
+	}
+	
+	//CONSULTA tbPedido
+	public List<Pedido> getListaPedido() throws SQLException{
+		try {
+			List<Pedido> pedidos = new ArrayList<Pedido>(); //Define a Lista
+			
+			PreparedStatement stmt = this.connection.prepareStatement("select * from tbPedido"); //Prepara a instrução MySQL
+			ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			
+			while(rs.next()) { // Busca todos o objetos armazenados no BD
+				Pedido pedido = new Pedido();
+				pedido.setIdPedido(rs.getInt(1)); //Id
+				String txDataPedido = rs.getString(2); //Data
+				LocalDate dataPedido = LocalDate.parse(txDataPedido, formatter);
+				pedido.setDataPedido(dataPedido);
+				pedido.setValorPedido(rs.getDouble(3)); //Valor
+				String txDataEntregaPedido = rs.getString(2); //Data Entrega
+				LocalDate dataEntregaPedido = LocalDate.parse(txDataEntregaPedido, formatter);
+				pedido.setDataEntregaPedido(dataEntregaPedido);
+				pedido.setIdCliente(rs.getInt(5)); //Id Cliente
 
+				pedidos.add(pedido); //Cria um objeto para cada produto buscado
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			return pedidos;
+		} 
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao consultar tabela", e);
+		}
+	}
+	
+	//CONSULTA tbItensPedido
+	public List<Pedido> getListaItensPedido() throws SQLException{
+		try {
+			List<Pedido> itensPedidos = new ArrayList<Pedido>(); //Define a Lista
+			
+			PreparedStatement stmt = this.connection.prepareStatement("select * from tbItensPedido"); //Prepara a instrução MySQL
+			ResultSet rs = stmt.executeQuery(); //Armazena e Executa instrução em RS
+			
+			while(rs.next()) { // Busca todos o objetos armazenados no BD
+				Pedido pedido = new Pedido();
+				
+				
+				pedido.setQuantidadeItensPedido(rs.getInt(1));; //Quantidade AVISO: ESSE CAMPO CONSTAVA COMO "GET" ANTES, TALVEZ DÊ ERRO PELA MUDANÇA
+				
+				
+				pedido.setIdPedido(rs.getInt(2)); //Id Pedido
+				pedido.setIdProduto(rs.getInt(3)); //Id Produto
+
+				itensPedidos.add(pedido); //Cria um objeto para cada produto buscado
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			return itensPedidos;
+		} 
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao consultar tabela", e);
+		}
+	}
+	
+	//UPDATE Pedido
+	public void updatePedido(Pedido pedido) throws SQLException{
+		String sql = "update tbPedido set dataPedido = ? , valorTotalPedido = ? ,dataEntregaPedido = ?, cliente_id = ? where idPedido = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setDate(1, java.sql.Date.valueOf(pedido.getDataPedido()));
+			stmt.setDouble(2, pedido.getValorPedido());
+			stmt.setDate(3, java.sql.Date.valueOf(pedido.getDataEntregaPedido()));
+			stmt.setInt(4, pedido.getIdCliente());
+			stmt.setInt(5, pedido.getIdUpPedido());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao dar update na tabela", e);
+		}
+	}
+	
+	//Exclusão Pedido
+	public void deletePedido(Pedido pedido) throws SQLException{
+		 String sqlSelect = "SELECT idPedido FROM tbPedido WHERE dataPedido = ?";
+		 
+		String sqlItens = "delete from tbItensPedido where Pedido_id = ?";
+		
+		String sql = "delete from tbPedido where idPedido = ?";
+		
+		try {
+			PreparedStatement stmtItens = connection.prepareStatement(sqlItens);
+			stmtItens.setDate(1, java.sql.Date.valueOf(pedido.getDataPedido()));
+			stmtItens.execute();
+			stmtItens.close();
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pedido.getIdPedido());
+			stmt.execute();
+			stmt.close();
+			
+			JOptionPane.showMessageDialog(null,"Dados excluidos com sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao excluir tabela", e);
+		}
+	}
+	
+	//UPDATE ItesPedido
+	public void updateItensPedido(Pedido pedido) throws SQLException{
+		String sql = "update tbItensPedido set quantidadeItensPedido = ? , pedido_id = ? , produto_id = ? where idItensPedido = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pedido.getQuantidadeItensPedido());
+			stmt.setInt(2, pedido.getIdPedido());
+			stmt.setInt(3, pedido.getIdProduto());
+			stmt.setInt(4, pedido.getIdItensPedido());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Alterados Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao dar update na tabela", e);
+		}
+	}
+	
+	//DELETE ItesPedido
+	public void deleteItensPedido(Pedido pedido) throws SQLException{
+		String sqlSelect = "select idItensPedido from tbItensPedido where quantidadeItensPedido = ?";
+		
+		String sqlDelete = "delete from tbPedido where idPedido = ?";
+		
+		String sql = "delete from tbItensPedido where idItensPedido = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pedido.getQuantidadeItensPedido());
+			
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null,"Dados Excluidos Com Sucesso");
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Erro ao excluir na tabela", e);
+		}
+	}
 }
