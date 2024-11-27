@@ -8,6 +8,7 @@ import Model.ObjTabbedPane;
 import Model.Pedido;
 import Model.Produto;
 import Model.Atualizar;
+import Model.Cliente;
 
 public class Menu extends JFrame{
 	 
