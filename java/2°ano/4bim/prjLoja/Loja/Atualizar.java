@@ -584,7 +584,7 @@ public class Atualizar extends JDialog{
 	       public void actionPerformed(ActionEvent event){
 	    	   	Pedido itensPedido = new Pedido(); //OBJETO 7° Guia
 	    	   	itensPedido.setIdItensPedido(Integer.parseInt(txIdItensPedido.getText())); //Id Itens Pedido
-	    	   	itensPedido.setQuantidadeItensPedido(Integer.parseInt(txQuantidadeItensPedido.getText())); //Quantidade Itens Pedido
+	    	   	itensPedido.setUpQuantidadeItensPedido(Integer.parseInt(txQuantidadeItensPedido.getText())); //Quantidade Itens Pedido
 	    	   	itensPedido.setIdPedidoItensPedido(Integer.parseInt(txIdPedidoItensPedido.getText())); //Id Pedido 
 	    	   	itensPedido.setIdPedidoItensPedido(Integer.parseInt(txIdProdutoItensPedido.getText())); //Id Produto
 	    	   		PedidoDao pedidoDao = new PedidoDao();
