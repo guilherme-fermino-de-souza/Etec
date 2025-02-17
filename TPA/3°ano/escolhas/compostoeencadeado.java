@@ -16,10 +16,10 @@ public class App {
 		if (idade <= 3 || idade > 100) {
 			System.out.println("Insira uma idade válida");
 		} else {
-			if (idade >= 18) {
-				System.out.println("Você tem: " + idade + " anos\n Já pode beber!");
-			} else {
+			if (idade <= 17) {
 				System.out.println("Você tem: " + idade + " anos\n Ainda não pode beber");
+			} else {
+				System.out.println("Você tem: " + idade + " anos\n Já pode beber!");
 			}
 		}
 	}
