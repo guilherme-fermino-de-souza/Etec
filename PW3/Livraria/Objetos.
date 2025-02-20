@@ -1,0 +1,43 @@
+Cliente:
+  idCliente AUTO_INCREMENT
+  nomeCliente
+  emailCliente 
+  cpfCliente
+  logradouro
+
+Vendedor:
+  idVendedor AUTO_INCREMENT
+  nome
+  email
+  cpf
+  logradouro
+
+AUTOR:
+  idAutor AUTO_INCREMENT
+  nome
+  dataNascimento
+  
+
+Livro:
+  idLivro AUTO_INCREMENT
+  titulo
+  sinopse  
+  anoPublicacao
+  numPaginas
+  quantEstoque
+  preco
+  genero FOREIGN KEY
+  autorLivro FOREIGN KEY
+  vendedorLivro FOREIGN
+
+GENERO:
+  idGenero AUTO_INCREMENT
+  tipoGenero
+
+LIVRO_GENEROS: //muitos para muitos, cada livro pode ter vários gêneros
+  
+ITENS_VENDA:
+
+VENDA:
+
+FORMA_PAGAMENTO:
