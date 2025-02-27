@@ -72,3 +72,11 @@ CREATE TABLE Venda (
   FOREIGN KEY (idVendedor) REFERENCES Vendedor(idVendedor),
   FOREIGN KEY (idFormaPagamento) REFERENCES Forma_Pagamento(idFormaPagamento)
 );
+
+/**************************************************************Contato******************************************************************************************/
+
+CREATE TABLE contato (
+  idContato INT AUTO_INCREMENT PRIMARY KEY,
+  emailContato varchar
+  assuntoContato
+)
