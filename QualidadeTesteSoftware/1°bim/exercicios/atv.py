@@ -50,9 +50,10 @@ print(listaFilmes, '\n', listaFilmes.__len__())
 """
 
 #
-listinhaNum = []
-for i in range(0, 10):
-    listinhaNum.append(input('Digita 10 números a calcular a média final: '))
+i = 1
+listaNum = []
+while i < 11:
+    listaNum.append(int(input('Digita 10 números a calcular a média final: ')))
+    i += 1
 
-result = sum(listinhaNum) / 2
-print(result)
+print(sum(listaNum) / 10)
