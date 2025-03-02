@@ -1,0 +1,9 @@
+comando no cmd para o Laravel
+
+- laravel new example-app //Criar Arquivo
+
+- php artisan migrate //Após selecionar o bnaco desejado no .env
+
+- php artisan make:migration create_example_table //Gerar arquivo no database/migrattions
+
+- php artisan migrate //Salvar a "aexample_table" no banco de dados
