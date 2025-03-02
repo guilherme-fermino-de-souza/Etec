@@ -6,4 +6,6 @@ comando no cmd para o Laravel
 
 - php artisan make:migration create_example_table //Gerar arquivo no database/migrattions
 
-- php artisan migrate //Salvar a "aexample_table" no banco de dados
+- php artisan migrate //Salvar a "example_table" no banco de dados
+
+- php artisan make:model Example //Model/Classe/Objeto //name must be always singular
