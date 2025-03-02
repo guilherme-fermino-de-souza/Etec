@@ -8,4 +8,6 @@ comando no cmd para o Laravel
 
 - php artisan migrate //Salvar a "example_table" no banco de dados
 
-- php artisan make:model Example //Model/Classe/Objeto //name must be always singular
+- php artisan make:model Example //name must be always singular //App/Models
+
+- php artisan make:controller ExampleController //Model/Classe/Objeto //Http/Controllers
