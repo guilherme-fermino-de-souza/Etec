@@ -1,3 +1,5 @@
+CREATE DATABASE dbLivraria /*Nome do banco */
+
 Cliente:  OBJETO
   idCliente AUTO_INCREMENT
   nomeCliente
@@ -79,4 +81,5 @@ CREATE TABLE contato (
   idContato INT AUTO_INCREMENT PRIMARY KEY,
   emailContato varchar
   assuntoContato
+  tesxtoContato
 )
