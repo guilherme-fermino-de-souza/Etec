@@ -35,3 +35,12 @@ print (dicRequisica)
 
 
 
+dias = input('Digite o período em dias a consultar: ')
+
+for i in range(1, dias):
+    i += 1
+    requisic = requests.get(link)
+    dicRequisic = requisic.json()
+    link = f"https://economia.awesomeapi.com.br/all/{dias}"
+    print('¨¨'*40)
+  
