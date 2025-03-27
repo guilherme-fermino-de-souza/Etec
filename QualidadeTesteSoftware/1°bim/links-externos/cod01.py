@@ -34,14 +34,20 @@ print (dicRequisica)
 """
 
 
-""" Clima (Feito) 
+""" Clima (Feito) """
 print("Clima Hoje: ")
-link = f"https://api.tempo.com/index.php?api_lang=br&localidad=12996&affiliate_id=tk99un15usak&v=3.0"
-requisic = requests.get(link)
-dicRequisic = requisic.json()
-print(f"Localização: {dicRequisic['location']}")
-print(f"Dados: {dicRequisic['day']}")
-"""
+link = f"http://api.tempo.com/index.php?api_lang=br&localidad=12996&affiliate_id=tk99un15usak&v=3.0"
+dicRequisic = requests.get(link).json()
+
+dias_disponiveis = list(dicRequisic['day'].keys())
+dia_escolhido = int(input(f"Escolha um dia entre: {dias_disponiveis}"))
+dia = dicRequisic['day'][dia_escolhido]
+
+tempo = dia['symbol_description']
+dia_semana = dia['name']
+
+print("Tempo: ", tempo)
+print("Dia: ", dia_semana)
 
 """ AdviceSlipe (Feito) 
 print("Slipe Advice: ")
