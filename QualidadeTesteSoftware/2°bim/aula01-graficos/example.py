@@ -19,3 +19,10 @@ valores = [3, 7, 2]
 plt.bar(categorias, valores)  
 plt.title("Gráfico de Barras")  
 plt.show()  
+
+# Pizza
+fatias = [35, 25, 40]  
+atividades = ['Dormir', 'Trabalhar', 'Lazer']  
+plt.pie(fatias, labels=atividades, autopct='%1.1f%%')  
+plt.title("Gráfico de Pizza")  
+plt.show()  
