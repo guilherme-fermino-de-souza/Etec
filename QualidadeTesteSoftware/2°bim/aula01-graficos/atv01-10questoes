@@ -1,0 +1,75 @@
+import matplotlib.pyplot as plt
+
+''' 1. Crie um gráfico de linha que mostre a altura de uma planta ao longo de 5 semanas. Use os dados fixos:
+semanas [1, 2, 3, 4, 5] e alturas [3, 6, 9, 12, 15] cm. FEITO
+
+semanas = [1, 2, 3, 4, 5]
+alturas = [3, 6, 9, 12, 15]
+
+plt.plot(semanas, alturas)
+plt.title("Altura de uma Planta ao Longo das Semanas")
+plt.xlabel("Semanas")
+plt.ylabel("Alturas")
+
+plt.show()
+'''
+
+''' 2. Peça ao usuário para digitar o nome de 3 matérias e suas respectivas notas. Depois, crie um gráfico de
+barras com esses dados. FEITO
+materias = []
+notas = []
+
+for i in range(3):
+    materia = input(f"Digite a {i+1}° materia: ")
+    materias.append(materia)
+    nota = input(f"Digite a nota da materia de {materia}: ")
+    notas.append(nota)
+
+plt.bar(materias, notas)
+plt.title("Notas Bimestrais")
+plt.show()
+'''
+
+''' 3. Crie um gráfico de pizza que mostre a preferência de transporte das pessoas. Use os dados fixos: Ônibus
+(40%), Carro (30%), Bicicleta (20%), A pé (10%). FEITO
+
+fatias = [40, 30, 20, 10]
+meios = ['Ônibus', 'Carro', 'Bicleta', 'A pé']
+plt.pie(fatias, labels=meios, autopct='%1.1f%%')
+plt.title("Gráfico Meios de Transporte")
+plt.show()
+'''
+
+# 4. Peça ao usuário para digitar os batimentos cardíacos em três momentos: ao acordar, após exercício físico e
+# após 10 minutos de descanso. Crie um gráfico de linha com esses dados.
+batimentos = []
+momentos = ['Ao Acordar', 'Após exercício', '10m após execício']
+
+print("Digite seus batimentos cardíacos em três momentos: ao acordar(1), após exercício físico(2) e após 10 minutos de descanso(3)")
+for i in range(3):
+    batimento = input(f"Batimentos no {i+1}° momento: ")
+    batimentos.append(batimento)
+
+plt.plot(momentos, batimentos)
+plt.title("Batimentos pm ao dia")
+plt.xlabel("Momento")
+plt.ylabel("N° batimento")
+plt.show()
+
+# 5. Crie um gráfico de barras com as vendas de três sabores de sorvete: Chocolate (150), Morango (100),
+# Baunilha (130).
+
+# 6. Peça ao usuário para informar quantas horas ele passou em um dia com sono, estudando e em lazer. Crie
+# um gráfico de pizza com esses dados.
+
+# 7. Crie um gráfico de linha que mostre a velocidade de um carro ao longo do tempo. Use os dados: tempo [0, 5,
+# 10, 15, 20] segundos e velocidade [0, 20, 40, 35, 50] km/h.
+
+# 8. Peça ao usuário para digitar quantas bananas, maçãs e laranjas ele comeu na semana. Mostre os dados em
+# um gráfico de barras.
+
+# 9. Peça ao usuário para digitar quantas horas ele usa por dia as seguintes redes sociais: Instagram, YouTube,
+# TikTok, WhatsApp e Outros. Crie um gráfico de pizza com essas informações.
+
+# 10. Peça ao usuário para digitar seu nível de energia (de 0 a 10) pela manhã, à tarde e à noite. Crie um gráfico
+# de linha com esses dados.
