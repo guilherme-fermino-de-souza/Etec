@@ -40,8 +40,8 @@ plt.title("Gráfico Meios de Transporte")
 plt.show()
 '''
 
-# 4. Peça ao usuário para digitar os batimentos cardíacos em três momentos: ao acordar, após exercício físico e
-# após 10 minutos de descanso. Crie um gráfico de linha com esses dados.
+'''# 4. Peça ao usuário para digitar os batimentos cardíacos em três momentos: ao acordar, após exercício físico e
+# após 10 minutos de descanso. Crie um gráfico de linha com esses dados. FEITO
 batimentos = []
 momentos = ['Ao Acordar', 'Após exercício', '10m após execício']
 
@@ -55,9 +55,17 @@ plt.title("Batimentos pm ao dia")
 plt.xlabel("Momento")
 plt.ylabel("N° batimento")
 plt.show()
+'''
 
 # 5. Crie um gráfico de barras com as vendas de três sabores de sorvete: Chocolate (150), Morango (100),
-# Baunilha (130).
+# Baunilha (130). FEITO
+
+sabores = ['Cholate', 'Morango', 'Baunilha']
+vendas = [150, 100, 130]
+
+plt.bar(sabores, vendas)
+plt.title("Venda de Sabores")
+plt.show()
 
 # 6. Peça ao usuário para informar quantas horas ele passou em um dia com sono, estudando e em lazer. Crie
 # um gráfico de pizza com esses dados.
