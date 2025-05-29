@@ -1,5 +1,6 @@
 import React, {useState} from "react"
-import {  View, StyleSheet, Text, TextInput, TouchableOpacity  } from "react-native"
+import {  View, StyleSheet, Text, TextInput, TouchableOpacity, Alert  } from "react-native"
+import Api from './src/services/api'
 
 export default function App() {
 
@@ -8,6 +9,23 @@ export default function App() {
   const [bairro, setBairro] = useState("")
   const [localidade, setLocalidade] = useState("")
   const [uf, setUf] = useState("")
+
+  async function buscarCep(){
+    if(cep == ""){
+      Alert.alert("CEP inválido!")
+      setCep("")
+    
+    try {
+      const response = await Api.get('/${cep}/json/')
+      setLogradouro(response.data.logradouro)
+      setBairro(response.data.bairro)
+      setLocalidade(response.data.localidade)
+      setUf(response.data.uf)
+    }catch(error){
+      console.log("ERRO" + error)
+    }
+      
+  }
 
   return (
     <View style={styles.containerPrincipal}>
@@ -30,7 +48,7 @@ export default function App() {
           placeholder="Digite o CEP"
         />
 
-        <TouchableOpacity style={styles.botaoBuscar}>
+        <TouchableOpacity style={styles.botaoBuscar} onPress={buscarCep}>
           <Text>Buscar</Text>
         </TouchableOpacity>
       </View>
