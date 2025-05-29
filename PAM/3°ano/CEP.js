@@ -20,7 +20,7 @@ export default function App() {
         <TextInput
           style={
             {
-              borderColor: "#000", borderWidth: 2, borderRadius: 5,padding: 10, width: 200, fontSize: 18, marginVertical: 20
+              borderColor: "#000", borderWidth: 2, borderRadius: 5,padding: 10, width: 200, fontSize: 18, marginVertical: 20, padding: 15
             }
           }
           value={cep}
@@ -60,7 +60,7 @@ export default function App() {
         <TextInput
           style={
             {
-              borderColor: "#000", borderWidth: 2, borderRadius: 5,padding: 10, width: 80, fontSize: 18, marginVertical: 10, marginHorizontal: 20 
+              borderColor: "#000", borderWidth: 2, borderRadius: 5,padding: 10, width: 100, fontSize: 18, marginVertical: 10, marginHorizontal: 20, padding: 15
             }
           }
           value={uf}
